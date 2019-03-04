@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/main.css" />
+</head>
+<body>
+    <p th:text="'Hello, ' + ${name} + '!'" />
+    <div>
+    <a href="/reacttest">goto React test page</a>
+    </div>
+    <script type="module">
+        import { PAGE} from "../../js/site";
+        window.onload = function(){ PAGE.onload() }
+    </script>
+</body>
+</html>

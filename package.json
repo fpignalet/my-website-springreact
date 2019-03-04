@@ -1,0 +1,52 @@
+{
+  "name": "Core",
+  "version": "0.1.0",
+  "description": "npm config",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fpignalet/spring-sandbox"
+  },
+  "author": "FPignalet",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/fpignalet/spring-sandbox/issues"
+  },
+  "homepage": "https://github.com/fpignalet/spring-sandbox",
+  "keywords": [
+    "rest",
+    "hateoas",
+    "spring",
+    "data",
+    "react"
+  ],
+  "scripts": {
+    "watch": "webpack --watch -d"
+  },
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-bootstrap": "^1.0.0-beta.5",
+    "react-redux": "^5.0.7",
+    "react-sidenav": "^3.1.7",
+    "rest": "^1.3.1",
+    "redux": "^3.5.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.1.0",
+    "styled-components": "^4.1.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-es2016": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.0.1",
+    "babel-minify-webpack-plugin": "^0.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  }
+}
