@@ -10,5 +10,7 @@ const TestApp = require('./reactitems');
 /*************************************************************************************
  * IMPLEMENTATION
  *************************************************************************************/
-ReactDOM.render(<TestApp ids={[1,2]}/>, document.getElementById("contenerREACT1"));
-ReactDOM.render(<TestApp ids={[3,4]}/>, document.getElementById("contenerREACT2"));
+ReactDOM.render(
+    <TestApp idtab={"reacttablejsx"} />,
+    document.getElementById("contenerREACT1")
+);

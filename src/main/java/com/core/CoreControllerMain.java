@@ -5,13 +5,30 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ *
+ */
 @Controller
-public class CoreControllerMain {
+public class CoreControllerMain extends ACoreControllerBase {
 
+    /**
+     * @param engine1
+     */
+    public CoreControllerMain(CoreEngine1 engine1) {
+        super(engine1);
+    }
+
+    /**
+     * @param name
+     * @param model
+     * @return
+     */
     @GetMapping("/")
-    public String hello(@RequestParam(name="name", required=false, defaultValue="TOTO 1") String name, Model model) {
+    public String entrytest(
+            @RequestParam(name="name", required=false, defaultValue="TOTO 1") String name,
+            Model model) {
         model.addAttribute("name", name);
-        return "hello";
+        return "entrytest";
     }
 
 }

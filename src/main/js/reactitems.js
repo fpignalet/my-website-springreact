@@ -9,6 +9,8 @@ const ReactBStrap = require('react-bootstrap');
 const ReactSNav = require('react-sidenav');
 const Redux = require('redux');
 
+const data = require('../resources/static/testdata.js');
+
 /*************************************************************************************
  * IMPLEMENTATION
  *************************************************************************************/
@@ -46,10 +48,8 @@ class ReactButtonJSX extends React.Component {
 
             return (
                 <div>
-
                     { this.testtext[2] }
                     <div id={this.tableid}></div>
-
                 </div>
 
             );
@@ -57,10 +57,8 @@ class ReactButtonJSX extends React.Component {
         else {
             return (
                 <div>
-
                     { this.renderbutton() }
                     <div id={this.tableid}></div>
-
                 </div>
             );
         }
@@ -123,8 +121,8 @@ class ReactTableJSX extends React.Component {
         return (
             <table>
                 <tbody>
-                <tr key="0"><th>Name</th><th>Index</th></tr>
-                { namesList }
+                    <tr key="0"><th>Name</th><th>Index</th></tr>
+                    { namesList }
                 </tbody>
             </table>
         );
@@ -167,10 +165,8 @@ class ReactDynListJSX extends React.Component {
     render() {
         return (
             <div>
-
                 { this.renderlist() }
                 { this.renderform() }
-
             </div>
         );
     }
@@ -257,21 +253,7 @@ class ReactDisclosable extends React.Component {
                 </ReactBStrap.Button>
                 <ReactBStrap.Collapse in={this.state.open}>
                     <div id="example-collapse-text">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
+                        { data["collapsable-text"] }
                     </div>
                 </ReactBStrap.Collapse>
             </>
@@ -288,6 +270,7 @@ class ReactTabcontainer extends React.Component {
         this.text1 = props.text1;
         this.text2 = props.text2;
         this.state = {
+            //...
         };
     }
 
@@ -353,14 +336,15 @@ class TestApp extends React.Component {
     constructor(props) {
         super(props);
 
-        this.ids = props.ids;
+        this.idtab = props.idtab;
+        this.modelname = "default";
 
         this.store = Redux.createStore(
             (state = 0, action) => {
                 switch (action.type) {
-                    case 'INCREMENT':
+                    case 'RENDERING':
                         return state + 1
-                    case 'DECREMENT':
+                    case 'DONE':
                         return state - 1
                     default:
                         return state
@@ -371,30 +355,69 @@ class TestApp extends React.Component {
         this.store.subscribe(() => console.log(this.store.getState()));
     }
 
+    componentWillMount() {
+        this.modelname = window.reactgetmodelname();
+    }
+
+    componentDidMount() {
+        /*
+        client({method: 'GET', path: '/api/employees'}).done(response => {
+            this.setState({employees: response.entity._embedded.employees});
+        });
+        */
+    }
+
+    loadFromServer(pageSize) {
+        /*
+        follow(client, root, [
+            {rel: 'employees', params: {size: pageSize}}]
+        ).then(employeeCollection => {
+            return client({
+                method: 'GET',
+                path: employeeCollection.entity._links.profile.href,
+                headers: {'Accept': 'application/schema+json'}
+            }).then(schema => {
+                this.schema = schema.entity;
+                return employeeCollection;
+            });
+        }).done(employeeCollection => {
+            this.setState({
+                employees: employeeCollection.entity._embedded.employees,
+                attributes: Object.keys(this.schema.properties),
+                pageSize: pageSize,
+                links: employeeCollection.entity._links});
+        });
+        */
+    }
+
     /// display 'application', contents
     render() {
         try {
-            this.store.dispatch({ type: 'INCREMENT' });
+            this.store.dispatch({ type: 'RENDERING' });
 
             return (
                 <div>
-
-                    <ReactNavigation />
-
-                    { this.renderbutton(this.ids[0])}
-                    { this.renderbutton(this.ids[1])}
-
-                    <ReactDisclosable />
-
-                    <ReactTabcontainer
-                        text1={"LINK-1-: If thy soul check thee that I come so near, Swear to thy blind soul that I was thy 'Will', And will, thy soul knows, is admitted there; Thus far for love, my love-suit, sweet, fulfil.\n" +
-                        "'Will', will fulfil the treasure of thy love, Ay, fill it full with wills, and my will one.\n" +
-                        "In things of great receipt with ease we prove Among a number one is reckon'd none: Then in the number let me pass untold, Though in thy store's account I one must be;\n"}
-                        text2={"LINK-2-: If thy soul check thee that I come so near, Swear to thy blind soul that I was thy 'Will', And will, thy soul knows, is admitted there; Thus far for love, my love-suit, sweet, fulfil.\n" +
-                        "'Will', will fulfil the treasure of thy love, Ay, fill it full with wills, and my will one.\n" +
-                        "In things of great receipt with ease we prove Among a number one is reckon'd none: Then in the number let me pass untold, Though in thy store's account I one must be;\n"}
-                    />
-
+                    <ReactBStrap.Container>
+                        <ReactBStrap.Row>
+                            <ReactBStrap.Col>
+                                { this.rendercol([0,1]) }
+                            </ReactBStrap.Col>
+                            <ReactBStrap.Col>
+                                { this.rendercol([2,3]) }
+                            </ReactBStrap.Col>
+                        </ReactBStrap.Row>
+                        <ReactBStrap.Row>
+                            <ReactBStrap.Col>
+                                { this.rendercol([4,5]) }
+                            </ReactBStrap.Col>
+                            <ReactBStrap.Col>
+                                { this.rendercol([6,7]) }
+                            </ReactBStrap.Col>
+                            <ReactBStrap.Col>
+                                { this.rendercol([8,9]) }
+                            </ReactBStrap.Col>
+                        </ReactBStrap.Row>
+                    </ReactBStrap.Container>
                 </div>
             );
         }
@@ -402,28 +425,46 @@ class TestApp extends React.Component {
 
         }
         finally{
-            this.store.dispatch({ type: 'DECREMENT' });
+            this.store.dispatch({ type: 'DONE' });
         }
     }
 
-    renderbutton(id) {
+    rendercol(ids) {
         return (
             <div>
-                <h3>BUTTON {id}</h3>
+
+                <div>
+                    FROM MODEL:
+                    { this.modelname }
+                </div>
+
+                { this.renderbutton(ids[0], this.idtab)}
+                { this.renderbutton(ids[1], this.idtab)}
+
+                <ReactDisclosable />
+
+                <ReactTabcontainer
+                    text1={data["link-text1"]}
+                    text2={data["link-text2"]}
+                />
+
+                <ReactDynListJSX />
+
+            </div>
+        );
+    }
+
+    renderbutton(idbt, idtab) {
+        return (
+            <div>
+                <h3>BUTTON {idbt}</h3>
                 <ReactButtonJSX
                     data={document}
-                    id={id}
-                    testtext={[
-                    'CLICK ME!',
-                    'Do something',
-                    'Now displaying the following list\n' ]}
-                    testdata={[
-                    'JSX Test table Item1 ',
-                    'JSX Test table Item2 '
-                ]}
-                tableid={
-                    "reacttablejsx"
-                }/>
+                    id={idbt}
+                    testtext={ data.testtext }
+                    testdata={ data.testdata }
+                    tableid={ idtab }
+                />
 
             </div>
         );

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/main.css" />
+</head>
+<body>
+    <p th:text="'FROM MODEL: ' + ${name} + '!'" />
+
+    <div>
+    <a href="/reacttest">goto React test page</a>
+    </div>
+
+    <a href="javascript:;" onclick="httpGet('httptest1', 'TOTO', 'item1')">RECEIVE TOTO from Backend</a>
+    <a href="javascript:;" onclick="httpGet('httptest2', null, 'content1')">LOAD JSON in Backend</a>
+    <script type="text/javascript">
+        try {
+            function cbk(text, result) {
+                const jsonRes = JSON.parse(text);
+                alert(jsonRes[result]);
+            }
+
+            function httpGet(req, param, result) {
+                const xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        cbk(this.responseText, result);
+                    }
+                };
+                xmlhttp.open("GET", req + "?param=" + param, true);
+                xmlhttp.send();
+            }
+        }
+        catch (e) {
+            console.log(e.errortext);
+        }
+    </script>
+</body>
+</html>

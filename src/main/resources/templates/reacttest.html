@@ -12,11 +12,16 @@
     />
 </head>
 <body>
-    <p th:text="'THYMELEAF Retest, ' + ${name} + '!'"></p>
+    <!-- -------------------------------------------------------------------------->
+    <p id="modelname" hidden th:text="${name}" />
+    <script type="text/javascript">
+        window.reactgetmodelname = function() {
+            return document.getElementById("modelname").innerText;
+        }
+    </script>
 
     <!-- -------------------------------------------------------------------------->
     <div id="contenerREACT1"></div>
-    <div id="contenerREACT2"></div>
     <script src="built/bundle.js"></script>
 
 </body>
