@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/main.css" />
 </head>
 <body>
+    <div th:include="header.html"></div>
+
     <p th:text="'FROM MODEL: ' + ${name} + '!'" />
 
     <div>
@@ -14,11 +16,13 @@
 
     <a href="javascript:;" onclick="httpGet('httptest1', 'TOTO', 'item1')">RECEIVE TOTO from Backend</a>
     <a href="javascript:;" onclick="httpGet('httptest2', null, 'content1')">LOAD JSON in Backend</a>
+    <a href="javascript:;" onclick="httpGet('httptest3', null, 'data_INDEXtitle')">LOAD JSON in Backend</a>
     <script type="text/javascript">
         try {
             function cbk(text, result) {
                 const jsonRes = JSON.parse(text);
-                alert(jsonRes[result]);
+                const data = jsonRes[result];
+                alert(data);
             }
 
             function httpGet(req, param, result) {

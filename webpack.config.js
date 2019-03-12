@@ -5,7 +5,8 @@ module.exports = {
 	cache: true,
 	mode: 'development',
 
-	entry: './src/main/js/reacttest.js',
+	entry: [ './src/main/js/reacttest.js' ],
+
 	output: {
 		path: __dirname,
 		filename: './src/main/resources/static/built/bundle.js'
@@ -29,6 +30,7 @@ module.exports = {
 					}
 				}]
 			}
-		]
+		],
 	}
+
 };

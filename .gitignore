@@ -25,6 +25,7 @@ HELP.md
 /.nb-gradle/
 /build/
 
-idea
 node_modules
 wrapper
+bundle.js
+bundle.js.map

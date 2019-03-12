@@ -9,7 +9,37 @@ const ReactBStrap = require('react-bootstrap');
 const ReactSNav = require('react-sidenav');
 const Redux = require('redux');
 
-const data = require('../resources/static/testdata.js');
+/*
+const jsondata = require('json-loader!../resources/static/testdata.json');
+import * as jsondata from '../resources/static/testdata.json';
+*/
+const jsondata = {
+    "id": 1,
+
+    "content1": "CONTENT 1",
+    "content2": "CONTENT 2",
+    "content3": {
+        "id":1,
+        "content1": [ "CONTENT 311", "CONTENT 312"  ],
+        "content2": [ "CONTENT 321", "CONTENT 322"  ]
+    },
+
+    "testtext": [
+        "CLICK ME!",
+        "Do something",
+        "Now displaying the following list\n"
+    ],
+    "testdata": [
+        "JSX Test table Item1 ",
+        "JSX Test table Item2 "
+    ],
+
+    "collapsable-text":
+        "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n",
+
+    "link-text1": "LINK-1-= THIS IS TEXT 1",
+    "link-text2": "LINK-2-= THIS IS TEXT 2"
+};
 
 /*************************************************************************************
  * IMPLEMENTATION
@@ -253,7 +283,7 @@ class ReactDisclosable extends React.Component {
                 </ReactBStrap.Button>
                 <ReactBStrap.Collapse in={this.state.open}>
                     <div id="example-collapse-text">
-                        { data["collapsable-text"] }
+                        { jsondata["collapsable-text"] }
                     </div>
                 </ReactBStrap.Collapse>
             </>
@@ -365,6 +395,14 @@ class TestApp extends React.Component {
             this.setState({employees: response.entity._embedded.employees});
         });
         */
+
+        this.getCurrentTime()
+            .then(currentTime => {
+                console.log('The current time is: ' + currentTime);
+                return true;
+            })
+            .catch(err => console.log('There was an error:' + err));
+
     }
 
     loadFromServer(pageSize) {
@@ -444,8 +482,8 @@ class TestApp extends React.Component {
                 <ReactDisclosable />
 
                 <ReactTabcontainer
-                    text1={data["link-text1"]}
-                    text2={data["link-text2"]}
+                    text1={jsondata["link-text1"]}
+                    text2={jsondata["link-text2"]}
                 />
 
                 <ReactDynListJSX />
@@ -461,8 +499,8 @@ class TestApp extends React.Component {
                 <ReactButtonJSX
                     data={document}
                     id={idbt}
-                    testtext={ data.testtext }
-                    testdata={ data.testdata }
+                    testtext={ jsondata["testtext"] }
+                    testdata={ jsondata["testdata"] }
                     tableid={ idtab }
                 />
 
@@ -472,6 +510,21 @@ class TestApp extends React.Component {
 
     reduxSample1(){
     }
+
+    getCurrentTime(onSuccess, onFail) {
+        // Get the current 'global' time from an API using Promise
+        return new Promise((resolve, reject) => {
+            setTimeout(function() {
+                try {
+                    const currentTime = new Date();
+                    resolve(currentTime);
+                }
+                catch (e) {
+                    reject("Promise error");
+                }
+            }, 2000);
+        })
+    };
 
 }
 

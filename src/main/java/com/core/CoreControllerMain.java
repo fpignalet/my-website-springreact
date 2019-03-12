@@ -14,7 +14,7 @@ public class CoreControllerMain extends ACoreControllerBase {
     /**
      * @param engine1
      */
-    public CoreControllerMain(CoreEngine1 engine1) {
+    public CoreControllerMain(EngService engine1) {
         super(engine1);
     }
 
@@ -25,9 +25,11 @@ public class CoreControllerMain extends ACoreControllerBase {
      */
     @GetMapping("/")
     public String entrytest(
-            @RequestParam(name="name", required=false, defaultValue="TOTO 1") String name,
-            Model model) {
+        @RequestParam(name="name", required=false, defaultValue="TOTO 1") String name,
+        Model model)
+    {
         model.addAttribute("name", name);
+        log.info("OK");
         return "entrytest";
     }
 

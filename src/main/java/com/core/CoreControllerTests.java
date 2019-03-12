@@ -15,7 +15,7 @@ public class CoreControllerTests extends ACoreControllerBase{
     /**
      * @param engine1
      */
-    public CoreControllerTests(CoreEngine1 engine1) {
+    public CoreControllerTests(EngService engine1) {
         super(engine1);
     }
 
@@ -26,10 +26,11 @@ public class CoreControllerTests extends ACoreControllerBase{
      */
     @GetMapping("/reacttest")
     public String reacttest(
-            @RequestParam(name="name", required=false, defaultValue="RETEST") String name,
-            Model model
-    ) {
-        model.addAttribute("name", name + ", WITH BEAN TEST: " + getEngine1().execute_reactTest());
+        @RequestParam(name="name", required=false, defaultValue="RETEST") String name,
+        Model model)
+    {
+        model.addAttribute("name", name + ", WITH BEAN TEST: " + getEngine1().doReactTest());
+        log.info("OK");
         return "reacttest";
     }
 
@@ -40,9 +41,10 @@ public class CoreControllerTests extends ACoreControllerBase{
     @GetMapping("/httptest1")
     @ResponseBody
     public String httptest1(
-            @RequestParam(name="param", required=true, defaultValue="DEFAULT") String param
-    ) {
-        return getEngine1().execute_answerJSON(param);
+        @RequestParam(name="param", required=true, defaultValue="DEFAULT") String param)
+    {
+        log.info("OK");
+        return getEngine1().getAnswerJSON(param);
     }
 
     /**
@@ -51,6 +53,17 @@ public class CoreControllerTests extends ACoreControllerBase{
     @GetMapping("/httptest2")
     @ResponseBody
     public String httptest2() {
-        return getEngine1().execute_loadJSON("src/main/resources/static/testdata.js");
+        log.info("OK");
+        return getEngine1().doLoadJSON("src/main/resources/static/testdata.json");
+    }
+
+    /**
+     * @return
+     */
+    @GetMapping("/httptest3")
+    @ResponseBody
+    public String httptest3() {
+        log.info("OK");
+        return getEngine1().doLoadJSON("src/main/resources/static/njcv.json");
     }
 }
