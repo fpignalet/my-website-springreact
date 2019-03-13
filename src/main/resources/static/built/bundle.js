@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/main/js/reacttest.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -46602,12 +46602,30 @@ var ReactBStrap = __webpack_require__(/*! react-bootstrap */ "./node_modules/rea
 var ReactSNav = __webpack_require__(/*! react-sidenav */ "./node_modules/react-sidenav/index.js");
 
 var Redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
+/*
+const jsondata = require('json-loader!../resources/static/testdata.json');
+import * as jsondata from '../resources/static/testdata.json';
+*/
 
-var data = __webpack_require__(/*! ../resources/static/testdata.js */ "./src/main/resources/static/testdata.js");
+
+var jsondata = {
+  "id": 1,
+  "content1": "CONTENT 1",
+  "content2": "CONTENT 2",
+  "content3": {
+    "id": 1,
+    "content1": ["CONTENT 311", "CONTENT 312"],
+    "content2": ["CONTENT 321", "CONTENT 322"]
+  },
+  "testtext": ["CLICK ME!", "Do something", "Now displaying the following list\n"],
+  "testdata": ["JSX Test table Item1 ", "JSX Test table Item2 "],
+  "collapsable-text": "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n",
+  "link-text1": "LINK-1-= THIS IS TEXT 1",
+  "link-text2": "LINK-2-= THIS IS TEXT 2"
+};
 /*************************************************************************************
  * IMPLEMENTATION
  *************************************************************************************/
-
 
 var ReactButtonJSX =
 /*#__PURE__*/
@@ -46876,7 +46894,7 @@ function (_React$Component4) {
         in: this.state.open
       }, React.createElement("div", {
         id: "example-collapse-text"
-      }, data["collapsable-text"])));
+      }, jsondata["collapsable-text"])));
     }
   }]);
 
@@ -47030,6 +47048,12 @@ function (_React$Component7) {
           this.setState({employees: response.entity._embedded.employees});
       });
       */
+      this.getCurrentTime().then(function (currentTime) {
+        console.log('The current time is: ' + currentTime);
+        return true;
+      }).catch(function (err) {
+        return console.log('There was an error:' + err);
+      });
     }
   }, {
     key: "loadFromServer",
@@ -47074,8 +47098,8 @@ function (_React$Component7) {
     key: "rendercol",
     value: function rendercol(ids) {
       return React.createElement("div", null, React.createElement("div", null, "FROM MODEL:", this.modelname), this.renderbutton(ids[0], this.idtab), this.renderbutton(ids[1], this.idtab), React.createElement(ReactDisclosable, null), React.createElement(ReactTabcontainer, {
-        text1: data["link-text1"],
-        text2: data["link-text2"]
+        text1: jsondata["link-text1"],
+        text2: jsondata["link-text2"]
       }), React.createElement(ReactDynListJSX, null));
     }
   }, {
@@ -47084,14 +47108,29 @@ function (_React$Component7) {
       return React.createElement("div", null, React.createElement("h3", null, "BUTTON ", idbt), React.createElement(ReactButtonJSX, {
         data: document,
         id: idbt,
-        testtext: data.testtext,
-        testdata: data.testdata,
+        testtext: jsondata["testtext"],
+        testdata: jsondata["testdata"],
         tableid: idtab
       }));
     }
   }, {
     key: "reduxSample1",
     value: function reduxSample1() {}
+  }, {
+    key: "getCurrentTime",
+    value: function getCurrentTime(onSuccess, onFail) {
+      // Get the current 'global' time from an API using Promise
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          try {
+            var currentTime = new Date();
+            resolve(currentTime);
+          } catch (e) {
+            reject("Promise error");
+          }
+        }, 2000);
+      });
+    }
   }]);
 
   return TestApp;
@@ -47130,28 +47169,15 @@ ReactDOM.render(React.createElement(TestApp, {
 
 /***/ }),
 
-/***/ "./src/main/resources/static/testdata.js":
-/*!***********************************************!*\
-  !*** ./src/main/resources/static/testdata.js ***!
-  \***********************************************/
+/***/ 0:
+/*!****************************************!*\
+  !*** multi ./src/main/js/reacttest.js ***!
+  \****************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-  "id": 1,
-  "content1": "CONTENT 1",
-  "content2": "CONTENT 2",
-  "content3": {
-    "id": 1,
-    "content1": ["CONTENT 311", "CONTENT 312"],
-    "content2": ["CONTENT 321", "CONTENT 322"]
-  },
-  "testtext": ['CLICK ME!', 'Do something', 'Now displaying the following list\n'],
-  "testdata": ['JSX Test table Item1 ', 'JSX Test table Item2 '],
-  "collapsable-text": "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n" + "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n" + "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n" + "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n" + "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n",
-  "link-text1": "LINK-1-: THIS IS TEXT 1",
-  "link-text2": "LINK-2-: THIS IS TEXT 2"
-};
+module.exports = __webpack_require__(/*! ./src/main/js/reacttest.js */"./src/main/js/reacttest.js");
+
 
 /***/ })
 
