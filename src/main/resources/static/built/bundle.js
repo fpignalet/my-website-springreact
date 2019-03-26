@@ -289,6 +289,42 @@ module.exports = _interopRequireDefault;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireWildcard.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};
+
+    if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
+
+          if (desc.get || desc.set) {
+            Object.defineProperty(newObj, key, desc);
+          } else {
+            newObj[key] = obj[key];
+          }
+        }
+      }
+    }
+
+    newObj.default = obj;
+    return newObj;
+  }
+}
+
+module.exports = _interopRequireWildcard;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js":
 /*!*****************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js ***!
@@ -6018,6 +6054,267 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/ProgressBar.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-bootstrap/ProgressBar.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js"));
+
+var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inheritsLoose */ "./node_modules/@babel/runtime/helpers/inheritsLoose.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _ThemeProvider = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/ThemeProvider.js");
+
+var _ElementChildren = __webpack_require__(/*! ./utils/ElementChildren */ "./node_modules/react-bootstrap/utils/ElementChildren.js");
+
+var ROUND_PRECISION = 1000;
+/**
+ * Validate that children, if any, are instances of `<ProgressBar>`.
+ */
+
+function onlyProgressBar(props, propName, componentName) {
+  var children = props[propName];
+
+  if (!children) {
+    return null;
+  }
+
+  var error = null;
+
+  _react.default.Children.forEach(children, function (child) {
+    if (error) {
+      return;
+    }
+    /**
+     * Compare types in a way that works with libraries that patch and proxy
+     * components like react-hot-loader.
+     *
+     * see https://github.com/gaearon/react-hot-loader#checking-element-types
+     */
+
+
+    var element = _react.default.createElement(DecoratedProgressBar, null);
+
+    if (child.type === element.type) return;
+    var childIdentifier = _react.default.isValidElement(child) ? child.type.displayName || child.type.name || child.type : child;
+    error = new Error("Children of " + componentName + " can contain only ProgressBar " + ("components. Found " + childIdentifier + "."));
+  });
+
+  return error;
+}
+
+var defaultProps = {
+  min: 0,
+  max: 100,
+  animated: false,
+  isChild: false,
+  srOnly: false,
+  striped: false
+};
+
+function getPercentage(now, min, max) {
+  var percentage = (now - min) / (max - min) * 100;
+  return Math.round(percentage * ROUND_PRECISION) / ROUND_PRECISION;
+}
+
+var ProgressBar =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inheritsLoose2.default)(ProgressBar, _React$Component);
+
+  function ProgressBar() {
+    return _React$Component.apply(this, arguments) || this;
+  }
+
+  var _proto = ProgressBar.prototype;
+
+  _proto.renderProgressBar = function renderProgressBar(_ref) {
+    var _classNames;
+
+    var min = _ref.min,
+        now = _ref.now,
+        max = _ref.max,
+        label = _ref.label,
+        srOnly = _ref.srOnly,
+        striped = _ref.striped,
+        animated = _ref.animated,
+        className = _ref.className,
+        style = _ref.style,
+        variant = _ref.variant,
+        bsPrefix = _ref.bsPrefix,
+        props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["min", "now", "max", "label", "srOnly", "striped", "animated", "className", "style", "variant", "bsPrefix"]);
+    return _react.default.createElement("div", (0, _extends2.default)({}, props, {
+      role: "progressbar",
+      className: (0, _classnames.default)(className, bsPrefix + "-bar", (_classNames = {}, _classNames["bg-" + variant] = variant, _classNames[bsPrefix + "-bar-animated"] = animated, _classNames[bsPrefix + "-bar-striped"] = animated || striped, _classNames)),
+      style: (0, _extends2.default)({
+        width: getPercentage(now, min, max) + "%"
+      }, style),
+      "aria-valuenow": now,
+      "aria-valuemin": min,
+      "aria-valuemax": max
+    }), srOnly ? _react.default.createElement("span", {
+      className: "sr-only"
+    }, label) : label);
+  };
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        isChild = _this$props.isChild,
+        props = (0, _objectWithoutPropertiesLoose2.default)(_this$props, ["isChild"]);
+
+    if (isChild) {
+      return this.renderProgressBar(props);
+    }
+
+    var min = props.min,
+        now = props.now,
+        max = props.max,
+        label = props.label,
+        srOnly = props.srOnly,
+        striped = props.striped,
+        animated = props.animated,
+        bsPrefix = props.bsPrefix,
+        variant = props.variant,
+        className = props.className,
+        children = props.children,
+        wrapperProps = (0, _objectWithoutPropertiesLoose2.default)(props, ["min", "now", "max", "label", "srOnly", "striped", "animated", "bsPrefix", "variant", "className", "children"]);
+    return _react.default.createElement("div", (0, _extends2.default)({}, wrapperProps, {
+      className: (0, _classnames.default)(className, bsPrefix)
+    }), children ? (0, _ElementChildren.map)(children, function (child) {
+      return (0, _react.cloneElement)(child, {
+        isChild: true
+      });
+    }) : this.renderProgressBar({
+      min: min,
+      now: now,
+      max: max,
+      label: label,
+      srOnly: srOnly,
+      striped: striped,
+      animated: animated,
+      bsPrefix: bsPrefix,
+      variant: variant
+    }));
+  };
+
+  return ProgressBar;
+}(_react.default.Component);
+
+ProgressBar.defaultProps = defaultProps;
+var DecoratedProgressBar = (0, _ThemeProvider.createBootstrapComponent)(ProgressBar, 'progress');
+var _default = DecoratedProgressBar;
+exports.default = _default;
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/ThemeProvider.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/react-bootstrap/ThemeProvider.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.createBootstrapComponent = createBootstrapComponent;
+exports.default = exports.ThemeConsumer = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inheritsLoose */ "./node_modules/@babel/runtime/helpers/inheritsLoose.js"));
+
+var _forwardRef = _interopRequireDefault(__webpack_require__(/*! react-context-toolbox/forwardRef */ "./node_modules/react-context-toolbox/forwardRef.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _React$createContext = _react.default.createContext(new Map()),
+    Provider = _React$createContext.Provider,
+    Consumer = _React$createContext.Consumer;
+
+exports.ThemeConsumer = Consumer;
+
+var ThemeProvider =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inheritsLoose2.default)(ThemeProvider, _React$Component);
+
+  function ThemeProvider() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+    _this.prefixes = new Map();
+    Object.keys(_this.props.prefixes).forEach(function (key) {
+      _this.prefixes.set(key, _this.props.prefixes[key]);
+    });
+    return _this;
+  }
+
+  var _proto = ThemeProvider.prototype;
+
+  _proto.render = function render() {
+    return _react.default.createElement(Provider, {
+      value: this.prefixes
+    }, this.props.children);
+  };
+
+  return ThemeProvider;
+}(_react.default.Component);
+
+function createBootstrapComponent(Component, opts) {
+  if (typeof opts === 'string') opts = {
+    prefix: opts
+  };
+  var isClassy = Component.prototype && Component.prototype.isReactComponent; // If it's a functional component make sure we don't break it with a ref
+
+  var _opts = opts,
+      prefix = _opts.prefix,
+      _opts$forwardRefAs = _opts.forwardRefAs,
+      forwardRefAs = _opts$forwardRefAs === void 0 ? isClassy ? 'ref' : 'innerRef' : _opts$forwardRefAs;
+  return (0, _forwardRef.default)(function (_ref, ref) {
+    var props = (0, _extends2.default)({}, _ref);
+    props[forwardRefAs] = ref;
+    return _react.default.createElement(Consumer, null, function (prefixes) {
+      return _react.default.createElement(Component, (0, _extends2.default)({}, props, {
+        bsPrefix: props.bsPrefix || prefixes.get(prefix) || prefix
+      }));
+    });
+  }, {
+    displayName: "Bootstrap(" + (Component.displayName || Component.name) + ")"
+  });
+}
+
+var _default = ThemeProvider;
+exports.default = _default;
 
 /***/ }),
 
@@ -13729,6 +14026,56 @@ __webpack_require__.r(__webpack_exports__);
 // which will let our animations work
 function triggerBrowserReflow(node) {
   node.offsetHeight; // eslint-disable-line no-unused-expressions
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-bootstrap/utils/ElementChildren.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-bootstrap/utils/ElementChildren.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.map = map;
+exports.forEach = forEach;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+/**
+ * Iterates through children that are typically specified as `props.children`,
+ * but only maps over children that are "valid elements".
+ *
+ * The mapFunction provided index will be normalised to the components mapped,
+ * so an invalid component would not increase the index.
+ *
+ */
+function map(children, func) {
+  var index = 0;
+  return _react.default.Children.map(children, function (child) {
+    return _react.default.isValidElement(child) ? func(child, index++) : child;
+  });
+}
+/**
+ * Iterates through children that are "valid elements".
+ *
+ * The provided forEachFunc(child, index) will be called for each
+ * leaf child with the index reflecting the position relative to "valid components".
+ */
+
+
+function forEach(children, func) {
+  var index = 0;
+
+  _react.default.Children.forEach(children, function (child) {
+    if (_react.default.isValidElement(child)) func(child, index++);
+  });
 }
 
 /***/ }),
@@ -46602,30 +46949,14 @@ var ReactBStrap = __webpack_require__(/*! react-bootstrap */ "./node_modules/rea
 var ReactSNav = __webpack_require__(/*! react-sidenav */ "./node_modules/react-sidenav/index.js");
 
 var Redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
-/*
-const jsondata = require('json-loader!../resources/static/testdata.json');
-import * as jsondata from '../resources/static/testdata.json';
-*/
 
+var ProgressBar = __webpack_require__(/*! react-bootstrap/ProgressBar */ "./node_modules/react-bootstrap/ProgressBar.js");
 
-var jsondata = {
-  "id": 1,
-  "content1": "CONTENT 1",
-  "content2": "CONTENT 2",
-  "content3": {
-    "id": 1,
-    "content1": ["CONTENT 311", "CONTENT 312"],
-    "content2": ["CONTENT 321", "CONTENT 322"]
-  },
-  "testtext": ["CLICK ME!", "Do something", "Now displaying the following list\n"],
-  "testdata": ["JSX Test table Item1 ", "JSX Test table Item2 "],
-  "collapsable-text": "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n",
-  "link-text1": "LINK-1-= THIS IS TEXT 1",
-  "link-text2": "LINK-2-= THIS IS TEXT 2"
-};
+var jsondata = __webpack_require__(/*! ../resources/static/datatest.js */ "./src/main/resources/static/datatest.js");
 /*************************************************************************************
  * IMPLEMENTATION
  *************************************************************************************/
+
 
 var ReactButtonJSX =
 /*#__PURE__*/
@@ -46691,6 +47022,11 @@ function (_React$Component) {
         }));
       }
     }
+    /**
+     *
+     * @returns {*}
+     */
+
   }, {
     key: "renderbutton",
     value: function renderbutton() {
@@ -46864,6 +47200,11 @@ var ReactDisclosable =
 function (_React$Component4) {
   _inherits(ReactDisclosable, _React$Component4);
 
+  /**
+   *
+   * @param props
+   * @param context
+   */
   function ReactDisclosable(props, context) {
     var _this6;
 
@@ -46875,6 +47216,11 @@ function (_React$Component4) {
     };
     return _this6;
   }
+  /**
+   *
+   * @returns {*}
+   */
+
 
   _createClass(ReactDisclosable, [{
     key: "render",
@@ -46907,6 +47253,11 @@ var ReactTabcontainer =
 function (_React$Component5) {
   _inherits(ReactTabcontainer, _React$Component5);
 
+  /**
+   *
+   * @param props
+   * @param context
+   */
   function ReactTabcontainer(props, context) {
     var _this8;
 
@@ -46919,6 +47270,11 @@ function (_React$Component5) {
     };
     return _this8;
   }
+  /**
+   *
+   * @returns {*}
+   */
+
 
   _createClass(ReactTabcontainer, [{
     key: "render",
@@ -46969,6 +47325,11 @@ function (_React$Component6) {
 
     _defineProperty(_assertThisInitialized(_this9), "state", {
       selectedPath: ''
+      /**
+       *
+       * @param arg
+       */
+
     });
 
     _defineProperty(_assertThisInitialized(_this9), "onItemSelection", function (arg) {
@@ -46982,6 +47343,11 @@ function (_React$Component6) {
 
   _createClass(ReactNavigation, [{
     key: "render",
+
+    /**
+     *
+     * @returns {*}
+     */
     value: function render() {
       return React.createElement(ReactSNav.SideNav, {
         selectedPath: this.state.selectedPath,
@@ -47004,6 +47370,10 @@ var TestApp =
 function (_React$Component7) {
   _inherits(TestApp, _React$Component7);
 
+  /**
+   *
+   * @param props
+   */
   function TestApp(props) {
     var _this10;
 
@@ -47032,17 +47402,30 @@ function (_React$Component7) {
       return console.log(_this10.store.getState());
     });
 
+    _this10.state = {
+      now: 0
+    };
     return _this10;
   }
+  /**
+   *
+   */
+
 
   _createClass(TestApp, [{
     key: "componentWillMount",
     value: function componentWillMount() {
       this.modelname = window.reactgetmodelname();
     }
+    /**
+     *
+     */
+
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this11 = this;
+
       /*
       client({method: 'GET', path: '/api/employees'}).done(response => {
           this.setState({employees: response.entity._embedded.employees});
@@ -47054,7 +47437,26 @@ function (_React$Component7) {
       }).catch(function (err) {
         return console.log('There was an error:' + err);
       });
+      this.updater = setInterval(function () {
+        _this11.state = {
+          now: _this11.state.now + 1
+        };
+      }, 1000);
     }
+    /**
+     *
+     */
+
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearInterval(this.updater);
+    }
+    /**
+     *
+     * @param pageSize
+     */
+
   }, {
     key: "loadFromServer",
     value: function loadFromServer(pageSize) {}
@@ -47094,14 +47496,31 @@ function (_React$Component7) {
         });
       }
     }
+    /**
+     *
+     * @param ids
+     * @returns {*}
+     */
+
   }, {
     key: "rendercol",
     value: function rendercol(ids) {
       return React.createElement("div", null, React.createElement("div", null, "FROM MODEL:", this.modelname), this.renderbutton(ids[0], this.idtab), this.renderbutton(ids[1], this.idtab), React.createElement(ReactDisclosable, null), React.createElement(ReactTabcontainer, {
         text1: jsondata["link-text1"],
         text2: jsondata["link-text2"]
-      }), React.createElement(ReactDynListJSX, null));
+      }), React.createElement(ReactDynListJSX, null), React.createElement(ProgressBar, {
+        id: "progressbar",
+        animated: true,
+        now: this.state.now
+      }));
     }
+    /**
+     *
+     * @param idbt
+     * @param idtab
+     * @returns {*}
+     */
+
   }, {
     key: "renderbutton",
     value: function renderbutton(idbt, idtab) {
@@ -47113,9 +47532,20 @@ function (_React$Component7) {
         tableid: idtab
       }));
     }
+    /**
+     *
+     */
+
   }, {
     key: "reduxSample1",
     value: function reduxSample1() {}
+    /**
+     *
+     * @param onSuccess
+     * @param onFail
+     * @returns {Promise<any>}
+     */
+
   }, {
     key: "getCurrentTime",
     value: function getCurrentTime(onSuccess, onFail) {
@@ -47166,6 +47596,31 @@ var TestApp = __webpack_require__(/*! ./reactitems */ "./src/main/js/reactitems.
 ReactDOM.render(React.createElement(TestApp, {
   idtab: "reacttablejsx"
 }), document.getElementById("contenerREACT1"));
+
+/***/ }),
+
+/***/ "./src/main/resources/static/datatest.js":
+/*!***********************************************!*\
+  !*** ./src/main/resources/static/datatest.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  "id": 1,
+  "content1": "CONTENT 1",
+  "content2": "CONTENT 2",
+  "content3": {
+    "id": 1,
+    "content1": ["CONTENT 311", "CONTENT 312"],
+    "content2": ["CONTENT 321", "CONTENT 322"]
+  },
+  "testtext": ["CLICK ME!", "Do something", "Now displaying the following list\n"],
+  "testdata": ["JSX Test table Item1 ", "JSX Test table Item2 "],
+  "collapsable-text": "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n",
+  "link-text1": "LINK-1-= THIS IS TEXT 1",
+  "link-text2": "LINK-2-= THIS IS TEXT 2"
+};
 
 /***/ }),
 

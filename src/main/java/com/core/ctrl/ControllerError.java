@@ -1,4 +1,4 @@
-package com.core;
+package com.core.ctrl;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 @RestController
-public class CoreControllerError implements ErrorController {
-
-    /**
-     *
-     */
-    private static final String PATH = "/error";
+public class ControllerError implements ErrorController {
 
     /**
      * @return
@@ -35,5 +30,10 @@ public class CoreControllerError implements ErrorController {
     public String error(HttpServletRequest request, HttpServletResponse response) {
         return "error: " + request.getQueryString() + " / " + response.getContentType();
     }
+
+    /**
+     *
+     */
+    private static final String PATH = "/error";
 
 }

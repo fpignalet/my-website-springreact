@@ -4,14 +4,14 @@
   "description": "npm config",
   "repository": {
     "type": "git",
-    "url": "git@github.com:fpignalet/spring-sandbox"
+    "url": "git@github.com:fpignalet/my-website-springreact"
   },
   "author": "fpignalet",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/fpignalet/spring-sandbox/issues"
+    "url": "https://github.com/fpignalet/my-website-springreact/issues"
   },
-  "homepage": "https://github.com/fpignalet/spring-sandbox",
+  "homepage": "https://github.com/fpignalet/my-website-springreact",
   "keywords": [
     "rest",
     "hateoas",
@@ -34,7 +34,8 @@
     "redux-thunk": "^2.1.0",
     "styled-components": "^4.1.3",
     "json-loader": "^0.5.7",
-    "raw-loader": "^1.0.0"
+    "raw-loader": "^1.0.0",
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

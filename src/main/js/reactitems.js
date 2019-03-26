@@ -8,38 +8,9 @@ const ReactDOM = require('react-dom');
 const ReactBStrap = require('react-bootstrap');
 const ReactSNav = require('react-sidenav');
 const Redux = require('redux');
+const ProgressBar = require('react-bootstrap/ProgressBar');
 
-/*
-const jsondata = require('json-loader!../resources/static/testdata.json');
-import * as jsondata from '../resources/static/testdata.json';
-*/
-const jsondata = {
-    "id": 1,
-
-    "content1": "CONTENT 1",
-    "content2": "CONTENT 2",
-    "content3": {
-        "id":1,
-        "content1": [ "CONTENT 311", "CONTENT 312"  ],
-        "content2": [ "CONTENT 321", "CONTENT 322"  ]
-    },
-
-    "testtext": [
-        "CLICK ME!",
-        "Do something",
-        "Now displaying the following list\n"
-    ],
-    "testdata": [
-        "JSX Test table Item1 ",
-        "JSX Test table Item2 "
-    ],
-
-    "collapsable-text":
-        "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\nEXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT\n",
-
-    "link-text1": "LINK-1-= THIS IS TEXT 1",
-    "link-text2": "LINK-2-= THIS IS TEXT 2"
-};
+const jsondata = require('../resources/static/datatest.js');
 
 /*************************************************************************************
  * IMPLEMENTATION
@@ -94,6 +65,10 @@ class ReactButtonJSX extends React.Component {
         }
     }
 
+    /**
+     *
+     * @returns {*}
+     */
     renderbutton() {
         return (
             <button
@@ -176,6 +151,7 @@ class ReactTableJSX extends React.Component {
 //-----------------------------------------------------------------------------------------------------------
 /// desc
 class ReactDynListJSX extends React.Component {
+
     /// ctor
     /// @param props
     constructor(props) {
@@ -262,6 +238,12 @@ class ReactDynListJSX extends React.Component {
 
 //-----------------------------------------------------------------------------------------------------------
 class ReactDisclosable extends React.Component {
+
+    /**
+     *
+     * @param props
+     * @param context
+     */
     constructor(props, context) {
         super(props, context);
 
@@ -270,6 +252,10 @@ class ReactDisclosable extends React.Component {
         };
     }
 
+    /**
+     *
+     * @returns {*}
+     */
     render() {
         const { open } = this.state;
         return (
@@ -294,6 +280,11 @@ class ReactDisclosable extends React.Component {
 //-----------------------------------------------------------------------------------------------------------
 class ReactTabcontainer extends React.Component {
 
+    /**
+     *
+     * @param props
+     * @param context
+     */
     constructor(props, context) {
         super(props, context);
 
@@ -304,6 +295,10 @@ class ReactTabcontainer extends React.Component {
         };
     }
 
+    /**
+     *
+     * @returns {*}
+     */
     render() {
         const { open } = this.state;
         return (
@@ -339,12 +334,24 @@ class ReactTabcontainer extends React.Component {
 //-----------------------------------------------------------------------------------------------------------
 class ReactNavigation extends React.Component {
 
+    /**
+     *
+     * @type {{selectedPath: string}}
+     */
     state = { selectedPath: '' }
 
+    /**
+     *
+     * @param arg
+     */
     onItemSelection = (arg) => {
         this.setState({ selectedPath: arg.path })
     }
 
+    /**
+     *
+     * @returns {*}
+     */
     render() {
 
         return (
@@ -363,6 +370,10 @@ class ReactNavigation extends React.Component {
 /// desc
 class TestApp extends React.Component {
 
+    /**
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
 
@@ -383,12 +394,23 @@ class TestApp extends React.Component {
         );
 
         this.store.subscribe(() => console.log(this.store.getState()));
+
+        this.state = {
+            now: 0
+        };
+
     }
 
+    /**
+     *
+     */
     componentWillMount() {
         this.modelname = window.reactgetmodelname();
     }
 
+    /**
+     *
+     */
     componentDidMount() {
         /*
         client({method: 'GET', path: '/api/employees'}).done(response => {
@@ -403,8 +425,21 @@ class TestApp extends React.Component {
             })
             .catch(err => console.log('There was an error:' + err));
 
+        this.updater = setInterval(() => { this.state = { now: this.state.now + 1 } }, 1000);
+
     }
 
+    /**
+     *
+     */
+    componentWillUnmount() {
+        clearInterval(this.updater);
+    }
+
+    /**
+     *
+     * @param pageSize
+     */
     loadFromServer(pageSize) {
         /*
         follow(client, root, [
@@ -467,6 +502,11 @@ class TestApp extends React.Component {
         }
     }
 
+    /**
+     *
+     * @param ids
+     * @returns {*}
+     */
     rendercol(ids) {
         return (
             <div>
@@ -488,10 +528,18 @@ class TestApp extends React.Component {
 
                 <ReactDynListJSX />
 
+                <ProgressBar id="progressbar" animated now={this.state.now} />
+
             </div>
         );
     }
 
+    /**
+     *
+     * @param idbt
+     * @param idtab
+     * @returns {*}
+     */
     renderbutton(idbt, idtab) {
         return (
             <div>
@@ -508,9 +556,18 @@ class TestApp extends React.Component {
         );
     }
 
+    /**
+     *
+     */
     reduxSample1(){
     }
 
+    /**
+     *
+     * @param onSuccess
+     * @param onFail
+     * @returns {Promise<any>}
+     */
     getCurrentTime(onSuccess, onFail) {
         // Get the current 'global' time from an API using Promise
         return new Promise((resolve, reject) => {

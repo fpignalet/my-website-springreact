@@ -1,4 +1,4 @@
-package com.core;
+package com.core.data;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -33,6 +33,7 @@ public class DBItem1 {
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     /**
@@ -40,6 +41,7 @@ public class DBItem1 {
      */
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
+    @Column(unique = true, nullable = false)
     private String name;
 
 }

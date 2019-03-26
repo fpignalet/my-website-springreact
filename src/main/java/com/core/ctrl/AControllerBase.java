@@ -1,5 +1,7 @@
-package com.core;
+package com.core.ctrl;
 
+import com.core.eng.EngService;
+import com.core.eng.EngTask;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,12 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 /**
- *
+ * This base controller is mostly a wrapper above the EngineService.
  */
 @Controller
-public abstract class ACoreControllerBase {
-
-    protected static Logger log = LoggerFactory.getLogger(EngTask.class);
+public abstract class AControllerBase {
 
     /**
      *
@@ -27,8 +27,13 @@ public abstract class ACoreControllerBase {
     /**
      * @param engine1
      */
-    public ACoreControllerBase(EngService engine1) {
+    public AControllerBase(EngService engine1) {
         this.engine1 = engine1;
     }
+
+    /**
+     *
+     */
+    protected static Logger log = LoggerFactory.getLogger(EngTask.class);
 
 }

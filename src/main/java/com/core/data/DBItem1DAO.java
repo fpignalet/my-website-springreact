@@ -1,4 +1,4 @@
-package com.core;
+package com.core.data;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
