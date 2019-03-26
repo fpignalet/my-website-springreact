@@ -1,7 +1,3 @@
-/**
- *
- * @type {{testdata: string[], "collapsable-text": string, "link-text1": string, content3: {content2: string[], content1: string[], id: number}, content2: string, content1: string, "link-text2": string, id: number, testtext: string[]}}
- */
 module.exports = {
     "id": 1,
 
