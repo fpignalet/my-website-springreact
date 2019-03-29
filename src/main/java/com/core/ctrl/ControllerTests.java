@@ -56,7 +56,7 @@ public class ControllerTests extends AControllerBase {
     @ResponseBody
     public String httptest3() {
         log.info("OK");
-        return getEngine1().doLoadJSON("src/main/resources/static/datafpicv.js");
+        return getEngine1().doLoadJSON("src/main/resources/static/datafpi.js");
     }
 
     /**

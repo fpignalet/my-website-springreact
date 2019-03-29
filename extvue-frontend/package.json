@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "vue": "^2.6.6",
-    "axios": "^0.17.1"
+    "axios": "^0.17.1",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

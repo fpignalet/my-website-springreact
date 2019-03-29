@@ -295,7 +295,7 @@ module.exports = {
                     "When you say make \"volume\" before a marathon, it's exactly like earning miles with the train or the plane. After a certain amount, we get a discount for the next trips.",
                     "The long/slow training (until “soft” FC threshold) allows to go to the foot of the wall, and learn to go along. It's the mechanical preparation. The body must understand that after 42 * 2/3, yes it's hard but everything is under control, it's normal. Provided you have the correct pace, obviously. It allows to prepare the first half-marathon which will be at a pace a little lower.",
                     "The fast/short training sessions (with intervals) allows to prepare the second half-marathon, get resistance, work / improve the VMA. This is the physiological preparation.",
-                    "The “between” training sessions (until “hard” FC threshold) allows to make a link between the other two types of training sessions. It allows to prepare the transition between the two half-marathon. This is the part of the training that allows you to learn to \"jump\" over the wall, finding an easy passage.",
+                    "The “between” training sessions (until “hard” FC threshold) allows to make a link between the ext_test2 two types of training sessions. It allows to prepare the transition between the two half-marathon. This is the part of the training that allows you to learn to \"jump\" over the wall, finding an easy passage.",
                     "Do not imagine the marathon as a monolith, a cliff to approach directly from the front, but like several races, at least 2 half-marathon, maybe 4 * 10k. During the first semi it is necessary to heat the mechanics, it is the endurance part, it is necessary to arrive fresh at the beginning of the 2nd half-marathon. Then it is necessary to be able to benefit from this preparation and to initiate also the physiological effort. It must be possible to start the cardio, which must have been prepared with the fast outputs."
                 ]
             ],
@@ -378,7 +378,7 @@ module.exports = {
         "blog_entry4DATE":
             [
                 "April 20, 2018",
-                "Some tools and refs which I like to use for software development, and some other digression"
+                "Some tools and refs which I like to use for software development, and some ext_test2 digression"
             ]
 
     },
@@ -421,7 +421,7 @@ module.exports = {
 
             [ "ul",
                 [
-                    "Jira, we've been using it at work for a few years now. At all times, a project team thinks,\n organizes, notes ... and finally makes many mails (not always clear), docs (often unfinished or incomprehensible), post-its (exploitable for 3 minutes 10), drafts\n that we never read again, what else ... in short a lot of waste.\n Jira allows us to continue doing all this, but in a digital way, organized and navigable. It is above all a practical and effective team blog,\n and can also be coupled with other integration tools and conf management for example.\n The real world of real life well organized. No, not quite actually. It allows especially to organize recurrent chaos. Which is finally the most useful thing, because let's not forget Terry Pratchett: \"the chaos always prevails on the order, because it is much better organized\""
+                    "Jira, we've been using it at work for a few years now. At all times, a project team thinks,\n organizes, notes ... and finally makes many mails (not always clear), docs (often unfinished or incomprehensible), post-its (exploitable for 3 minutes 10), drafts\n that we never read again, what else ... in short a lot of waste.\n Jira allows us to continue doing all this, but in a digital way, organized and navigable. It is above all a practical and effective team blog,\n and can also be coupled with ext_test2 integration tools and conf management for example.\n The real world of real life well organized. No, not quite actually. It allows especially to organize recurrent chaos. Which is finally the most useful thing, because let's not forget Terry Pratchett: \"the chaos always prevails on the order, because it is much better organized\""
                 ]
             ]
 
@@ -1016,7 +1016,7 @@ module.exports = {
                     [
                         [ "https://www.hensoldt.net/solutions/sea/identification-iff/short-range-identification-friend-foe-interrogator-shorad-iff-msr-1000/", "MSR1000" ],
                         [ "https://www.hensoldt.net/solutions/sea/identification-iff/iff-mode-4mode-5-crypto-test-bench-srpm-ng/", "SRPM" ],
-                        [ "https://www.hensoldt.net/solutions/sea/identification-iff/military-mode-5-and-mode-s-interrogator-mssr-2000-i/", "... and other projects related with" ]
+                        [ "https://www.hensoldt.net/solutions/sea/identification-iff/military-mode-5-and-mode-s-interrogator-mssr-2000-i/", "... and ext_test2 projects related with" ]
                     ]
                 ],
                 [ "Umgebung",

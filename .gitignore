@@ -29,3 +29,5 @@ node_modules
 wrapper
 bundle.js
 bundle.js.map
+.gitignore
+package-lock.json

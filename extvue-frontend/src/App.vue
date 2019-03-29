@@ -8,19 +8,86 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import axios from 'axios';
+import cors from 'cors';
 
 export default {
   name: 'app',
+  ponged: 'Not answered',
+  othered: 'Not answered',
   components: {
     HelloWorld
   },
   mounted () {
+    const corsOptions = {
+      origin: 'http://localhost:8081',
+      credentials: true
+    };
+
+    const local = this;
+
+    let select1 = "content1";
     axios
       .get('http://localhost:8080/ext_test1')
-      .then(response => {
-        alert(response)
-      })
+      .then(
+              res => {
+                alert("Received Successful response from server!");
+                const jsonStr = JSON.stringify(res.data);
+                const jsonRes = JSON.parse(jsonStr);
+
+                let text = "";
+                let value = local.parse(text, jsonRes[select1]);
+                alert(value);
+              },
+              err => {
+                alert("Server rejected response with: " + err);
+              }
+      );
+
+    let select2 = "data_CVtitle";
+    axios
+      .get('http://localhost:8080/ext_test2')
+      .then(
+              res => {
+                alert("Received Successful response from server!");
+                const jsonStr = JSON.stringify(res.data);
+                const jsonRes = JSON.parse(jsonStr);
+
+                let text = "";
+                let value = local.parse(text, jsonRes[select2]);
+                alert(value);
+              },
+              err => {
+                alert("Server rejected response with: " + err);
+              }
+      );
+  },
+  parse(text, data) {
+    const local = this;
+
+    let value = text;
+
+    if(Object.prototype.toString.call(data) === '[object Array]') {
+      data.forEach((itm, idx) => {
+        value = local.parse(value, itm);
+      });
+    }
+    else if(Object.prototype.toString.call(data) === '[object Map]') {
+      Object.keys(data).forEach((itm, idx) => {
+        value = local.parse(value, itm + ": " + data[itm]);
+      });
+    }
+    else if(Object.prototype.toString.call(data) === '[object Object]') {
+      Object.keys(data).forEach((itm, idx) => {
+        value = local.parse(value, itm + ": " + data[itm]);
+      });
+    }
+    else {
+      value = text + data + "\r\n";
+    }
+
+    return value;
   }
+
 }
 </script>
 

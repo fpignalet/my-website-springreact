@@ -22,18 +22,20 @@ public class ControllerExternal extends AControllerBase {
    * @return
    */
   @RequestMapping(value = "/ext_test1", method = RequestMethod.GET)
-  @CrossOrigin(origins = "http://localhost:3000") //TODO change me!
-  public String pong() {
-    return "pong";
+  @CrossOrigin(origins = "http://localhost:3000")
+  public String ext_test1() {
+    log.info("OK");
+    return getEngine1().doLoadJSON("src/main/resources/static/datatest.js");
   }
 
   /**
    * @return
    */
   @RequestMapping(value = "/ext_test2", method = RequestMethod.GET)
-  @CrossOrigin(origins = "http://localhost:3000") //TODO change me!
-  public String other() {
-    return "other";
+  @CrossOrigin(origins = "http://localhost:3000")
+  public String ext_test2() {
+    log.info("OK");
+    return getEngine1().doLoadJSON("src/main/resources/static/datafpi.js");
   }
 
 }

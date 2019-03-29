@@ -11,24 +11,47 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ponged: 'Not Ponged',
-            othered: 'Not Othered'
+            test1: 'Not answered',
+            test2: 'Not answered'
         }
 
-        this.pong = this.pong.bind(this);
-        this.other = this.other.bind(this);
+        this.ext_test1 = this.ext_test1.bind(this);
+        this.ext_test2 = this.ext_test2.bind(this);
     }
 
     /**
      *
      */
-    pong() {
+    ext_test1() {
+        this.getdatafrombackend("ext_test1", "content1", (value) => this.setState({test1: value}));
+    }
+
+    /**
+     *
+     */
+    ext_test2() {
+        this.getdatafrombackend("ext_test2", "data_CVtitle", (value) => this.setState({test2: value}));
+    }
+
+    /**
+     *
+     */
+    getdatafrombackend(path, select, cbk) {
+        const local = this;
+
+        this.value = "";
+
         axios
-            .get("http://localhost:8080/ext_test1")
+            .get("http://localhost:8080/" + path)
             .then(
                 res => {
                     alert("Received Successful response from server!");
-                    this.setState({ponged: 'TEST 1! '});
+                    const jsonStr = JSON.stringify(res.data);
+                    const jsonRes = JSON.parse(jsonStr);
+
+                    let text = "";
+                    let value = local.parse(text, jsonRes[select]);
+                    cbk(value);
                 },
                 err => {
                     alert("Server rejected response with: " + err);
@@ -38,19 +61,34 @@ class Main extends Component {
 
     /**
      *
+     * @param text
+     * @param select
      */
-    other() {
-        axios
-            .get("http://localhost:8080/ext_test2")
-            .then(
-                res => {
-                    alert("Received Successful response from server!");
-                    this.setState({othered: 'TEST 2! '});
-                },
-                err => {
-                    alert("Server rejected response with: " + err);
-                }
-            );
+    parse(text, data) {
+        const local = this;
+
+        let value = text;
+
+        if(Object.prototype.toString.call(data) === '[object Array]') {
+            data.forEach((itm, idx) => {
+                value = local.parse(value, itm);
+            });
+        }
+        else if(Object.prototype.toString.call(data) === '[object Map]') {
+            Object.keys(data).forEach((itm, idx) => {
+                value = local.parse(value, itm + ": " + data[itm]);
+            });
+        }
+        else if(Object.prototype.toString.call(data) === '[object Object]') {
+            Object.keys(data).forEach((itm, idx) => {
+                value = local.parse(value, itm + ": " + data[itm]);
+            });
+        }
+        else {
+            value = text + data + "\r\n";
+        }
+
+        return value;
     }
 
     /**
@@ -63,16 +101,16 @@ class Main extends Component {
                 <header className="App-header">
                     <h1 className="App-title">EXTREACT-FRONTEND</h1>
                 </header>
-                <p className="App-intro">
+                <div className="App-intro">
                     <div>
-                        <button onClick={this.pong}>Pong!</button>
-                        <div>Ponged: {this.state.ponged}</div>
+                        <button onClick={this.ext_test1}>Pong!</button>
+                        <div>Ponged: {this.state.test1}</div>
                     </div>
                     <div>
-                        <button onClick={this.other}>Other!</button>
-                        <div>Othered: {this.state.othered}</div>
+                        <button onClick={this.ext_test2}>Other!</button>
+                        <div>Othered: {this.state.test2}</div>
                     </div>
-                </p>
+                </div>
             </div>
         );
     }

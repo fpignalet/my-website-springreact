@@ -8,10 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -41,9 +43,41 @@ public class EngService {
         return "TEST ENGINE1";
     }
 
+    /**
+     * @return
+     */
+    public String doOtherTest() {
+        final ResponseEntity<String> responseEntity =
+                new RestTemplate().getForEntity(
+                        "http://localhost:8080/httptest1",
+                        String.class,
+                        "");
+
+        return responseEntity.toString();
+    }
+
     /*************************************************************************
      DATA TESTS
      *************************************************************************/
+    /**
+     * @param param
+     * @return
+     */
+    public String getAnswerJSON(final String param) {
+        try {
+            final HashMap<String, String> result = new HashMap<String, String>();
+            result.put("item1", param);
+
+            final String jsonstr = new ObjectMapper().writeValueAsString(result);
+
+            return jsonstr;
+        }
+        catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "{}";
+        }
+    }
+
     /**
      * @param fileName
      * @return
@@ -61,25 +95,6 @@ public class EngService {
             return jsonstr;
         }
         catch (IOException e) {
-            e.printStackTrace();
-            return "{}";
-        }
-    }
-
-    /**
-     * @param param
-     * @return
-     */
-    public String getAnswerJSON(final String param) {
-        try {
-            final HashMap<String, String> result = new HashMap<String, String>();
-            result.put("item1", param);
-
-            final String jsonstr = new ObjectMapper().writeValueAsString(result);
-
-            return jsonstr;
-        }
-        catch (JsonProcessingException e) {
             e.printStackTrace();
             return "{}";
         }

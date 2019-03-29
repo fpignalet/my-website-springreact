@@ -4,55 +4,58 @@ class JSApp {
 
     /**
      *
-     */
-    execute() {
-        console.log("PUTAIN CA MARCHE")
-    }
-
-    /**
-     *
-     * @param text
-     * @param result
-     */
-    cbk(text, result) {
-        const jsonRes = JSON.parse(text);
-        const data = jsonRes[result];
-        if(Object.prototype.toString.call(data) === '[object Map]') {
-            alert(data[Object.keys(data)[0]]);
-        }
-        else if(Object.prototype.toString.call(data) === '[object Array]') {
-            alert(data[0]);
-        }
-        else if(Object.prototype.toString.call(data) === '[object Object]') {
-            let text = "";
-            Object.keys(data).forEach((itm, idx) => {
-                text = text + itm + ": " + data[itm] + " / ";
-
-            });
-            alert(text);
-        }
-        else {
-            alert(data);
-        }
-    }
-
-    /**
-     *
      * @param req
      * @param param
-     * @param result
+     * @param select
      */
-    httpGet(req, param, result) {
+    httpGet(req, param, select) {
         const local = this;
 
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                local.cbk(this.responseText, result);
+                const jsonRes = JSON.parse(this.responseText);
+
+                let text = "";
+                let value = local.parse(text, jsonRes[select]);
+                alert(value);
             }
         };
+
         xmlhttp.open("GET", req + "?param=" + param, true);
         xmlhttp.send();
+    }
+
+    /**
+     *
+     * @param text
+     * @param select
+     */
+    parse(text, data) {
+        const local = this;
+
+        let value = text;
+
+        if(Object.prototype.toString.call(data) === '[object Array]') {
+            data.forEach((itm, idx) => {
+                value = local.parse(value, itm);
+            });
+        }
+        else if(Object.prototype.toString.call(data) === '[object Map]') {
+            Object.keys(data).forEach((itm, idx) => {
+                value = local.parse(value, itm + ": " + data[itm]);
+            });
+        }
+        else if(Object.prototype.toString.call(data) === '[object Object]') {
+            Object.keys(data).forEach((itm, idx) => {
+                value = local.parse(value, itm + ": " + data[itm]);
+            });
+        }
+        else {
+            value = text + data + "\r\n";
+        }
+
+        return value;
     }
 
 }
@@ -62,4 +65,3 @@ class JSApp {
  * @type {JSApp}
  */
 const app = new JSApp();
-app.execute();
