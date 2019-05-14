@@ -19,15 +19,25 @@ export default {
   },
   mounted () {
     const corsOptions = {
+      method: 'GET',
+      mode: 'no-cors',
+      withCredentials: true,
+      credentials: 'same-origin',
       origin: 'http://localhost:8081',
-      credentials: true
+      credentials: true,
+      crossDomain: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,OPTIONS',
+      }
     };
 
     const local = this;
 
     let select1 = "content1";
     axios
-      .get('http://localhost:8080/ext_test1')
+      .get('http://localhost:8080/ext_test1', corsOptions)
       .then(
               res => {
                 alert("Received Successful response from server!");
@@ -45,7 +55,7 @@ export default {
 
     let select2 = "data_CVtitle";
     axios
-      .get('http://localhost:8080/ext_test2')
+      .get('http://localhost:8080/ext_test2', corsOptions)
       .then(
               res => {
                 alert("Received Successful response from server!");

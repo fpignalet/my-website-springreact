@@ -12,10 +12,11 @@
 	<artifactId>Core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Core</name>
-	<description>My Spring Bootstrap</description>
+	<description>Spring Bootstrap</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<docker.image.prefix>springio</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -100,6 +101,12 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.15</version>
+		</dependency>
+
 		<!-- microservices -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-netflix-eureka-server -->
 		<!-- dependency>
@@ -157,6 +164,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+<!--
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.9</version>
+				<configuration>
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+				</configuration>
+			</plugin>
+-->
 
 			<!-- node and npm -->
 			<plugin>

@@ -182,6 +182,24 @@ public class EngService {
     /**
      * @return
      */
+    public List<DBItem1> findById(){
+        List<DBItem1> items = (List<DBItem1>) data1Repo.findById();
+        log.info("OK");
+        return items;
+    }
+
+    /**
+     * @return
+     */
+    public List<DBItem1> findByName(){
+        List<DBItem1> items = (List<DBItem1>) data1Repo.findByName();
+        log.info("OK");
+        return items;
+    }
+
+    /**
+     * @return
+     */
     public List<DBItem1> findAllOrderedByNameDescending(){
         List<DBItem1> items = (List<DBItem1>) data1Repo.findAllOrderedByNameDescending();
         log.info("OK");
