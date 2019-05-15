@@ -1,28 +1,15 @@
 package com.core.eng;
 
-import com.core.data.DBItem1DAO;
 import com.core.data.DBItem1;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.core.data.DBItem1DAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
 
 /**
  *
@@ -70,7 +57,7 @@ public class EngServiceDB {
      * @return
      */
     public List<DBItem1> findById(final int id){
-        List<DBItem1> items = (List<DBItem1>) data1Repo.findById(id);
+        final List<DBItem1> items = (List<DBItem1>) data1Repo.findById(id);
 
         items.forEach(
                 (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
@@ -84,7 +71,7 @@ public class EngServiceDB {
      * @return
      */
     public List<DBItem1> findByName(final String name){
-        List<DBItem1> items = (List<DBItem1>) data1Repo.findByName(name);
+        final List<DBItem1> items = (List<DBItem1>) data1Repo.findByName(name);
 
         items.forEach(
                 (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
@@ -98,22 +85,22 @@ public class EngServiceDB {
      * This returns a JSON or XML with the users
      * @return text containing entries from BD
      */
-    public String findAllItems() {
-        final StringBuilder result = new StringBuilder();
+    public List<DBItem1> findAllItems() {
+        final List<DBItem1> items = (List<DBItem1>) data1Repo.findAll();
 
-        data1Repo.findAll().forEach(
+        items.forEach(
                 (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
         );
 
         log.info("OK");
-        return result.toString();
+        return items;
     }
 
     /**
      * @return
      */
     public List<DBItem1> findAllOrderedByNameDescending(){
-        List<DBItem1> items = (List<DBItem1>) data1Repo.findAllOrderedByNameDescending();
+        final List<DBItem1> items = (List<DBItem1>) data1Repo.findAllOrderedByNameDescending();
 
         items.forEach(
                 (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }

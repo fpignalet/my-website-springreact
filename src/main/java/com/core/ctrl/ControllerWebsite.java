@@ -1,8 +1,5 @@
 package com.core.ctrl;
 
-import com.core.eng.EngServiceDB;
-import com.core.eng.EngServiceJSON;
-import com.core.eng.EngServiceMail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ControllerWebsite extends AControllerBase {
 
     /**
-     *
+     * in templates:
      */
     private final static String[] pageNames = {
         "entrywebsite"
@@ -39,9 +36,14 @@ public class ControllerWebsite extends AControllerBase {
             @RequestParam(name="name", required=false, defaultValue="WEB CONTROLER") String name,
             Model model)
     {
-        model.addAttribute("name", name);
+        updateModel(name, model);
         log.info("OK");
         return pageNames[0];
+    }
+
+    @Override
+    protected void updateModel(String name, Model model) {
+        model.addAttribute("name", name);
     }
 
     /**

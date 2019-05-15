@@ -1,8 +1,7 @@
 package com.core.ctrl;
 
+import com.core.data.DBItem1;
 import com.core.eng.EngServiceDB;
-import com.core.eng.EngServiceJSON;
-import com.core.eng.EngServiceMail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ControllerMain extends AControllerBase {
 
     /**
-     *
+     * in templates:
      */
     private final static String[] pageNames = {
         "entrymain"
@@ -27,8 +26,8 @@ public class ControllerMain extends AControllerBase {
 
     /**
      */
-    public ControllerMain() {
-        super(null, null, null);
+    public ControllerMain(final EngServiceDB engineDB) {
+        super(engineDB, null, null);
     }
 
     /**
@@ -42,9 +41,18 @@ public class ControllerMain extends AControllerBase {
         @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
         Model model)
     {
-        model.addAttribute("name", name);
+        updateModel(name, model);
         log.info("OK");
         return pageNames[0];
+    }
+
+    /**
+     * @param name
+     * @param model
+     */
+    protected void updateModel(final String name, final Model model) {
+        model.addAttribute("name", name);
+        model.addAttribute("collection", getEngineDB().findAllItems().toArray(new DBItem1[0]));
     }
 
     /**

@@ -20,8 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.junit.Assert.assertThat;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -56,7 +54,7 @@ public class Testyard {
 			.andExpect(status().isOk())
 			.andExpect(
 				content().string(
-					containsString("FROM MODEL: TOTO 1!")
+					containsString("FROM MODEL: MAIN CONTROLER!")
 				)
 			);
 	}

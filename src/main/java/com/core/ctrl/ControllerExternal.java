@@ -1,10 +1,9 @@
 package com.core.ctrl;
 
-import com.core.eng.EngServiceDB;
 import com.core.eng.EngServiceJSON;
-import com.core.eng.EngServiceMail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,9 +41,13 @@ public class ControllerExternal extends AControllerBase {
     return getEngineJSON().doLoadJSON("src/main/resources/static/datafpi.js");
   }
 
+  @Override
+  protected void updateModel(String name, Model model) {
+  }
+
   /**
    *
    */
-  protected static Logger log = LoggerFactory.getLogger(ControllerExternal.class);
+  private static Logger log = LoggerFactory.getLogger(ControllerExternal.class);
 
 }

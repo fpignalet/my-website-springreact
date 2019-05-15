@@ -1,8 +1,6 @@
 package com.core.ctrl;
 
-import com.core.eng.EngServiceDB;
 import com.core.eng.EngServiceJSON;
-import com.core.eng.EngServiceMail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.ComponentScan;
@@ -105,9 +103,13 @@ public class ControllerTests extends AControllerBase {
         return new AsyncResult<>("entrytest");
     }
 
+    @Override
+    protected void updateModel(String name, Model model) {
+    }
+
     /**
      *
      */
-    protected static Logger log = LoggerFactory.getLogger(ControllerTests.class);
+    private static Logger log = LoggerFactory.getLogger(ControllerTests.class);
 
 }

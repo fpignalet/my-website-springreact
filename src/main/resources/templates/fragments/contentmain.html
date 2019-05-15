@@ -1,3 +1,6 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <div th:fragment="content">
 
     <p text="MAIN ENTRY PAGE !" />
@@ -9,4 +12,15 @@
     <a href="javascript:;" onclick="app.httpGet('httptest1', 'MAIN ENTRY', 'item1')">RECEIVE MAIN ENTRY from Backend</a>
     <a href="javascript:;" onclick="app.httpGet('httptest2', null, 'content1')">LOAD JSON in Backend</a>
     <a href="javascript:;" onclick="app.httpGet('httptest3', null, 'data_CVtitle')">LOAD JSON in Backend</a>
+
+    <ul th:each="frame : ${collection}">
+            
+        <li th:text="
+            'INDEX: ' + ${frame.getId()} +
+            ', NAME: ' + ${frame.getName()}
+        ">
+        </li>
+
+    </ul>
+
 </div>
