@@ -17,12 +17,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries(value = {
         @NamedQuery(name = "DBItem1.findAll",
                 query = "SELECT a FROM DBItem1 a"),
+        @NamedQuery(name = "DBItem1.findAllOrderedByNameDescending",
+                query = "SELECT c FROM DBItem1 c ORDER BY c.name DESC"),
+
         @NamedQuery(name = "DBItem1.findById",
                 query = "SELECT a FROM DBItem1 a WHERE a.id = :id"),
+
         @NamedQuery(name = "DBItem1.findByName",
-                query = "SELECT a FROM DBItem1 a WHERE a.name = :name"),
-        @NamedQuery(name = "DBItem1.findAllOrderedByNameDescending",
-                query = "SELECT c FROM DBItem1 c ORDER BY c.name DESC")
+                query = "SELECT a FROM DBItem1 a WHERE a.name = :name")
 })
 
 public class DBItem1 {

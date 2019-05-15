@@ -1,6 +1,7 @@
 package com.core;
 
-import com.core.eng.EngService;
+import com.core.eng.EngServiceDB;
+import com.core.eng.EngServiceJSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -36,7 +37,13 @@ public class Testyard {
 	 *
 	 */
 	@MockBean
-	private EngService service;
+	private EngServiceDB serviceDB;
+
+	/**
+	 *
+	 */
+	@MockBean
+	private EngServiceJSON serviceJSON;
 
 	/**
 	 * @throws Exception
@@ -59,7 +66,7 @@ public class Testyard {
 	 */
 	@Test
 	public void test2() {
-		when(service.doReactTest())
+		when(serviceJSON.doReactTest())
 			.thenReturn("Hello Mock 2");
 	}
 
@@ -68,8 +75,8 @@ public class Testyard {
 	 */
 	@Test
 	public void test3() {
-		service.addOneItem1(0, "TEST");
-		service.findAllOrderedByNameDescending().forEach(
+		serviceDB.addOneItem1(0, "TEST");
+		serviceDB.findAllOrderedByNameDescending().forEach(
 			(it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
 		);
 	}
@@ -77,6 +84,6 @@ public class Testyard {
 	/**
 	 *
 	 */
-	private static Logger log = LoggerFactory.getLogger(EngService.class);
+	private static Logger log = LoggerFactory.getLogger(EngServiceDB.class);
 
 }

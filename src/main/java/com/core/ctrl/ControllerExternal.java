@@ -1,6 +1,10 @@
 package com.core.ctrl;
 
-import com.core.eng.EngService;
+import com.core.eng.EngServiceDB;
+import com.core.eng.EngServiceJSON;
+import com.core.eng.EngServiceMail;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,30 +16,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControllerExternal extends AControllerBase {
 
   /**
-   * @param engine1
+   * @param engineJSON
    */
-  public ControllerExternal(EngService engine1) {
-    super(engine1);
+  public ControllerExternal(EngServiceJSON engineJSON) {
+    super(null, engineJSON, null);
   }
 
   /**
    * @return
    */
   @RequestMapping(value = "/ext_test1", method = RequestMethod.GET)
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin
   public String ext_test1() {
     log.info("OK");
-    return getEngine1().doLoadJSON("src/main/resources/static/datatest.js");
+    return getEngineJSON().doLoadJSON("src/main/resources/static/datatest.js");
   }
 
   /**
    * @return
    */
   @RequestMapping(value = "/ext_test2", method = RequestMethod.GET)
-  @CrossOrigin(origins = "http://localhost:3000")
+  @CrossOrigin
   public String ext_test2() {
     log.info("OK");
-    return getEngine1().doLoadJSON("src/main/resources/static/datafpi.js");
+    return getEngineJSON().doLoadJSON("src/main/resources/static/datafpi.js");
   }
+
+  /**
+   *
+   */
+  protected static Logger log = LoggerFactory.getLogger(ControllerExternal.class);
 
 }

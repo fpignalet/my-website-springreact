@@ -1,12 +1,11 @@
 package com.core.ctrl;
 
-import com.core.eng.EngService;
-import com.core.eng.EngTask;
+import com.core.eng.EngServiceDB;
+import com.core.eng.EngServiceJSON;
+import com.core.eng.EngServiceMail;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -22,18 +21,33 @@ public abstract class AControllerBase {
     @Autowired
     @Getter(AccessLevel.PROTECTED)
     @Setter(AccessLevel.PROTECTED)
-    private EngService engine1;
-
-    /**
-     * @param engine1
-     */
-    public AControllerBase(EngService engine1) {
-        this.engine1 = engine1;
-    }
+    private EngServiceDB engineDB;
 
     /**
      *
      */
-    protected static Logger log = LoggerFactory.getLogger(EngTask.class);
+    @Autowired
+    @Getter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PROTECTED)
+    private EngServiceJSON engineJSON;
+
+    /**
+     *
+     */
+    @Autowired
+    @Getter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PROTECTED)
+    private EngServiceMail engineMail;
+
+    /**
+     * @param engineDB
+     * @param engineJSON
+     * @param engineMail
+     */
+    public AControllerBase(EngServiceDB engineDB, EngServiceJSON engineJSON, EngServiceMail engineMail) {
+        this.engineDB = engineDB;
+        this.engineJSON = engineJSON;
+        this.engineMail = engineMail;
+    }
 
 }

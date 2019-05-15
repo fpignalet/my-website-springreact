@@ -23,14 +23,20 @@ class Main extends Component {
      *
      */
     ext_test1() {
-        this.getdatafrombackend("ext_test1", "content1", (value) => this.setState({test1: value}));
+        this.getdatafrombackend("ext_test1", "content1", (value) => {
+            alert("Received Successful response from server: " + value);
+            this.setState({test1: value})
+        });
     }
 
     /**
      *
      */
     ext_test2() {
-        this.getdatafrombackend("ext_test2", "data_CVtitle", (value) => this.setState({test2: value}));
+        this.getdatafrombackend("ext_test2", "data_CVtitle", (value) => {
+            alert("Received Successful response from server: " + value);
+            this.setState({test2: value})
+        });
     }
 
     /**
@@ -45,12 +51,11 @@ class Main extends Component {
             .get("http://localhost:8080/" + path)
             .then(
                 res => {
-                    alert("Received Successful response from server!");
                     const jsonStr = JSON.stringify(res.data);
                     const jsonRes = JSON.parse(jsonStr);
-
                     let text = "";
                     let value = local.parse(text, jsonRes[select]);
+
                     cbk(value);
                 },
                 err => {
@@ -103,12 +108,12 @@ class Main extends Component {
                 </header>
                 <div className="App-intro">
                     <div>
-                        <button onClick={this.ext_test1}>Pong!</button>
-                        <div>Ponged: {this.state.test1}</div>
+                        <button onClick={this.ext_test1}>ext_test1</button>
+                        <div>ext_test1: {this.state.test1}</div>
                     </div>
                     <div>
-                        <button onClick={this.ext_test2}>Other!</button>
-                        <div>Othered: {this.state.test2}</div>
+                        <button onClick={this.ext_test2}>ext_test2</button>
+                        <div>ext_test2: {this.state.test2}</div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,10 @@
 package com.core.ctrl;
 
-import com.core.eng.EngService;
+import com.core.eng.EngServiceDB;
+import com.core.eng.EngServiceJSON;
+import com.core.eng.EngServiceMail;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -20,14 +24,17 @@ import java.util.concurrent.Future;
 public class ControllerTests extends AControllerBase {
 
     /**
-     * @param engine1
+     * @param engineJSON
      */
-    public ControllerTests(EngService engine1) {
-        super(engine1);
+    public ControllerTests(EngServiceJSON engineJSON) {
+        super(null, engineJSON, null);
     }
 
     /**
-     * @param param
+     * to be tested in browser
+     * when url is for example "http://localhost:8080/httptest1?param=TOTO"
+     * display will be "{"item1":"TOTO"}"
+     * @param param contains the value of the request parameter
      * @return
      */
     @GetMapping("/httptest1")
@@ -36,30 +43,34 @@ public class ControllerTests extends AControllerBase {
         @RequestParam(name="param", required=true, defaultValue="DEFAULT") String param)
     {
         log.info("OK");
-        return getEngine1().getAnswerJSON(param);
+        return getEngineJSON().getAnswerJSON(param);
     }
 
     /**
-     * @return
+     * to be tested in browser
+     * @return the content of src/main/resources/static/datatest.js data file
      */
     @GetMapping("/httptest2")
     @ResponseBody
     public String httptest2() {
         log.info("OK");
-        return getEngine1().doLoadJSON("src/main/resources/static/datatest.js");
+        return getEngineJSON().doLoadJSON("src/main/resources/static/datatest.js");
     }
 
     /**
-     * @return
+     * to be tested in browser
+     * @return the content of src/main/resources/static/datafpi.js data file
      */
     @GetMapping("/httptest3")
     @ResponseBody
     public String httptest3() {
         log.info("OK");
-        return getEngine1().doLoadJSON("src/main/resources/static/datafpi.js");
+        return getEngineJSON().doLoadJSON("src/main/resources/static/datafpi.js");
     }
 
     /**
+     * to be tested in browser
+     * will display react html page with "FROM MODEL:[name parameter content]"
      * @param name
      * @param model
      * @return
@@ -69,12 +80,14 @@ public class ControllerTests extends AControllerBase {
             @RequestParam(name="name", required=false, defaultValue="RETEST") String name,
             Model model)
     {
-        model.addAttribute("name", name + ", WITH BEAN TEST: " + getEngine1().doReactTest());
+        model.addAttribute("name", name + ", WITH BEAN TEST: " + getEngineJSON().doReactTest());
         log.info("OK");
         return "reacttest";
     }
 
     /**
+     * to be tested in browser
+     * not yet working...
      * @throws InterruptedException
      */
     @GetMapping("/asynctest1")
@@ -91,5 +104,10 @@ public class ControllerTests extends AControllerBase {
 
         return new AsyncResult<>("entrytest");
     }
+
+    /**
+     *
+     */
+    protected static Logger log = LoggerFactory.getLogger(ControllerTests.class);
 
 }
