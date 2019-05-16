@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import axios from 'axios';
+    import HelloWorld from './components/HelloWorld.vue'
+    import axios from 'axios';
 
-class Tests {
+    class Tests {
 
 }
 
@@ -22,8 +22,8 @@ export default {
     /**
      *
      */
-    ext_test1() {
-      this.getdatafrombackend("ext_test1", "content1", (value) => {
+    httpext1() {
+      this.getdatafrombackend("httpext1", "content1", (value) => {
         alert("Received Successful response from server: " + value);
         HelloWorld.test1 = value
       });
@@ -31,8 +31,8 @@ export default {
     /**
      *
      */
-    ext_test2() {
-      this.getdatafrombackend("ext_test2", "data_CVtitle", (value) => {
+    httpext2() {
+      this.getdatafrombackend("httpext2", "data_CVtitle", (value) => {
         alert("Received Successful response from server: " + value);
         HelloWorld.test2 = value
       });
@@ -97,8 +97,8 @@ export default {
     }
   },
   mounted() {
-    this.ext_test1();
-    this.ext_test2();
+    this.httpext1();
+    this.httpext2();
   }
 }
 </script>

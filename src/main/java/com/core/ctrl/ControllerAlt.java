@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @Slf4j
 @ComponentScan({"com.core.eng", "com.core.data"})
-public class ControllerWebsite extends AControllerBase {
+public class ControllerAlt extends AControllerBase {
 
     /**
      * in templates:
@@ -24,14 +24,14 @@ public class ControllerWebsite extends AControllerBase {
 
     /**
      */
-    public ControllerWebsite() {
+    public ControllerAlt() {
         super(null, null, null);
     }
 
     /**
      * @return
      */
-    @GetMapping("/web")
+    @GetMapping("/alt")
     public String webtest(
             @RequestParam(name="name", required=false, defaultValue="WEB CONTROLER") String name,
             Model model)

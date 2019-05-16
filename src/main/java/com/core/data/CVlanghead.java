@@ -10,18 +10,17 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.io.IOException;
 
 @Slf4j
-@JsonRootName("data_CVtitle")
-public class CVtitle extends JSONParser {
+@JsonRootName("data_CVlanghead")
+public class CVlanghead extends JSONParser {
 
     public static void main(String[] args) {
         try {
             final String data = "{" +
-                    "\"data_CVtitle\":{" +
-                        "\"moi_photo\":\"DATA\"," +
-                        "\"moi_name\":\"DATA\"" +
+                    "\"data_CVlanghead\":{" +
+                        "\"lang_title\":\"DATA\"," +
                     "}" +
                 "}";
-            parse(data, CVtitle.class);
+            parse(data, CVlanghead.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,17 +29,12 @@ public class CVtitle extends JSONParser {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("moi_photo", moi_photo)
-                .append("moi_name", moi_name)
+                .append("lang_title", lang_title)
                 .toString();
     }
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private String moi_photo;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private String moi_name;
+    private String lang_title;
 
 }

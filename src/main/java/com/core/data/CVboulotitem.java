@@ -10,18 +10,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.io.IOException;
 
 @Slf4j
-@JsonRootName("data_CVtitle")
-public class CVtitle extends JSONParser {
+@JsonRootName("data_CVboulotitem")
+public class CVboulotitem extends JSONParser {
 
     public static void main(String[] args) {
         try {
             final String data = "{" +
-                    "\"data_CVtitle\":{" +
-                        "\"moi_photo\":\"DATA\"," +
-                        "\"moi_name\":\"DATA\"" +
+                    "\"data_CVboulotitem\":{" +
+                        "\"boulotentryitem\":\"DATA\"," +
+                        "\"boulotentrytitle\":\"DATA\"," +
+                        "\"boulotentrycontent\":\"DATA\"," +
                     "}" +
                 "}";
-            parse(data, CVtitle.class);
+            parse(data, CVboulotitem.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,17 +31,21 @@ public class CVtitle extends JSONParser {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("moi_photo", moi_photo)
-                .append("moi_name", moi_name)
-                .toString();
+            .append("boulotentryitem", boulotentryitem)
+            .append("boulotentrytitle", boulotentrytitle)
+            .append("boulotentrycontent", boulotentrycontent)
+            .toString();
     }
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private String moi_photo;
+    private String boulotentryitem;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private String moi_name;
+    private String boulotentrytitle;
 
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    private String boulotentrycontent;
 }

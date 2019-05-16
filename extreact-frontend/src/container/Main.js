@@ -15,15 +15,15 @@ class Main extends Component {
             test2: 'Not answered'
         }
 
-        this.ext_test1 = this.ext_test1.bind(this);
-        this.ext_test2 = this.ext_test2.bind(this);
+        this.httpext1 = this.httpext1.bind(this);
+        this.httpext2 = this.httpext2.bind(this);
     }
 
     /**
      *
      */
-    ext_test1() {
-        this.getdatafrombackend("ext_test1", "content1", (value) => {
+    httpext1() {
+        this.getdatafrombackend("httpext1", "content1", (value) => {
             alert("Received Successful response from server: " + value);
             this.setState({test1: value})
         });
@@ -32,8 +32,8 @@ class Main extends Component {
     /**
      *
      */
-    ext_test2() {
-        this.getdatafrombackend("ext_test2", "data_CVtitle", (value) => {
+    httpext2() {
+        this.getdatafrombackend("httpext2", "data_CVtitle", (value) => {
             alert("Received Successful response from server: " + value);
             this.setState({test2: value})
         });
@@ -108,12 +108,12 @@ class Main extends Component {
                 </header>
                 <div className="App-intro">
                     <div>
-                        <button onClick={this.ext_test1}>ext_test1</button>
-                        <div>ext_test1: {this.state.test1}</div>
+                        <button onClick={this.httpext1}>httpext1</button>
+                        <div>httpext1: {this.state.test1}</div>
                     </div>
                     <div>
-                        <button onClick={this.ext_test2}>ext_test2</button>
-                        <div>ext_test2: {this.state.test2}</div>
+                        <button onClick={this.httpext2}>httpext2</button>
+                        <div>httpext2: {this.state.test2}</div>
                     </div>
                 </div>
             </div>

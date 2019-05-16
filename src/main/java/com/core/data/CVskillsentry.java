@@ -10,18 +10,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.io.IOException;
 
 @Slf4j
-@JsonRootName("data_CVtitle")
-public class CVtitle extends JSONParser {
+@JsonRootName("data_CVskillsentry")
+public class CVskillsentry extends JSONParser {
 
     public static void main(String[] args) {
         try {
             final String data = "{" +
-                    "\"data_CVtitle\":{" +
-                        "\"moi_photo\":\"DATA\"," +
-                        "\"moi_name\":\"DATA\"" +
+                    "\"data_CVskillsentry\":{" +
+                        "\"mskills_desc\":\"DATA\"," +
+                        "\"mskills_level\":\"DATA\"," +
+                        "\"mskills_text\":\"DATA\"" +
                     "}" +
                 "}";
-            parse(data, CVtitle.class);
+            parse(data, CVskillsentry.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,17 +31,22 @@ public class CVtitle extends JSONParser {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("moi_photo", moi_photo)
-                .append("moi_name", moi_name)
+                .append("mskills_desc", mskills_desc)
+                .append("mskills_level", mskills_level)
+                .append("mskills_text", mskills_text)
                 .toString();
     }
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private String moi_photo;
+    private String mskills_desc;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private String moi_name;
+    private String mskills_level;
+
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    private String mskills_text;
 
 }

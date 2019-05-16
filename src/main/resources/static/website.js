@@ -8,13 +8,19 @@ class JSApp {
      * @param param
      * @param select
      */
-    httpGetRAW(req, param) {
+    httpGetRAW(req, param, cbk) {
         const local = this;
 
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                alert(this.responseText);
+                if(null != cbk){
+                    cbk(this.responseText);
+                }
+                else{
+                    console.log(this.responseText);
+                    alert(this.responseText);
+                }
             }
         };
 
@@ -28,7 +34,7 @@ class JSApp {
      * @param param
      * @param select
      */
-    httpGetJSON(req, param, select) {
+    httpGetJSON(req, param, select, cbk) {
         const local = this;
 
         const xmlhttp = new XMLHttpRequest();
@@ -37,8 +43,28 @@ class JSApp {
                 const jsonRes = JSON.parse(this.responseText);
 
                 let text = "";
-                let value = local.parse(text, jsonRes[select]);
-                alert(value);
+                if(null == select){
+                    for (var key in jsonRes) {
+                        const value = local.parse(text, jsonRes[key]);
+                        if(null != cbk){
+                            cbk(value);
+                        }
+                        else{
+                            console.log(key + ': ' + jsonRes[key]);
+                            alert(value);
+                        }
+                    }
+                }
+                else{
+                    const value = local.parse(text, jsonRes[select]);
+                    if(null != cbk){
+                        cbk(value);
+                    }
+                    else{
+                        console.log(key + ': ' + jsonRes[key]);
+                        alert(value);
+                    }
+                }
             }
         };
 

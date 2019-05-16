@@ -26,9 +26,24 @@
 
     </ul>
 
+    <ul id="dyntest">
+    </ul>
+
     <script th:inline="javascript">
 
-        app.httpGetRAW("guirequestfrommain", "here is CONTENT MAIN");
+        app.httpGetRAW("guirequestfrommain", "here is CONTENT MAIN", (text) => {
+            console.log(text)
+        });
+
+        app.httpGetJSON('httptest3', null, null, (text) => {
+            console.log(text);
+
+            const item = document.createElement("li");
+            item.innerText = text;
+
+            const dynlist = document.getElementById("dyntest");
+            dynlist.appendChild(item);
+        });
 
     </script>
 
