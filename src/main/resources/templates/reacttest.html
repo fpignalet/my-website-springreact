@@ -24,5 +24,13 @@
     <div id="contenerREACT1"></div>
     <script src="built/bundle.js"></script>
 
+    <script type="text/javascript" th:src="@{/website.js}">
+    </script>
+    <script th:inline="javascript">
+
+        app.httpGetRAW("guirequestfromreact", "here is REACT PAGE");
+
+    </script>
+
 </body>
 </html>

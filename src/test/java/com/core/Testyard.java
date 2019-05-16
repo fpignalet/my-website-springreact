@@ -7,76 +7,110 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
+//@AutoConfigureMockMvc
 public class Testyard {
 
 	/**
 	 *
 	 */
+/*
 	@Autowired
 	private MockMvc mockMvc;
+*/
 
 	/**
 	 *
 	 */
-	@MockBean
+	@Autowired
 	private EngServiceDB serviceDB;
 
 	/**
 	 *
 	 */
-	@MockBean
+	@Autowired
 	private EngServiceJSON serviceJSON;
 
 	/**
 	 * @throws Exception
 	 */
 	@Test
-	public void test1() throws Exception {
+	public void testDB1() throws Exception {
+/*
+	    serviceDB.cleanAll();
+		serviceDB.addOneItem1(0, "TEST0");
+		final List<DBItem1> result = serviceDB.findById(0);
+		assertNotNull(result);
+		assertNotNull(result.size());
+        assertEquals(1, result.size());
+		assertEquals(0, result.get(0).getId());
+		assertEquals("TEST0", result.get(0).getName());
+*/
+	}
+
+	/**
+	 *
+	 */
+	@Test
+	public void testDB2() {
+/*
+        serviceDB.cleanAll();
+        serviceDB.addOneItem1(0, "TEST0");
+        serviceDB.addOneItem1(1, "TEST1");
+        final List<DBItem1> result = serviceDB.findAllItems();
+        assertNotNull(result);
+        assertNotNull(result.size());
+        assertEquals(2, result.size());
+        assertEquals(0, result.get(0).getId());
+        assertEquals("TEST0", result.get(0).getName());
+        assertEquals(1, result.get(1).getId());
+        assertEquals("TEST1", result.get(1).getName());
+*/
+	}
+
+	/**
+	 *
+	 */
+	@Test
+	public void testDB3() {
+/*
+        serviceDB.cleanAll();
+        serviceDB.addOneItem1(0, "TEST0");
+        serviceDB.addOneItem1(1, "TEST1");
+        serviceDB.addOneItem1(2, "TEST2");
+        final List<DBItem1> result = serviceDB.findAllOrderedByNameDescending();
+        assertNotNull(result);
+        assertNotNull(result.size());
+        assertEquals(3, result.size());
+        assertEquals(2, result.get(2).getId());
+        assertEquals("TEST2", result.get(2).getName());
+        assertEquals(1, result.get(1).getId());
+        assertEquals("TEST1", result.get(1).getName());
+        assertEquals(0, result.get(0).getId());
+        assertEquals("TEST0", result.get(0).getName());
+*/
+	}
+
+    /**
+     *
+     */
+    @Test
+	public void testINTG1() throws Exception {
+/*
 		mockMvc
 			.perform(get("/"))
 			.andDo(print())
 			.andExpect(status().isOk())
 			.andExpect(
-				content().string(
-					containsString("FROM MODEL: MAIN CONTROLER!")
-				)
+					content().string(
+							containsString("FROM MODEL: MAIN CONTROLER!")
+					)
 			);
-	}
-
-	/**
-	 *
-	 */
-	@Test
-	public void test2() {
-		when(serviceJSON.doReactTest())
-			.thenReturn("Hello Mock 2");
-	}
-
-	/**
-	 *
-	 */
-	@Test
-	public void test3() {
-		serviceDB.addOneItem1(0, "TEST");
-		serviceDB.findAllOrderedByNameDescending().forEach(
-			(it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
-		);
+*/
 	}
 
 	/**

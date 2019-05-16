@@ -1,9 +1,7 @@
 package com.core.ctrl;
 
-import com.core.data.DBItem1;
 import com.core.eng.EngServiceDB;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * using thymeleaf fragments
  */
 @Controller
+@Slf4j
 @ComponentScan({"com.core.eng", "com.core.data"})
 public class ControllerMain extends AControllerBase {
 
@@ -41,23 +40,10 @@ public class ControllerMain extends AControllerBase {
         @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
         Model model)
     {
-        updateModel(name, model);
+        model.addAttribute("name", name);
+        getEngineDB().updateModel(model);
         log.info("OK");
         return pageNames[0];
     }
-
-    /**
-     * @param name
-     * @param model
-     */
-    protected void updateModel(final String name, final Model model) {
-        model.addAttribute("name", name);
-        model.addAttribute("collection", getEngineDB().findAllItems().toArray(new DBItem1[0]));
-    }
-
-    /**
-     *
-     */
-    protected static Logger log = LoggerFactory.getLogger(ControllerMain.class);
 
 }

@@ -3,8 +3,7 @@ package com.core.eng;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -12,9 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
+@Slf4j
 public class EngTask {
-
-    private static Logger log = LoggerFactory.getLogger(EngTask.class);
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)

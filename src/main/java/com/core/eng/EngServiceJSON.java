@@ -1,19 +1,12 @@
 package com.core.eng;
 
-import com.core.data.DBItem1;
-import com.core.data.DBItem1DAO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -21,15 +14,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
 
 /**
  *
  */
 @Service
+@Slf4j
 @ComponentScan({"com.core.data"})
-public class EngServiceJSON {
+public class EngServiceJSON implements IEngModelUpdater {
 
     /*************************************************************************
      MULTI-PURPOSE
@@ -39,6 +31,16 @@ public class EngServiceJSON {
      */
     public String doReactTest() {
         return "TEST ENGINE1";
+    }
+
+    /*************************************************************************
+     INTERFACE ENFORCING
+     *************************************************************************/
+    /**
+     * @param model
+     */
+    @Override
+    public void updateModel(final Model model) {
     }
 
     /*************************************************************************
@@ -93,10 +95,5 @@ public class EngServiceJSON {
     public EngServiceJSON() {
         log.info("OK");
     }
-
-    /**
-     *
-     */
-    private static Logger log = LoggerFactory.getLogger(EngServiceJSON.class);
 
 }

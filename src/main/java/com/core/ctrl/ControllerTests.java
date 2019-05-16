@@ -1,8 +1,7 @@
 package com.core.ctrl;
 
 import com.core.eng.EngServiceJSON;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -18,6 +17,7 @@ import java.util.concurrent.Future;
  *
  */
 @Controller
+@Slf4j
 @ComponentScan({"com.core.eng", "com.core.data"})
 public class ControllerTests extends AControllerBase {
 
@@ -89,7 +89,7 @@ public class ControllerTests extends AControllerBase {
      * @throws InterruptedException
      */
     @GetMapping("/asynctest1")
-    @Async("asyncExecutor")
+    @Async
     public Future<String> methodAsync1() {
         System.out.println("Execute method asynchronously - " + Thread.currentThread().getName());
         try {
@@ -102,14 +102,5 @@ public class ControllerTests extends AControllerBase {
 
         return new AsyncResult<>("entrytest");
     }
-
-    @Override
-    protected void updateModel(String name, Model model) {
-    }
-
-    /**
-     *
-     */
-    private static Logger log = LoggerFactory.getLogger(ControllerTests.class);
 
 }

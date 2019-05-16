@@ -13,10 +13,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "fpi_spring1")
 @XmlRootElement
-
 @NamedQueries(value = {
         @NamedQuery(name = "DBItem1.findAll",
                 query = "SELECT a FROM DBItem1 a"),
+        @NamedQuery(name = "DBItem1.findAllOrderedByIdDescending",
+                query = "SELECT c FROM DBItem1 c ORDER BY c.id DESC"),
         @NamedQuery(name = "DBItem1.findAllOrderedByNameDescending",
                 query = "SELECT c FROM DBItem1 c ORDER BY c.name DESC"),
 
@@ -26,7 +27,6 @@ import javax.xml.bind.annotation.XmlRootElement;
         @NamedQuery(name = "DBItem1.findByName",
                 query = "SELECT a FROM DBItem1 a WHERE a.name = :name")
 })
-
 public class DBItem1 {
 
     /**

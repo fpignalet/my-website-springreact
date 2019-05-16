@@ -8,7 +8,27 @@ class JSApp {
      * @param param
      * @param select
      */
-    httpGet(req, param, select) {
+    httpGetRAW(req, param) {
+        const local = this;
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                alert(this.responseText);
+            }
+        };
+
+        xmlhttp.open("GET", req + "?param=" + param, true);
+        xmlhttp.send();
+    }
+
+    /**
+     *
+     * @param req
+     * @param param
+     * @param select
+     */
+    httpGetJSON(req, param, select) {
         const local = this;
 
         const xmlhttp = new XMLHttpRequest();

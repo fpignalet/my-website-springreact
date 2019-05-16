@@ -9,9 +9,12 @@
 
     <a href="/reacttest">goto React test page</a>
 
-    <a href="javascript:;" onclick="app.httpGet('httptest1', 'MAIN ENTRY', 'item1')">RECEIVE MAIN ENTRY from Backend</a>
-    <a href="javascript:;" onclick="app.httpGet('httptest2', null, 'content1')">LOAD JSON in Backend</a>
-    <a href="javascript:;" onclick="app.httpGet('httptest3', null, 'data_CVtitle')">LOAD JSON in Backend</a>
+    <script type="text/javascript" th:src="@{/website.js}">
+    </script>
+
+    <a href="javascript:;" onclick="app.httpGetJSON('httptest1', 'MAIN ENTRY', 'item1')">RECEIVE MAIN ENTRY from Backend</a>
+    <a href="javascript:;" onclick="app.httpGetJSON('httptest2', null, 'content1')">LOAD JSON in Backend</a>
+    <a href="javascript:;" onclick="app.httpGetJSON('httptest3', null, 'data_CVtitle')">LOAD JSON in Backend</a>
 
     <ul th:each="frame : ${collection}">
             
@@ -22,5 +25,11 @@
         </li>
 
     </ul>
+
+    <script th:inline="javascript">
+
+        app.httpGetRAW("guirequestfrommain", "here is CONTENT MAIN");
+
+    </script>
 
 </div>

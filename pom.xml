@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<name>Core</name>
+	<description>Spring Bootstrap</description>
+
+	<groupId>com.core</groupId>
+	<artifactId>Core</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.core</groupId>
-	<artifactId>Core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Core</name>
-	<description>Spring Bootstrap</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -33,7 +36,7 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<!-- data -->
+		<!-- database -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -41,7 +44,10 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.15</version>
 		</dependency>
+
+		<!-- data -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -58,6 +64,26 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-ejb-client-bom</artifactId>
+			<version>10.1.0.Final</version>
+			<type>pom</type>
+		</dependency>
+<!--
+		<dependency>
+			<groupId>com.core.ejb</groupId>
+			<artifactId>ejb-remote-for-spring</artifactId>
+			<version>LATEST</version>
+			<type>ejb</type>
+		</dependency>
+-->
 
 		<!-- debug and tests -->
 		<dependency>
@@ -69,6 +95,29 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hamcrest</groupId>
+					<artifactId>hamcrest-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.1.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.3.0.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -99,12 +148,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.15</version>
 		</dependency>
 
 		<!-- microservices -->
@@ -160,21 +203,11 @@
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
-<!--
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.9</version>
-				<configuration>
-					<repository>${docker.image.prefix}/${project.artifactId}</repository>
-				</configuration>
-			</plugin>
--->
 
 			<!-- node and npm -->
 			<plugin>
@@ -213,6 +246,17 @@
 				</executions>
 			</plugin>
 
+			<!-- docker -->
+			<!--
+				<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>dockerfile-maven-plugin</artifactId>
+					<version>1.4.9</version>
+					<configuration>
+						<repository>${docker.image.prefix}/${project.artifactId}</repository>
+					</configuration>
+				</plugin>
+            -->
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
@@ -227,6 +271,31 @@
 							<include>${project.build.finalName}.jar</include>
 						</resource>
 					</resources>
+				</configuration>
+			</plugin>
+
+			<!-- ejb -->
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.6.1</version>
+				<configuration>
+					<container>
+						<containerId>wildfly10x</containerId>
+						<zipUrlInstaller>
+							<url>
+								http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.zip
+							</url>
+						</zipUrlInstaller>
+					</container>
+					<configuration>
+						<properties>
+							<cargo.hostname>127.0.0.1</cargo.hostname>
+							<cargo.jboss.configuration>standalone-full</cargo.jboss.configuration>
+							<cargo.jboss.management-http.port>9990</cargo.jboss.management-http.port>
+							<cargo.servlet.users>testUser:admin1234!</cargo.servlet.users>
+						</properties>
+					</configuration>
 				</configuration>
 			</plugin>
 

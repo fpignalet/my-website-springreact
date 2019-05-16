@@ -14,6 +14,7 @@ import java.util.List;
 public interface DBItem1DAO extends CrudRepository<DBItem1, Integer> {
 
     List<DBItem1> findAll();
+    List<DBItem1> findAllOrderedByIdDescending();
     List<DBItem1> findAllOrderedByNameDescending();
 
     List<DBItem1> findById(@Param("id") int id);

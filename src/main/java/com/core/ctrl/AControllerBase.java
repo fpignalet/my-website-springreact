@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 
 /**
  * This base controller is mostly a wrapper above the EngineService.
@@ -50,11 +49,5 @@ public abstract class AControllerBase {
         this.engineJSON = engineJSON;
         this.engineMail = engineMail;
     }
-
-    /**
-     * @param name
-     * @param model
-     */
-    protected abstract void updateModel(final String name, final Model model);
 
 }
