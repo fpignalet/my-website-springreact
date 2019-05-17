@@ -22,7 +22,7 @@ public class CVlangentry extends JSONParser {
                         "\"lang_text\":\"DATA\"" +
                     "}" +
                 "}";
-            parse(data, CVlangentry.class);
+            parse(data, null, new Class[]{ CVlangentry.class });
         } catch (IOException e) {
             e.printStackTrace();
         }

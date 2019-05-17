@@ -7,31 +7,24 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 @Slf4j
-@JsonRootName("boulotentryitems")
-public class CVboulotitem extends JSONParser {
+@JsonRootName("boulotentrycontent")
+public class CVboulotcontent extends JSONParser {
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .append("boulotentryitem", boulotentryitem)
-            .append("boulotentrytitle", boulotentrytitle)
-            .append("boulotentrycontent", boulotentrycontent)
+            .append("field", field)
             .toString();
     }
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> boulotentryitem;
+    private String field;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> boulotentrytitle;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> boulotentrycontent;
+    private ArrayList<String> subs;
 }

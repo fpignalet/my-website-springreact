@@ -20,7 +20,7 @@ public class CVskillshead extends JSONParser {
                         "\"mskills_title\":\"DATA\"," +
                     "}" +
                 "}";
-            parse(data, CVskillshead.class);
+            parse(data, null, new Class[]{ CVskillshead.class });
         } catch (IOException e) {
             e.printStackTrace();
         }

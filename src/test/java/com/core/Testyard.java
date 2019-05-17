@@ -41,7 +41,7 @@ public class Testyard {
 	@Test
 	public void testDB1() throws Exception {
 /*
-	    serviceDB.cleanAll();
+	    serviceDB.cleanAllItems();
 		serviceDB.addOneItem1(0, "TEST0");
 		final List<DBItem1> result = serviceDB.findById(0);
 		assertNotNull(result);
@@ -58,7 +58,7 @@ public class Testyard {
 	@Test
 	public void testDB2() {
 /*
-        serviceDB.cleanAll();
+        serviceDB.cleanAllItems();
         serviceDB.addOneItem1(0, "TEST0");
         serviceDB.addOneItem1(1, "TEST1");
         final List<DBItem1> result = serviceDB.findAllItems();
@@ -78,7 +78,7 @@ public class Testyard {
 	@Test
 	public void testDB3() {
 /*
-        serviceDB.cleanAll();
+        serviceDB.cleanAllItems();
         serviceDB.addOneItem1(0, "TEST0");
         serviceDB.addOneItem1(1, "TEST1");
         serviceDB.addOneItem1(2, "TEST2");

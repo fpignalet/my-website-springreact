@@ -22,7 +22,7 @@ public class CVskillsentry extends JSONParser {
                         "\"mskills_text\":\"DATA\"" +
                     "}" +
                 "}";
-            parse(data, CVskillsentry.class);
+            parse(data, null, new Class[]{ CVskillsentry.class });
         } catch (IOException e) {
             e.printStackTrace();
         }

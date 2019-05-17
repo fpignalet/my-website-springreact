@@ -8,26 +8,58 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
-@JsonRootName("data_CVboulothead")
+@JsonRootName("CVboulothead")
 public class CVboulothead extends JSONParser {
+
+    private static class CVboulots extends ArrayList<CVboulothead> {};
 
     public static void main(String[] args) {
         try {
-            final String data = "{" +
-                    "\"data_CVboulothead\":{" +
-                        "\"boulotentrydate\":\"DATA\"," +
-                        "\"boulotentryboite\":\"DATA\"," +
-                        "\"boulotentrydesc\":\"DATA\"," +
-                        "\"data_CVboulotitem\":{" +
-                            "\"boulotentryitem\":\"DATA\"," +
-                            "\"boulotentrytitle\":\"DATA\"," +
-                            "\"boulotentrycontent\":\"DATA\"," +
-                        "}" +
+            final String data = "{\"CVboulots\":[" +
+                    "{" +
+                        "\"boulotentrydate\": [ \"DATE1\" ]," +
+                        "\"boulotentryboite\":[ \"BOITE1\" ]," +
+                        "\"boulotentryitems\":[" +
+                            "{" +
+                                "\"boulotentryitem\": [ \"ITEM11\" ]," +
+                                "\"boulotentrytitle\": [ \"TITLE11\" ]," +
+                                "\"boulotentrycontent\": [ \"CONTENT11\" ]" +
+                            "}," +
+                            "{" +
+                                "\"boulotentryitem\": [ \"ITEM12\" ]," +
+                                "\"boulotentrytitle\": [ \"TITLE12\" ]," +
+                                "\"boulotentrycontent\": [ \"CONTENT12\" ]" +
+                            "}" +
+                        "]" +
+                    "}," +
+                    "{" +
+                    "\"boulotentrydate\": [ \"DATE2\" ]," +
+                    "\"boulotentryboite\":[ \"BOITE2\" ]," +
+                        "\"boulotentryitems\":[" +
+                            "{" +
+                                "\"boulotentryitem\": [ \"ITEM21\" ]," +
+                                "\"boulotentrytitle\": [ \"TITLE21\" ]," +
+                                "\"boulotentrycontent\": [ \"CONTENT21\" ]" +
+                            "}," +
+                            "{" +
+                                "\"boulotentryitem\": [ \"ITEM22\" ]," +
+                                "\"boulotentrytitle\": [ \"TITLE22\" ]," +
+                                "\"boulotentrycontent\": [ \"CONTENT221\", \"CONTENT222\" ]" +
+                            "}" +
+                        "]" +
                     "}" +
-                "}";
-            parse(data, CVboulothead.class);
+                "]}";
+            parse(data,
+                CVboulots.class,
+                new Class[]{
+                    CVboulothead.class,
+                    CVboulotitem.class
+                }
+            );
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,19 +70,19 @@ public class CVboulothead extends JSONParser {
         return new ToStringBuilder(this)
             .append("boulotentrydate", boulotentrydate)
             .append("boulotentryboite", boulotentryboite)
-            .append("boulotentrydesc", boulotentrydesc)
+            .append("boulotentryitems", boulotentryitems)
             .toString();
     }
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private String boulotentrydate;
+    private ArrayList<String> boulotentrydate;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private String boulotentryboite;
+    private ArrayList<String> boulotentryboite;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private String boulotentrydesc;
+    private ArrayList<CVboulotitem> boulotentryitems;
 }

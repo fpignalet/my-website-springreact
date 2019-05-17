@@ -21,7 +21,7 @@ public class CVexperience extends JSONParser {
                         "\"exp_content\":\"DATA\"" +
                     "}" +
                 "}";
-            parse(data, CVexperience.class);
+            parse(data, null, new Class[]{ CVexperience.class });
         } catch (IOException e) {
             e.printStackTrace();
         }

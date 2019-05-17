@@ -20,7 +20,7 @@ public class CVlanghead extends JSONParser {
                         "\"lang_title\":\"DATA\"," +
                     "}" +
                 "}";
-            parse(data, CVlanghead.class);
+            parse(data, null, new Class[]{ CVlanghead.class });
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -17,6 +20,7 @@ import java.util.List;
 @Service
 @Slf4j
 @ComponentScan({"com.core.data"})
+@SessionAttributes("item")
 public class EngServiceDB implements IEngModelUpdater {
 
     /*************************************************************************
@@ -42,6 +46,11 @@ public class EngServiceDB implements IEngModelUpdater {
      *************************************************************************/
     @Autowired
     private DBItem1DAO data1Repo;
+
+    @ModelAttribute(name = "item")
+    public DBItem1 item() {
+        return new DBItem1();
+    }
 
     /**
      * @param id
@@ -75,7 +84,7 @@ public class EngServiceDB implements IEngModelUpdater {
     /**
      *
      */
-    public void cleanAll() {
+    public void cleanAllItems() {
         data1Repo.deleteAll();
     }
 

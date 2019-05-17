@@ -24,7 +24,7 @@ public class CVinfo extends JSONParser {
                         "\"info_geburstag\":\"DATA\"" +
                     "}" +
                 "}";
-            parse(data, CVinfo.class);
+            parse(data, null, new Class[]{ CVinfo.class });
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,23 +1,20 @@
 module.exports = {
 
-    "data_BNdesc20": {
+    "BNdesc20": {
 
-        "blog_entry20PHOTO":
+        "entryPHOTO":
             "images/WP_20180821_17_57_49_Pro.jpg",
 
-        "blog_entry20TITLE":
+        "entryTITLE":
             "And now?",
 
-        "blog_entry20DATE":
+        "entryDATE":
             [
                 "January 07, 2019",
                 "It's time to make a pause, and think about the future"
-            ]
+            ],
 
-    },
-    "data_BNcontent20": {
-
-        "blog_entry20CONTENT": [
+        "entryCONTENT": [
             [ "p",
                 [
                     "These pages began in the unique form of a CV based on a existing ready-to-go template"
@@ -87,24 +84,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc17": {
+    "BNdesc17": {
 
-        "blog_entry17PHOTO":
+        "entryPHOTO":
             "images/WP_20180822_10_50_54_Pro.jpg",
 
-        "blog_entry17TITLE":
+        "entryTITLE":
             "Different bug fixes",
 
-        "blog_entry17DATE":
+        "entryDATE":
             [
                 "December 10, 2018",
                 "Some more improvement"
-            ]
+            ],
 
-    },
-    "data_BNcontent17": {
-
-        "blog_entry17CONTENT":
+        "entryCONTENT":
             [
                 [ "p",
                     [
@@ -144,24 +138,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc14": {
+    "BNdesc14": {
 
-        "blog_entry14PHOTO":
+        "entryPHOTO":
             "images/WP_20180822_12_09_51_Pro.jpg",
 
-        "blog_entry14TITLE":
+        "entryTITLE":
             "Current status of this website project",
 
-        "blog_entry14DATE":
+        "entryDATE":
             [
                 "November 30, 2018",
                 "An important step"
-            ]
+            ],
 
-    },
-    "data_BNcontent14": {
-
-        "blog_entry14CONTENT":
+        "entryCONTENT":
             [
                 [ "ul",
                     [
@@ -175,24 +166,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc12": {
+    "BNdesc12": {
 
-        "blog_entry12PHOTO":
+        "entryPHOTO":
             "images/WP_20180822_12_11_33_Pro.jpg",
 
-        "blog_entry12TITLE":
+        "entryTITLE":
             "First full publication",
 
-        "blog_entry12DATE":
+        "entryDATE":
             [
                 "November 19, 2018",
                 "Puttin' everything in GitHub..."
-            ]
+            ],
 
-    },
-    "data_BNcontent12": {
-
-        "blog_entry12CONTENT": [
+        "entryCONTENT": [
             [ "p",
                 [
                     "Here's my Website implementation ",
@@ -209,24 +197,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc10": {
+    "BNdesc10": {
 
-        "blog_entry10PHOTO":
+        "entryPHOTO":
             "images/WP_20180821_18_09_00_Pro.jpg",
 
-        "blog_entry10TITLE":
+        "entryTITLE":
             "New version",
 
-        "blog_entry10DATE":
+        "entryDATE":
             [
                 "Oktober 24, 2018",
                 "Continuously improving..."
-            ]
+            ],
 
-    },
-    "data_BNcontent10": {
-
-        "blog_entry10CONTENT": [
+        "entryCONTENT": [
             [ "p",
                 [
                     "A BIGGER update "
@@ -246,24 +231,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc9": {
+    "BNdesc9": {
 
-        "blog_entry9PHOTO":
+        "entryPHOTO":
             "images/marathon2018.jpg",
 
-        "blog_entry9TITLE":
+        "entryTITLE":
             "Last news / Letzte Nachrichten",
 
-        "blog_entry9DATE":
+        "entryDATE":
             [
                 "Oktober 15, 2018",
                 "Big update... and lots of fun"
-            ]
+            ],
 
-    },
-    "data_BNcontent9": {
-
-        "blog_entry9CONTENT": [
+        "entryCONTENT": [
             [ "p",
                 [
                     "A big update "
@@ -321,23 +303,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc6": {
+    "BNdesc6": {
 
-        "blog_entry6PHOTO":
+        "entryPHOTO":
             "images/P_20180805_1000342.jpg",
 
-        "blog_entry6TITLE":
+        "entryTITLE":
             "Jetzt aktualisieren",
 
-        "blog_entry6DATE":
+        "entryDATE":
             [
                 "August 15, 2018",
                 ""
-            ]
+            ],
 
-    },
-    "data_BNcontent6": {
-        "blog_entry6CONTENT": [
+        "entryCONTENT": [
             [ "p",
                 [
                     "Jetzt bin ich wirklich triathlete:"
@@ -367,24 +347,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc4": {
+    "BNdesc4": {
 
-        "blog_entry4PHOTO":
+        "entryPHOTO":
             "images/WP_20180822_12_09_51_Pro.jpg",
 
-        "blog_entry4TITLE":
+        "entryTITLE":
             "About everything... and nuthin'",
 
-        "blog_entry4DATE":
+        "entryDATE":
             [
                 "April 20, 2018",
                 "Some tools and refs which I like to use for software development, and some httpext2 digression"
-            ]
+            ],
 
-    },
-    "data_BNcontent4": {
-
-        "blog_entry4CONTENT": [
+        "entryCONTENT": [
             [ "p",
                 [
                     "Useful links (my current best of):"
@@ -429,24 +406,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc3": {
+    "BNdesc3": {
 
-        "blog_entry3PHOTO":
+        "entryPHOTO":
             "images/WP_20180822_12_11_33_Pro.jpg",
 
-        "blog_entry3TITLE":
+        "entryTITLE":
             "Bon, au travail",
 
-        "blog_entry3DATE":
+        "entryDATE":
             [
                 "April 16, 2018",
                 "We always need to make a first step!"
-            ]
+            ],
 
-    },
-    "data_BNcontent3": {
-
-        "blog_entry3CONTENT":
+        "entryCONTENT":
             [
                 [ "p",
                     [
@@ -471,24 +445,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc2": {
+    "BNdesc2": {
 
-        "blog_entry2PHOTO":
+        "entryPHOTO":
             "images/WP_20180822_12_41_47_Pro.jpg",
 
-        "blog_entry2TITLE":
+        "entryTITLE":
             "Petit article d'introduction",
 
-        "blog_entry2DATE":
+        "entryDATE":
             [
                 "April 14, 2018",
                 "Quelques nouvelles insignifiantes, juste pour meubler un peu au debut"
-            ]
+            ],
 
-    },
-    "data_BNcontent2": {
-
-        "blog_entry2CONTENT": [
+        "entryCONTENT": [
             [ "p",
                 [
                     "Recentes \"exhumations\":"
@@ -524,24 +495,21 @@ module.exports = {
 
     },
 
-    "data_BNdesc1": {
+    "BNdesc1": {
 
-        "blog_entry1PHOTO":
+        "entryPHOTO":
             "images/WP_20180822_12_44_47_Pro.jpg",
 
-        "blog_entry1TITLE":
+        "entryTITLE":
             "CREATION DU SITE",
 
-        "blog_entry1DATE":
+        "entryDATE":
             [
                 "April 14, 2018",
                 "Los geht's!"
-            ]
+            ],
 
-    },
-    "data_BNcontent1": {
-
-        "blog_entry1CONTENT":
+        "entryCONTENT":
             [
                 [ "p",
                     [
@@ -552,208 +520,182 @@ module.exports = {
 
     },
 
-    "data_BTdesc19": {
+    "BTdesc19": {
 
-        "blog_entry19PHOTO":
+        "entryPHOTO":
             "images/gears-686316_640.jpg",
 
-        "blog_entry19TITLE":
+        "entryTITLE":
             "CURRENT",
 
-        "blog_entry19DATE":
+        "entryDATE":
             [
                 "December 19, 2018",
                 "UNDER CONSTRUCTION"
-            ]
+            ],
 
-    },
-    "data_BTcontent19": {
-
-        "blog_entry19CONTENT":
+        "entryCONTENT":
             [
             ]
 
     },
 
-    "data_BTdesc18": {
+    "BTdesc18": {
 
-        "blog_entry18PHOTO":
+        "entryPHOTO":
             "images/gears-686316_640.jpg",
 
-        "blog_entry18TITLE":
+        "entryTITLE":
             "Today's sandbox",
 
-        "blog_entry18DATE":
+        "entryDATE":
             [
                 "December 13, 2018",
                 "Some more tricks"
-            ]
+            ],
 
-    },
-    "data_BTcontent18": {
-
-        "blog_entry18CONTENT":
+        "entryCONTENT":
             [
             ]
 
     },
 
-    "data_BTdesc16": {
+    "BTdesc16": {
 
-        "blog_entry16PHOTO":
+        "entryPHOTO":
             "images/macro-1452987_640.jpg",
 
-        "blog_entry16TITLE":
+        "entryTITLE":
             "Today's sandbox",
 
-        "blog_entry16DATE":
+        "entryDATE":
             [
                 "December 5, 2018",
                 "Some tricks"
-            ]
+            ],
 
-    },
-    "data_BTcontent16": {
-
-        "blog_entry16CONTENT":
+        "entryCONTENT":
             [
             ]
 
     },
 
-    "data_BTdesc15": {
+    "BTdesc15": {
 
-        "blog_entry15PHOTO":
+        "entryPHOTO":
             "images/gears-1236578_640.jpg",
 
-        "blog_entry15TITLE":
+        "entryTITLE":
             "Today's sandbox",
 
-        "blog_entry15DATE":
+        "entryDATE":
             [
                 "December 3, 2018",
                 "\"A little break\""
-            ]
+            ],
 
-    },
-    "data_BTcontent15": {
-
-        "blog_entry15CONTENT":
+        "entryCONTENT":
             [
             ]
 
     },
 
-    "data_BTdesc13": {
+    "BTdesc13": {
 
-        "blog_entry13PHOTO":
+        "entryPHOTO":
             "images/screw-1924173_640.jpg",
 
-        "blog_entry13TITLE":
+        "entryTITLE":
             "Today's sandbox",
 
-        "blog_entry13DATE":
+        "entryDATE":
             [
                 "November 28, 2018",
                 "Foolin' around with Treeviews"
-            ]
+            ],
 
-    },
-    "data_BTcontent13": {
-
-        "blog_entry13CONTENT":
+        "entryCONTENT":
             [
             ]
 
     },
 
-    "data_BTdesc11": {
+    "BTdesc11": {
 
-        "blog_entry11PHOTO":
+        "entryPHOTO":
             "images/gears-1059756_640.png",
 
-        "blog_entry11TITLE":
+        "entryTITLE":
             "[--UPDATED --] Some React",
 
-        "blog_entry11DATE":
+        "entryDATE":
             [
                 "January 09, 2019",
                 "Tests with React"
-            ]
+            ],
 
-    },
-    "data_BTcontent11": {
-
-        "blog_entry11CONTENT":
+        "entryCONTENT":
             [
             ]
 
     },
 
-    "data_BTdesc8": {
-        "blog_entry8PHOTO":
+    "BTdesc8": {
+        "entryPHOTO":
             "images/gears-686316_640.jpg",
-        "blog_entry8TITLE": "",
-        "blog_entry8DATE": []
-    },
-    "data_BTcontent8": {
-        "blog_entry8CONTENT":
-            [
-            ]
+        "entryTITLE": "",
+        "entryDATE": [],
+        "entryCONTENT": []
     },
 
-    "data_BTdesc7": {
+    "BTdesc7": {
 
-        "blog_entry7PHOTO":
+        "entryPHOTO":
             "images/macro-1452987_640.jpg",
 
-        "blog_entry7TITLE":
+        "entryTITLE":
             "[-- UPDATED --] Today's sandbox",
 
-        "blog_entry7DATE":
+        "entryDATE":
             [
                 "January 09, 2019",
                 "Trying different things with angular.js"
-            ]
+            ],
 
-    },
-    "data_BTcontent7": {
-        "blog_entry7CONTENT":
+        "entryCONTENT":
             [
             ]
 
     },
 
-    "data_BTdesc5": {
+    "BTdesc5": {
 
-        "blog_entry5PHOTO":
+        "entryPHOTO":
             "images/gears-1236578_640.jpg",
 
-        "blog_entry5TITLE":
+        "entryTITLE":
             "Today's sandbox",
 
-        "blog_entry5DATE":
+        "entryDATE":
             [
                 "May 05, 2018",
                 "Trying different things with jscript / php to find a CLEAN implementation"
-            ]
+            ],
 
-    },
-    "data_BTcontent5": {
-        "blog_entry5CONTENT":
+        "entryCONTENT":
             [
             ]
 
     },
 
-    "data_CVtitle": {
+    "CVtitle": {
         "moi_photo":
             "images/P_20160208_183649_BF.jpg",
         "moi_name":
             "Francois Pignalet"
     },
 
-    "data_CVinfo": {
+    "CVinfo": {
         "info_raisonsociale":
             [
                 "Software-Architektur, Entwicklung und Integration mit mehr als 25 Jahren Erfahrung"
@@ -777,7 +719,7 @@ module.exports = {
             ]
     },
 
-    "data_CVexperience": {
+    "CVexperience": {
         "exp_title":
             "Fachgebiete",
         "exp_content":
@@ -791,10 +733,10 @@ module.exports = {
             ]
     },
 
-    "data_CVskillshead": {
+    "CVskillshead": {
         "mskills_title":
             "Hauptkompetenzen",
-        "data_CVskillsentry": [
+        "CVskillsentry": [
             {
                 "mskills_desc":
                     [ "Java,  Javascript,  REST, JUnit, XML, JSON, Ant, C,  CUnit, Eclipse, AGILE, JIRA, SVN, SW Architekture, OOP, V Cycle  ==" ],
@@ -830,10 +772,10 @@ module.exports = {
         ],
     },
 
-    "data_CVlanghead": {
+    "CVlanghead": {
         "lang_title":
             "Sprachen",
-        "data_CVlangentry": [
+        "CVlangentry": [
             {
                 "lang_desc":
                     [ "Französisch" ],
@@ -861,7 +803,7 @@ module.exports = {
         ],
     },
 
-    "data_CVboulot": [
+    "CVboulots": [
         {
             "boulotentrydate":
                 [ "2018/11 - bis jetzt" ],
@@ -872,32 +814,65 @@ module.exports = {
                         "Freelance"
                     ]
                 ],
-            "data_CVentry":
+            "boulotentryitems":
                 [
                     {
                         "boulotentryitem":
                             [
                                 "Project:",
                                 "Website pro",
-                                "(Bis jetzt)"
+                                "6 Wochen"
+                            ],
+                        "boulotentrytitle":
+                            [ "Java Entwickler" ],
+                        "boulotentrycontent":
+                            [
+                                [ "Beschreibung",
+                                    "Mission für sophistics",
+                                    [
+                                        [ "http://www.klingel.de", "Diese website" ]
+                                    ]
+                                ],
+                                [ "Umgebung",
+                                    "Backend Entwicklung auf Windows 10 und Linux Ubuntu 18.04 mit JetBrains (IntellijIDEA, Datagrid). Datenbanken: MySQL. Organisation: Jira, Jenkins, SVN"
+                                ],
+                                [ "Schlüsselpunkte",
+                                    "Java, SQL"
+                                ],
+                                [ "Methodologie",
+                                    [
+                                        "AGILE"
+                                    ]
+                                ]
+                            ]
+                    },
+                    {
+                        "boulotentryitem":
+                            [
+                                "Project:",
+                                "Website pro",
+                                "(2 Monate & 2 Wochen)"
                             ],
                         "boulotentrytitle":
                             [ "Full-Stack Entwickler" ],
                         "boulotentrycontent":
                             [
-                                [ "Beschreibung", "NJDev company website",
+                                [ "Beschreibung",
+                                    "NJDev company website",
                                     [
                                         [ "http://www.njdevpro.fr", "Diese website" ],
                                         [ "https://github.com/fpignalet/my-website-nj", "Quellcode" ]
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Entwicklung auf Windows 10 und Linux Debian 9 mit JetBrains (PhpStorm, Datagrid), Frontend (responsive) entwickelt mit React, Backend entwickelt mit Php, dann Spring Boot. App-Server: WAMP-Server, Tomcat. Datenbanken: MySQL. Organisation: Jira, Github" ],
+                                    "Entwicklung auf Windows 10 und Linux Debian 9 mit JetBrains (PhpStorm, Datagrid), Frontend (responsive) entwickelt mit React, Backend entwickelt mit Php, dann Spring Boot. App-Server: WAMP-Server, Tomcat. Datenbanken: MySQL. Organisation: Jira, Github"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "Java, Javascript, Php, Spring Boot, SQL" ],
+                                    "Java, Javascript, Php, Spring Boot, SQL"
+                                ],
                                 [ "Methodologie",
                                     [
-                                        "AGILE software Entwicklung",
+                                        "AGILE",
                                         "Extreme programming"
                                     ]
                                 ]
@@ -921,9 +896,11 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Entwicklung auf Windows 10 und Linux Debian 9 mit JetBrains (IntelliJIDEA, PhpStorm, PyCharm, Datagrid). Frontend (responsive) mit Vanilla Javascript entwickelt, Backend mit Php, dann Spring Boot. Technologiebeobachtung: React, Angular, Django, Microservices. App-Server: Apache2, WAMP-Server, Tomcat. Datenbanken: MySQL, MariaDB. Organisation: Jira, Jenkins, Github" ],
+                                    "Entwicklung auf Windows 10 und Linux Debian 9 mit JetBrains (IntelliJIDEA, PhpStorm, PyCharm, Datagrid). Frontend (responsive) mit Vanilla Javascript entwickelt, Backend mit Php, dann Spring Boot. Technologiebeobachtung: React, Angular, Django, Microservices. App-Server: Apache2, WAMP-Server, Tomcat. Datenbanken: MySQL, MariaDB. Organisation: Jira, Jenkins, Github"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "Java, Javascript, Php, Spring Boot, SQL" ],
+                                    "Java, Javascript, Php, Spring Boot, SQL"
+                                ],
                                 [ "Methodologie",
                                     [
                                         "AGILE software development",
@@ -946,7 +923,7 @@ module.exports = {
                         "HENSOLDT GMBH Ottobrunn (ehemals Airbus Defence)"
                     ]
                 ],
-            "data_CVentry":
+            "boulotentryitems":
                 [
                     {
                         "boulotentryitem":
@@ -959,7 +936,8 @@ module.exports = {
                             [ "Software engineer / Full-Stack Entwickler" ],
                         "boulotentrycontent":
                             [
-                                [ "Beschreibung", "Frontend, Backend und Embedded-Software für auf IFF-Interrogatoren / Transpondern verwandte Werkzeuge, basierend auf diesen Produkten",
+                                [ "Beschreibung",
+                                    "Frontend, Backend und Embedded-Software für auf IFF-Interrogatoren / Transpondern verwandte Werkzeuge, basierend auf diesen Produkten",
                                     [
                                         [ "https://www.hensoldt.net/solutions/sea/identification-iff/military-mode-5-and-mode-s-interrogator-mssr-2000-i/", "MSSR" ],
                                         [ "https://www.hensoldt.net/solutions/sea/identification-iff/ltr-400-mode-siff-lightweight-transponder/", "LTR" ]
@@ -978,7 +956,8 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Schlüsselpunkte",
-                                    "C, C++, Java, Javascript, Php, Asm x86" ],
+                                    "C, C++, Java, Javascript, Php, Asm x86"
+                                ],
                                 [ "Methodologie",
                                     [
                                         "AGILE software Entwicklung",
@@ -1001,7 +980,7 @@ module.exports = {
                         "[Mission für ALTEN until 2002/02]"
                     ]
                 ],
-            "data_CVentry":
+            "boulotentryitems":
                 [
                     {
                         "boulotentryitem":
@@ -1031,9 +1010,11 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Schlüsselpunkte",
-                                    "C, Java, Javascript, JSON, XML, Asm x86, Asm ARM STR7" ],
+                                    "C, Java, Javascript, JSON, XML, Asm x86, Asm ARM STR7"
+                                ],
                                 [ "Methodologie",
-                                    "AGILE software Entwicklung" ]
+                                    "AGILE software Entwicklung"
+                                ]
                             ]
                     },
                     {
@@ -1055,9 +1036,11 @@ module.exports = {
                                 [ "Umgebung",
                                     "Entwicklung auf Windows 7 und Linux Debian 8 mit Eclipse. POJO mit Hibernate. Einsatz mit Ant. SW-Anforderungen in DOORS" ],
                                 [ "Schlüsselpunkte",
-                                    "Java, XML" ],
+                                    "Java, XML"
+                                ],
                                 [ "Methodologie",
-                                    "company internal process (~V cycle)" ]
+                                    "company internal process (~V cycle)"
+                                ]
                             ]
                     },
                     {
@@ -1080,9 +1063,11 @@ module.exports = {
                                 [ "Umgebung",
                                     "Windows 7, Eclipse, Swing, Java Beans, Ant" ],
                                 [ "Schlüsselpunkte",
-                                    "Java" ],
+                                    "Java"
+                                ],
                                 [ "Methodologie",
-                                    "Company internal process (~V cycle)" ]
+                                    "Company internal process (~V cycle)"
+                                ]
                             ]
                     },
                     {
@@ -1103,11 +1088,14 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Windows XP, Entreprise Architect, Eclipse, Swt, OSGI, J2EE, EJB, POJO, JAXB, Spring, SVN" ],
+                                    "Windows XP, Entreprise Architect, Eclipse, Swt, OSGI, J2EE, EJB, POJO, JAXB, Spring, SVN"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "Java, Python, Ant, XML, XSLT" ],
+                                    "Java, Python, Ant, XML, XSLT"
+                                ],
                                 [ "Methodologie",
-                                    "MDA Approach, Design Patterns" ]
+                                    "MDA Approach, Design Patterns"
+                                ]
                             ]
                     },
                     {
@@ -1128,11 +1116,14 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Windows XP, Eclipse, Web Services, BEA WebLogic, PostgreSQL, SVN" ],
+                                    "Windows XP, Eclipse, Web Services, BEA WebLogic, PostgreSQL, SVN"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "Java, C++, .NET (C# / J#), SQL" ],
+                                    "Java, C++, .NET (C# / J#), SQL"
+                                ],
                                 [ "Methodologie",
-                                    "MDA Approach, Design Patterns" ]
+                                    "MDA Approach, Design Patterns"
+                                ]
                             ]
                     },
                     {
@@ -1156,10 +1147,13 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Windows NT, Unix/CDE, Microsoft MFC, CORBA, ActiveX components, ORACLE DB, Rational suite (ClearCase), Bounds Checker" ],
+                                    "Windows NT, Unix/CDE, Microsoft MFC, CORBA, ActiveX components, ORACLE DB, Rational suite (ClearCase), Bounds Checker"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "C++, SQL" ],
-                                [ "Methodologie", "Rational Unified Process, Design Patterns" ]
+                                    "C++, SQL"
+                                ],
+                                [ "Methodologie", "Rational Unified Process, Design Patterns"
+                                ]
                             ],
                         "boulotentrytitle":
                             [ "Trainer in ALTEN Learning School (~15 attendees)" ],
@@ -1183,7 +1177,7 @@ module.exports = {
                         "[Mission für ALTEN]"
                     ]
                 ],
-            "data_CVentry":
+            "boulotentryitems":
                 [
                     {
                         "boulotentryitem":
@@ -1203,9 +1197,11 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Windows NT, Visual Studio, Microsoft MFC, Wayfarer BUS Ticketing Machine, 386EX microcontroller" ],
+                                    "Windows NT, Visual Studio, Microsoft MFC, Wayfarer BUS Ticketing Machine, 386EX microcontroller"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "C, C++, Asm x86" ],
+                                    "C, C++, Asm x86"
+                                ],
                                 [ "Methodologie", [
                                     "V-Model",
                                     "static & dynamic modeling (UML Diagrams)"
@@ -1228,9 +1224,11 @@ module.exports = {
                                 [ "Beschreibung",
                                     "Kontaktlose Smartcard-Demonstrationsanwendung" ],
                                 [ "Umgebung",
-                                    "Windows NT, Visual Studio, Microsoft MFC, Serial RS-232 communication, Contactless smartcard antenna" ],
+                                    "Windows NT, Visual Studio, Microsoft MFC, Serial RS-232 communication, Contactless smartcard antenna"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "C++" ]
+                                    "C++"
+                                ]
                             ]
                     },
 
@@ -1250,7 +1248,7 @@ module.exports = {
                         "[Mission für ALTEN]"
                     ]
                 ],
-            "data_CVentry":
+            "boulotentryitems":
                 [
                     {
                         "boulotentryitem":
@@ -1272,9 +1270,11 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Windows NT, Microsoft MFC, Windows DDK, DSP 56301, OOP, Design Patterns" ],
+                                    "Windows NT, Microsoft MFC, Windows DDK, DSP 56301, OOP, Design Patterns"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "C++, C, Asm DSP 56301" ],
+                                    "C++, C, Asm DSP 56301"
+                                ],
                                 [ "Methodologie", [
                                     "V-Model",
                                     "static & dynamic modeling (UML Diagrams)"
@@ -1295,7 +1295,7 @@ module.exports = {
                         "ATELIER (Groupe Ka)"
                     ]
                 ],
-            "data_CVentry":
+            "boulotentryitems":
                 [
                     {
                         "boulotentryitem":
@@ -1317,9 +1317,11 @@ module.exports = {
                                 [ "Umgebung",
                                     "Windows NT, Psion EPOC(16/32), OOP" ],
                                 [ "Schlüsselpunkte",
-                                    "C, C++" ],
+                                    "C, C++"
+                                ],
                                 [ "Methodologie",
-                                    "Static model, Booch diagrams" ]
+                                    "Static model, Booch diagrams"
+                                ]
                             ]
                     },
                     {
@@ -1336,9 +1338,11 @@ module.exports = {
                                 [ "Beschreibung",
                                     "Dienstprogramme für Psion Organizer (Serien 3 und 5) speichern und wiederherstellen" ],
                                 [ "Umgebung",
-                                    "Mac OS (6/7), Psion EPOC(16/32), Visual C++, Metrowerks CodeWarrior, OOP, Design Patterns" ],
+                                    "Mac OS (6/7), Psion EPOC(16/32), Visual C++, Metrowerks CodeWarrior, OOP, Design Patterns"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "C, C++" ]
+                                    "C, C++"
+                                ]
                             ]
                     },
                     {
@@ -1360,9 +1364,11 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Mac OS (6/7)" ],
+                                    "Mac OS (6/7)"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "C, C++" ]
+                                    "C, C++"
+                                ]
                             ]
                     },
 
@@ -1378,7 +1384,7 @@ module.exports = {
                         "4D - France & USA (ehemals ACI)"
                     ]
                 ],
-            "data_CVentry":
+            "boulotentryitems":
                 [
                     {
                         "boulotentryitem":
@@ -1402,9 +1408,11 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Windows (3.11/WG/NT), Mac OS (6/7), MPW, Think C, Think Pascal, STL, MacAPP, OOP, MacsBug" ],
+                                    "Windows (3.11/WG/NT), Mac OS (6/7), MPW, Think C, Think Pascal, STL, MacAPP, OOP, MacsBug"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "C, C++, Pascal, Object Pascal, Asm 68K, Asm x86" ]
+                                    "C, C++, Pascal, Object Pascal, Asm 68K, Asm x86"
+                                ]
                             ]
                     },
                     {
@@ -1429,9 +1437,11 @@ module.exports = {
                                     ]
                                 ],
                                 [ "Umgebung",
-                                    "Windows (3.11/WG/NT), Mac OS (6/7), MPW, MacsBug" ],
+                                    "Windows (3.11/WG/NT), Mac OS (6/7), MPW, MacsBug"
+                                ],
                                 [ "Schlüsselpunkte",
-                                    "4th Dimension, C, C++, Pascal, Modula2" ]
+                                    "4th Dimension, C, C++, Pascal, Modula2"
+                                ]
                             ]
                     },
 
@@ -1448,7 +1458,7 @@ module.exports = {
                         "Centre d’Essai des Propulseurs de Saclay (DGA), GEET, LTC..."
                     ]
                 ],
-            "data_CVentry":
+            "boulotentryitems":
                 [
                     {
                         "boulotentry71item":
@@ -1464,9 +1474,11 @@ module.exports = {
                                 ["Beschreibung",
                                     "Database Entwicklung. EDM."],
                                 ["Umgebung",
-                                    "Dbase2, MS-DOS, Mac OS (6)"],
+                                    "Dbase2, MS-DOS, Mac OS (6)"
+                                ],
                                 ["Schlüsselpunkte",
-                                    "4th Dimension, DOS cmds"]
+                                    "4th Dimension, DOS cmds"
+                                ]
                             ]
                     },
 
@@ -1475,7 +1487,7 @@ module.exports = {
 
     ],
 
-    "data_CVbildung": {
+    "CVbildung": {
         "edu_date":
             [ "in den letzten Jahren..." ],
         "edu_boite":
@@ -1534,7 +1546,7 @@ module.exports = {
             ]
     },
 
-    "data_CVhobby": {
+    "CVhobby": {
         "loisirs_date":
             [ "Bis jetzt..." ],
         "loisirs_boite":

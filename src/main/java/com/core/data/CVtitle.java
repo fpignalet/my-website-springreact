@@ -21,7 +21,7 @@ public class CVtitle extends JSONParser {
                         "\"moi_name\":\"DATA\"" +
                     "}" +
                 "}";
-            parse(data, CVtitle.class);
+            parse(data, null, new Class[]{ CVtitle.class });
         } catch (IOException e) {
             e.printStackTrace();
         }
