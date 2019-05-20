@@ -1,14 +1,15 @@
 package com.core.eng;
 
-import com.core.data.DBItem1;
-import com.core.data.DBItem1DAO;
+import com.core.data.DBHistContener;
+import com.core.data.DBHistContenerDAO;
+import com.core.data.DBItemTest;
+import com.core.data.DBItemTestDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.transaction.Transactional;
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 @Slf4j
 @ComponentScan({"com.core.data"})
-@SessionAttributes("item")
+@SessionAttributes("itemtest")
 public class EngServiceDB implements IEngModelUpdater {
 
     /*************************************************************************
@@ -38,18 +39,18 @@ public class EngServiceDB implements IEngModelUpdater {
      */
     @Override
     public void updateModel(final Model model) {
-        model.addAttribute(guiItems[0], findAllItems().toArray(new DBItem1[0]));
+        model.addAttribute(guiItems[0], findAllItemsTest().toArray(new DBItemTest[0]));
     }
 
     /*************************************************************************
-     DATABASE ACCESS
+     DATABASE ACCESS ITEM TEST
      *************************************************************************/
     @Autowired
-    private DBItem1DAO data1Repo;
+    private DBItemTestDAO data1Repo;
 
     @ModelAttribute(name = "item")
-    public DBItem1 item() {
-        return new DBItem1();
+    public DBItemTest itemtest() {
+        return new DBItemTest();
     }
 
     /**
@@ -58,9 +59,10 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     @Transactional
-    public String addOneItem1(final int id, final String name) {
-        final DBItem1 item = new DBItem1();
-        item.setId(id); item.setName(name);
+    public String addOneItemTest(final int id, final String name) {
+        final DBItemTest item = new DBItemTest();
+        item.setId(id);
+        item.setName(name);
         data1Repo.save(item);
         log.info("OK");
         return "NEW ITEM 1 SAVED";
@@ -72,9 +74,9 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     @Transactional
-    public String updateOneItem1(final int id, final String name) {
-        final List<DBItem1> items = data1Repo.findById(id);
-        final DBItem1 item = items.get(0);
+    public String updateOneItemTest(final int id, final String name) {
+        final List<DBItemTest> items = data1Repo.findById(id);
+        final DBItemTest item = items.get(0);
         item.setName(name);
         data1Repo.save(item);
         log.info("OK");
@@ -84,18 +86,18 @@ public class EngServiceDB implements IEngModelUpdater {
     /**
      *
      */
-    public void cleanAllItems() {
+    public void cleanAllItemsTest() {
         data1Repo.deleteAll();
     }
 
     /**
      * @return
      */
-    public List<DBItem1> findById(final int id){
-        final List<DBItem1> items = (List<DBItem1>) data1Repo.findById(id);
+    public List<DBItemTest> findItemTestById(final int id){
+        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findById(id);
 
         items.forEach(
-                (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+                (it)->{ log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
         );
 
         log.info("OK");
@@ -105,11 +107,11 @@ public class EngServiceDB implements IEngModelUpdater {
     /**
      * @return
      */
-    public List<DBItem1> findByName(final String name){
-        final List<DBItem1> items = (List<DBItem1>) data1Repo.findByName(name);
+    public List<DBItemTest> findItemTestByName(final String name){
+        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findByName(name);
 
         items.forEach(
-                (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+                (it)->{ log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
         );
 
         log.info("OK");
@@ -120,11 +122,11 @@ public class EngServiceDB implements IEngModelUpdater {
      * This returns a JSON or XML with the users
      * @return text containing entries from BD
      */
-    public List<DBItem1> findAllItems() {
-        final List<DBItem1> items = (List<DBItem1>) data1Repo.findAll();
+    public List<DBItemTest> findAllItemsTest() {
+        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findAll();
 
         items.forEach(
-                (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+            (it)->{ log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
         );
 
         log.info("OK");
@@ -134,11 +136,11 @@ public class EngServiceDB implements IEngModelUpdater {
     /**
      * @return
      */
-    public List<DBItem1> findAllOrderedByIdDescending(){
-        final List<DBItem1> items = (List<DBItem1>) data1Repo.findAllOrderedByIdDescending();
+    public List<DBItemTest> findAllItemTestsOrderedByIdDescending(){
+        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findAllOrderedByIdDescending();
 
         items.forEach(
-                (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+            (it)->{ log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
         );
 
         log.info("OK");
@@ -148,11 +150,130 @@ public class EngServiceDB implements IEngModelUpdater {
     /**
      * @return
      */
-    public List<DBItem1> findAllOrderedByNameDescending(){
-        final List<DBItem1> items = (List<DBItem1>) data1Repo.findAllOrderedByNameDescending();
+    public List<DBItemTest> findAllItemTestOrderedByNameDescending(){
+        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findAllOrderedByNameDescending();
 
         items.forEach(
-                (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+            (it)->{ log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+        );
+
+        log.info("OK");
+        return items;
+    }
+
+    /*************************************************************************
+     DATABASE ACCESS ITEM TYPE1
+     *************************************************************************/
+    @Autowired
+    private DBHistContenerDAO data2Repo;
+
+    @ModelAttribute(name = "item")
+    public DBHistContener itemtype1() {
+        return new DBHistContener();
+    }
+
+    /**
+     * @param id
+     * @param theme
+     * @return
+     */
+    @Transactional
+    public String addOneItemType1(final int id, final String[] theme) {
+        final DBHistContener item = new DBHistContener();
+        item.setId(id);
+//        item.setEntrytheme(theme);
+        data2Repo.save(item);
+        log.info("OK");
+        return "NEW ITEM 1 SAVED";
+    }
+
+    /**
+     * @param id
+     * @param theme
+     * @return
+     */
+    @Transactional
+    public String updateOneItemType1(final int id, final String[] theme) {
+        final List<DBHistContener> items = data2Repo.findById(id);
+        final DBHistContener item = items.get(0);
+//        item.setEntrytheme(theme);
+        data2Repo.save(item);
+        log.info("OK");
+        return "NEW ITEM 1 UPDATED";
+    }
+
+    /**
+     *
+     */
+    public void cleanAllItemsType1() {
+        data2Repo.deleteAll();
+    }
+
+    /**
+     * @return
+     */
+    public List<DBHistContener> findItemType1ById(final int id){
+        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findById(id);
+
+        items.forEach(
+                (it)->{ log.info(String.format("DBItemTest ID: %s, THEMES: %s<br>", it.getId(), it.getEntrytheme())); }
+        );
+
+        log.info("OK");
+        return items;
+    }
+
+    /**
+     * @return
+     */
+    public List<DBHistContener> findItemType1ByName(final String name){
+        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findByTheme(name);
+
+        items.forEach(
+                (it)->{ log.info(String.format("DBItemTest ID: %s, THEMES: %s<br>", it.getId(), it.getEntrytheme())); }
+        );
+
+        log.info("OK");
+        return items;
+    }
+
+    /**
+     * This returns a JSON or XML with the users
+     * @return text containing entries from BD
+     */
+    public List<DBHistContener> findAllItemsType1() {
+        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findAll();
+
+        items.forEach(
+                (it)->{ log.info(String.format("DBItemTest ID: %s, THEMES: %s<br>", it.getId(), it.getEntrytheme())); }
+        );
+
+        log.info("OK");
+        return items;
+    }
+
+    /**
+     * @return
+     */
+    public List<DBHistContener> findAllItemsType1OrderedByIdDescending(){
+        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findAllOrderedByIdDescending();
+
+        items.forEach(
+                (it)->{ log.info(String.format("DBItemTest ID: %s, THEMES: %s<br>", it.getId(), it.getEntrytheme())); }
+        );
+
+        log.info("OK");
+        return items;
+    }
+
+    /**
+     * @return
+     */
+    public List<DBHistContener> findAllItemsType1OrderedByNameDescending(){
+        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findAllOrderedByThemeDescending();
+
+        items.forEach(
+                (it)->{ log.info(String.format("DBItemTest ID: %s, THEMES: %s<br>", it.getId(), it.getEntrytheme())); }
         );
 
         log.info("OK");
@@ -165,7 +286,7 @@ public class EngServiceDB implements IEngModelUpdater {
     /**
      * @param data1Repo
      */
-    public EngServiceDB(final DBItem1DAO data1Repo) {
+    public EngServiceDB(final DBItemTestDAO data1Repo) {
         this.data1Repo = data1Repo;
         log.info("OK");
     }

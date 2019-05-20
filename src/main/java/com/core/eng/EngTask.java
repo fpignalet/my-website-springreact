@@ -26,8 +26,8 @@ public class EngTask {
         try {
             log.info("Running speedy task");
 
-            pageService.findById(getCount().intValue() - 1);
-            pageService.findByName("NAME" + getCount());
+            pageService.findItemTestById(getCount().intValue() - 1);
+            pageService.findItemTestByName("NAME" + getCount());
 
         }
         catch (Exception e) {
@@ -40,10 +40,10 @@ public class EngTask {
         try {
             log.info("Running engine from task");
 
-            pageService.addOneItem1(getCount().intValue(), "NAME" + getCount().addAndGet(1));
+            pageService.addOneItemTest(getCount().intValue(), "NAME" + getCount().addAndGet(1));
 
-            pageService.findAllOrderedByNameDescending().forEach(
-                (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+            pageService.findAllItemTestOrderedByNameDescending().forEach(
+                (it)->{ log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
             );
         }
         catch (Exception e) {
@@ -56,10 +56,10 @@ public class EngTask {
         try {
             log.info("Running engine from SLOW task");
 
-            pageService.updateOneItem1(getCount().intValue() - 1, "NAME" + getCount().intValue() + 1);
+            pageService.updateOneItemTest(getCount().intValue() - 1, "NAME" + getCount().intValue() + 1);
 
-            pageService.findAllOrderedByNameDescending().forEach(
-                    (it)->{ log.info(String.format("DBItem1 ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+            pageService.findAllItemTestOrderedByNameDescending().forEach(
+                    (it)->{ log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
             );
         }
         catch (Exception e) {

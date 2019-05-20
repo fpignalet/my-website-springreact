@@ -41,9 +41,9 @@ public class Testyard {
 	@Test
 	public void testDB1() throws Exception {
 /*
-	    serviceDB.cleanAllItems();
-		serviceDB.addOneItem1(0, "TEST0");
-		final List<DBItem1> result = serviceDB.findById(0);
+	    serviceDB.cleanAllItemsTest();
+		serviceDB.addOneItemTest(0, "TEST0");
+		final List<DBItemTest> result = serviceDB.findItemTestById(0);
 		assertNotNull(result);
 		assertNotNull(result.size());
         assertEquals(1, result.size());
@@ -58,10 +58,10 @@ public class Testyard {
 	@Test
 	public void testDB2() {
 /*
-        serviceDB.cleanAllItems();
-        serviceDB.addOneItem1(0, "TEST0");
-        serviceDB.addOneItem1(1, "TEST1");
-        final List<DBItem1> result = serviceDB.findAllItems();
+        serviceDB.cleanAllItemsTest();
+        serviceDB.addOneItemTest(0, "TEST0");
+        serviceDB.addOneItemTest(1, "TEST1");
+        final List<DBItemTest> result = serviceDB.findAllItemsTest();
         assertNotNull(result);
         assertNotNull(result.size());
         assertEquals(2, result.size());
@@ -78,11 +78,11 @@ public class Testyard {
 	@Test
 	public void testDB3() {
 /*
-        serviceDB.cleanAllItems();
-        serviceDB.addOneItem1(0, "TEST0");
-        serviceDB.addOneItem1(1, "TEST1");
-        serviceDB.addOneItem1(2, "TEST2");
-        final List<DBItem1> result = serviceDB.findAllOrderedByNameDescending();
+        serviceDB.cleanAllItemsTest();
+        serviceDB.addOneItemTest(0, "TEST0");
+        serviceDB.addOneItemTest(1, "TEST1");
+        serviceDB.addOneItemTest(2, "TEST2");
+        final List<DBItemTest> result = serviceDB.findAllItemTestOrderedByNameDescending();
         assertNotNull(result);
         assertNotNull(result.size());
         assertEquals(3, result.size());

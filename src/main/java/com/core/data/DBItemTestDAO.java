@@ -11,14 +11,14 @@ import java.util.List;
  * CRUD refers Create, Read, Update, Delete
  */
 @Repository
-public interface DBItem1DAO extends CrudRepository<DBItem1, Integer> {
+public interface DBItemTestDAO extends CrudRepository<DBItemTest, Integer> {
 
-    List<DBItem1> findAll();
-    List<DBItem1> findAllOrderedByIdDescending();
-    List<DBItem1> findAllOrderedByNameDescending();
+    List<DBItemTest> findAll();
+    List<DBItemTest> findAllOrderedByIdDescending();
+    List<DBItemTest> findAllOrderedByNameDescending();
 
-    List<DBItem1> findById(@Param("id") int id);
+    List<DBItemTest> findById(@Param("id") int id);
 
-    List<DBItem1> findByName(@Param("name") String name);
+    List<DBItemTest> findByName(@Param("name") String name);
 
 }

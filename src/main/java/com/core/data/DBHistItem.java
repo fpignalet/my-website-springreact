@@ -10,21 +10,27 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.ArrayList;
 
 @Slf4j
-@JsonRootName("boulotentrycontent")
-public class CVboulotcontent extends JSONParser {
+@JsonRootName("entryitems")
+public class DBHistItem extends DBJson2Pojo {
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .append("field", field)
+            .append("entryitem", entryitem).append("\n", "")
+            .append("entrytitle", entrytitle).append("\n", "")
+            .append("entrycontent", entrycontent).append("\n", "")
             .toString();
     }
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private String field;
+    private ArrayList<String> entryitem;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> subs;
+    private ArrayList<String> entrytitle;
+
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    private ArrayList<DBHistContent> entrycontent;
 }

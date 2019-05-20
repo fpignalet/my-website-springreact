@@ -7,31 +7,30 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 @Slf4j
-@JsonRootName("boulotentryitems")
-public class CVboulotitem extends JSONParser {
+@JsonRootName("entrycontent")
+public class DBHistContent extends DBJson2Pojo {
 
     @Override
     public String toString() {
+        final StringBuilder msg = new StringBuilder();
+        for(final String desc: entrysubs){
+            msg.append(desc);
+            msg.append("\n");
+        }
         return new ToStringBuilder(this)
-            .append("boulotentryitem", boulotentryitem)
-            .append("boulotentrytitle", boulotentrytitle)
-            .append("boulotentrycontent", boulotentrycontent)
+            .append("entrydesc", entrydesc).append("\n", "")
+            .append("entrysubs", msg).append("\n", "")
             .toString();
     }
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> boulotentryitem;
+    private String entrydesc;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> boulotentrytitle;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> boulotentrycontent;
+    private ArrayList<String> entrysubs;
 }

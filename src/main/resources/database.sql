@@ -1,37 +1,19 @@
-CREATE DATABASE fpitest;
+CREATE DATABASE if not exists fpitest;
 
-CREATE TABLE if not exists fpi_areasofexpertise
+# DROP TABLE if exists fpi_spring1;
+# DROP TABLE if exists fpi_springcontener;
+
+CREATE TABLE if not exists  fpi_spring1
 (
-    description text
+    id int(11),
+    name text
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;
 
-CREATE TABLE if not exists  fpi_info
+CREATE TABLE if not exists  fpi_springcontener
 (
-    raisonsociale text,
-    addresse      text,
-    mail          text,
-    telephone     text
-) ENGINE = MyISAM
-  DEFAULT CHARSET = latin1;
-
-CREATE TABLE if not exists  fpi_mainskills
-(
-    description text,
-    niveau      text
-) ENGINE = MyISAM
-  DEFAULT CHARSET = latin1;
-
-CREATE TABLE if not exists  fpi_testtable1
-(
-    testtable1field1 int(11) NOT NULL,
-    testtable1field2 int(11) NOT NULL,
-    testtable1field3 text    NOT NULL
-) ENGINE = MyISAM
-  DEFAULT CHARSET = latin1;
-
-CREATE TABLE if not exists  fpi_yetanothertable
-(
-    description text
+    id int(11),
+    toto int(11),
+    name text
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;

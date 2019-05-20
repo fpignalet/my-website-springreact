@@ -1,6 +1,6 @@
 package com.core.eng;
 
-import com.core.data.DBItem1DAO;
+import com.core.data.DBItemTestDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -71,7 +71,7 @@ public class EngServiceMail {
      * @param emailSender
      * @param data1Repo
      */
-    public EngServiceMail(final JavaMailSender emailSender, final DBItem1DAO data1Repo) {
+    public EngServiceMail(final JavaMailSender emailSender, final DBItemTestDAO data1Repo) {
         this.emailSender = emailSender;
         log.info("OK");
     }

@@ -1,5 +1,6 @@
 package com.core.ctrl;
 
+import com.core.eng.EngServiceDB;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,8 @@ public class ControllerAlt extends AControllerBase {
 
     /**
      */
-    public ControllerAlt() {
-        super(null, null, null);
+    public ControllerAlt(final EngServiceDB engineDB) {
+        super(engineDB, null, null);
     }
 
     /**

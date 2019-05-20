@@ -50,7 +50,7 @@ public class ControllerExt extends AControllerBase {
    */
   private static final String[] fileNames = {
           "datatest.js",
-          "datafpi.js"
+          "datafpicv.js"
   };
 
 }

@@ -33,7 +33,7 @@ class Main extends Component {
      *
      */
     httpext2() {
-        this.getdatafrombackend("httpext2", "data_CVtitle", (value) => {
+        this.getdatafrombackend("httpext2", "DBConteners", (value) => {
             alert("Received Successful response from server: " + value);
             this.setState({test2: value})
         });
