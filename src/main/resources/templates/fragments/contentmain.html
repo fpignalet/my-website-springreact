@@ -8,13 +8,16 @@
     <p th:text="'FROM MODEL: ' + ${name} + '!'" />
 
     <a href="/reacttest">goto React test page</a>
+    <br>
 
     <script type="text/javascript" th:src="@{/website.js}">
     </script>
-
     <a href="javascript:;" onclick="app.httpGetJSON('httptest1', 'MAIN ENTRY', 'item1')">RECEIVE MAIN ENTRY from Backend</a>
+    <br>
     <a href="javascript:;" onclick="app.httpGetJSON('httptest2', null, 'content1')">LOAD JSON in Backend</a>
-    <a href="javascript:;" onclick="app.httpGetJSON('httptest3', null, 'data_CVtitle')">LOAD JSON in Backend</a>
+    <br>
+    <a href="javascript:;" onclick="app.httpGetJSON('httptest3', null, 'DBConteners')">LOAD JSON in Backend</a>
+    <br>
 
     <ul th:each="frame : ${collection}">
             
@@ -26,9 +29,55 @@
 
     </ul>
 
-    <ul id="dyntest">
+    <ul th:each="record : ${database}">
+            
+        <li>
+            <p th:if="${record.getEntryPHOTO() != null}" th:text="${record.getEntryPHOTO()}" />
+            <p th:if="${record.getEntrydate() != null}" th:text="${record.getEntrydate()}" />
+            <p th:if="${record.getEntrytheme() != null}" th:text="+ ${record.getEntrytheme()}" />
+            <ul th:if="${record.getEntryitems() != null}" th:each="item : ${record.getEntryitems()}">
+                    
+                <li>
+                    <p th:if="${item.getEntryitem() != null}" th:text="${item.getEntryitem()}" />
+                    <p th:if="${item.getEntrytitle() != null}" th:text="${item.getEntrytitle()}" />
+                    <p th:if="${item.getP() != null}" th:text="${item.getP()}" />
+                    <p th:if="${item.getA() != null}" th:text="${item.getA()}" />
+                    <p th:if="${item.getUl() != null}" th:text="${item.getUl()}" />
+                    <p th:if="${item.getInfo_raisonsociale() != null}" th:text="${item.getInfo_raisonsociale()}" />
+                    <p th:if="${item.getInfo_adresse() != null}" th:text="${item.getInfo_adresse()}" />
+                    <p th:if="${item.getInfo_email() != null}" th:text="${item.getInfo_email()}" />
+                    <p th:if="${item.getInfo_phonenum() != null}" th:text="${item.getInfo_phonenum()}" />
+                    <p th:if="${item.getInfo_geburstag() != null}" th:text="${item.getInfo_geburstag()}" />
+                    <p th:if="${item.getMskills_desc() != null}" th:text="${item.getMskills_desc()}" />
+                    <p th:if="${item.getMskills_level() != null}" th:text="${item.getMskills_level()}" />
+                    <p th:if="${item.getMskills_text() != null}" th:text="${item.getMskills_text()}" />
+                    <p th:if="${item.getLang_desc() != null}" th:text="${item.getLang_desc()}" />
+                    <p th:if="${item.getLang_level() != null}" th:text="${item.getLang_level()}" />
+                    <p th:if="${item.getLang_text() != null}" th:text="${item.getLang_text()}" />
+                    <p th:if="${item.getEdu_item() != null}" th:text="${item.getEdu_item()}" />
+                    <p th:if="${item.getEdu_title() != null}" th:text="${item.getEdu_title()}" />
+                    <p th:if="${item.getEdu_content() != null}" th:text="${item.getEdu_content()}" />
+                    <p th:if="${item.getLoisirs_item() != null}" th:text="${item.getLoisirs_item()}" />
+                    <p th:if="${item.getLoisirs_title() != null}" th:text="${item.getLoisirs_title()}" />
+                    <p th:if="${item.getLoisirs_content() != null}" th:text="${item.getLoisirs_content()}" />
+                    <ul th:if="${item.getEntrycontent() != null}" th:each="content : ${item.getEntrycontent()}">
+                            
+                        <li>
+                            <p th:if="${content.getEntrydesc() != null}" th:text="${content.getEntrydesc()}" />
+                            <p th:if="${content.getEntrysubs() != null}" th:text="${content.getEntrysubs()}" />
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+
+        </li>
+
     </ul>
 
+    <ul id="dyntest">
+    </ul>
     <script th:inline="javascript">
 
         app.httpGetRAW("guirequestfrommain", "here is CONTENT MAIN", (text) => {

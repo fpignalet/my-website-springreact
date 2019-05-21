@@ -11,18 +11,13 @@ import java.util.ArrayList;
 
 @Slf4j
 @JsonRootName("entrycontent")
-public class DBHistContent extends DBJson2Pojo {
+public class DBHistContent {
 
     @Override
     public String toString() {
-        final StringBuilder msg = new StringBuilder();
-        for(final String desc: entrysubs){
-            msg.append(desc);
-            msg.append("\n");
-        }
         return new ToStringBuilder(this)
             .append("entrydesc", entrydesc).append("\n", "")
-            .append("entrysubs", msg).append("\n", "")
+            .append("entrysubs", entrysubs).append("\n", "")
             .toString();
     }
 

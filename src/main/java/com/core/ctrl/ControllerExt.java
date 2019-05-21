@@ -26,8 +26,7 @@ public class ControllerExt extends AControllerBase {
   @RequestMapping(value = "/httpext1", method = RequestMethod.GET)
   @CrossOrigin
   public String httpext1() {
-    log.info("OK");
-    return getEngineJSON().doLoadJSON(dataRepo + fileNames[0]);
+    return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[0]);
   }
 
   /**
@@ -36,21 +35,7 @@ public class ControllerExt extends AControllerBase {
   @RequestMapping(value = "/httpext2", method = RequestMethod.GET)
   @CrossOrigin
   public String httpext2() {
-    log.info("OK");
-    return getEngineJSON().doLoadJSON(dataRepo + fileNames[1]);
+    return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[1]);
   }
-
-  /**
-   *
-   */
-  private static final String dataRepo = "src/main/resources/static/";
-
-  /**
-   *
-   */
-  private static final String[] fileNames = {
-          "datatest.js",
-          "datafpicv.js"
-  };
 
 }

@@ -38,7 +38,6 @@ public class ControllerAlt extends AControllerBase {
             Model model)
     {
         model.addAttribute("name", name);
-        log.info("OK");
         return pageNames[0];
     }
 

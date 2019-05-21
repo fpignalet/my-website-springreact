@@ -8,12 +8,15 @@
     <p th:text="'FROM MODEL: ' + ${name} + '!'" />
 
     <a href="/reacttest">goto React test page</a>
+    <br>
 
     <script type="text/javascript" th:src="@{/website.js}">
     </script>
-
     <a href="javascript:;" onclick="app.httpGetJSON('httptest1', 'WEBSITE ENTRY', 'item1')">RECEIVE WEBSITE ENTRY from Backend</a>
+    <br>
     <a href="javascript:;" onclick="app.httpGetJSON('httptest2', null, 'content1')">LOAD JSON in Backend</a>
-    <a href="javascript:;" onclick="app.httpGetJSON('httptest3', null, 'data_CVtitle')">LOAD JSON in Backend</a>
+    <br>
+    <a href="javascript:;" onclick="app.httpGetJSON('httptest3', null, 'DBConteners')">LOAD JSON in Backend</a>
+    <br>
 
 </div>

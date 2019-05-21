@@ -102,7 +102,7 @@ module.exports = {
                             ],
                         "ul":
                             [
-                                ["https://www.w3schools.com/", "w3schools template"]
+                                "https://www.w3schools.com/", "w3schools template"
                             ]
                     },
                     {
@@ -1909,35 +1909,35 @@ module.exports = {
             "entryitems":
                 [
                     {
-                        "mskills_f1desc":
+                        "mskills_desc":
                             ["Java,  Javascript,  REST, JUnit, XML, JSON, Ant, C,  CUnit, Eclipse, AGILE, JIRA, SVN, SW Architekture, OOP, V Cycle  =="],
-                        "mskills_f1level":
+                        "mskills_level":
                             ["100%"],
-                        "mskills_f1text":
+                        "mskills_text":
                             ["BESTÄTIGT"]
                     },
                     {
-                        "mskills_f2desc":
+                        "mskills_desc":
                             ["React,  Spring,  jQuery,  SQL,  Linux,  C++,  MFC,  STL,  Win32,  Asm 68K,  Github, Continuous Integration,  Rational Unified Process,  Design Patterns  =="],
-                        "mskills_f2level":
+                        "mskills_level":
                             ["75%"],
-                        "mskills_f2text":
+                        "mskills_text":
                             ["DURCHSCHNITTLICH"]
                     },
                     {
-                        "mskills_f3desc":
+                        "mskills_desc":
                             ["C# / .NET,  J2EE,  Python,  Php,  Angular,  OSGi,  CORBA,  Asm x86/ARM,  Jenkins,  DOORS  =="],
-                        "mskills_f3level":
+                        "mskills_level":
                             ["50%"],
-                        "mskills_f3text":
+                        "mskills_text":
                             ["NIEDRIG"]
                     },
                     {
-                        "mskills_f4desc":
+                        "mskills_desc":
                             ["WebLogic,  Android,  Django,  Asm PowerPC =="],
-                        "mskills_f4level":
+                        "mskills_level":
                             ["25%"],
-                        "mskills_f4text":
+                        "mskills_text":
                             ["BEKANNT"]
                     }
 
@@ -1957,27 +1957,27 @@ module.exports = {
             "entryitems":
                 [
                     {
-                        "lang_f1desc":
+                        "lang_desc":
                             ["Französisch"],
-                        "lang_f1level":
+                        "lang_level":
                             ["100%"],
-                        "lang_f1text":
+                        "lang_text":
                             ["100% (MUTTERSPRACHE)"]
                     },
                     {
-                        "lang_f2desc":
+                        "lang_desc":
                             ["Englisch"],
-                        "lang_f2level":
+                        "lang_level":
                             ["85%"],
-                        "lang_f2text":
+                        "lang_text":
                             ["C1"]
                     },
                     {
-                        "lang_f3desc":
+                        "lang_desc":
                             ["Deutsch"],
-                        "lang_f3level":
+                        "lang_level":
                             ["70%"],
-                        "lang_f3text":
+                        "lang_text":
                             ["B2~C1"]
                     }
                 ]
@@ -1996,51 +1996,39 @@ module.exports = {
             "entryitems":
                 [
                     {
-                        "edu_f11item":
+                        "edu_item":
                             ["2017"],
-                        "edu_f11title":
+                        "edu_title":
                             ["Ausbildung: Luftfahrtsysteme SW Entwicklung"],
-                        "edu_f11content":
+                        "edu_content":
                             [
-                                [
-                                    "",
-                                    "DO-278 Software Standards",
-                                    [
-                                        ["https://en.wikipedia.org/wiki/DO-178C", "Wikipedia..."]
-                                    ]
-                                ]
+                                "",
+                                "DO-278 Software Standards",
+                                "https://en.wikipedia.org/wiki/DO-178C", "Wikipedia..."
                             ]
                     },
                     {
-                        "edu_f12item":
+                        "edu_item":
                             ["2004"],
-                        "edu_f12title":
+                        "edu_title":
                             ["Ausbildung: application server"],
-                        "edu_f12content":
+                        "edu_content":
                             [
-                                [
-                                    "",
-                                    "BEA WebLogic Integration Zyklus",
-                                    [
-                                        ["https://docs.oracle.com/cd/E13222_01/wls/docs90/index.php", "BEA WebLogic"]
-                                    ]
-                                ]
+                                "",
+                                "BEA WebLogic Integration Zyklus",
+                                "https://docs.oracle.com/cd/E13222_01/wls/docs90/index.php", "BEA WebLogic"
                             ]
                     },
                     {
-                        "edu_f13item":
+                        "edu_item":
                             ["1985"],
-                        "edu_f13title":
+                        "edu_title":
                             ["Diplom-Abschluss"],
-                        "edu_f13content":
+                        "edu_content":
                             [
-                                [
-                                    "",
-                                    "Luftfahrttechnisches Schulungszertifikat",
-                                    [
-                                        ["https://www.aerocampus-aquitaine.com/en/home/", "Aerocampus"]
-                                    ]
-                                ]
+                                "",
+                                "Luftfahrttechnisches Schulungszertifikat",
+                                "https://www.aerocampus-aquitaine.com/en/home/", "Aerocampus"
                             ]
                     }
                 ]
@@ -2059,61 +2047,50 @@ module.exports = {
             "entryitems":
                 [
                     {
-                        "loisirs_f11item":
+                        "loisirs_item":
                             ["Aktivität"],
-                        "loisirs_f11title":
+                        "loisirs_title":
                             ["Sport"],
-                        "loisirs_f11content":
+                        "loisirs_content":
                             [
-                                ["Kampfkunst", "Aikido, Boxing"],
-                                ["Laufen",
-                                    [
-                                        ["https://www.abavent.de/anmeldeservice/muenchenmarathon2018/ergebnisse#1_CF28C6", "2018/10/09: München marathon"],
-                                        "2018: B2Run",
-                                        "2017: B2Run",
-                                        "2016: München Stadtlauf, Marathon, B2Run",
-                                        "2004 - 2006: Paris Halbmarathon & Marathon, 5K / 10K / 12K Rennen"
-                                    ]
-                                ],
-                                ["Triathlon",
-                                    [
-                                        ["https://www.regensburger-triathlon.de/triathlon", "2018/08/05: Regensburg, Olympische Distanz"],
-                                        ["https://www.zeitgemaess.info/results.php?accesscode=201808051&konkurrenz=900002", "Ergebnisse"]
-                                    ],
-                                    [
-                                        ["http://www.tegernsee-triathlon.de/", "2018/07/01: Tegernsee, Olympische Distanz"],
-                                        ["https://my1.raceresult.com/91482/results?lang=de#1_0FC775", "Ergebnisse"]
-                                    ]
-                                ]
+                                "Kampfkunst", "Aikido, Boxing",
+                                "Laufen",
+                                "https://www.abavent.de/anmeldeservice/muenchenmarathon2018/ergebnisse#1_CF28C6", "2018/10/09: München marathon",
+                                "2018: B2Run",
+                                "2017: B2Run",
+                                "2016: München Stadtlauf, Marathon, B2Run",
+                                "2004 - 2006: Paris Halbmarathon & Marathon, 5K / 10K / 12K Rennen",
+                                "Triathlon",
+                                "https://www.regensburger-triathlon.de/triathlon", "2018/08/05: Regensburg, Olympische Distanz",
+                                "https://www.zeitgemaess.info/results.php?accesscode=201808051&konkurrenz=900002", "Ergebnisse",
+                                "http://www.tegernsee-triathlon.de/", "2018/07/01: Tegernsee, Olympische Distanz",
+                                "https://my1.raceresult.com/91482/results?lang=de#1_0FC775", "Ergebnisse"
                             ]
                     },
                     {
-                        "loisirs_f12item":
+                        "loisirs_item":
                             ["Aktivität"],
-                        "loisirs_f12title":
+                        "loisirs_title":
                             ["Musik"],
-                        "loisirs_f12content":
+                        "loisirs_content":
                             [
-                                ["Gitarre", "Klassik & Metall"],
-                                ["Bassgitarre", "\"DFE\" (Studien Zyklus beenden) 1.Preis in 2011",
-                                    [
-                                        ["http://www.darizmusic.com/", "Francis Darizcuren Schule"]
-                                    ]
-                                ]
+                                "Gitarre", "Klassik & Metall",
+                                "Bassgitarre", "\"DFE\" (Studien Zyklus beenden) 1.Preis in 2011",
+                                "http://www.darizmusic.com/", "Francis Darizcuren Schule"
                             ]
                     },
                     {
-                        "loisirs_f13item":
+                        "loisirs_item":
                             ["Interessen"],
-                        "loisirs_f13title":
+                        "loisirs_title":
                             ["Verschiedene"],
-                        "loisirs_f13content":
+                        "loisirs_content":
                             [
-                                ["", "Reisen"],
-                                ["", "Gastronomische Restaurants"],
-                                ["", "Klassische Musik und Metal"],
-                                ["", "Brettspiele und Rollenspiele (oldschool way)"],
-                                ["", "Fortsetzung folgt..."]
+                                "", "Reisen",
+                                "", "Gastronomische Restaurants",
+                                "", "Klassische Musik und Metal",
+                                "", "Brettspiele und Rollenspiele (oldschool way)",
+                                "", "Fortsetzung folgt..."
                             ]
                     }
 

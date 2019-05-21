@@ -1,12 +1,15 @@
 package com.core.ctrl;
 
 import com.core.eng.EngServiceDB;
+import com.core.eng.EngServiceJSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
 
 /**
  * using thymeleaf fragments
@@ -25,8 +28,8 @@ public class ControllerMain extends AControllerBase {
 
     /**
      */
-    public ControllerMain(final EngServiceDB engineDB) {
-        super(engineDB, null, null);
+    public ControllerMain(final EngServiceDB engineDB, final EngServiceJSON engineJSON) {
+        super(engineDB, engineJSON, null);
     }
 
     /**
@@ -40,10 +43,15 @@ public class ControllerMain extends AControllerBase {
         @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
         Model model)
     {
-        model.addAttribute("name", name);
-        getEngineDB().updateModel(model);
-        log.info("OK");
-        return pageNames[0];
+        try {
+            model.addAttribute("name", name);
+            getEngineDB().updateModel(model);
+            getEngineJSON().updateModel(model);
+            return pageNames[0];
+        } catch (IOException e) {
+            e.printStackTrace();
+            return pageNames[0];
+        }
     }
 
 }

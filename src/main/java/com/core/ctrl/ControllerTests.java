@@ -40,8 +40,7 @@ public class ControllerTests extends AControllerBase {
     public String httptest1(
         @RequestParam(name="param", required=true, defaultValue="DEFAULT") String param)
     {
-        log.info("OK");
-        return getEngineJSON().getAnswerJSON(param);
+        return getEngineJSON().createAnswerJSON(param);
     }
 
     /**
@@ -51,8 +50,7 @@ public class ControllerTests extends AControllerBase {
     @GetMapping("/httptest2")
     @ResponseBody
     public String httptest2() {
-        log.info("OK");
-        return getEngineJSON().doLoadJSON("src/main/resources/static/datatest.js");
+        return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[0]);
     }
 
     /**
@@ -62,8 +60,7 @@ public class ControllerTests extends AControllerBase {
     @GetMapping("/httptest3")
     @ResponseBody
     public String httptest3() {
-        log.info("OK");
-        return getEngineJSON().doLoadJSON("src/main/resources/static/datafpicv.js");
+        return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[1]);
     }
 
     /**
@@ -79,7 +76,6 @@ public class ControllerTests extends AControllerBase {
             Model model)
     {
         model.addAttribute("name", name + ", WITH BEAN TEST: " + getEngineJSON().doReactTest());
-        log.info("OK");
         return "reacttest";
     }
 
