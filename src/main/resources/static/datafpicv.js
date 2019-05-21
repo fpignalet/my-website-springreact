@@ -658,7 +658,7 @@ module.exports = {
                 [
                     "images/gears-686316_640.jpg"
                 ],
-            "entryname": "",
+            "entryname": [],
             "entrydate": [],
             "entryitems": []
         },
@@ -850,7 +850,7 @@ module.exports = {
                 [
                     "images/gears-686316_640.jpg"
                 ],
-            "entryname": "",
+            "entryname": [],
             "entrydate": [],
             "entryitems": [
                 {

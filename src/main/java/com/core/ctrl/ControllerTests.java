@@ -30,14 +30,14 @@ public class ControllerTests extends AControllerBase {
 
     /**
      * to be tested in browser
-     * when url is for example "http://localhost:8080/httptest1?param=TOTO"
+     * when url is for example "http://localhost:8080/httpreturnparam?param=TOTO"
      * display will be "{"item1":"TOTO"}"
      * @param param contains the value of the request parameter
      * @return
      */
-    @GetMapping("/httptest1")
+    @GetMapping("/httpreturnparam")
     @ResponseBody
-    public String httptest1(
+    public String httpreturnparam(
         @RequestParam(name="param", required=true, defaultValue="DEFAULT") String param)
     {
         return getEngineJSON().createAnswerJSON(param);
@@ -47,9 +47,9 @@ public class ControllerTests extends AControllerBase {
      * to be tested in browser
      * @return the content of src/main/resources/static/datatest.js data file
      */
-    @GetMapping("/httptest2")
+    @GetMapping("/httpgetdatatest")
     @ResponseBody
-    public String httptest2() {
+    public String httpgetdatatest() {
         return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[0]);
     }
 
@@ -57,9 +57,9 @@ public class ControllerTests extends AControllerBase {
      * to be tested in browser
      * @return the content of src/main/resources/static/datafpi.js data file
      */
-    @GetMapping("/httptest3")
+    @GetMapping("/httpgetdatafpi")
     @ResponseBody
-    public String httptest3() {
+    public String httpgetdatafpi() {
         return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[1]);
     }
 
@@ -93,10 +93,9 @@ public class ControllerTests extends AControllerBase {
             return new AsyncResult<>("reacttest");
         }
         catch (InterruptedException e) {
-
+            log.error(e.toString());
+            return new AsyncResult<>("entrytest");
         }
-
-        return new AsyncResult<>("entrytest");
     }
 
 }

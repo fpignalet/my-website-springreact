@@ -15,10 +15,10 @@ public interface DBHistContenerDAO extends CrudRepository<DBHistContener, Intege
 
     List<DBHistContener> findAll();
     List<DBHistContener> findAllOrderedByIdDescending();
-    List<DBHistContener> findAllOrderedByThemeDescending();
+    List<DBHistContener> findAllOrderedByNameDescending();
 
     List<DBHistContener> findById(@Param("id") int id);
 
-    List<DBHistContener> findByTheme(@Param("theme") String theme);
+    List<DBHistContener> findByName(@Param("theme") String name);
 
 }

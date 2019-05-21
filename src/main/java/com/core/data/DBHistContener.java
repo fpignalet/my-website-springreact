@@ -21,14 +21,14 @@ import java.util.ArrayList;
                 query = "SELECT a FROM DBHistContener a"),
         @NamedQuery(name = "DBHistContener.findAllOrderedByIdDescending",
                 query = "SELECT c FROM DBHistContener c ORDER BY c.id DESC"),
-        @NamedQuery(name = "DBHistContener.findAllOrderedByThemeDescending",
-                query = "SELECT c FROM DBHistContener c ORDER BY c.entrytheme DESC"),
+        @NamedQuery(name = "DBHistContener.findAllOrderedByNameDescending",
+                query = "SELECT c FROM DBHistContener c ORDER BY c.entryname DESC"),
 
         @NamedQuery(name = "DBHistContener.findById",
                 query = "SELECT a FROM DBHistContener a WHERE a.id = :id"),
 
-        @NamedQuery(name = "DBHistContener.findByTheme",
-                query = "SELECT a FROM DBHistContener a WHERE a.entrytheme = :entrytheme")
+        @NamedQuery(name = "DBHistContener.findByName",
+                query = "SELECT a FROM DBHistContener a WHERE a.entryname = :entryname")
 })
 public class DBHistContener {
 
@@ -37,7 +37,7 @@ public class DBHistContener {
         return new ToStringBuilder(this)
             .append("entryPHOTO", entryPHOTO).append("\n", "")
             .append("entrydate", entrydate).append("\n", "")
-            .append("entrytheme", entrytheme).append("\n", "")
+            .append("entryname", entryname).append("\n", "")
             .append("entryitems", entryitems).append("\n", "")
             .toString();
     }
@@ -61,7 +61,7 @@ public class DBHistContener {
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> entrytheme;
+    private ArrayList<String> entryname;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)

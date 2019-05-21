@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <html lang="en">
 <div th:fragment="content">
 
@@ -12,11 +12,11 @@
 
     <script type="text/javascript" th:src="@{/website.js}">
     </script>
-    <a href="javascript:;" onclick="app.httpGetJSON('httptest1', 'MAIN ENTRY', 'item1')">RECEIVE MAIN ENTRY from Backend</a>
+    <a href="javascript:;" onclick="app.httpGetJSON('httpreturnparam', 'MAIN ENTRY', 'item1')">RECEIVE MAIN ENTRY from Backend</a>
     <br>
-    <a href="javascript:;" onclick="app.httpGetJSON('httptest2', null, 'content1')">LOAD JSON in Backend</a>
+    <a href="javascript:;" onclick="app.httpGetJSON('httpgetdatatest', null, 'content1')">LOAD JSON in Backend</a>
     <br>
-    <a href="javascript:;" onclick="app.httpGetJSON('httptest3', null, 'DBConteners')">LOAD JSON in Backend</a>
+    <a href="javascript:;" onclick="app.httpGetJSON('httpgetdatafpi', null, 'DBConteners')">LOAD JSON in Backend</a>
     <br>
 
     <ul th:each="frame : ${collection}">
@@ -33,8 +33,8 @@
             
         <li>
             <p th:if="${record.getEntryPHOTO() != null}" th:text="${record.getEntryPHOTO()}" />
+            <p th:if="${record.getEntryname() != null}" th:text="${record.getEntryname()}" />
             <p th:if="${record.getEntrydate() != null}" th:text="${record.getEntrydate()}" />
-            <p th:if="${record.getEntrytheme() != null}" th:text="+ ${record.getEntrytheme()}" />
             <ul th:if="${record.getEntryitems() != null}" th:each="item : ${record.getEntryitems()}">
                     
                 <li>
@@ -84,7 +84,7 @@
             console.log(text)
         });
 
-        app.httpGetJSON('httptest3', null, null, (text) => {
+        app.httpGetJSON('httpgetdatafpi', null, null, (text) => {
             console.log(text);
 
             const item = document.createElement("li");

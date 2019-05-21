@@ -166,7 +166,7 @@ public class EngServiceDB implements IEngModelUpdater {
     public String addOneItemHist(final int id, final String[] theme) {
         final DBHistContener item = new DBHistContener();
         item.setId(id);
-//        item.setEntrytheme(theme);
+//        item.setEntryname(theme);
         data2Repo.save(item);
         log.info("OK");
         return "NEW ITEM HIST SAVED";
@@ -181,7 +181,7 @@ public class EngServiceDB implements IEngModelUpdater {
     public String updateOneItemHist(final int id, final String[] theme) {
         final List<DBHistContener> items = data2Repo.findById(id);
         final DBHistContener item = items.get(0);
-//        item.setEntrytheme(theme);
+//        item.setEntryname(theme);
         data2Repo.save(item);
         log.info("OK");
         return "NEW ITEM HIST UPDATED";
@@ -209,7 +209,7 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     public List<DBHistContener> findItemHistByName(final String name){
-        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findByTheme(name);
+        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findByName(name);
 
         items.forEach((it)->{ log.info(items.toString()); });
         log.info("OK");
@@ -243,7 +243,7 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     public List<DBHistContener> findAllItemsHistOrderedByNameDescending(){
-        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findAllOrderedByThemeDescending();
+        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findAllOrderedByNameDescending();
 
         items.forEach((it)->{ log.info(items.toString()); });
         log.info("OK");
