@@ -43,7 +43,7 @@ public class EngTask {
             pageService.addOneItemTest(getCount().intValue(), "NAME" + getCount().addAndGet(1));
 
             pageService.findAllItemTestOrderedByNameDescending().forEach(
-                (it)->{ log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+                (it)-> log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName()))
             );
         }
         catch (Exception e) {
@@ -59,7 +59,7 @@ public class EngTask {
             pageService.updateOneItemTest(getCount().intValue() - 1, "NAME" + getCount().intValue() + 1);
 
             pageService.findAllItemTestOrderedByNameDescending().forEach(
-                    (it)->{ log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName())); }
+                    (it)-> log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName()))
             );
         }
         catch (Exception e) {

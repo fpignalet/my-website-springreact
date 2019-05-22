@@ -32,7 +32,7 @@ public class ControllerEJB {
     /**
      * @return
      */
-    @GetMapping("/stateless")
+    @GetMapping("/ejbstateless")
     public String getStateless() {
         return statelessTest.getHelloWorld();
     }
@@ -40,7 +40,7 @@ public class ControllerEJB {
     /**
      * @return
      */
-    @GetMapping("/stateful")
+    @GetMapping("/ejbstateful")
     public String getStateful() {
         return statefulTest.getHelloWorld()
                 + " called " + statefulTest.howManyTimes() + " times";

@@ -3,6 +3,7 @@ package com.core.eng;
 import com.core.data.DBHistContener;
 import com.core.data.DBHistContent;
 import com.core.data.DBHistItem;
+import com.core.data.DBHistSub;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,9 +31,9 @@ import java.util.HashMap;
 @ComponentScan({"com.core.data"})
 public class EngServiceJSON implements IEngModelUpdater {
 
-    /*************************************************************************
+    /************************************************************************
      MULTI-PURPOSE
-     *************************************************************************/
+     */
     /**
      * @return
      */
@@ -40,9 +41,9 @@ public class EngServiceJSON implements IEngModelUpdater {
         return "TEST ENGINE1";
     }
 
-    /*************************************************************************
+    /************************************************************************
      INTERFACE ENFORCING
-     *************************************************************************/
+     */
     /**
      * in resources/templates/fragments:
      */
@@ -68,16 +69,16 @@ public class EngServiceJSON implements IEngModelUpdater {
         model.addAttribute(modelItems[0], conteners.toArray(new DBHistContener[0]));
     }
 
-    /*************************************************************************
+    /************************************************************************
      DATA TESTS
-     *************************************************************************/
+     */
     /**
      * @param param
      * @return
      */
     public String createAnswerJSON(final String param) {
         try {
-            final HashMap<String, String> result = new HashMap<String, String>();
+            final HashMap<String, String> result = new HashMap<>();
             result.put("item1", param);
 
             final ObjectMapper om = new ObjectMapper();
@@ -92,7 +93,7 @@ public class EngServiceJSON implements IEngModelUpdater {
     /*************************************************************************
      DATA ACCESS
      *************************************************************************/
-    private static class DBConteners extends ArrayList<DBHistContener> {};
+    public static class DBConteners extends ArrayList<DBHistContener> {}
 
     public static void main(String[] args) {
         try {
@@ -103,7 +104,8 @@ public class EngServiceJSON implements IEngModelUpdater {
                     new Class[]{
                             DBHistContener.class,
                             DBHistItem.class,
-                            DBHistContent.class
+                            DBHistContent.class,
+                            DBHistSub.class
                     }
             );
             conteners.forEach((item) -> {
@@ -158,9 +160,9 @@ public class EngServiceJSON implements IEngModelUpdater {
         return (ArrayList<?>) om.readValue(data, root);
     }
 
-    /*************************************************************************
+    /************************************************************************
      INIT PART
-     *************************************************************************/
+     */
     /**
      */
     public EngServiceJSON() {

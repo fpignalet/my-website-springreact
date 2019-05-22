@@ -28,7 +28,7 @@ public class ControllerGUI extends AControllerBase {
     public String requestfrommain(
             @RequestParam(name="param", required=false, defaultValue="DEFAULT ANSWER") String param
     ) throws InterruptedException {
-        Thread.currentThread().sleep(10000);
+        Thread.sleep(10000);
         return "RESPONSE FOR MAIN: " + param;
     }
 
@@ -39,7 +39,7 @@ public class ControllerGUI extends AControllerBase {
     public String requestfromreact(
             @RequestParam(name="param", required=false, defaultValue="DEFAULT ANSWER") String param
     ) throws InterruptedException {
-        Thread.currentThread().sleep(10000);
+        Thread.sleep(10000);
         return "RESPONSE FOR REACT: " + param;
     }
 

@@ -7,12 +7,12 @@
     </header>
     <div className="App-intro">
       <div>
-        <button v-on:click="httpext1()">httpext1</button>
-        <div>httpext1: {{test1}}</div>
+        <button v-on:click="exthttpgetjson0()">exthttpgetjson0</button>
+        <div>exthttpgetjson0: {{test1}}</div>
       </div>
       <div>
-        <button v-on:click="httpext2()">httpext2</button>
-        <div>httpext2: {{test2}}</div>
+        <button v-on:click="exthttpgetjson1()">exthttpgetjson1</button>
+        <div>exthttpgetjson1: {{test2}}</div>
       </div>
     </div>
   </div>

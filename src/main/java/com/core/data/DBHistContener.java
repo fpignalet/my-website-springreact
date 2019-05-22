@@ -22,23 +22,24 @@ import java.util.ArrayList;
         @NamedQuery(name = "DBHistContener.findAllOrderedByIdDescending",
                 query = "SELECT c FROM DBHistContener c ORDER BY c.id DESC"),
         @NamedQuery(name = "DBHistContener.findAllOrderedByNameDescending",
-                query = "SELECT c FROM DBHistContener c ORDER BY c.entryname DESC"),
+                query = "SELECT c FROM DBHistContener c ORDER BY c.contenername DESC"),
 
         @NamedQuery(name = "DBHistContener.findById",
                 query = "SELECT a FROM DBHistContener a WHERE a.id = :id"),
 
         @NamedQuery(name = "DBHistContener.findByName",
-                query = "SELECT a FROM DBHistContener a WHERE a.entryname = :entryname")
+                query = "SELECT a FROM DBHistContener a WHERE a.contenername = :contenername")
 })
 public class DBHistContener {
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .append("entryPHOTO", entryPHOTO).append("\n", "")
-            .append("entrydate", entrydate).append("\n", "")
-            .append("entryname", entryname).append("\n", "")
-            .append("entryitems", entryitems).append("\n", "")
+            .append("contenerphoto", contenerphoto).append("\n", "")
+            .append("contenerdate", contenerdate).append("\n", "")
+            .append("contenername", contenername).append("\n", "")
+            .append("contenersubname", contenersubname).append("\n", "")
+            .append("conteneritems", conteneritems).append("\n", "")
             .toString();
     }
 
@@ -48,22 +49,32 @@ public class DBHistContener {
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     @Id
+    @Column(nullable = false, columnDefinition = "int(11)")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> entryPHOTO;
+    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    private String contenerphoto;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> entrydate;
+    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    private String contenerdate;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> entryname;
+    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    private String contenername;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<DBHistItem> entryitems;
+    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    private String contenersubname;
+
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    @Column(nullable = false)
+    private ArrayList<DBHistItem> conteneritems;
 }

@@ -338,7 +338,7 @@ class ReactNavigation extends React.Component {
      *
      * @type {{selectedPath: string}}
      */
-    state = { selectedPath: '' }
+    state = { selectedPath: '' };
 
     /**
      *
@@ -346,7 +346,7 @@ class ReactNavigation extends React.Component {
      */
     onItemSelection = (arg) => {
         this.setState({ selectedPath: arg.path })
-    }
+    };
 
     /**
      *
@@ -384,9 +384,9 @@ class TestApp extends React.Component {
             (state = 0, action) => {
                 switch (action.type) {
                     case 'RENDERING':
-                        return state + 1
+                        return state + 1;
                     case 'DONE':
-                        return state - 1
+                        return state - 1;
                     default:
                         return state
                 }

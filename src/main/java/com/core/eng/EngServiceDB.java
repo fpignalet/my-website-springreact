@@ -1,9 +1,6 @@
 package com.core.eng;
 
-import com.core.data.DBHistContener;
-import com.core.data.DBHistContenerDAO;
-import com.core.data.DBItemTest;
-import com.core.data.DBItemTestDAO;
+import com.core.data.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,9 +22,9 @@ import java.util.List;
 @SessionAttributes("itemtest")
 public class EngServiceDB implements IEngModelUpdater {
 
-    /*************************************************************************
+    /************************************************************************
      INTERFACE ENFORCING
-     *************************************************************************/
+     */
     /**
      * in resources/templates/fragments:
      */
@@ -46,7 +44,7 @@ public class EngServiceDB implements IEngModelUpdater {
      DATABASE ACCESS ITEM TEST
      *************************************************************************/
     @Autowired
-    private DBItemTestDAO data1Repo;
+    private DBItemTestDAO dataTestRepo;
 
     @ModelAttribute(name = "item")
     public DBItemTest itemtest() {
@@ -63,7 +61,7 @@ public class EngServiceDB implements IEngModelUpdater {
         final DBItemTest item = new DBItemTest();
         item.setId(id);
         item.setName(name);
-        data1Repo.save(item);
+        dataTestRepo.save(item);
         log.info("OK");
         return "NEW ITEM TEST SAVED";
     }
@@ -75,10 +73,10 @@ public class EngServiceDB implements IEngModelUpdater {
      */
     @Transactional
     public String updateOneItemTest(final int id, final String name) {
-        final List<DBItemTest> items = data1Repo.findById(id);
+        final List<DBItemTest> items = dataTestRepo.findById(id);
         final DBItemTest item = items.get(0);
         item.setName(name);
-        data1Repo.save(item);
+        dataTestRepo.save(item);
         log.info("OK");
         return "NEW ITEM TEST UPDATED";
     }
@@ -87,16 +85,16 @@ public class EngServiceDB implements IEngModelUpdater {
      *
      */
     public void cleanAllItemsTest() {
-        data1Repo.deleteAll();
+        dataTestRepo.deleteAll();
     }
 
     /**
      * @return
      */
     public List<DBItemTest> findItemTestById(final int id){
-        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findById(id);
+        final List<DBItemTest> items = dataTestRepo.findById(id);
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
@@ -105,9 +103,9 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     public List<DBItemTest> findItemTestByName(final String name){
-        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findByName(name);
+        final List<DBItemTest> items = dataTestRepo.findByName(name);
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
@@ -117,9 +115,9 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return text containing entries from BD
      */
     public List<DBItemTest> findAllItemsTest() {
-        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findAll();
+        final List<DBItemTest> items = dataTestRepo.findAll();
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
@@ -128,9 +126,9 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     public List<DBItemTest> findAllItemTestsOrderedByIdDescending(){
-        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findAllOrderedByIdDescending();
+        final List<DBItemTest> items = dataTestRepo.findAllOrderedByIdDescending();
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
@@ -139,9 +137,9 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     public List<DBItemTest> findAllItemTestOrderedByNameDescending(){
-        final List<DBItemTest> items = (List<DBItemTest>) data1Repo.findAllOrderedByNameDescending();
+        final List<DBItemTest> items = dataTestRepo.findAllOrderedByNameDescending();
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
@@ -150,7 +148,16 @@ public class EngServiceDB implements IEngModelUpdater {
      DATABASE ACCESS ITEM TYPE1
      *************************************************************************/
     @Autowired
-    private DBHistContenerDAO data2Repo;
+    private DBHistContenerDAO dataHistContenerRepo;
+
+    @Autowired
+    private DBHistItemDAO dataHistItemRepo;
+
+    @Autowired
+    private DBHistContentDAO dataHistContentRepo;
+
+    @Autowired
+    private DBHistSubDAO dataHistSubRepo;
 
     @ModelAttribute(name = "item")
     public DBHistContener itemhist() {
@@ -167,7 +174,7 @@ public class EngServiceDB implements IEngModelUpdater {
         final DBHistContener item = new DBHistContener();
         item.setId(id);
 //        item.setEntryname(theme);
-        data2Repo.save(item);
+        dataHistContenerRepo.save(item);
         log.info("OK");
         return "NEW ITEM HIST SAVED";
     }
@@ -179,10 +186,10 @@ public class EngServiceDB implements IEngModelUpdater {
      */
     @Transactional
     public String updateOneItemHist(final int id, final String[] theme) {
-        final List<DBHistContener> items = data2Repo.findById(id);
+        final List<DBHistContener> items = dataHistContenerRepo.findById(id);
         final DBHistContener item = items.get(0);
 //        item.setEntryname(theme);
-        data2Repo.save(item);
+        dataHistContenerRepo.save(item);
         log.info("OK");
         return "NEW ITEM HIST UPDATED";
     }
@@ -191,16 +198,19 @@ public class EngServiceDB implements IEngModelUpdater {
      *
      */
     public void cleanAllItemsHist() {
-        data2Repo.deleteAll();
+        dataHistContenerRepo.deleteAll();
+        dataHistContentRepo.deleteAll();
+        dataHistItemRepo.deleteAll();
+        dataHistSubRepo.deleteAll();
     }
 
     /**
      * @return
      */
     public List<DBHistContener> findItemHistById(final int id){
-        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findById(id);
+        final List<DBHistContener> items = dataHistContenerRepo.findById(id);
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
@@ -209,9 +219,9 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     public List<DBHistContener> findItemHistByName(final String name){
-        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findByName(name);
+        final List<DBHistContener> items = dataHistContenerRepo.findByName(name);
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
@@ -221,9 +231,9 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return text containing entries from BD
      */
     public List<DBHistContener> findAllItemsHist() {
-        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findAll();
+        final List<DBHistContener> items = dataHistContenerRepo.findAll();
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
@@ -232,9 +242,9 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     public List<DBHistContener> findAllItemsHistOrderedByIdDescending(){
-        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findAllOrderedByIdDescending();
+        final List<DBHistContener> items = dataHistContenerRepo.findAllOrderedByIdDescending();
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
@@ -243,23 +253,75 @@ public class EngServiceDB implements IEngModelUpdater {
      * @return
      */
     public List<DBHistContener> findAllItemsHistOrderedByNameDescending(){
-        final List<DBHistContener> items = (List<DBHistContener>) data2Repo.findAllOrderedByNameDescending();
+        final List<DBHistContener> items = dataHistContenerRepo.findAllOrderedByNameDescending();
 
-        items.forEach((it)->{ log.info(items.toString()); });
+        items.forEach((it)-> log.info(items.toString()));
         log.info("OK");
         return items;
     }
 
-    /*************************************************************************
-     INIT PART
-     *************************************************************************/
     /**
-     * @param data1Repo
+     * @param items
      */
-    public EngServiceDB(final DBItemTestDAO data1Repo, final DBHistContenerDAO data2Repo) {
-        this.data1Repo = data1Repo;
-        this.data2Repo = data2Repo;
+    public void populateDB(final ArrayList<DBHistContener> items) {
+        items.forEach((item) -> {
+            dataHistContenerRepo.save(item);
+        });
+
+        final List<DBHistContener> records = dataHistContenerRepo.findAll();
+
+        records.forEach((item) -> {
+            item.getConteneritems().forEach((content) -> {
+                content.setParentId(item.getId());
+                dataHistItemRepo.save((DBHistItem)content);
+            });
+        });
+
+        records.forEach((item) -> {
+            item.getConteneritems().forEach((content) -> {
+                content.getContentitems().forEach((entry) -> {
+                    entry.setParentId(entry.getId());
+                    dataHistContentRepo.save((DBHistContent)entry);
+                });
+            });
+        });
+
+        records.forEach((item) -> {
+            item.getConteneritems().forEach((content) -> {
+                content.getContentitems().forEach((entry) -> {
+                    entry.getContentlist().forEach((subentry) -> {
+                        subentry.setParentId(entry.getId());
+                        dataHistSubRepo.save((DBHistSub)subentry);
+                    });
+                });
+            });
+        });
+    }
+
+    /************************************************************************
+     INIT PART
+     */
+    /**
+     * @param dataTestRepo
+     * @param dataHistContenerDAO
+     * @param dataHistItemDAO
+     * @param dataHistContentRepo
+     * @param dataHistSubRepo
+     */
+    public EngServiceDB(
+        final DBItemTestDAO dataTestRepo,
+        final DBHistContenerDAO dataHistContenerDAO,
+        final DBHistItemDAO dataHistItemDAO,
+        final DBHistContentDAO dataHistContentRepo,
+        final DBHistSubDAO dataHistSubRepo) {
+
+        this.dataTestRepo = dataTestRepo;
+        this.dataHistContenerRepo = dataHistContenerDAO;
+        this.dataHistItemRepo = dataHistItemDAO;
+        this.dataHistContentRepo = dataHistContentRepo;
+        this.dataHistSubRepo = dataHistSubRepo;
         log.info("OK");
+
     }
 
 }

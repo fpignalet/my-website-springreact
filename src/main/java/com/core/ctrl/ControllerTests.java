@@ -1,5 +1,10 @@
 package com.core.ctrl;
 
+import com.core.data.DBHistContener;
+import com.core.data.DBHistContent;
+import com.core.data.DBHistItem;
+import com.core.data.DBHistSub;
+import com.core.eng.EngServiceDB;
 import com.core.eng.EngServiceJSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.util.concurrent.Future;
 
 /**
@@ -24,21 +30,21 @@ public class ControllerTests extends AControllerBase {
     /**
      * @param engineJSON
      */
-    public ControllerTests(EngServiceJSON engineJSON) {
-        super(null, engineJSON, null);
+    public ControllerTests(EngServiceJSON engineJSON, EngServiceDB engineDB) {
+        super(engineDB, engineJSON, null);
     }
 
     /**
      * to be tested in browser
-     * when url is for example "http://localhost:8080/httpreturnparam?param=TOTO"
+     * when url is for example "http://localhost:8080/testhttpgetfromparam?param=TOTO"
      * display will be "{"item1":"TOTO"}"
      * @param param contains the value of the request parameter
      * @return
      */
-    @GetMapping("/httpreturnparam")
+    @GetMapping("/testhttpgetfromparam")
     @ResponseBody
-    public String httpreturnparam(
-        @RequestParam(name="param", required=true, defaultValue="DEFAULT") String param)
+    public String testhttpgetfromparam(
+        @RequestParam(name="param", defaultValue="DEFAULT") String param)
     {
         return getEngineJSON().createAnswerJSON(param);
     }
@@ -47,9 +53,9 @@ public class ControllerTests extends AControllerBase {
      * to be tested in browser
      * @return the content of src/main/resources/static/datatest.js data file
      */
-    @GetMapping("/httpgetdatatest")
+    @GetMapping("/testhttpgetjson0")
     @ResponseBody
-    public String httpgetdatatest() {
+    public String testhttpgetjson0() {
         return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[0]);
     }
 
@@ -57,10 +63,35 @@ public class ControllerTests extends AControllerBase {
      * to be tested in browser
      * @return the content of src/main/resources/static/datafpi.js data file
      */
-    @GetMapping("/httpgetdatafpi")
+    @GetMapping("/testhttpgetjson1")
     @ResponseBody
-    public String httpgetdatafpi() {
+    public String testhttpgetjson1() {
         return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[1]);
+    }
+
+    /**
+     * to be tested in browser
+     */
+    @GetMapping("/testpopulatedb")
+    @ResponseBody
+    public void testpopulatedb() {
+        try {
+            final EngServiceJSON instanceJS = getEngineJSON();
+            final String data = instanceJS.doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[1]);
+            final EngServiceJSON.DBConteners conteners = (EngServiceJSON.DBConteners) instanceJS.parse(data,
+                EngServiceJSON.DBConteners.class,
+                new Class[]{
+                    DBHistContener.class,
+                    DBHistItem.class,
+                    DBHistContent.class,
+                    DBHistSub.class
+                }
+            );
+            final EngServiceDB instanceDb = getEngineDB();
+            instanceDb.populateDB(conteners);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -70,8 +101,8 @@ public class ControllerTests extends AControllerBase {
      * @param model
      * @return
      */
-    @GetMapping("/reacttest")
-    public String reacttest(
+    @GetMapping("/testreact")
+    public String testreact(
             @RequestParam(name="name", required=false, defaultValue="RETEST") String name,
             Model model)
     {
@@ -84,13 +115,13 @@ public class ControllerTests extends AControllerBase {
      * not yet working...
      * @throws InterruptedException
      */
-    @GetMapping("/asynctest1")
+    @GetMapping("/testasync")
     @Async
     public Future<String> methodAsync1() {
         System.out.println("Execute method asynchronously - " + Thread.currentThread().getName());
         try {
             Thread.sleep(5000);
-            return new AsyncResult<>("reacttest");
+            return new AsyncResult<>("testreact");
         }
         catch (InterruptedException e) {
             log.error(e.toString());

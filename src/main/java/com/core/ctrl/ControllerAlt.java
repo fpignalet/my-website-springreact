@@ -32,7 +32,7 @@ public class ControllerAlt extends AControllerBase {
     /**
      * @return
      */
-    @GetMapping("/alt")
+    @GetMapping("/altentry")
     public String webtest(
             @RequestParam(name="name", required=false, defaultValue="WEB CONTROLER") String name,
             Model model)

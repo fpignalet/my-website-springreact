@@ -7,99 +7,64 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
 @Slf4j
-@JsonRootName("entryitems")
+@Entity
+@JsonRootName("conteneritems")
+@Table(name = "fpi_springitem")
 public class DBHistItem {
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .append("entryitem", entryitem).append("\n", "")
-            .append("entrytitle", entrytitle).append("\n", "")
-            .append("entrycontent", entrycontent).append("\n", "")
-            .append("p", p).append("\n", "")
-            .append("a", a).append("\n", "")
-            .append("ul", ul).append("\n", "")
+            .append("histkind", histkind).append("\n", "")
+            .append("histtitle", histtitle).append("\n", "")
+            .append("histdesc", histdesc).append("\n", "")
+            .append("histduration", histduration).append("\n", "")
+            .append("histextra", histextra).append("\n", "")
+            .append("contentitems", contentitems).append("\n", "")
             .toString();
     }
 
+    /**
+     *
+     */
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> entryitem;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, columnDefinition = "int(11)")
+    private int id;
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    @Column(nullable = false, columnDefinition = "int(11)")
+    private int parentId;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> entrytitle;
+    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    private String histkind;
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    private String histtitle;
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    private String histdesc;
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    private String histduration;
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    private String histextra;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> p;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> a;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> ul;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> info_raisonsociale;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> info_adresse;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> info_email;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> info_phonenum;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> info_geburstag;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> mskills_desc;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> mskills_level;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> mskills_text;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> lang_desc;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> lang_level;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> lang_text;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> edu_item;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> edu_title;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> edu_content;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> loisirs_item;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> loisirs_title;
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<String> loisirs_content;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    private ArrayList<DBHistContent> entrycontent;
+    @Column(nullable = false)
+    private ArrayList<DBHistContent> contentitems;
 }

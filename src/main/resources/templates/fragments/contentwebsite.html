@@ -7,16 +7,16 @@
 
     <p th:text="'FROM MODEL: ' + ${name} + '!'" />
 
-    <a href="/reacttest">goto React test page</a>
+    <a href="/testreact">goto React test page</a>
     <br>
 
     <script type="text/javascript" th:src="@{/website.js}">
     </script>
-    <a href="javascript:;" onclick="app.httpGetJSON('httpreturnparam', 'WEBSITE ENTRY', 'item1')">RECEIVE WEBSITE ENTRY from Backend</a>
+    <a href="javascript:;" onclick="app.httpGetJSON('testhttpgetfromparam', 'WEBSITE ENTRY', 'item1')">RECEIVE WEBSITE ENTRY from Backend</a>
     <br>
-    <a href="javascript:;" onclick="app.httpGetJSON('httpgetdatatest', null, 'content1')">LOAD JSON in Backend</a>
+    <a href="javascript:;" onclick="app.httpGetJSON('testhttpgetjson0', null, 'content1')">LOAD JSON in Backend</a>
     <br>
-    <a href="javascript:;" onclick="app.httpGetJSON('httpgetdatafpi', null, 'DBConteners')">LOAD JSON in Backend</a>
+    <a href="javascript:;" onclick="app.httpGetJSON('testhttpgetjson1', null, 'DBConteners')">LOAD JSON in Backend</a>
     <br>
 
 </div>

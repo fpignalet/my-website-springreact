@@ -22,8 +22,8 @@ export default {
     /**
      *
      */
-    httpext1() {
-      this.getdatafrombackend("httpext1", "content1", (value) => {
+    exthttpgetjson0() {
+      this.getdatafrombackend("exthttpgetjson0", "content1", (value) => {
         alert("Received Successful response from server: " + value);
         HelloWorld.test1 = value
       });
@@ -31,8 +31,8 @@ export default {
     /**
      *
      */
-    httpext2() {
-      this.getdatafrombackend("httpext2", "data_CVtitle", (value) => {
+    exthttpgetjson1() {
+      this.getdatafrombackend("exthttpgetjson1", "data_CVtitle", (value) => {
         alert("Received Successful response from server: " + value);
         HelloWorld.test2 = value
       });
@@ -97,8 +97,8 @@ export default {
     }
   },
   mounted() {
-    this.httpext1();
-    this.httpext2();
+    this.exthttpgetjson0();
+    this.exthttpgetjson1();
   }
 }
 </script>

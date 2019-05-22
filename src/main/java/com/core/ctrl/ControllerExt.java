@@ -23,18 +23,18 @@ public class ControllerExt extends AControllerBase {
   /**
    * @return
    */
-  @RequestMapping(value = "/httpext1", method = RequestMethod.GET)
+  @RequestMapping(value = "/exthttpgetjson0", method = RequestMethod.GET)
   @CrossOrigin
-  public String httpext1() {
+  public String exthttpgetjson0() {
     return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[0]);
   }
 
   /**
    * @return
    */
-  @RequestMapping(value = "/httpext2", method = RequestMethod.GET)
+  @RequestMapping(value = "/exthttpgetjson1", method = RequestMethod.GET)
   @CrossOrigin
-  public String httpext2() {
+  public String exthttpgetjson1() {
     return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[1]);
   }
 
