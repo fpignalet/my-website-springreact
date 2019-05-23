@@ -20,8 +20,9 @@ CREATE TABLE if not exists  fpi_springcontener
     contenerphoto VARCHAR(256),
     contenerdate VARCHAR(256),
     contenername VARCHAR(256),
-    contenersubname VARCHAR(256)
-#     conteneritems, refd by parentid in springitem
+    contenersubname VARCHAR(256),
+    conteneritems int(11) NOT NULL,
+    FOREIGN KEY(conteneritems) references fpi_springitem(id)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;
 
@@ -33,8 +34,9 @@ CREATE TABLE if not exists  fpi_springitem
     histdesc VARCHAR(256),
     histduration VARCHAR(256),
     histtitle VARCHAR(256),
-    histextra VARCHAR(256)
-#     contentitems, refd by parentid in springcontent
+    histextra VARCHAR(256),
+    contentitems int(11) NOT NULL,
+    FOREIGN KEY(contentitems) references fpi_springcontent(id)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;
 
@@ -42,8 +44,9 @@ CREATE TABLE if not exists  fpi_springcontent
 (
     id int(11),
     parentid int(11),
-    entrydesc VARCHAR(256)
-#     contentlist, refd by parentid in fpi_springsubs
+    entrydesc VARCHAR(256),
+    contentlist int(11) NOT NULL,
+    FOREIGN KEY(contentlist) references fpi_springsubs(id)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;
 
