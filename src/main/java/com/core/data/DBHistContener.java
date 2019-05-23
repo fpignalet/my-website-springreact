@@ -9,13 +9,16 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
 
 @Slf4j
 @Entity
 @XmlRootElement
 @JsonRootName("DBHistContener")
 @Table(name = "fpi_springcontener")
+//@ManyToMany(cascade=CascadeType.ALL)
+//@JoinColumn(name = "conteneritems")
 @NamedQueries(value = {
         @NamedQuery(name = "DBHistContener.findAll",
                 query = "SELECT a FROM DBHistContener a"),
@@ -30,7 +33,7 @@ import java.util.ArrayList;
         @NamedQuery(name = "DBHistContener.findByName",
                 query = "SELECT a FROM DBHistContener a WHERE a.contenername = :contenername")
 })
-public class DBHistContener {
+public class DBHistContener implements Serializable {
 
     @Override
     public String toString() {
@@ -55,26 +58,27 @@ public class DBHistContener {
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    @Column(columnDefinition = "VARCHAR(256)")
     private String contenerphoto;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    @Column(columnDefinition = "VARCHAR(256)")
     private String contenerdate;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    @Column(columnDefinition = "VARCHAR(256)")
     private String contenername;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    @Column(columnDefinition = "VARCHAR(256)")
     private String contenersubname;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     @Column(nullable = false)
-    private ArrayList<DBHistItem> conteneritems;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<DBHistItem> conteneritems;
 }

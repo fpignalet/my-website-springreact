@@ -470,6 +470,8 @@ class TestApp extends React.Component {
 
             return (
                 <div>
+                    { this.rendercol([0,1]) }
+{/*
                     <ReactBStrap.Container>
                         <ReactBStrap.Row>
                             <ReactBStrap.Col>
@@ -491,6 +493,7 @@ class TestApp extends React.Component {
                             </ReactBStrap.Col>
                         </ReactBStrap.Row>
                     </ReactBStrap.Container>
+*/}
                 </div>
             );
         }

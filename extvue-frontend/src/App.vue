@@ -9,98 +9,96 @@
     import HelloWorld from './components/HelloWorld.vue'
     import axios from 'axios';
 
-    class Tests {
+    class Tests {}
 
-}
+    export default {
+      name: 'app',
+      components: {
+        HelloWorld
+      },
+      methods: {
+        /**
+         *
+         */
+        exthttpgetjson0() {
+          this.getdatafrombackend("exthttpgetjson0", "content1", (value) => {
+            alert("Received Successful response from server: " + value);
+            HelloWorld.test1 = value
+          });
+        },
+        /**
+         *
+         */
+        exthttpgetjson1() {
+          this.getdatafrombackend("exthttpgetjson1", "DBConteners", (value) => {
+            alert("Received Successful response from server: " + value);
+            HelloWorld.test2 = value
+          });
+        },
+        /**
+         *
+         */
+        getdatafrombackend(path, select, cbk) {
+          const corsOptions = {
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': 'http://localhost:8081',
+              'Access-Control-Allow-Methods': 'GET,OPTIONS',
+            }
+          };
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  },
-  methods: {
-    /**
-     *
-     */
-    exthttpgetjson0() {
-      this.getdatafrombackend("exthttpgetjson0", "content1", (value) => {
-        alert("Received Successful response from server: " + value);
-        HelloWorld.test1 = value
-      });
-    },
-    /**
-     *
-     */
-    exthttpgetjson1() {
-      this.getdatafrombackend("exthttpgetjson1", "data_CVtitle", (value) => {
-        alert("Received Successful response from server: " + value);
-        HelloWorld.test2 = value
-      });
-    },
-    /**
-     *
-     */
-    getdatafrombackend(path, select, cbk) {
-      const corsOptions = {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:8081',
-          'Access-Control-Allow-Methods': 'GET,OPTIONS',
+          const local = this;
+
+          this.value = "";
+
+          axios
+              .get("http://localhost:8080/" + path, corsOptions)
+              .then(
+                      res => {
+                        const jsonStr = JSON.stringify(res.data);
+                        const jsonRes = JSON.parse(jsonStr);
+                        let text = "";
+                        let value = local.parse(text, jsonRes[select]);
+
+                        cbk(value);
+                      },
+                      err => {
+                        alert("Server rejected response with: " + err);
+                      }
+              );
+        },
+        parse(text, data) {
+          const local = this;
+
+          let value = text;
+
+          if(Object.prototype.toString.call(data) === '[object Array]') {
+            data.forEach((itm, idx) => {
+              value = local.parse(value, itm);
+            });
+          }
+          else if(Object.prototype.toString.call(data) === '[object Map]') {
+            Object.keys(data).forEach((itm, idx) => {
+              value = local.parse(value, itm + ": " + data[itm]);
+            });
+          }
+          else if(Object.prototype.toString.call(data) === '[object Object]') {
+            Object.keys(data).forEach((itm, idx) => {
+              value = local.parse(value, itm + ": " + data[itm]);
+            });
+          }
+          else {
+            value = text + data + "\r\n";
+          }
+
+          return value;
         }
-      };
-
-      const local = this;
-
-      this.value = "";
-
-      axios
-          .get("http://localhost:8080/" + path, corsOptions)
-          .then(
-                  res => {
-                    const jsonStr = JSON.stringify(res.data);
-                    const jsonRes = JSON.parse(jsonStr);
-                    let text = "";
-                    let value = local.parse(text, jsonRes[select]);
-
-                    cbk(value);
-                  },
-                  err => {
-                    alert("Server rejected response with: " + err);
-                  }
-          );
-    },
-    parse(text, data) {
-      const local = this;
-
-      let value = text;
-
-      if(Object.prototype.toString.call(data) === '[object Array]') {
-        data.forEach((itm, idx) => {
-          value = local.parse(value, itm);
-        });
+      },
+      mounted() {
+        this.exthttpgetjson0();
+        this.exthttpgetjson1();
       }
-      else if(Object.prototype.toString.call(data) === '[object Map]') {
-        Object.keys(data).forEach((itm, idx) => {
-          value = local.parse(value, itm + ": " + data[itm]);
-        });
-      }
-      else if(Object.prototype.toString.call(data) === '[object Object]') {
-        Object.keys(data).forEach((itm, idx) => {
-          value = local.parse(value, itm + ": " + data[itm]);
-        });
-      }
-      else {
-        value = text + data + "\r\n";
-      }
-
-      return value;
     }
-  },
-  mounted() {
-    this.exthttpgetjson0();
-    this.exthttpgetjson1();
-  }
-}
 </script>
 
 <style>

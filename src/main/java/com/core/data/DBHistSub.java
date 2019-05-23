@@ -8,18 +8,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
 
 @Slf4j
 @Entity
 @JsonRootName("contentlist")
 @Table(name = "fpi_springsubs")
-public class DBHistSub {
+public class DBHistSub implements Serializable {
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .append("data", data).append("\n", "")
+            .append("listtext", listtext).append("\n", "")
             .toString();
     }
 
@@ -34,11 +35,11 @@ public class DBHistSub {
     private int id;
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "int(11)")
-    private int parentId;
+    @ManyToOne
+    private DBHistContent parent;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false)
-    private ArrayList<String> data;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<DBHistText> listtext;
 }

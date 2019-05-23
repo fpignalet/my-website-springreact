@@ -264,37 +264,35 @@ public class EngServiceDB implements IEngModelUpdater {
      * @param items
      */
     public void populateDB(final ArrayList<DBHistContener> items) {
-        items.forEach((item) -> {
-            dataHistContenerRepo.save(item);
-        });
+        items.forEach((conteneritem) -> {
+            try {
+                //DBHistContener -> DBHistItem
+                conteneritem.getConteneritems().forEach((histitem) -> {
+                    histitem.setParent(conteneritem);
 
-        final List<DBHistContener> records = dataHistContenerRepo.findAll();
+                    //DBHistItem -> DBHistContent
+                    histitem.getContentitems().forEach((contentitem) -> {
+                        contentitem.setParent(histitem);
 
-        records.forEach((item) -> {
-            item.getConteneritems().forEach((content) -> {
-                content.setParentId(item.getId());
-                dataHistItemRepo.save((DBHistItem)content);
-            });
-        });
+                        //DBHistContent -> DBHisSub
+                        contentitem.getContentlist().forEach((subitem) -> {
+                            subitem.setParent(contentitem);
 
-        records.forEach((item) -> {
-            item.getConteneritems().forEach((content) -> {
-                content.getContentitems().forEach((entry) -> {
-                    entry.setParentId(entry.getId());
-                    dataHistContentRepo.save((DBHistContent)entry);
-                });
-            });
-        });
-
-        records.forEach((item) -> {
-            item.getConteneritems().forEach((content) -> {
-                content.getContentitems().forEach((entry) -> {
-                    entry.getContentlist().forEach((subentry) -> {
-                        subentry.setParentId(entry.getId());
-                        dataHistSubRepo.save((DBHistSub)subentry);
+                            //DBHisSub -> DBHistText
+                            subitem.getListtext().forEach((textitem) -> {
+                                textitem.setParent(subitem);
+                            });
+                        });
                     });
                 });
-            });
+
+                dataHistContenerRepo.save(conteneritem);
+
+            }
+            catch(final Exception ex){
+                log.error(ex.toString());
+                log.debug(conteneritem.toString());
+            }
         });
     }
 

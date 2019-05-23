@@ -1,36 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="/main.css" />
-    <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-            crossorigin="anonymous"
-    />
+    <div th:include="fragments/headermain.html :: header" ></div>
 </head>
 <body>
-    <!-- -------------------------------------------------------------------------->
-    <p id="modelname" hidden th:text="${name}" />
-    <script type="text/javascript">
-        window.reactgetmodelname = function() {
-            return document.getElementById("modelname").innerText;
-        }
-    </script>
-
-    <!-- -------------------------------------------------------------------------->
-    <div id="contenerREACT1"></div>
-    <script src="built/bundle.js"></script>
-
-    <script type="text/javascript" th:src="@{/website.js}">
-    </script>
-    <script th:inline="javascript">
-
-        app.httpGetRAW("guirequestfromreact", "here is REACT PAGE");
-
-    </script>
+    <div th:include="fragments/contentmain.html :: contentreact" ></div>
 
 </body>
 </html>

@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://thymeleaf.org">
 <html lang="en">
-<div th:fragment="content">
 
+<div th:fragment="contentdivs">
     <p text="MAIN ENTRY PAGE !" />
 
     <p th:text="'FROM MODEL: ' + ${name} + '!'" />
@@ -13,10 +13,6 @@
     <script type="text/javascript" th:src="@{/website.js}">
     </script>
     <a href="javascript:;" onclick="app.httpGetJSON('testhttpgetfromparam', 'MAIN ENTRY', 'item1')">RECEIVE MAIN ENTRY from Backend</a>
-    <br>
-    <a href="javascript:;" onclick="app.httpGetJSON('testhttpgetjson0', null, 'content1')">LOAD JSON in Backend</a>
-    <br>
-    <a href="javascript:;" onclick="app.httpGetJSON('testhttpgetjson1', null, 'DBConteners')">LOAD JSON in Backend</a>
     <br>
     <a href="javascript:;" onclick="app.httpGetJSON('testpopulatedb', null, 'DBConteners')">PopulateDB</a>
     <br>
@@ -31,6 +27,76 @@
 
     </ul>
 
+</div>
+
+<div th:fragment="contentcvtable">
+
+    <script type="text/javascript" th:src="@{/website.js}">
+    </script>
+    <a href="javascript:;" onclick="app.httpGetJSON('testpopulatedb', null, 'DBConteners')">PopulateDB</a>
+    <br>
+
+    <table>
+        <tbody>
+        <tr th:each="record : ${database}">
+            <td><span th:text="${record.getContenerphoto()}"></span></td>
+            <td><span th:text="${record.getContenername()}"></span></td>
+            <td><span th:text="${record.getContenersubname()}"></span></td>
+            <td><span th:text="${record.getContenerdate()}"></span></td>
+            <td><span th:if="${record.getConteneritems() != null}">
+                <table>
+                    <tbody>
+                    <tr th:each="item : ${record.getConteneritems()}">
+                        <td><span th:text="${item.getHistkind()}"></span></td>
+                        <td><span th:text="${item.getHisttitle()}"></span></td>
+                        <td><span th:text="${item.getHistdesc()}"></span></td>
+                        <td><span th:text="${item.getHistduration()}"></span></td>
+                        <td><span th:text="${item.getHistextra()}"></span></td>
+                        <td><span th:if="${item.getContentitems() != null}">
+                            <table>
+                                <tbody>
+                                <tr th:each="content : ${item.getContentitems()}">
+                                    <td><span th:text="${content.getEntrydesc()}"></span></td>
+                                    <td><span th:if="${content.getContentlist() != null}">
+                                        <table>
+                                            <tbody>
+                                            <tr th:each="sub : ${content.getContentlist()}">
+                                                <td><span th:if="${sub.getListtext() != null}">
+                                                    <table>
+                                                        <tbody>
+                                                        <tr th:each="text : ${sub.getListtext()}">
+                                                            <td><span th:if="${text.getData() != null}">
+                                                                <table>
+                                                                    <tbody>
+                                                                    <tr th:each="value : ${text.getData()}">
+                                                                        <td><span th:text="${text.getData()}"></span></td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </span></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </span></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div th:fragment="contentcvliste">
     <ul th:each="record : ${database}">
             
         <li>
@@ -52,10 +118,14 @@
                             <p th:if="${content.getEntrydesc() != null}" th:text="${content.getEntrydesc()}" />
                             <ul th:if="${content.getContentlist() != null}" th:each="sub : ${content.getContentlist()}">
                                     
-                                <ul th:if="${sub.getData() != null}" th:each="text : ${sub.getData()}">
+                                <ul th:if="${sub.getListtext() != null}" th:each="text : ${sub.getListtext()}">
                                         
-                                    <li th:text="${text}">
-                                    </li>
+                                    <ul th:if="${text.getData() != null}" th:each="value : ${text.getData()}">
+                                            
+                                        <li th:text="${value}">
+                                        </li>
+
+                                    </ul>
 
                                 </ul>
 
@@ -71,6 +141,9 @@
 
     </ul>
 
+</div>
+
+<div th:fragment="contentdyn">
     <ul id="dyntest">
     </ul>
     <script th:inline="javascript">
@@ -88,6 +161,29 @@
             const dynlist = document.getElementById("dyntest");
             dynlist.appendChild(item);
         });
+
+    </script>
+
+</div>
+
+<div th:fragment="contentreact">
+    <!-- -------------------------------------------------------------------------->
+    <p id="modelname" hidden th:text="${name}" />
+    <script type="text/javascript">
+        window.reactgetmodelname = function() {
+            return document.getElementById("modelname").innerText;
+        }
+    </script>
+
+    <!-- -------------------------------------------------------------------------->
+    <div id="contenerREACT1"></div>
+    <script src="built/bundle.js"></script>
+
+    <script type="text/javascript" th:src="@{/website.js}">
+    </script>
+    <script th:inline="javascript">
+
+        app.httpGetRAW("guirequestfromreact", "here is REACT PAGE");
 
     </script>
 

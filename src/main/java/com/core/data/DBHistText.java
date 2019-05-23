@@ -9,19 +9,17 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Slf4j
 @Entity
-@JsonRootName("contentitems")
-@Table(name = "fpi_springcontent")
-public class DBHistContent implements Serializable {
+@JsonRootName("listtext")
+@Table(name = "fpi_springtext")
+public class DBHistText implements Serializable {
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .append("entrydesc", entrydesc).append("\n", "")
-            .append("contentlist", contentlist).append("\n", "")
+            .append("data", data).append("\n", "")
             .toString();
     }
 
@@ -37,16 +35,10 @@ public class DBHistContent implements Serializable {
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     @ManyToOne
-    private DBHistItem parent;
+    private DBHistSub parent;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(columnDefinition = "VARCHAR(256)")
-    private String entrydesc;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<DBHistSub> contentlist;
+    @Column(columnDefinition = "TEXT")
+    private String data;
 }

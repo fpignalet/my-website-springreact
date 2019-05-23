@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,7 +20,7 @@ public class EngTask {
     @Autowired
     private EngServiceDB pageService;
 
-    @Scheduled(initialDelay = 300, fixedDelay=300)
+//    @Scheduled(initialDelay = 300, fixedDelay=300)
     public void execute1() {
         try {
             log.info("Running speedy task");
@@ -35,7 +34,7 @@ public class EngTask {
         }
     }
 
-    @Scheduled(initialDelay = 3000, fixedDelay=3000)
+//    @Scheduled(initialDelay = 3000, fixedDelay=3000)
     public void execute2() {
         try {
             log.info("Running engine from task");
@@ -51,7 +50,7 @@ public class EngTask {
         }
     }
 
-    @Scheduled(initialDelay = 10000, fixedDelay=10000)
+//    @Scheduled(initialDelay = 10000, fixedDelay=10000)
     public void execute3() {
         try {
             log.info("Running engine from SLOW task");

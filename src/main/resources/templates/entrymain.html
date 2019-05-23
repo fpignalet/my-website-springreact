@@ -8,7 +8,12 @@
 </head>
 <body>
     <div th:include="fragments/headermain.html :: header" ></div>
-    <div th:include="fragments/contentmain.html :: content" ></div>
+
+    <div th:include="fragments/contentmain.html :: contentdivs" ></div>
+    <div th:include="fragments/contentmain.html :: contentcvtable" ></div>
+<!--    <div th:include="fragments/contentmain.html :: contentcvliste" ></div>-->
+<!--    <div th:include="fragments/contentmain.html :: contentdyn" ></div>-->
+    <div th:include="fragments/contentmain.html :: contentreact" ></div>
 
 </body>
 </html>

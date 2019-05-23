@@ -8,13 +8,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
 
 @Slf4j
 @Entity
 @JsonRootName("conteneritems")
 @Table(name = "fpi_springitem")
-public class DBHistItem {
+//@ManyToMany(cascade=CascadeType.ALL)
+//@JoinColumn(name = "contentitems")
+public class DBHistItem implements Serializable {
 
     @Override
     public String toString() {
@@ -39,32 +42,33 @@ public class DBHistItem {
     private int id;
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "int(11)")
-    private int parentId;
+    @ManyToOne
+    private DBHistContener parent;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    @Column(columnDefinition = "VARCHAR(256)")
     private String histkind;
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    @Column(columnDefinition = "VARCHAR(256)")
     private String histtitle;
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    @Column(columnDefinition = "VARCHAR(256)")
     private String histdesc;
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    @Column(columnDefinition = "VARCHAR(256)")
     private String histduration;
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false, columnDefinition = "VARCHAR(256)")
+    @Column(columnDefinition = "VARCHAR(256)")
     private String histextra;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     @Column(nullable = false)
-    private ArrayList<DBHistContent> contentitems;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<DBHistContent> contentitems;
 }
