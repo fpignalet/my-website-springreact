@@ -1,5 +1,8 @@
 package com.core.ejb;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.ejb.Stateful;
@@ -8,13 +11,11 @@ import javax.ejb.Stateful;
 @Stateful(name = "EJBStatefulTest")
 public class EJBStatefulTestBean implements IEJBStatefulTest {
 
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
     private int howManyTimes = 0;
 
-    public int howManyTimes() {
-        return howManyTimes;
-    }
-
-    public String getHelloWorld() {
+    public String getMessage() {
         howManyTimes++;
         return "Hello Stateful World";
     }

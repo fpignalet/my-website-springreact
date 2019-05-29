@@ -8,7 +8,8 @@ import javax.ejb.Stateless;
 @Stateless(name = "EJBStatelessTest")
 public class EJBStatelessTestBean implements IEJBStatelessTest {
 
-    public String getHelloWorld() {
+    @Override
+    public String getMessage() {
         return "Hello Stateless World!";
     }
 

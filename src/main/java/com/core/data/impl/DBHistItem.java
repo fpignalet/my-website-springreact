@@ -1,5 +1,6 @@
-package com.core.data;
+package com.core.data.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,16 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Slf4j
 @Entity
+@Table(name = "histitem")
 @JsonRootName("conteneritems")
-@Table(name = "fpi_springitem")
-//@ManyToMany(cascade=CascadeType.ALL)
-//@JoinColumn(name = "contentitems")
-public class DBHistItem implements Serializable {
+@JsonIgnoreProperties({"id", "parent"})
+public class DBHistItem extends ADBBaseItem {
 
     @Override
     public String toString() {

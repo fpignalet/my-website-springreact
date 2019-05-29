@@ -1,5 +1,6 @@
 package com.core.data;
 
+import com.core.data.impl.DBHistContener;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -14,11 +15,12 @@ import java.util.List;
 public interface DBHistContenerDAO extends CrudRepository<DBHistContener, Integer> {
 
     List<DBHistContener> findAll();
+    List<DBHistContener> findAllOrderedByIdAscending();
     List<DBHistContener> findAllOrderedByIdDescending();
+    List<DBHistContener> findAllOrderedByNameAscending();
     List<DBHistContener> findAllOrderedByNameDescending();
 
     List<DBHistContener> findById(@Param("id") int id);
-
-    List<DBHistContener> findByName(@Param("theme") String name);
+    List<DBHistContener> findByName(@Param("contenername") String contenername);
 
 }

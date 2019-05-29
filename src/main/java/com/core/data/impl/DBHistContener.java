@@ -1,5 +1,6 @@
-package com.core.data;
+package com.core.data.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -9,31 +10,46 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
 import java.util.List;
 
 @Slf4j
 @Entity
 @XmlRootElement
+@Table(name = "histcontener")
+@JsonIgnoreProperties({"id"})
 @JsonRootName("DBHistContener")
-@Table(name = "fpi_springcontener")
-//@ManyToMany(cascade=CascadeType.ALL)
-//@JoinColumn(name = "conteneritems")
 @NamedQueries(value = {
-        @NamedQuery(name = "DBHistContener.findAll",
-                query = "SELECT a FROM DBHistContener a"),
-        @NamedQuery(name = "DBHistContener.findAllOrderedByIdDescending",
-                query = "SELECT c FROM DBHistContener c ORDER BY c.id DESC"),
-        @NamedQuery(name = "DBHistContener.findAllOrderedByNameDescending",
-                query = "SELECT c FROM DBHistContener c ORDER BY c.contenername DESC"),
+        @NamedQuery(
+            name = "DBHistContener.findAll",
+            query = "SELECT a FROM DBHistContener a"
+        ),
+        @NamedQuery(
+            name = "DBHistContener.findAllOrderedByIdAscending",
+            query = "SELECT c FROM DBHistContener c ORDER BY c.id ASC"
+        ),
+        @NamedQuery(
+            name = "DBHistContener.findAllOrderedByIdDescending",
+            query = "SELECT c FROM DBHistContener c ORDER BY c.id DESC"
+        ),
+        @NamedQuery(
+            name = "DBHistContener.findAllOrderedByNameAscending",
+            query = "SELECT c FROM DBHistContener c ORDER BY c.contenername ASC"
+        ),
+        @NamedQuery(
+            name = "DBHistContener.findAllOrderedByNameDescending",
+            query = "SELECT c FROM DBHistContener c ORDER BY c.contenername DESC"
+        ),
 
-        @NamedQuery(name = "DBHistContener.findById",
-                query = "SELECT a FROM DBHistContener a WHERE a.id = :id"),
-
-        @NamedQuery(name = "DBHistContener.findByName",
-                query = "SELECT a FROM DBHistContener a WHERE a.contenername = :contenername")
+        @NamedQuery(
+            name = "DBHistContener.findById",
+            query = "SELECT a FROM DBHistContener a WHERE a.id = :id"
+        ),
+        @NamedQuery(
+            name = "DBHistContener.findByName",
+            query = "SELECT a FROM DBHistContener a WHERE a.contenername = :contenername"
+        )
 })
-public class DBHistContener implements Serializable {
+public class DBHistContener extends ADBBaseItem {
 
     @Override
     public String toString() {

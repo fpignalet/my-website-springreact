@@ -1,6 +1,6 @@
 package com.core.eng;
 
-import com.core.data.*;
+import com.core.data.impl.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,9 +20,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
- *
+ * JSON Operations
  */
 @Service
 @Slf4j
@@ -54,6 +56,7 @@ public class EngServiceJSON implements IEngModelUpdater {
     @Override
     public void updateModel(final Model model) throws IOException {
         final String data = doLoadJSON(getDataRepo() + getFileNames()[1]);
+
         final DBConteners conteners = (DBConteners) parse(data,
                 DBConteners.class,
                 new Class[]{
@@ -68,9 +71,21 @@ public class EngServiceJSON implements IEngModelUpdater {
         model.addAttribute(modelItems[0], conteners.toArray(new DBHistContener[0]));
     }
 
-    /************************************************************************
-     DATA TESTS
+    /**
+     * @param itemsDB
+     * @throws IOException
      */
+    public void updateFile(final List<DBHistContener> itemsDB) throws IOException {
+        final String jsonString = fill(itemsDB);
+
+        doSaveJSON(getDataRepo() + getFileNames()[2], jsonString);
+    }
+
+    /*************************************************************************
+     DATA ACCESS
+     *************************************************************************/
+    public static class DBConteners extends ArrayList<DBHistContener> {}
+
     /**
      * @param param
      * @return
@@ -86,34 +101,6 @@ public class EngServiceJSON implements IEngModelUpdater {
         catch (JsonProcessingException e) {
             e.printStackTrace();
             return "{}";
-        }
-    }
-
-    /*************************************************************************
-     DATA ACCESS
-     *************************************************************************/
-    public static class DBConteners extends ArrayList<DBHistContener> {}
-
-    public static void main(String[] args) {
-        try {
-            final EngServiceJSON instance = new EngServiceJSON();
-            final String data = instance.doLoadJSON(getDataRepo() + getFileNames()[1]);
-            final DBConteners conteners = (DBConteners) instance.parse(data,
-                    DBConteners.class,
-                    new Class[]{
-                            DBHistContener.class,
-                            DBHistItem.class,
-                            DBHistContent.class,
-                            DBHistSub.class
-                    }
-            );
-            conteners.forEach((item) -> {
-                log.info("-------------------------------");
-                log.info("-------------------------------");
-                log.info(item.toString());
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -134,6 +121,22 @@ public class EngServiceJSON implements IEngModelUpdater {
         catch (IOException e) {
             e.printStackTrace();
             return "{}";
+        }
+    }
+
+    /**
+     * @param fileName
+     * @param jsonString
+     * @return
+     */
+    public void doSaveJSON(final String fileName, final String jsonString) {
+        try {
+            final PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+            writer.println(jsonString);
+            writer.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -159,6 +162,11 @@ public class EngServiceJSON implements IEngModelUpdater {
         return (ArrayList<?>) om.readValue(data, root);
     }
 
+    public <T> String fill(final List<T> itemsDB) throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(itemsDB);
+    }
+
     /************************************************************************
      INIT PART
      */
@@ -179,7 +187,8 @@ public class EngServiceJSON implements IEngModelUpdater {
     @Getter(AccessLevel.PUBLIC)
     private static final String[] fileNames = {
             "datatest.js",
-            "datafpicv.js"
+            "datafpicv.js",
+            "datafpitest.json"
     };
 
 }

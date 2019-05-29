@@ -1,14 +1,14 @@
 CREATE DATABASE if not exists fpitest;
 
-DROP TABLE if exists fpi_spring1;
-DROP TABLE if exists fpi_springcontener;
-DROP TABLE if exists fpi_springitem;
-DROP TABLE if exists fpi_springcontent;
-DROP TABLE if exists fpi_springlist;
-DROP TABLE if exists fpi_springsubs;
-DROP TABLE if exists fpi_springtext;
+DROP TABLE if exists springtest;
+DROP TABLE if exists histcontener;
+DROP TABLE if exists histitem;
+DROP TABLE if exists histcontent;
+DROP TABLE if exists histlist;
+DROP TABLE if exists histsubs;
+DROP TABLE if exists histtext;
 
-CREATE TABLE if not exists  fpi_spring1
+CREATE TABLE if not exists  springtest
 (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
 
@@ -17,7 +17,7 @@ CREATE TABLE if not exists  fpi_spring1
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;
 
-CREATE TABLE if not exists  fpi_springcontener
+CREATE TABLE if not exists  histcontener
 (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
 
@@ -27,11 +27,11 @@ CREATE TABLE if not exists  fpi_springcontener
     contenersubname VARCHAR(256),
 
     conteneritems int(11),
-    FOREIGN KEY(conteneritems) references fpi_springitem(id)
+    FOREIGN KEY(conteneritems) references histitem(id)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;
 
-CREATE TABLE if not exists  fpi_springitem
+CREATE TABLE if not exists  histitem
 (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
 
@@ -42,31 +42,31 @@ CREATE TABLE if not exists  fpi_springitem
     histextra VARCHAR(256),
 
     contentitems int(11),
-    FOREIGN KEY(contentitems) references fpi_springcontent(id)
+    FOREIGN KEY(contentitems) references histcontent(id)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;
 
-CREATE TABLE if not exists  fpi_springcontent
+CREATE TABLE if not exists  histcontent
 (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
 
     entrydesc VARCHAR(256),
 
     contentlist int(11),
-    FOREIGN KEY(contentlist) references fpi_springsubs(id)
+    FOREIGN KEY(contentlist) references histsubs(id)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;
 
-CREATE TABLE if not exists  fpi_springsubs
+CREATE TABLE if not exists  histsubs
 (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
 
     listtext int(11),
-    FOREIGN KEY(listtext) references fpi_springtext(id)
+    FOREIGN KEY(listtext) references histtext(id)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;
 
-CREATE TABLE if not exists  fpi_springtext
+CREATE TABLE if not exists  histtext
 (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
 

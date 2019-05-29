@@ -1,19 +1,15 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <html lang="en">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/main.css" />
+    <div th:include="fragments/fragments.html :: header" ></div>
+
 </head>
 <body>
-    <div th:include="fragments/headermain.html :: header" ></div>
-
-    <div th:include="fragments/contentmain.html :: contentdivs" ></div>
-    <div th:include="fragments/contentmain.html :: contentcvtable" ></div>
-<!--    <div th:include="fragments/contentmain.html :: contentcvliste" ></div>-->
-<!--    <div th:include="fragments/contentmain.html :: contentdyn" ></div>-->
-    <div th:include="fragments/contentmain.html :: contentreact" ></div>
+    <div th:include="fragments/fragments.html :: contentdivs" ></div>
+    <div th:include="fragments/fragments.html :: contentcvtable" ></div>
+    <div th:include="fragments/fragments.html :: contentcvliste" ></div>
+    <div th:include="fragments/fragments.html :: contentdyn" ></div>
 
 </body>
 </html>

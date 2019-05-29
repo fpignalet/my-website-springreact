@@ -12,16 +12,13 @@ import org.springframework.stereotype.Service;
 import java.util.Properties;
 
 /**
- *
+ * Mail operations
  */
 @Service
 @Slf4j
 @ComponentScan({"com.core.data"})
 public class EngServiceMail {
 
-    /************************************************************************
-     MAIL OPERATION
-     */
     /**
      *
      */

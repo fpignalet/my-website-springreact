@@ -19,26 +19,18 @@ module.exports = {
         "JSX Test table Item2 "
     ],
 
-    "collapsable-text": [{
-        "title": "TITLE",
-        "text": "COLLAPSABLE TEXT",
+    "collapsable-text": {
+        "text": "EXAMPLE COLLAPSABLE TEXT EXAMPLE COLLAPSABLE TEXT \n",
         "subcontent":
             {
-                "title": "SUBTITLE",
-                "text": "COLLAPSABLE SUBTEXT",
+                "text": "EXAMPLE COLLAPSABLE SUBTEXT EXAMPLE COLLAPSABLE SUBTEXT \n",
                 "subcontent":
                     {
-                        "title": "SUBSUBTITLE",
-                        "text": "COLLAPSABLE SUBSUBTEXT",
-                        "subcontent":
-                            {
-                                "title": "SUBSUBSUBTITLE",
-                                "text": "COLLAPSABLE SUBSUBSUBTEXT",
-                                "subcontent": null
-                            }
+                        "text": "EXAMPLE COLLAPSABLE SUBSUBTEXT EXAMPLE COLLAPSABLE SUBSUBTEXT \n",
+                        "subcontent": null
                     }
             }
-    }],
+    },
 
     "link-text1": "LINK-1-= THIS IS TEXT 1",
     "link-text2": "LINK-2-= THIS IS TEXT 2"

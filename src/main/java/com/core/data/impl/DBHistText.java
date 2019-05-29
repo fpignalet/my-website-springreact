@@ -1,5 +1,6 @@
-package com.core.data;
+package com.core.data.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,13 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Slf4j
 @Entity
+@Table(name = "histtext")
 @JsonRootName("listtext")
-@Table(name = "fpi_springtext")
-public class DBHistText implements Serializable {
+@JsonIgnoreProperties({"id", "parent"})
+public class DBHistText extends ADBBaseItem {
 
     @Override
     public String toString() {

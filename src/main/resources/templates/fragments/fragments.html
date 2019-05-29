@@ -2,10 +2,34 @@
 <html xmlns:th="http://thymeleaf.org">
 <html lang="en">
 
-<div th:fragment="contentdivs">
-    <p text="MAIN ENTRY PAGE !" />
+<div th:fragment="header"
+     class="navbar navbar-inverse navbar-fixed-top">
 
-    <p th:text="'FROM MODEL: ' + ${name} + '!'" />
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous"
+    />
+
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">MAIN ENTRY PAGE</a>
+        </div>
+    </div>
+
+</div>
+
+<div th:fragment="contentdivs">
+    <p th:text="'MAIN ENTRY PAGE USING MODEL: ' + ${name} + '!'" />
 
     <a href="/testreact">goto React test page</a>
     <br>
@@ -17,6 +41,58 @@
     <a href="javascript:;" onclick="app.httpGetJSON('testpopulatedb', null, 'DBConteners')">PopulateDB</a>
     <br>
 
+</div>
+
+<div th:fragment="contentdyn">
+    <!-- -------------------------------------------------------------------------->
+    <ul id="dyntest">
+    </ul>
+
+    <!-- -------------------------------------------------------------------------->
+    <script type="text/javascript" th:src="@{/website.js}">
+    </script>
+    <script th:inline="javascript">
+
+        app.httpGetRAW("guirequestfrommain", "here is CONTENT MAIN", (text) => {
+            console.log(text)
+        });
+
+        app.httpGetJSON('exthttpgetjson1', null, "DBConteners", (text) => {
+            console.log(text);
+
+            const item = document.createElement("li");
+            item.innerText = text;
+
+            const dynlist = document.getElementById("dyntest");
+            dynlist.appendChild(item);
+        });
+
+    </script>
+
+</div>
+
+<div th:fragment="contentreact">
+    <!-- -------------------------------------------------------------------------->
+    <script type="text/javascript" th:src="@{/website.js}">
+    </script>
+    <script th:inline="javascript">
+        app.httpGetRAW("guirequestfromreact", "here is REACT PAGE");
+    </script>
+
+    <!-- -------------------------------------------------------------------------->
+    <p id="modelname" hidden th:text="${name}" />
+    <script type="text/javascript">
+        window.reactgetmodelname = function() {
+            return document.getElementById("modelname").innerText;
+        }
+    </script>
+
+    <div id="contenerREACT1"></div>
+    <script src="built/bundle.js"></script>
+
+</div>
+
+<div th:fragment="contenttesttable">
     <ul th:each="frame : ${collection}">
             
         <li th:text="
@@ -30,12 +106,6 @@
 </div>
 
 <div th:fragment="contentcvtable">
-
-    <script type="text/javascript" th:src="@{/website.js}">
-    </script>
-    <a href="javascript:;" onclick="app.httpGetJSON('testpopulatedb', null, 'DBConteners')">PopulateDB</a>
-    <br>
-
     <table>
         <tbody>
         <tr th:each="record : ${database}">
@@ -140,51 +210,5 @@
         </li>
 
     </ul>
-
-</div>
-
-<div th:fragment="contentdyn">
-    <ul id="dyntest">
-    </ul>
-    <script th:inline="javascript">
-
-        app.httpGetRAW("guirequestfrommain", "here is CONTENT MAIN", (text) => {
-            console.log(text)
-        });
-
-        app.httpGetJSON('testhttpgetjson1', null, null, (text) => {
-            console.log(text);
-
-            const item = document.createElement("li");
-            item.innerText = text;
-
-            const dynlist = document.getElementById("dyntest");
-            dynlist.appendChild(item);
-        });
-
-    </script>
-
-</div>
-
-<div th:fragment="contentreact">
-    <!-- -------------------------------------------------------------------------->
-    <p id="modelname" hidden th:text="${name}" />
-    <script type="text/javascript">
-        window.reactgetmodelname = function() {
-            return document.getElementById("modelname").innerText;
-        }
-    </script>
-
-    <!-- -------------------------------------------------------------------------->
-    <div id="contenerREACT1"></div>
-    <script src="built/bundle.js"></script>
-
-    <script type="text/javascript" th:src="@{/website.js}">
-    </script>
-    <script th:inline="javascript">
-
-        app.httpGetRAW("guirequestfromreact", "here is REACT PAGE");
-
-    </script>
 
 </div>

@@ -11,33 +11,13 @@ public class EJBContext {
 
     @Bean
     public Context context() throws NamingException {
-        Properties jndiProps = new Properties();
+        final Properties jndiProps = new Properties();
 
         jndiProps.put("java.naming.factory.initial", "org.jboss.naming.remote.client.InitialContextFactory");
         jndiProps.put("jboss.naming.client.ejb.context", true);
         jndiProps.put("java.naming.provider.url", "http-remoting://localhost:8080");
 
         return new InitialContext(jndiProps);
-    }
-
-    /**
-     * @param context
-     * @return
-     * @throws NamingException
-     */
-    @Bean
-    public IEJBStatelessTest helloStatelessWorld(Context context) throws NamingException {
-        return (IEJBStatelessTest)context.lookup(this.getFullName(IEJBStatelessTest.class));
-    }
-
-    /**
-     * @param context
-     * @return
-     * @throws NamingException
-     */
-    @Bean
-    public IEJBStatefulTest helloStatefulWorld(Context context) throws NamingException {
-        return (IEJBStatefulTest) context.lookup(this.getFullName(IEJBStatefulTest.class));
     }
 
     /**
@@ -49,6 +29,26 @@ public class EJBContext {
         final String beanName = classType.getSimpleName();
         final String viewClassName = classType.getName();
         return moduleName + beanName + "!" + viewClassName;
+    }
+
+    /**
+     * @param context
+     * @return
+     * @throws NamingException
+     */
+    @Bean
+    public IEJBStatelessTest tellStatelessWorld(Context context) throws NamingException {
+        return (IEJBStatelessTest)context.lookup(this.getFullName(IEJBStatelessTest.class));
+    }
+
+    /**
+     * @param context
+     * @return
+     * @throws NamingException
+     */
+    @Bean
+    public IEJBStatefulTest testStatefulWorld(Context context) throws NamingException {
+        return (IEJBStatefulTest) context.lookup(this.getFullName(IEJBStatefulTest.class));
     }
 
 }

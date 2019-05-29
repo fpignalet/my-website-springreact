@@ -6,11 +6,7 @@ module.exports = {
 	mode: 'development',
 
 	entry: [
-		'./src/main/js/reacttest.js',
-/*
-		'./src/main/resources/static/datafpi.js',
-		'./src/main/resources/static/datatest.js',
-*/
+		'./src/main/js/reacttest.js'
 	],
 	output: {
 		path: __dirname,

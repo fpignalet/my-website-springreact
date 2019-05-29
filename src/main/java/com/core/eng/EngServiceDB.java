@@ -1,6 +1,8 @@
 package com.core.eng;
 
 import com.core.data.*;
+import com.core.data.impl.DBHistContener;
+import com.core.data.impl.DBItemTest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Database operations
  */
 @Slf4j
 @Service
@@ -261,10 +263,10 @@ public class EngServiceDB implements IEngModelUpdater {
     }
 
     /**
-     * @param items
+     * @param itemsJSON
      */
-    public void populateDB(final ArrayList<DBHistContener> items) {
-        items.forEach((conteneritem) -> {
+    public void populateDB(final ArrayList<DBHistContener> itemsJSON) {
+        itemsJSON.forEach((conteneritem) -> {
             try {
                 //DBHistContener -> DBHistItem
                 conteneritem.getConteneritems().forEach((histitem) -> {

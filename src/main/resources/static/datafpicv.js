@@ -104,107 +104,6 @@ module.exports = {
         },
         {
             "contenertype":     "BLOGNEWSENTRY",
-            "contenerphoto":    "images/WP_20180822_10_50_54_Pro.jpg",
-            "contenerdate":     "December 10, 2018",
-            "contenername":     "Different bug fixes",
-            "contenersubname":  "Some more improvement",
-            "conteneritems":
-                [
-                    {
-                        "contentitems":
-                            [
-                                {
-                                    "contentlist":
-                                        [
-                                            {
-                                                "listtext": [
-                                                    {   "data": "These pages began in the unique form of a CV based on a existing ready-to-go template" },
-                                                    {   "data": "https://www.w3schools.com/" },
-                                                    {   "data": "w3schools template" }
-                                                ]
-                                            }
-                                        ]
-                                }
-                            ]
-                    },
-                    {
-                        "contentitems":
-                            [
-                                {
-                                    "contentlist":
-                                        [
-                                            {
-                                                "listtext": [
-                                                    {   "data": "I had a precise idea in mind: something a little interactive." },
-                                                    {   "data": "A simple and direct general presentation, " },
-                                                    {   "data": "Access to details if necessary." },
-                                                    {   "data": "The data was directly in the HTML code." }
-                                                ]
-                                            }
-                                        ]
-                                }
-                            ]
-                    },
-                    {
-                        "contentitems":
-                            [
-                                {
-                                    "contentlist":
-                                        [
-                                            {
-                                                "listtext": [
-                                                    {   "data": "Then" },
-                                                    {   "data": "I transferred the data into files" },
-                                                    {   "data": "I integrated the CV into a BLOG part" },
-                                                    {   "data": "I deepened my knowledge of Javascript, and everything went into classes / modules" }
-                                                ]
-                                            }
-                                        ]
-                                }
-                            ]
-                    },
-                    {
-                        "contentitems":
-                            [
-                                {
-                                    "contentlist":
-                                        [
-                                            {
-                                                "listtext": [
-                                                    {   "data": "According to these considerations, please note that" },
-                                                    {   "data": "this website is my playground, meaning that there is no founding architectural analysis" },
-                                                    {   "data": "It’s a fully “extreme modelling / programming” development exercise" }
-                                                ]
-                                            }
-                                        ]
-                                }
-                            ]
-                    },
-                    {
-                        "contentitems":
-                            [
-                                {
-                                    "contentlist":
-                                        [
-                                            {
-                                                "listtext": [
-                                                    {   "data": "What I’m planning to do now" },
-                                                    {   "data": "Implement lazy loading" },
-                                                    {   "data": "Use spectre.css (https://picturepan2.github.io/spectre/index.html) instead of w3schools" },
-                                                    {   "data": "Put the data entries in a database" },
-                                                    {   "data": "Extract some kind of raw JS framework from this" },
-                                                    {   "data": "Use Symfony (https://symfony.com/) for the server part" },
-                                                    {   "data": "Make a Django version" }
-                                                ]
-                                            }
-                                        ]
-                                }
-                            ]
-                    }
-                ]
-        },
-        {
-            "contenertype":     "BLOGNEWSENTRY",
             "contenerphoto":    "images/WP_20180822_12_09_51_Pro.jpg",
             "contenerdate":     "November 30, 2018",
             "contenername":     "Current status of this website project",
@@ -375,7 +274,6 @@ module.exports = {
             "contenerphoto":    "images/P_20180805_1000342.jpg",
             "contenerdate":     "August 15, 2018",
             "contenername":     "Jetzt aktualisieren",
-            "contenersubname":  "",
             "conteneritems":
                 [
                     {
@@ -663,9 +561,6 @@ module.exports = {
         {
             "contenertype":     "BLOGTECHENTRY",
             "contenerphoto":    "images/gears-686316_640.jpg",
-            "contenerdate":     "",
-            "contenername":     "",
-            "contenersubname":  "",
             "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
         },
         {
@@ -696,7 +591,6 @@ module.exports = {
                         "histdesc":     "Website pro",
                         "histduration": "6 Wochen",
                         "histtitle":    "Java Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -752,7 +646,6 @@ module.exports = {
                         "histdesc":     "Website pro",
                         "histduration": "(2 Monate & 2 Wochen)",
                         "histtitle":    "Full-Stack Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -811,7 +704,6 @@ module.exports = {
                         "histdesc":     "Website pro",
                         "histduration": "(2 Monate & 2 Wochen)",
                         "histtitle":    "Full-Stack Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -869,7 +761,6 @@ module.exports = {
         },
         {
             "contenertype":     "JOBENTRY",
-            "contenerphoto":    "",
             "contenerdate":     "2015/10 - 2018/10",
             "contenername":     "HENSOLDT GMBH Ottobrunn (ehemals Airbus Defence)",
             "contenersubname":  "https://www.hensoldt.net/solutions/sea/identification-iff/",
@@ -880,7 +771,6 @@ module.exports = {
                         "histdesc":     "IFF",
                         "histduration": "(bis zum Ende)",
                         "histtitle":    "Software engineer / Full-Stack Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -949,7 +839,6 @@ module.exports = {
         },
         {
             "contenertype":     "JOBENTRY",
-            "contenerphoto":    "",
             "contenerdate":     "2000/06 - 2015/09",
             "contenername":     "Airbus Defence (ehemals Cassidian / EADS Defence & Security)",
             "contenersubname":  "https://www.hensoldt.net/solutions/sea/identification-iff/",
@@ -961,7 +850,6 @@ module.exports = {
                         "histdesc":     "IFF",
                         "histduration": "(bis zum Ende)",
                         "histtitle":    "Software engineer",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1025,7 +913,6 @@ module.exports = {
                         "histdesc":     "CLA2000",
                         "histduration": "(1 year + 3 Monate)",
                         "histtitle":    "Software engineer",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1081,7 +968,6 @@ module.exports = {
                         "histdesc":     "LMT / GCTAM",
                         "histduration": "(2 Jahre + 4 Monate)",
                         "histtitle":    "Software engineer",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1136,7 +1022,6 @@ module.exports = {
                         "histdesc":     "MOIE Sic Terre",
                         "histduration": "(2 Jahre + 7 Monate)",
                         "histtitle":    "Software Architekt / Gruppenleiter (~6 Entwicklers)",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1191,7 +1076,6 @@ module.exports = {
                         "histdesc":     "Euromale",
                         "histduration": "(7 Monate)",
                         "histtitle":    "Software Architekt / Gruppenleiter (~3 Entwicklers)",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1323,7 +1207,6 @@ module.exports = {
         },
         {
             "contenertype":     "JOBENTRY",
-            "contenerphoto":    "",
             "contenerdate":     "1999/10 - 2000/05",
             "contenername":     "THALES group (ehemals ALCATEL CGA Transport)",
             "contenersubname":  "https://www.thalesgroup.com/fr/global/activities/transportation/urban-mobility/billettique-et-systemes-de-paiements",
@@ -1335,7 +1218,6 @@ module.exports = {
                         "histdesc":     "Wayfarer",
                         "histduration": "(7 Monate)",
                         "histtitle":    "Software Architekt / Gruppenleiter (~4 Entwicklers)",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1391,7 +1273,6 @@ module.exports = {
                         "histdesc":     "GART",
                         "histduration": "(1 Monate)",
                         "histtitle":    "Software Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1433,7 +1314,6 @@ module.exports = {
         },
         {
             "contenertype":     "JOBENTRY",
-            "contenerphoto":    "",
             "contenerdate":     "1998/07 - 1999/09",
             "contenername":     "ZODIAC (ehemals INTERTECHNIQUE IN-SNEC)",
             "contenersubname":  "https://www.zodiacaerospace.com/en/products-services/aerosystems/data-systems/telemetry-ground-segment/equipment",
@@ -1445,7 +1325,6 @@ module.exports = {
                         "histdesc":     "EUMETSAT",
                         "histduration": "(1 year + 3 Monate)",
                         "histtitle":    "Software Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1502,10 +1381,8 @@ module.exports = {
         },
         {
             "contenertype":     "JOBENTRY",
-            "contenerphoto":    "",
             "contenerdate":     "1996/01 - 1998/06",
             "contenername":     "ATELIER (Groupe Ka)",
-            "contenersubname":  "",
             "conteneritems":
                 [
                     {
@@ -1513,7 +1390,6 @@ module.exports = {
                         "histdesc":     "EDU",
                         "histduration": "(9 Monate)",
                         "histtitle":    "Software Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1568,7 +1444,6 @@ module.exports = {
                         "histdesc":     "PsiTools",
                         "histduration": "(1 year)",
                         "histtitle":    "Software Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1611,7 +1486,6 @@ module.exports = {
                         "histdesc":     "Velvet",
                         "histduration": "(9 Monate)",
                         "histtitle":    "Software Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1655,7 +1529,6 @@ module.exports = {
         },
         {
             "contenertype":     "JOBENTRY",
-            "contenerphoto":    "",
             "contenerdate":     "1992/04 - 1995/12",
             "contenername":     "https://de.4d.com/",
             "contenersubname":  "4D - France & USA (ehemals ACI)",
@@ -1666,7 +1539,6 @@ module.exports = {
                         "histdesc":     "4th Dimension",
                         "histduration": "(1 year, with 6 Monate in USA)",
                         "histtitle":    "Software Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1712,7 +1584,6 @@ module.exports = {
                         "histdesc":     "4th Dimension / Object Master",
                         "histduration": "(2 Jahre + 8 Monate)",
                         "histtitle":    "IT Technician / Software Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1757,7 +1628,6 @@ module.exports = {
         },
         {
             "contenertype":     "JOBENTRY",
-            "contenerphoto":    "",
             "contenerdate":     "1986/10 - 1992/03",
             "contenername":     "Centre d’Essai des Propulseurs de Saclay (DGA), GEET, LTC...",
             "conteneritems":
@@ -1766,7 +1636,6 @@ module.exports = {
                         "histkind":     "Allgemein: ",
                         "histduration": "(5 Jahre + 5 Monate)",
                         "histtitle":    "Software Entwickler",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -1809,17 +1678,12 @@ module.exports = {
         {
             "contenertype":     "DESCENTRY",
             "contenerphoto":    "images/P_20160208_183649_BF.jpg",
-            "contenerdate":     "",
             "contenername":     "Francois Pignalet",
-            "contenersubname":  "",
             "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
         },
         {
             "contenertype":     "INFOENTRY",
-            "contenerphoto":    "",
-            "contenerdate":     "",
             "contenername":     "Info",
-            "contenersubname":  "",
             "conteneritems":
                 [
                     {
@@ -1838,10 +1702,7 @@ module.exports = {
         },
         {
             "contenertype":     "SKILLSENTRY",
-            "contenerphoto":    "",
-            "contenerdate":     "",
             "contenername":     "Hauptkompetenzen",
-            "contenersubname":  "",
             "conteneritems":
                 [
                     {
@@ -1892,10 +1753,7 @@ module.exports = {
         },
         {
             "contenertype":     "LANGENTRY",
-            "contenerphoto":    "",
-            "contenerdate":     "",
             "contenername":     "Sprachen",
-            "contenersubname":  "",
             "conteneritems":
                 [
                     {
@@ -1920,10 +1778,7 @@ module.exports = {
         },
         {
             "contenertype":     "GRADUATIONENTRY",
-            "contenerphoto":    "",
-            "contenerdate":     "",
             "contenername":     "Bildung",
-            "contenersubname":  "",
             "conteneritems":
                 [
                     {
@@ -1954,16 +1809,12 @@ module.exports = {
         },
         {
             "contenertype":     "HOBBYENTRY",
-            "contenerphoto":    "",
-            "contenerdate":     "",
             "contenername":     "Hobbies",
-            "contenersubname":  "",
             "conteneritems":
                 [
                     {
                         "histkind":      "Aktivität",
                         "histtitle":     "Sport",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -2016,7 +1867,6 @@ module.exports = {
                     {
                         "histkind":  "Aktivität",
                         "histtitle": "Musik",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {
@@ -2039,7 +1889,6 @@ module.exports = {
                     {
                         "histkind":  "Interessen",
                         "histtitle": "Verschiedene",
-                        "histextra":    "",
                         "contentitems":
                             [
                                 {

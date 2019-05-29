@@ -4,6 +4,6 @@ import javax.ejb.Remote;
 
 @Remote
 public interface IEJBStatefulTest {
-    int howManyTimes();
-    String getHelloWorld();
+    int getHowManyTimes();
+    String getMessage();
 }
