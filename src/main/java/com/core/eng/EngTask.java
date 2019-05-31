@@ -40,7 +40,8 @@ public class EngTask {
      */
     private enum TaskStatus {
         TASKSTATUS_INIT,
-        TASKSTATUS_EXECUTE
+        TASKSTATUS_EXECUTE,
+        TASKSTATUS_DONE
     }
     private TaskStatus[] tasksStatus = {
         TaskStatus.TASKSTATUS_INIT,
@@ -58,7 +59,7 @@ public class EngTask {
      *
      */
     @Scheduled(initialDelay = 300, fixedDelay=300)
-    public void execute1() {
+    public void executeSpeedyTask() {
         try {
             final int index = 0;
 
@@ -88,7 +89,7 @@ public class EngTask {
      *
      */
     @Scheduled(initialDelay = 3000, fixedDelay=3000)
-    public void execute2() {
+    public void executeTask() {
         try {
             final int index = 1;
 
@@ -119,7 +120,7 @@ public class EngTask {
      *
      */
     @Scheduled(initialDelay = 10000, fixedDelay=10000)
-    public void execute3() {
+    public void executeSlowTask() {
         try {
             final int index = 2;
 

@@ -1,5 +1,6 @@
 CREATE DATABASE if not exists fpitest;
 
+DROP TABLE if exists dbhist_sub_data;
 DROP TABLE if exists springtest;
 DROP TABLE if exists histcontener;
 DROP TABLE if exists histitem;
