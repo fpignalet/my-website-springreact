@@ -26,7 +26,14 @@ public class ControllerMain extends AControllerBase {
      * in templates:
      */
     private final static String[] pageNames = {
-        "entrymain"
+        "entrymain",
+        "entryreact",
+        "index",
+        "CV",
+        "BLOGNEWS",
+        "BLOGTECH",
+        "OFFER",
+        "impressum"
     };
 
     /**
@@ -41,7 +48,7 @@ public class ControllerMain extends AControllerBase {
      * @param model
      * @return
      */
-    @GetMapping("/")
+    @GetMapping("/entrymain")
     public String entrytest(
         @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
         Model model)
@@ -64,13 +71,97 @@ public class ControllerMain extends AControllerBase {
      * @param model
      * @return
      */
-    @GetMapping("/testreact")
-    public String testreact(
+    @GetMapping("/entryreact")
+    public String entryreact(
         @RequestParam(name="name", required=false, defaultValue="RETEST") String name,
         Model model)
     {
         model.addAttribute("name", name + ", WITH BEAN TEST: " + getEngineJSON().doReactTest());
-        return "entryreact";
+        return pageNames[1];
+    }
+
+    /**
+     * @brief root entry function
+     * @param name
+     * @param model
+     * @return
+     */
+    @GetMapping("/")
+    public String index(
+        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
+        Model model)
+    {
+        return pageNames[2];
+    }
+
+    /**
+     * @brief root entry function
+     * @param name
+     * @param model
+     * @return
+     */
+    @GetMapping("/CV")
+    public String CV(
+        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
+        Model model)
+    {
+        return pageNames[3];
+    }
+
+    /**
+     * @brief root entry function
+     * @param name
+     * @param model
+     * @return
+     */
+    @GetMapping("/BLOGNEWS")
+    public String BLOGNEWS(
+        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
+        Model model)
+    {
+        return pageNames[4];
+    }
+
+    /**
+     * @brief root entry function
+     * @param name
+     * @param model
+     * @return
+     */
+    @GetMapping("/BLOGTECH")
+    public String BLOGTECH(
+        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
+        Model model)
+    {
+        return pageNames[5];
+    }
+
+    /**
+     * @brief root entry function
+     * @param name
+     * @param model
+     * @return
+     */
+    @GetMapping("/OFFER")
+    public String OFFER(
+        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
+        Model model)
+    {
+        return pageNames[6];
+    }
+
+    /**
+     * @brief root entry function
+     * @param name
+     * @param model
+     * @return
+     */
+    @GetMapping("/impressum")
+    public String impressum(
+        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
+        Model model)
+    {
+        return pageNames[7];
     }
 
     /**

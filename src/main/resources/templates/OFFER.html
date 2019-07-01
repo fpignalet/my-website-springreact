@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en">
+
+    <!-- -------------------------------------------------------------------------------------------------------------->
+    <head>
+    <!-- -------------------------------------------------------------------------------------------------------------->
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta name="description" content="offerpage">
+        <meta http-equiv="Content-Type" content="text/html">
+        <!-- meta http-equiv="Content-Security-Policy"
+              content="default-src 'self'
+                https://www.w3schools.com
+                https://fonts.googleapis.com
+                https://cdnjs.cloudflare.com;
+                script-src 'unsafe-inline' 'self';"
+        -->
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- EXTERNAL RESSOURCES -->
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+        <link rel="modulepreload" href="/clientside/js/lib/clientside.js">
+        <link rel="modulepreload" href="/clientside/js/impl/clientsideOFFER.js">
+        <link rel="modulepreload" href="/clientside/js/clientsideIOFFER.js">
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- STYLE SHEETS -->
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <link rel="stylesheet" type="text/css" href="/clientside/css/clientside.css">
+        <style>
+            body, h1, h2, h3, h4, h5 {
+                font-family: "Raleway", sans-serif;
+                font-size: 18px;
+            }
+        </style>
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- OTHERS -->
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <title>
+            Commercial offer:
+        </title>
+
+    </head>
+
+    <!-- -------------------------------------------------------------------------------------------------------------->
+    <body class="w3-light-grey">
+
+        <!-- w3-content defines a container for fixed size centered content,
+        and is wrapped around the whole page content, except for the footer in this example -->
+        <div class="w3-content" style="max-width:1800px">
+
+            <!-- ---------------------------------------------------------------------------------------------------------------------->
+            <!-- OFFER HEADER -->
+            <header class="w3-container w3-center w3-padding-32" id="headercard" href="#home">
+            </header>
+
+            <!-- ---------------------------------------------------------------------------------------------------------------------->
+            <!-- Grid -->
+            <div class="w3-row">
+
+                <div class="w3-col l8 s12" id="gridoffer">
+                </div>
+
+                <!-- ---------------------------------------------------------------------------------------------------------------------->
+                <!-- right info menu -->
+                <div class="w3-col l4 sticky" id="aboutcard">
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- Footer -->
+        <div id="footer"></div>
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- JS IMPLEMENTATION -->
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <script type="module">
+            /*************************************************************************************
+             * INCLUDES CODE
+             *************************************************************************************/
+            import { CLISIDE_IOFFER } from "/clientside/js/clientsideIOFFER.js";
+            /*************************************************************************************
+             * INCLUDES DATA
+             *************************************************************************************/
+            /*************************************************************************************
+             * IMPLEMENTATION
+             *************************************************************************************/
+            try {
+                //page initialsation happends there
+                window.onload = function() { CLISIDE_IOFFER.pageload(document, { create: 8, load: 9 }) };
+                window.onunload = function() { CLISIDE_IOFFER.pageunload(document, null) };
+                window.onscroll = function() { CLISIDE_IOFFER.pagescroll(document, null) };
+
+            }
+            catch (e) {
+                console.log(e.toString())
+            }
+            finally {
+                //...
+            }
+
+        </script>
+
+    </body>
+
+</html>

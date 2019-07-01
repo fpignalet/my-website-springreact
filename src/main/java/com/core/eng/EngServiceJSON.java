@@ -10,9 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -55,7 +60,7 @@ public class EngServiceJSON implements IEngModelUpdater {
      */
     @Override
     public void updateModel(final Model model) throws IOException {
-        final String data = doLoadJSON(getDataRepo() + getFileNames()[1]);
+        final String data = load(getDataRepo() + getFileNames()[1]);
 
         final DBConteners conteners = (DBConteners) parse(data,
                 DBConteners.class,
@@ -71,73 +76,76 @@ public class EngServiceJSON implements IEngModelUpdater {
         model.addAttribute(modelItems[0], conteners.toArray(new DBHistContener[0]));
     }
 
-    /**
-     * @param itemsDB
-     * @throws IOException
-     */
-    public void updateFile(final List<DBHistContener> itemsDB) throws IOException {
-        final String jsonString = fill(itemsDB);
-
-        doSaveJSON(getDataRepo() + getFileNames()[2], jsonString);
-    }
-
     /*************************************************************************
      DATA ACCESS
      *************************************************************************/
-    public static class DBConteners extends ArrayList<DBHistContener> {}
-
     /**
      * @param param
      * @return
      */
-    public String createAnswerJSON(final String param) {
-        try {
-            final HashMap<String, String> result = new HashMap<>();
-            result.put("item1", param);
+    public String createAnswerJSON(final String param) throws JsonProcessingException {
+        final HashMap<String, String> result = new HashMap<>();
+        result.put("item1", param);
 
-            final ObjectMapper om = new ObjectMapper();
-            return om.writeValueAsString(result);
-        }
-        catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return "{}";
-        }
+        final ObjectMapper om = new ObjectMapper();
+        return om.writeValueAsString(result);
+    }
+
+    /**
+     * @return
+     */
+    public DBConteners load() throws IOException {
+        final String data = load(getDataRepo() + getFileNames()[1]);
+        return (DBConteners) parse(data,
+            DBConteners.class,
+            new Class[]{
+                DBHistContener.class,
+                DBHistItem.class,
+                DBHistContent.class,
+                DBHistSub.class
+            }
+        );
+    }
+
+    /**
+     * @param itemsDB
+     * @throws IOException
+     */
+    public void update(final List<DBHistContener> itemsDB) throws IOException {
+        final String jsonString = fill(itemsDB);
+        save(getDataRepo() + getFileNames()[2], jsonString);
+    }
+
+    /**
+     * @param itemsDB
+     * @param <T>
+     * @return
+     * @throws IOException
+     */
+    public <T> String fill(final List<T> itemsDB) throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(itemsDB);
+    }
+
+    /**
+     * @return
+     */
+    public String load(final int index) throws IOException {
+        return load(getDataRepo() + getFileNames()[index]);
     }
 
     /**
      * @param fileName
      * @return
      */
-    public String doLoadJSON(final String fileName) {
-        try {
-            final Path path = Paths.get(fileName);
-            final Charset charset = StandardCharsets.UTF_8;
+    protected String load(final String fileName) throws IOException {
+        final Path path = Paths.get(fileName);
+        final Charset charset = StandardCharsets.UTF_8;
 
-            return
-                new String(Files.readAllBytes(path))
+        return
+            new String(Files.readAllBytes(path))
                 .substring("module.exports = ".length())
                 .replace(";", "");
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            return "{}";
-        }
-    }
-
-    /**
-     * @param fileName
-     * @param jsonString
-     * @return
-     */
-    public void doSaveJSON(final String fileName, final String jsonString) {
-        try {
-            final PrintWriter writer = new PrintWriter(fileName, "UTF-8");
-            writer.println(jsonString);
-            writer.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -148,7 +156,7 @@ public class EngServiceJSON implements IEngModelUpdater {
      * @return
      * @throws IOException
      */
-    public <T> ArrayList<?> parse(final String data, final Class<T> root, final Class[] subclasses) throws IOException {
+    protected <T> ArrayList<?> parse(final String data, final Class<T> root, final Class[] subclasses) throws IOException {
         final ObjectMapper om = new ObjectMapper();
         om.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
         om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -162,9 +170,15 @@ public class EngServiceJSON implements IEngModelUpdater {
         return (ArrayList<?>) om.readValue(data, root);
     }
 
-    public <T> String fill(final List<T> itemsDB) throws IOException {
-        final ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(itemsDB);
+    /**
+     * @param fileName
+     * @param jsonString
+     * @return
+     */
+    protected void save(final String fileName, final String jsonString) throws FileNotFoundException, UnsupportedEncodingException {
+        final PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+        writer.println(jsonString);
+        writer.close();
     }
 
     /************************************************************************

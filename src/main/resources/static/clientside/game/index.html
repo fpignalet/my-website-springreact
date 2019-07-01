@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+
+    <body>
+
+        <div id="game-over-overlay0" class="game-over-overlay">
+        </div>
+
+        <div id="game-over0" class="game-over">
+            <h1>GAME OVER</h1>
+            <button id="play-again0">Play Again</button>
+        </div>
+
+        <div id="wrapper0" class="wrapper" style="background-color: black;">
+
+            <div id="instructions0" class="instructions">
+                <ul>
+                    <li>
+                        move with
+                        <span class="key">arrows</span>
+                        or
+                        <span class="key">wasd</span>
+                    </li>
+                    <li>
+                        shoot with
+                        <span class="key">space</span>
+                    </li>
+                    <li>
+                        loose 20 life pts (progress bar) each time an ennemy reach left side
+                    </li>
+                    <li>
+                        win 1 life pt (progress bar) each time an ennemy is killed
+                    </li>
+                </ul>
+            </div>
+
+            <div id="score0" class="score"></div>
+            <br><br><br><br><br><br>
+            <div class="myProgress">
+                <div id="lifebar0" class="myBar"></div>
+            </div>
+            <br><br>
+
+            <canvas id="canvas0" style="background-color: black;"/>
+
+            <div id="reactzone0"/>
+
+        </div>
+
+        <script type="module">
+            import Multiple from "./js/lib/instances.js";
+            import Core from "./js/impl/core.js";
+            import execute from "./js/lib/execute.js";
+
+            import {
+                app_settings,
+                app_guimap,
+                app_images
+            } from "./js/appset.js";
+            new Core(app_settings, app_guimap, "canvas0");
+            execute(app_images, Multiple.get(Core.IDENT(), -1));
+        </script>
+
+        <script src="built/bundle.js"></script>
+
+    </body>
+
+</html>

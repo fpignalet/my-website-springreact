@@ -1,11 +1,9 @@
 package com.core.ctrl;
 
-import com.core.data.impl.DBHistContener;
-import com.core.data.impl.DBHistContent;
-import com.core.data.impl.DBHistItem;
-import com.core.data.impl.DBHistSub;
+import com.core.data.impl.*;
 import com.core.eng.EngServiceDB;
 import com.core.eng.EngServiceJSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
@@ -54,8 +52,8 @@ public class ControllerREST extends AControllerBase {
      */
     @RequestMapping(value = "/exthttpgetjson0", method = RequestMethod.GET)
     @CrossOrigin
-    public String exthttpgetjson0() {
-        return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[0]);
+    public String exthttpgetjson0() throws IOException {
+        return getEngineJSON().load(0);
     }
 
     /**
@@ -63,8 +61,8 @@ public class ControllerREST extends AControllerBase {
      */
     @RequestMapping(value = "/exthttpgetjson1", method = RequestMethod.GET)
     @CrossOrigin
-    public String exthttpgetjson1() {
-        return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[1]);
+    public String exthttpgetjson1() throws IOException {
+        return getEngineJSON().load(1);
     }
 
     /**
@@ -72,8 +70,8 @@ public class ControllerREST extends AControllerBase {
      * @return the content of src/main/resources/static/datatest.js data file
      */
     @GetMapping("/testhttpgetjson0")
-    public String testhttpgetjson0() {
-        return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[0]);
+    public String testhttpgetjson0() throws IOException {
+        return getEngineJSON().load(0);
     }
 
     /**
@@ -81,8 +79,8 @@ public class ControllerREST extends AControllerBase {
      * @return the content of src/main/resources/static/datafpi.js data file
      */
     @GetMapping("/testhttpgetjson1")
-    public String testhttpgetjson1() {
-        return getEngineJSON().doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[1]);
+    public String testhttpgetjson1() throws IOException {
+        return getEngineJSON().load(1);
     }
 
     /**
@@ -94,9 +92,32 @@ public class ControllerREST extends AControllerBase {
      */
     @GetMapping("/testhttpgetfromparam")
     public String testhttpgetfromparam(
-        @RequestParam(name="param", defaultValue="DEFAULT") String param)
-    {
+        @RequestParam(name="param", defaultValue="DEFAULT") String param) throws JsonProcessingException {
         return getEngineJSON().createAnswerJSON(param);
+    }
+
+    /**
+     * @return
+     */
+    @RequestMapping(value = "/serverside", method = RequestMethod.GET)
+    @CrossOrigin
+    public String serverside(
+        @RequestParam(name="p1", required=false, defaultValue="DEFAULT") String p1,
+        @RequestParam(name="p2", required=false, defaultValue="DEFAULT") String p2,
+        @RequestParam(name="p3", required=false, defaultValue="DEFAULT") String p3,
+        @RequestParam(name="p4", required=false, defaultValue="DEFAULT") String p4
+    ) throws IOException {
+        final EngServiceJSON instanceJs = getEngineJSON();
+        final DBConteners conteners = instanceJs.load();
+
+        log.info("received request /serverside p1={} p2={} p3={} p4={}", p1, p2, p3, p4);
+
+        final EngServiceDB instanceDb = getEngineDB();
+        final List<DBHistContener> itemsDB = instanceDb.filter(conteners, new String[]{ p1, p2, p3, p4 });
+
+//        final String result = getEngineJSON().fill(itemsDB);
+        final String result = itemsDB.get(0).toJSONString();
+        return result;
     }
 
     /**
@@ -105,22 +126,27 @@ public class ControllerREST extends AControllerBase {
     @GetMapping("/testpopulatedb")
     public void testpopulatedb() {
         try {
-            final EngServiceJSON instanceJS = getEngineJSON();
-            final String data = instanceJS.doLoadJSON(EngServiceJSON.getDataRepo() + EngServiceJSON.getFileNames()[1]);
-            final EngServiceJSON.DBConteners conteners = (EngServiceJSON.DBConteners) instanceJS.parse(data,
-                EngServiceJSON.DBConteners.class,
-                new Class[]{
-                    DBHistContener.class,
-                    DBHistItem.class,
-                    DBHistContent.class,
-                    DBHistSub.class
-                }
-            );
-            final EngServiceDB instanceDb = getEngineDB();
-            instanceDb.populateDB(conteners);
+            final EngServiceJSON instanceJs = getEngineJSON();
+            final DBConteners conteners = instanceJs.load();
 
+            final EngServiceDB instanceDb = getEngineDB();
+            instanceDb.update(conteners);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * to be tested in browser
+     */
+    @GetMapping("/testpopulatefile")
+    public void testpopulatefile() {
+        try {
+            final EngServiceDB instanceDb = getEngineDB();
             final List<DBHistContener> itemsDB = instanceDb.findAllItemsHist();
-            instanceJS.updateFile(itemsDB);
+
+            final EngServiceJSON instanceJS = getEngineJSON();
+            instanceJS.update(itemsDB);
 
         } catch (IOException e) {
             e.printStackTrace();

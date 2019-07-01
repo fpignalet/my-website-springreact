@@ -75,6 +75,11 @@ public class DBHistContener extends ADBBaseItem {
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     @Column(columnDefinition = "VARCHAR(256)")
+    private String contenertype;
+
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    @Column(columnDefinition = "VARCHAR(256)")
     private String contenerphoto;
 
     @Getter(AccessLevel.PUBLIC)

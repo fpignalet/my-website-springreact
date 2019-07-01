@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en">
+
+    <!-- -------------------------------------------------------------------------------------------------------------->
+    <head>
+    <!-- -------------------------------------------------------------------------------------------------------------->
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta name="description" content="CVpage">
+        <meta http-equiv="Content-Type" content="text/html">
+        <!-- meta http-equiv="Content-Security-Policy"
+              content="default-src 'self'
+                https://www.w3schools.com
+                https://fonts.googleapis.com
+                https://cdnjs.cloudflare.com;
+                script-src 'unsafe-inline' 'self';"
+        -->
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- EXTERNAL RESSOURCES -->
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="modulepreload" href="/clientside/js/lib/clientside.js">
+        <link rel="modulepreload" href="/clientside/js/impl/clientsideCV.js">
+        <link rel="modulepreload" href="/clientside/js/clientsideICV.js">
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- STYLE SHEETS -->
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <link rel="stylesheet" type="text/css" href="/clientside/css/clientside.css">
+        <style>
+            html, body, h1, h2, h3, h4, h5, h6 {
+                font-family: "Roboto", sans-serif;
+            }
+        </style>
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- OTHERS -->
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <title>
+            RESUME
+        </title>
+
+    </head>
+
+    <!-- -------------------------------------------------------------------------------------------------------------->
+    <body class="w3-light-grey">
+    <!-- -------------------------------------------------------------------------------------------------------------->
+
+        <div class="w3-content w3-margin-top" style="max-width:1800px;">
+
+            <div class="w3-row-padding" href="#home">
+
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- DEBUT Left Column -->
+                <div class="w3-third">
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- -------------------------------------------------------------------------- -->
+
+                    <div class="w3-white w3-text-grey w3-card-4">
+
+                        <!-- LEFT COLUMN: RUBRIQUE MOI -->
+                        <!-- CVdata.js: data_CVtitle -->
+                        <div class="w3-display-container">
+                            <img id="moi_photo" style="width:33%" alt="Avatar">
+                            <div class="w3-display-bottomright w3-container w3-text-black">
+                                <h2 id="moi_name"></h2>
+                            </div>
+                        </div>
+                        <!-- LEFT COLUMN: RUBRIQUE INFO -->
+                        <div class="w3-container">
+
+                            <!-- ----------------------------------------------------------------------------------------->
+                            <!-- PRESENTATION -->
+                            <div id="prescard">
+                            </div>
+                            <div id="buttonscard">
+                            </div>
+                            <hr>
+                            <!-- ----------------------------------------------------------------------------------------->
+                            <!-- AREAS OF EXPERTISE -->
+                            <div id="expcard">
+                            </div>
+                            <!-- ----------------------------------------------------------------------------------------->
+                            <!-- MAINS KILLS -->
+                            <div id="skillscard">
+                            </div>
+                            <!-- ----------------------------------------------------------------------------------------->
+                            <!-- SPRACHE -->
+                            <!-- liste des langues causees -->
+                            <div class="page-break"></div>
+                            <div id="langscard">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- FIN Left Column -->
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- -------------------------------------------------------------------------- -->
+
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- DEBUT Right Column -->
+                <div class="w3-twothird">
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- -------------------------------------------------------------------------- -->
+
+                    <!-- ---------------------------------------------------------------------------------------------------------------------->
+                    <!-- RIGHT COLUMN: RUBRIQUE HISTORIQUE -->
+                    <div id="gridhistory" class="w3-container w3-card w3-white w3-margin-bottom">
+                    </div>
+                    <!-- ---------------------------------------------------------------------------------------------------------------------->
+                    <!-- RIGHT COLUMN: RUBRIQUE FORMATIONS -->
+                    <!-- div class="page-break"></div -->
+                    <div id="bildungcard" class="w3-container w3-card w3-white w3-margin-bottom">
+                    </div>
+                    <div class="page-break"></div>
+                    <!-- ---------------------------------------------------------------------------------------------------------------------->
+                    <!-- RIGHT COLUMN: RUBRIQUE LOISIRS -->
+                    <div id="hobbycard" class="w3-container w3-card w3-white">
+                    </div>
+
+                </div>
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- FIN Right Column -->
+                <!-- -------------------------------------------------------------------------- -->
+                <!-- -------------------------------------------------------------------------- -->
+
+            </div>
+
+        </div>
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- Footer -->
+        <div id="footer"></div>
+
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <!-- JS IMPLEMENTATION -->
+        <!-- -------------------------------------------------------------------------------------------------------------->
+        <script type="module">
+            /*************************************************************************************
+             * INCLUDES CODE
+             *************************************************************************************/
+            import { CLISIDE_ICV } from "/clientside/js/clientsideICV.js";
+            /*************************************************************************************
+             * INCLUDES DATA
+             *************************************************************************************/
+            /*************************************************************************************
+             * IMPLEMENTATION
+             *************************************************************************************/
+            try {
+                //page initialsation happends there
+                window.onload = function() { CLISIDE_ICV.pageload(document, { create: 6, load: 7 }) };
+                window.onunload = function() { CLISIDE_ICV.pageunload(document, null) };
+                window.onscroll = function() { CLISIDE_ICV.pagescroll(document, null) };
+
+            }
+            catch (e) {
+                console.log(e.toString())
+            }
+            finally {
+                //...
+            }
+
+        </script>
+
+    </body>
+
+</html>

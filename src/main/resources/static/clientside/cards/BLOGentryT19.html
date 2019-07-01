@@ -1,0 +1,196 @@
+<div id="contener">
+
+    <!-- ...  -->
+    <!-- NOTE -->
+
+    <!-- IMPLEM -->
+    <!-- div>
+        <link rel="stylesheet" type="text/css" title="cssw3" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link id="ssht" rel="alternate stylesheet" type="text/css" title="cssboot" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" title="local" href="clientside/css/clientside.css">
+
+        <script type="text/javascript">
+            /**/
+            var style_cookie_name = "style" ;
+            var style_cookie_duration = 30 ;
+            var style_domain = "thesitewizard.com" ;
+
+            window.switch_style = function(css_title) {
+                // You may use this script on your site free of charge provided
+                // you do not remove this notice or the URL below. Script from
+                // https://www.thesitewizard.com/javascripts/change-style-sheets.shtml
+                var i, link_tag ;
+                for (i = 0, link_tag = document.getElementsByTagName("link") ;
+                     i < link_tag.length ; i++ ) {
+                    if ((link_tag[i].rel.indexOf( "stylesheet" ) != -1) &&
+                        link_tag[i].title) {
+                        link_tag[i].disabled = true ;
+                        if (link_tag[i].title == css_title) {
+                            link_tag[i].disabled = false ;
+                        }
+                    }
+                    set_cookie( style_cookie_name, css_title,style_cookie_duration, style_domain );
+                }
+            }
+            function set_style_from_cookie() {
+                var css_title = get_cookie( style_cookie_name );
+                if (css_title.length) {
+                    switch_style( css_title );
+                }
+            }
+            function set_cookie ( cookie_name, cookie_value, lifespan_in_days, valid_domain ) {
+                // https://www.thesitewizard.com/javascripts/cookies.shtml
+                var domain_string = valid_domain ? ("; domain=" + valid_domain) : '' ;
+                document.cookie = cookie_name +
+                    "=" + encodeURIComponent( cookie_value ) +
+                    "; max-age=" + 60 * 60 *
+                    24 * lifespan_in_days +
+                    "; path=/" + domain_string ;
+            }
+            function get_cookie ( cookie_name ) {
+                // https://www.thesitewizard.com/javascripts/cookies.shtml
+                var cookie_string = document.cookie ;
+                if (cookie_string.length != 0) {
+                    var cookie_array = cookie_string.split( '; ' );
+                    for (i = 0 ; i < cookie_array.length ; i++) {
+                        cookie_value = cookie_array[i].match ( cookie_name + '=(.*)' );
+                        if (cookie_value != null) {
+                            return decodeURIComponent ( cookie_value[1] ) ;
+                        }
+                    }
+                }
+                return '' ;
+            }
+            /**/
+        </script>
+        <button type="button" onclick="window.switch_style('blue');return false;" name="theme" value="Blue Theme" id="blue">Blue Theme</button>
+        <button type="button" onclick="window.switch_style('pink');return false;" name="theme" value="Pink Theme" id="pink">Pink Theme</button>
+
+        <div class="container">
+            <h2>(jQuery :( / ) webpack / bootstrap adventures</h2>
+            <p>If you click on me, I will disappear.</p>
+            <p>Click me away!</p>
+            <p>Click me too!</p>
+        </div>
+        <div class="container">
+            <h2>Close Alerts Via JavaScript</h2>
+            <div class="alert alert-success alert-dismissible" id="myAlert">
+                <a href="#" class="close">&times;</a>
+                <strong>Success!</strong> This alert box could indicate a successful or positive action.
+            </div>
+        </div>
+        <div class="container">
+            <h2>Button Styles</h2>
+            <button type="button" class="btn">Basic</button>
+            <button type="button" class="btn btn-default">Default</button>
+            <button type="button" class="btn btn-primary">Primary</button>
+            <button type="button" class="btn btn-success">Success</button>
+            <button type="button" class="btn btn-info">Info</button>
+            <button type="button" class="btn btn-warning">Warning</button>
+            <button type="button" class="btn btn-danger">Danger</button>
+            <button type="button" class="btn btn-link">Link</button>
+        </div>
+        <div class="container">
+            <h2>Dropdown Example</h2>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Dropdown Example
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+                </ul>
+            </div>
+            <br>
+        </div>
+    </div>
+    <script>
+        import "../node_modules/jquery/src/jquery.js";
+        import "../node_modules/bootstrap/js/src/alert.js";
+        import "../node_modules/bootstrap/js/src/dropdown.js";
+
+        import { createStore } from 'redux'
+
+        // JQUERY tests ----------------------------------------------------
+        $(document).ready(function(){
+            $("p").click(function(){
+                $(this).hide();
+            });
+        });
+
+        // BOOTSTRAP tests ----------------------------------------------------
+        $(document).ready(function(){
+            $(".close").click(function(){
+                $("#myAlert").alert("close");
+            });
+        });
+
+        $(document).ready(function(){
+            $(".dropdown-toggle").dropdown();
+        });
+
+        // REDUX tests ----------------------------------------------------
+        /**
+         * This is a reducer, a pure function with (state, action) => state signature.
+         * It describes how an action transforms the state into the next state.
+         *
+         * The shape of the state is up to you: it can be a primitive, an array, an object,
+         * or even an Immutable.js data structure. The only important part is that you should
+         * not mutate the state object, but return a new object if the state changes.
+         *
+         * In this example, we use a `switch` statement and strings, but you can use a helper that
+         * follows a different convention (such as function maps) if it makes sense for your
+         * project.
+         */
+        function counter(state = 0, action) {
+            switch (action.type) {
+                case 'INCREMENT':
+                    return state + 1
+                case 'DECREMENT':
+                    return state - 1
+                default:
+                    return state
+            }
+        }
+
+        // Create a Redux store holding the state of your app.
+        // Its API is { subscribe, dispatch, getState }.
+        let store = createStore(counter)
+
+        // You can use subscribe() to update the UI in response to state changes.
+        // Normally you'd use a view binding library (e.g. React Redux) rather than subscribe() directly.
+        // However it can also be handy to persist the current state in the localStorage.
+
+        store.subscribe(() => console.log(store.getState()))
+
+        // The only way to mutate the internal state is to dispatch an action.
+        // The actions can be serialized, logged or stored and later replayed.
+        store.dispatch({ type: 'INCREMENT' })
+        // 1
+        store.dispatch({ type: 'INCREMENT' })
+        // 2
+        store.dispatch({ type: 'DECREMENT' })
+        // 1
+
+        // TRYING TO REMOVE STYLESHEET ----------------------------------------------------
+        var sheet = document.getElementById("ssht");
+        sheet.disabled = true;
+        sheet.parentNode.removeChild(sheet);
+
+        Array.prototype.forEach.call(document.querySelectorAll('style,[rel="stylesheet"],[type="text/css"]'), function(element){
+            try{
+                element.parentNode.removeChild(element)
+            }
+            catch(err){
+                //...
+            }
+        });
+
+        document.querySelector('link[href$="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"]').remove();
+
+    </script -->
+
+</div>

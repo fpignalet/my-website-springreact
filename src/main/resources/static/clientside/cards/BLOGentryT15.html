@@ -1,0 +1,64 @@
+<div id="contener">
+
+    <!-- NOTE -->
+    <p>Just to have fun (and to learn at the same time how to embed a "sub application" somewhere in my page),
+        I did a fork
+    <ul>
+        <li>from <a href="https://github.com/jlongster/canvas-game-bootstrap">
+            https://github.com/jlongster/canvas-game-bootstrap
+        </a>
+            <br>
+            (check <a href="https://github.com/jlongster/canvas-game-bootstrap/blob/master/LICENSE">
+                LICENSE
+            </a> there)
+        </li>
+        <li>to <a href="https://github.com/fpignalet/canvas-game-bootstrap">
+            https://github.com/fpignalet/canvas-game-bootstrap
+        </a>
+        </li>
+    </ul>
+    , then:
+    <ul>
+        <li>I did a big refactoring, putting everything into classes
+        </li>
+        <li>I started to add new features such as a lifebar
+        </li>
+    </ul>
+    </p>
+
+    <!-- IMPLEM -->
+    <link rel="stylesheet" href="/clientside/game/css/emb.css">
+
+    <div id="game-over-overlay0" class="game-over-overlay">
+    </div>
+    <div id="game-over0" class="game-over">
+        <h1>GAME OVER</h1>
+        <button id="play-again0">Play Again</button>
+    </div>
+
+    <div id="wrapper0" class="wrapper" style="background-color: black;">
+        <div id="instructions0" class="instructions">
+            <ul>
+                <li>move with <span class="key">arrows</span> or <span class="key">wasd</span> or <span class="key">mouse</span> or <span class="key">touch</span>
+                </li>
+                <li>shoot with <span class="key">space (with arrows / wasd)</span> or <span class="key">automatic (with mouse / touch)</span>
+                </li>
+                <li>loose 20 life pts (progress bar) each time an ennemy reach left side
+                </li>
+                <li>win 1 life pt (progress bar) each time an ennemy is killed
+                </li>
+            </ul>
+        </div>
+
+        <div id="score0" class="score"></div>
+        <br><br><br><br><br><br>
+        <div class="myProgress">
+            <div id="lifebar0" class="myBar"></div>
+        </div>
+        <br><br>
+
+        <canvas id="canvas0" style="background-color: black;"/>
+
+    </div>
+
+</div>

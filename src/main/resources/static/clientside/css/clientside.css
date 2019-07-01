@@ -1,0 +1,254 @@
+/* --------- MODAL --------- */
+.modal {
+    display: none;                      /* Hidden by default */
+    position: fixed;                    /* Stay in place */
+    z-index: 1;                         /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;                        /* Full width */
+    height: 100%;                       /* Full height */
+    overflow: auto;                     /* Enable scroll if needed */
+    background-color: rgb(0,0,0);       /* Fallback color */
+    background-color: rgba(0,0,0,0.4);  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;                   /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;                         /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --------- PARALLAX --------- */
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url('../../images/WP_20180821_17_57_49_Pro.jpg');
+    min-height: 100%;
+}
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url("../../images/WP_20180821_18_09_00_Pro.jpg");
+    min-height: 400px;
+}
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url("../../images/WP_20180822_12_11_33_Pro.jpg");
+    min-height: 400px;
+}
+/* Fourth image (Contact) */
+.bgimg-4 {
+    background-image: url("../../images/WP_20180822_12_09_51_Pro.jpg");
+    min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1600px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+        min-height: 400px;
+    }
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --------- PROGRESSBARS --------- */
+.reactentry {
+}
+
+/* --------- PROGRESSBARS --------- */
+.myProgress {
+    width: 100%;
+    background-color: #ddd;
+}
+
+.myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #68B4FF;
+}
+
+/* --------- TREEVIEW --------- */
+.caret {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+}
+
+.caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.caret-down::before {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */'
+    transform: rotate(90deg);
+}
+
+.nested {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+/* --------- CODEBOX --------- */
+/* from https://stackoverflow.com/questions/41306797/html-how-to-add-line-numbers-to-a-source-code-block*/
+.codebox {
+    border:1px solid black;
+    background-color:#EEEEFF;
+    white-space: pre-line;
+    padding:10px;
+    font-size:0.9em;
+    display: inline-block;
+}
+pre.code {
+    display: table;
+    table-layout: fixed;
+    width: 100%; /* anything but auto, otherwise fixed layout not guaranteed */
+    white-space: pre-wrap;
+}
+pre.code::before {
+    counter-reset: linenum;
+}
+pre.code span.tr {
+    display: table-row;
+    counter-increment: linenum;
+}
+pre.code span.th { /* used for line numbers */
+    display: table-cell;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+pre.code span.th::before {
+    content: counter(linenum);
+    text-align: right;
+    display: block;
+}
+pre.code span.th {
+    width: 4em; /* or whatever the desired width of the numbers column is */
+}
+pre.code code {
+    display: table-cell;
+}
+
+/* --------- MULTICOLUMS --------- */
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* --------- PRINT --------- */
+@media print {
+    html, body, h6 {
+        font-size: 8pt;
+        line-height: 1.2
+    }
+
+    h1, h3, h4, h5 {
+        font-size: 10pt;
+    }
+
+    .page-break	{
+        display: block;
+        page-break-before: always;
+    }
+
+    input[type="button"] {
+        display: none;
+    }
+
+    .w3-card, .w3-card-4 {
+        box-shadow: none
+    }
+
+    .myBar {
+        alignment: left;
+        align-content: start;
+        background-color: #0f77f5 !important;
+/*        background-color: #428bca !important;*/
+        border-radius: 4px !important;
+        border: 5px solid #888;
+        -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) !important;
+        box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15) !important;
+    }
+
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+/* --------- ANGULAR TESTS --------- */
+.angmenu {
+    font-size: 24pt;
+}
+
+/* --------- STICKY --------- */
+div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+/*    transform: scale(2, 0.5); /* Equal to scaleX(2) scaleY(0.5) */
+    transition: 1s;
+}

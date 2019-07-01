@@ -1679,7 +1679,43 @@ module.exports = {
             "contenertype":     "DESCENTRY",
             "contenerphoto":    "images/P_20160208_183649_BF.jpg",
             "contenername":     "Francois Pignalet",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "conteneritems":
+                [
+                    {
+                        "histkind": "Areas of Expertise",
+                        "contentitems":
+                            [
+                                {
+                                    "contentlist":
+                                        [
+                                            {
+                                                "listtext":
+                                                    [
+                                                        {
+                                                            "data": "Full stack developer"
+                                                        },
+                                                        {
+                                                            "data": "AGILE software development"
+                                                        },
+                                                        {
+                                                            "data": "Maintainable and documented code writing... Clean Code!"
+                                                        },
+                                                        {
+                                                            "data": "Application architecture (Object Oriented & procedural) from specification"
+                                                        },
+                                                        {
+                                                            "data": "Heavily threaded architectures specialist"
+                                                        },
+                                                        {
+                                                            "data": "Complex refactoring and debugging"
+                                                        }
+                                                    ]
+                                            }
+                                        ]
+                                }
+                            ]
+                    }
+                ]
         },
         {
             "contenertype":     "INFOENTRY",

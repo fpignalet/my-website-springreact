@@ -1,0 +1,41 @@
+<div id="contener">
+
+    <div class="w3-card w3-margin">
+        <h3 class="w3-center">
+            I'D LOVE YOUR FEEDBACK
+        </h3>
+        <div class="w3-container w3-padding">
+
+            <p>
+                <i class="fa fa-beer"></i>,
+                Please don't hesitate to leave a note:
+            </p>
+
+            <!-- Feedback fields. Will send an email on submit (SEND MESSAGE button) -->
+            <form action="javascript:window.INDEXpagefbk(document, { load: 9 })">
+
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-half">
+                        <input id="feedbackname" class="w3-input w3-border" type="text" placeholder="Name" required>
+                    </div>
+
+                    <div class="w3-half">
+                        <input id="feedbackmail" class="w3-input w3-border" type="text" placeholder="Email" required>
+                    </div>
+
+                </div>
+
+                <input id="feedbacktext" class="w3-input w3-border" type="text" rows="5" cols="40" placeholder="Message" required>
+
+                <button class="w3-button w3-black w3-right w3-section" type="submit">
+                    <i class="fa fa-paper-plane"></i>
+                    SEND MESSAGE
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

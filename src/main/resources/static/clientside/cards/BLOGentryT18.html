@@ -1,0 +1,39 @@
+<div id="contener">
+
+    <!-- NOTE -->
+    <div class="row">
+        <div class="column" style="background-color:#ccc;">
+            <h2>Some important points to develop with raw Javascript</h2>
+            <ul>
+                <li>It's possible to be pure OOP, using only classes exactly like other langages
+                </li>
+                <li>Classes need to be exported like this:
+                    <br>
+                    <code class="codebox" id="codebox5">
+                        ...
+                        export default Multiple;
+                        ...
+                    </code>
+                </li>
+                <li>Classes need to be imported like this:
+                    <br>
+                    <code class="codebox" id="codebox6">
+                        < script type="module" >
+                        import {
+                        CLISIDE_LOADER
+                        } from "./clientside/clientside.js";
+                        < /script >
+                    </code>
+                    <br>
+                    It's important to specify the script type="module", otherwise import / export return error.
+                    <br>
+                    It's important to specify the ".js" postfix, otherwise there is sometimes loading issues.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- IMPLEM -->
+    <!-- ...  -->
+
+</div>
