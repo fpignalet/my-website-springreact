@@ -27,13 +27,7 @@ public class ControllerMain extends AControllerBase {
      */
     private final static String[] pageNames = {
         "entrymain",
-        "entryreact",
-        "index",
-        "CV",
-        "BLOGNEWS",
-        "BLOGTECH",
-        "OFFER",
-        "impressum"
+        "entryreact"
     };
 
     /**
@@ -48,8 +42,30 @@ public class ControllerMain extends AControllerBase {
      * @param model
      * @return
      */
+    @GetMapping("/")
+    public String index(
+        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
+        Model model)
+    {
+        try {
+            model.addAttribute("name", name);
+            getEngineDB().updateModel(model);
+            getEngineJSON().updateModel(model);
+            return pageNames[0];
+        } catch (IOException e) {
+            e.printStackTrace();
+            return pageNames[0];
+        }
+    }
+
+    /**
+     * @brief root entry function
+     * @param name
+     * @param model
+     * @return
+     */
     @GetMapping("/entrymain")
-    public String entrytest(
+    public String entrymain(
         @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
         Model model)
     {
@@ -81,90 +97,6 @@ public class ControllerMain extends AControllerBase {
     }
 
     /**
-     * @brief root entry function
-     * @param name
-     * @param model
-     * @return
-     */
-    @GetMapping("/")
-    public String index(
-        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
-        Model model)
-    {
-        return pageNames[2];
-    }
-
-    /**
-     * @brief root entry function
-     * @param name
-     * @param model
-     * @return
-     */
-    @GetMapping("/CV")
-    public String CV(
-        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
-        Model model)
-    {
-        return pageNames[3];
-    }
-
-    /**
-     * @brief root entry function
-     * @param name
-     * @param model
-     * @return
-     */
-    @GetMapping("/BLOGNEWS")
-    public String BLOGNEWS(
-        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
-        Model model)
-    {
-        return pageNames[4];
-    }
-
-    /**
-     * @brief root entry function
-     * @param name
-     * @param model
-     * @return
-     */
-    @GetMapping("/BLOGTECH")
-    public String BLOGTECH(
-        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
-        Model model)
-    {
-        return pageNames[5];
-    }
-
-    /**
-     * @brief root entry function
-     * @param name
-     * @param model
-     * @return
-     */
-    @GetMapping("/OFFER")
-    public String OFFER(
-        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
-        Model model)
-    {
-        return pageNames[6];
-    }
-
-    /**
-     * @brief root entry function
-     * @param name
-     * @param model
-     * @return
-     */
-    @GetMapping("/impressum")
-    public String impressum(
-        @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
-        Model model)
-    {
-        return pageNames[7];
-    }
-
-    /**
      * to be tested in browser
      * not yet working...
      * @throws InterruptedException
@@ -175,11 +107,11 @@ public class ControllerMain extends AControllerBase {
         System.out.println("Execute method asynchronously - " + Thread.currentThread().getName());
         try {
             Thread.sleep(5000);
-            return new AsyncResult<>("entryreact");
+            return new AsyncResult<>(pageNames[1]);
         }
         catch (InterruptedException e) {
             log.error(e.toString());
-            return new AsyncResult<>("entrytest");
+            return new AsyncResult<>(pageNames[0]);
         }
     }
 

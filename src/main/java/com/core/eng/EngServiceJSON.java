@@ -194,7 +194,7 @@ public class EngServiceJSON implements IEngModelUpdater {
      *
      */
     @Getter(AccessLevel.PUBLIC)
-    private static final String dataRepo = "src/main/resources/static/";
+    private static final String dataRepo = "src/main/resources/static/data/";
     /**
      *
      */

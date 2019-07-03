@@ -1,37 +1,55 @@
-const path = require('path');
+const path = require("path");
 
-module.exports = {
-	devtool: 'sourcemaps',
-	cache: true,
-	mode: 'development',
+module.exports = [
 
-	entry: [
-		'./src/main/js/reacttest.js'
-	],
-	output: {
-		path: __dirname,
-		filename: './src/main/resources/static/built/bundle.js'
-	},
+    //-------------------------------------------------
+    //bundling module_direct.js
+    {
+        entry: './src/main/js/website.js',
+        output: {
+            path: path.resolve(__dirname, 'src/main/resources/static/built'),
+            filename: 'bundlewebsite.js'
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(js)$/,
+                    exclude: /node_modules/
+                }
+            ]
+        }
+    },
 
-	module: {
-		rules: [
-			{
-				test: path.join(__dirname, '.'),
-				exclude: /(node_modules)/,
-				use: [{
-					loader: 'babel-loader',
-					options: {
-						presets: [
-							"@babel/preset-env",
-							"@babel/preset-react"
-						],
-						plugins: [
-							"@babel/plugin-proposal-class-properties"
-						]
-					}
-				}]
-			}
-		],
-	}
+    //-------------------------------------------------
+    //transpiling and bundling module_game.js
+    {
+        entry: './src/main/js/reactmodule.js',
+        output: {
+            path: path.resolve(__dirname, 'src/main/resources/static/built'),
+            filename: 'bundlereact.js'
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(js|jsx)$/,
+                    exclude: /node_modules/,
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            options: {
+                                presets: [
+                                    '@babel/preset-env',
+                                    '@babel/react',
+                                    {
+                                        'plugins': ['@babel/plugin-proposal-class-properties']
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
 
-};
+];

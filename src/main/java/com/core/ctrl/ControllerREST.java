@@ -97,30 +97,6 @@ public class ControllerREST extends AControllerBase {
     }
 
     /**
-     * @return
-     */
-    @RequestMapping(value = "/serverside", method = RequestMethod.GET)
-    @CrossOrigin
-    public String serverside(
-        @RequestParam(name="p1", required=false, defaultValue="DEFAULT") String p1,
-        @RequestParam(name="p2", required=false, defaultValue="DEFAULT") String p2,
-        @RequestParam(name="p3", required=false, defaultValue="DEFAULT") String p3,
-        @RequestParam(name="p4", required=false, defaultValue="DEFAULT") String p4
-    ) throws IOException {
-        final EngServiceJSON instanceJs = getEngineJSON();
-        final DBConteners conteners = instanceJs.load();
-
-        log.info("received request /serverside p1={} p2={} p3={} p4={}", p1, p2, p3, p4);
-
-        final EngServiceDB instanceDb = getEngineDB();
-        final List<DBHistContener> itemsDB = instanceDb.filter(conteners, new String[]{ p1, p2, p3, p4 });
-
-//        final String result = getEngineJSON().fill(itemsDB);
-        final String result = itemsDB.get(0).toJSONString();
-        return result;
-    }
-
-    /**
      * to be tested in browser
      */
     @GetMapping("/testpopulatedb")
