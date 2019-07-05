@@ -8,7 +8,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
+import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -17,8 +19,19 @@ import java.util.Properties;
 @Service
 @Slf4j
 @ComponentScan({"com.core.data"})
-public class EngServiceMail {
+public class EngServiceMail implements IEngModelUpdater {
 
+    /************************************************************************
+     INTERFACE ENFORCING
+     */
+    @Override
+    public void updateModel(Model model) throws IOException {
+        log.debug("Not yet implemented");
+    }
+
+    /*************************************************************************
+     MAIL HANDLING
+     *************************************************************************/
     /**
      *
      */
@@ -35,9 +48,9 @@ public class EngServiceMail {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
-
-        log.info("OK");
         emailSender.send(message);
+
+        log.debug("OK");
     }
 
     /**
@@ -57,7 +70,7 @@ public class EngServiceMail {
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
 
-        log.info("OK");
+        log.debug("OK");
         return mailSender;
     }
 
@@ -70,7 +83,7 @@ public class EngServiceMail {
      */
     public EngServiceMail(final JavaMailSender emailSender, final DBItemTestDAO data1Repo) {
         this.emailSender = emailSender;
-        log.info("OK");
+        log.debug("OK");
     }
 
 }

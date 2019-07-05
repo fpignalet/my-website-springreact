@@ -1,6 +1,6 @@
 "use strict";
 
-export class JSApp {
+class JSApp {
 
     /**
      *
@@ -104,4 +104,39 @@ export class JSApp {
         return value;
     }
 
+}
+
+window.guirequestfrommain = () => {
+    const jsapp = new JSApp();
+    jsapp.httpGetRAW("guirequestfrommain", "here is CONTENT MAIN", (text) => {
+        console.log(text)
+    });
+}
+
+window.guirequestfromreact = () => {
+    const jsapp = new JSApp();
+    jsapp.httpGetRAW("guirequestfromreact", "here is REACT PAGE");
+}
+
+window.testhttpgetfromparam = () => {
+    const jsapp = new JSApp();
+    jsapp.httpGetJSON('testhttpgetfromparam', 'MAIN ENTRY', 'item1');
+}
+
+window.testpopulatedb = () => {
+    const jsapp = new JSApp();
+    jsapp.httpGetJSON('testpopulatedb', null, 'DBConteners')
+}
+
+window.exthttpgetjson1 = () => {
+    const jsapp = new JSApp();
+    jsapp.httpGetJSON('exthttpgetjson1', null, "DBConteners", (text) => {
+        console.log(text);
+
+        const item = document.createElement("li");
+        item.innerText = text;
+
+        const dynlist = document.getElementById("dyntest");
+        dynlist.appendChild(item);
+    });
 }

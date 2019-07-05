@@ -1,4 +1,4 @@
-module.exports = {
+{
     "id": 1,
 
     "content1": "CONTENT 1",

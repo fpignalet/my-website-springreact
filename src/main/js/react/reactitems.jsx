@@ -10,8 +10,8 @@ const ReactSNav = require('react-sidenav');
 const Redux = require('redux');
 const ProgressBar = require('react-bootstrap/ProgressBar');
 
-const jsondata1 = require('../resources/static/data/datatest.js');
-const jsondata2 = require('../resources/static/data/datafpicv.js');
+const jsondata1 = require('../../resources/static/data/datatest.json');
+const jsondata2 = require('../../resources/static/data/datafpicv.json');
 
 /*************************************************************************************
  * IMPLEMENTATION

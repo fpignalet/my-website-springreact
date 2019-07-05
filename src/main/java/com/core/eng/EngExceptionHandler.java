@@ -21,9 +21,7 @@ public class EngExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler({ EngGeneralException.class })
     protected ResponseEntity<Object> handleNotFound(Exception ex, WebRequest request) {
-        return handleExceptionInternal(ex, "General Error",
-                new HttpHeaders(), HttpStatus.NOT_FOUND, request);
-
+        return handleExceptionInternal(ex, "General Error", new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
 }

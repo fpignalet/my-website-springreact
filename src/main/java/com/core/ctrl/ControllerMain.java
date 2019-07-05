@@ -27,7 +27,8 @@ public class ControllerMain extends AControllerBase {
      */
     private final static String[] pageNames = {
         "entrymain",
-        "entryreact"
+        "entryreact",
+        "error"
     };
 
     /**
@@ -54,7 +55,7 @@ public class ControllerMain extends AControllerBase {
             return pageNames[0];
         } catch (IOException e) {
             e.printStackTrace();
-            return pageNames[0];
+            return pageNames[2];
         }
     }
 
@@ -76,7 +77,7 @@ public class ControllerMain extends AControllerBase {
             return pageNames[0];
         } catch (IOException e) {
             e.printStackTrace();
-            return pageNames[0];
+            return pageNames[2];
         }
     }
 
@@ -92,8 +93,13 @@ public class ControllerMain extends AControllerBase {
         @RequestParam(name="name", required=false, defaultValue="RETEST") String name,
         Model model)
     {
-        model.addAttribute("name", name + ", WITH BEAN TEST: " + getEngineJSON().doReactTest());
-        return pageNames[1];
+        try {
+            model.addAttribute("name", name + ", WITH BEAN TEST: " + getEngineJSON().doReactTest());
+            return pageNames[1];
+        } catch (Exception e) {
+            e.printStackTrace();
+            return pageNames[2];
+        }
     }
 
     /**
@@ -104,14 +110,15 @@ public class ControllerMain extends AControllerBase {
     @GetMapping("/testasync")
     @Async
     public Future<String> methodAsync1() {
-        System.out.println("Execute method asynchronously - " + Thread.currentThread().getName());
         try {
+            log.info("Execute method asynchronously - " + Thread.currentThread().getName());
+
             Thread.sleep(5000);
             return new AsyncResult<>(pageNames[1]);
         }
         catch (InterruptedException e) {
             log.error(e.toString());
-            return new AsyncResult<>(pageNames[0]);
+            return new AsyncResult<>(pageNames[2]);
         }
     }
 

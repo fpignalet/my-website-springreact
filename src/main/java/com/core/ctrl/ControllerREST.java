@@ -1,6 +1,7 @@
 package com.core.ctrl;
 
-import com.core.data.impl.*;
+import com.core.data.impl.DBConteners;
+import com.core.data.impl.DBHistContener;
 import com.core.eng.EngServiceDB;
 import com.core.eng.EngServiceJSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,28 +21,36 @@ import java.util.List;
 public class ControllerREST extends AControllerBase {
 
     /**
+     * @param engineDB
+     * @param engineJSON
      */
     public ControllerREST(final EngServiceDB engineDB, final EngServiceJSON engineJSON) {
         super(engineDB, engineJSON, null);
     }
 
     /**
+     * @param param
      * @return
+     * @throws InterruptedException
      */
     @GetMapping("/guirequestfrommain")
     public String requestfrommain(
-            @RequestParam(name="param", required=false, defaultValue="DEFAULT ANSWER") String param
+        @RequestParam(name="param", required=false, defaultValue="guirequestfrommain ANSWER")
+        String param
     ) throws InterruptedException {
         Thread.sleep(10000);
         return "RESPONSE FOR MAIN: " + param;
     }
 
     /**
+     * @param param
      * @return
+     * @throws InterruptedException
      */
     @GetMapping("/guirequestfromreact")
     public String requestfromreact(
-            @RequestParam(name="param", required=false, defaultValue="DEFAULT ANSWER") String param
+        @RequestParam(name="param", required=false, defaultValue="guirequestfromreact ANSWER")
+        String param
     ) throws InterruptedException {
         Thread.sleep(10000);
         return "RESPONSE FOR REACT: " + param;
@@ -49,6 +58,7 @@ public class ControllerREST extends AControllerBase {
 
     /**
      * @return
+     * @throws IOException
      */
     @RequestMapping(value = "/exthttpgetjson0", method = RequestMethod.GET)
     @CrossOrigin
@@ -58,6 +68,7 @@ public class ControllerREST extends AControllerBase {
 
     /**
      * @return
+     * @throws IOException
      */
     @RequestMapping(value = "/exthttpgetjson1", method = RequestMethod.GET)
     @CrossOrigin
@@ -67,7 +78,8 @@ public class ControllerREST extends AControllerBase {
 
     /**
      * to be tested in browser
-     * @return the content of src/main/resources/static/datatest.js data file
+     * @return the content of src/main/resources/static/datatest.json data file
+     * @throws IOException
      */
     @GetMapping("/testhttpgetjson0")
     public String testhttpgetjson0() throws IOException {
@@ -77,6 +89,7 @@ public class ControllerREST extends AControllerBase {
     /**
      * to be tested in browser
      * @return the content of src/main/resources/static/datafpi.js data file
+     * @throws IOException
      */
     @GetMapping("/testhttpgetjson1")
     public String testhttpgetjson1() throws IOException {
@@ -89,10 +102,13 @@ public class ControllerREST extends AControllerBase {
      * display will be "{"item1":"TOTO"}"
      * @param param contains the value of the request parameter
      * @return
+     * @throws JsonProcessingException
      */
     @GetMapping("/testhttpgetfromparam")
     public String testhttpgetfromparam(
-        @RequestParam(name="param", defaultValue="DEFAULT") String param) throws JsonProcessingException {
+        @RequestParam(name="param", defaultValue="DEFAULT")
+        String param
+    ) throws JsonProcessingException {
         return getEngineJSON().createAnswerJSON(param);
     }
 

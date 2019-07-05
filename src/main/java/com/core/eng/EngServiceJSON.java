@@ -10,9 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -52,7 +49,7 @@ public class EngServiceJSON implements IEngModelUpdater {
      * in resources/templates/fragments:
      */
     private final static String[] modelItems = {
-            "database" //for contentXXX.html
+        "database" //for contentXXX.html
     };
 
     /**
@@ -63,14 +60,14 @@ public class EngServiceJSON implements IEngModelUpdater {
         final String data = load(getDataRepo() + getFileNames()[1]);
 
         final DBConteners conteners = (DBConteners) parse(data,
-                DBConteners.class,
-                new Class[]{
-                        DBHistContener.class,
-                        DBHistItem.class,
-                        DBHistContent.class,
-                        DBHistSub.class,
-                        DBHistText.class
-                }
+            DBConteners.class,
+            new Class[]{
+                DBHistContener.class,
+                DBHistItem.class,
+                DBHistContent.class,
+                DBHistSub.class,
+                DBHistText.class
+            }
         );
 
         model.addAttribute(modelItems[0], conteners.toArray(new DBHistContener[0]));
@@ -144,7 +141,6 @@ public class EngServiceJSON implements IEngModelUpdater {
 
         return
             new String(Files.readAllBytes(path))
-                .substring("module.exports = ".length())
                 .replace(";", "");
     }
 
@@ -200,8 +196,8 @@ public class EngServiceJSON implements IEngModelUpdater {
      */
     @Getter(AccessLevel.PUBLIC)
     private static final String[] fileNames = {
-            "datatest.js",
-            "datafpicv.js",
+            "datatest.json",
+            "datafpicv.json",
             "datafpitest.json"
     };
 

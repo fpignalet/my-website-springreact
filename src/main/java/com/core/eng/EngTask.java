@@ -68,15 +68,18 @@ public class EngTask {
             }
 
             switch(tasksStatus[index]){
+
                 case TASKSTATUS_INIT:
                     log.info("Starting speedy task");
                     pageService.findItemTestById(getCount().intValue() - 1);
                     tasksStatus[index] = TaskStatus.TASKSTATUS_EXECUTE;
                     break;
+
                 case TASKSTATUS_EXECUTE:
                     log.info("Running speedy task");
                     pageService.findItemTestByName("NAME" + getCount());
                     break;
+
             }
 
         }
@@ -98,17 +101,23 @@ public class EngTask {
             }
 
             switch(tasksStatus[index]){
+
                 case TASKSTATUS_INIT:
                     log.info("Starting engine from task");
-                    pageService.addOneItemTest(getCount().intValue(), "NAME" + getCount().addAndGet(1));
+                    if(null != pageService.addOneItemTest(getCount().intValue(), "NAME" + getCount().addAndGet(1))){
+                        log.debug("NEW ITEM TEST SAVED");
+                    }
+
                     tasksStatus[index] = TaskStatus.TASKSTATUS_EXECUTE;
                     break;
+
                 case TASKSTATUS_EXECUTE:
                     log.info("Running engine from task");
                     pageService.findAllItemTestOrderedByNameDescending().forEach(
                         (it)-> log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName()))
                     );
                     break;
+
             }
         }
         catch (Exception e) {
@@ -129,17 +138,23 @@ public class EngTask {
             }
 
             switch(tasksStatus[index]){
+
                 case TASKSTATUS_INIT:
                     log.info("Starting ing engine from SLOW task");
-                    pageService.updateOneItemTest(getCount().intValue() - 1, "NAME" + getCount().intValue() + 1);
+                    if(null != pageService.updateOneItemTest(getCount().intValue() - 1, "NAME" + getCount().intValue() + 1)){
+                        log.debug("ITEM TEST UPDATED");
+                    }
+
                     tasksStatus[index] = TaskStatus.TASKSTATUS_EXECUTE;
                     break;
+
                 case TASKSTATUS_EXECUTE:
                     log.info("Running engine from SLOW task");
                     pageService.findAllItemTestOrderedByNameDescending().forEach(
                         (it)-> log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName()))
                     );
                     break;
+
             }
         }
         catch (Exception e) {

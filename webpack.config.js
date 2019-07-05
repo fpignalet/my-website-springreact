@@ -5,7 +5,7 @@ module.exports = [
     //-------------------------------------------------
     //bundling module_direct.js
     {
-        entry: './src/main/js/website.js',
+        entry: './src/main/js/core/appmodule.js',
         output: {
             path: path.resolve(__dirname, 'src/main/resources/static/built'),
             filename: 'bundlewebsite.js'
@@ -23,7 +23,7 @@ module.exports = [
     //-------------------------------------------------
     //transpiling and bundling module_game.js
     {
-        entry: './src/main/js/reactmodule.js',
+        entry: './src/main/js/react/reactmodule.jsx',
         output: {
             path: path.resolve(__dirname, 'src/main/resources/static/built'),
             filename: 'bundlereact.js'
