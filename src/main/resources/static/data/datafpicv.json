@@ -514,69 +514,60 @@
             "contenerphoto":    "images/gears-686316_640.jpg",
             "contenerdate":     "December 19, 2018",
             "contenername":     "CURRENT",
-            "contenersubname":  "UNDER CONSTRUCTION",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "contenersubname":  "UNDER CONSTRUCTION"
         },
         {
             "contenertype":     "BLOGTECHENTRY",
             "contenerphoto":    "images/gears-686316_640.jpg",
             "contenerdate":     "December 13, 2018",
             "contenername":     "Today's sandbox",
-            "contenersubname":  "Some more tricks",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "contenersubname":  "Some more tricks"
         },
         {
             "contenertype":     "BLOGTECHENTRY",
             "contenerphoto":    "images/macro-1452987_640.jpg",
             "contenerdate":     "December 5, 2018",
             "contenername":     "Today's sandbox",
-            "contenersubname":  "Some tricks",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "contenersubname":  "Some tricks"
         },
         {
             "contenertype":     "BLOGTECHENTRY",
             "contenerphoto":    "images/gears-1236578_640.jpg",
             "contenerdate":     "December 3, 2018",
             "contenername":     "Today's sandbox",
-            "contenersubname":  "\"A little break\"",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "contenersubname":  "\"A little break\""
         },
         {
             "contenertype":     "BLOGTECHENTRY",
             "contenerphoto":    "images/screw-1924173_640.jpg",
             "contenerdate":     "November 28, 2018",
             "contenername":     "Today's sandbox",
-            "contenersubname":  "Foolin' around with Treeviews",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "contenersubname":  "Foolin' around with Treeviews"
         },
         {
             "contenertype":     "BLOGTECHENTRY",
             "contenerphoto":    "images/gears-1059756_640.png",
             "contenerdate":     "January 09, 2019",
             "contenername":     "[--UPDATED --] Some React",
-            "contenersubname":  "Tests with React",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "contenersubname":  "Tests with React"
         },
         {
             "contenertype":     "BLOGTECHENTRY",
-            "contenerphoto":    "images/gears-686316_640.jpg",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "contenerphoto":    "images/gears-686316_640.jpg"
         },
         {
             "contenertype":     "BLOGTECHENTRY",
             "contenerphoto":    "images/macro-1452987_640.jpg",
             "contenerdate":     "January 09, 2019",
             "contenername":     "[-- UPDATED --] Today's sandbox",
-            "contenersubname":  "Trying different things with angular.js",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "contenersubname":  "Trying different things with angular.js"
         },
         {
             "contenertype":     "BLOGTECHENTRY",
             "contenerphoto":    "images/gears-1236578_640.jpg",
             "contenerdate":     "May 05, 2018",
             "contenername":     "Today's sandbox",
-            "contenersubname":  "Trying different things with jscript / php to find a CLEAN implementation",
-            "conteneritems":    [ { "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ] } ]
+            "contenersubname":  "Trying different things with jscript / php to find a CLEAN implementation"
         },
         {
             "contenertype":     "JOBENTRY",
@@ -1730,8 +1721,7 @@
                             [
                                 "mailto:francois.pignalet@gmail.com",
                                 "francois.pignalet@gmail.com"
-                            ],
-                        "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ]
+                            ]
                     }
                 ]
         },
@@ -1744,8 +1734,7 @@
                         "contentitems":
                             [
                                 {
-                                    "entrydesc": "Java,  Javascript,  REST, JUnit, XML, JSON, Ant, C,  CUnit, Eclipse, AGILE, JIRA, SVN, SW Architekture, OOP, V Cycle  ==",
-                                    "contentlist": [ { "listtext": [ {   "data": "" } ] } ]
+                                    "entrydesc": "Java,  Javascript,  REST, JUnit, XML, JSON, Ant, C,  CUnit, Eclipse, AGILE, JIRA, SVN, SW Architekture, OOP, V Cycle  =="
                                 }
                             ],
                         "histextra": "100%",
@@ -1755,8 +1744,7 @@
                         "contentitems":
                             [
                                 {
-                                    "entrydesc": "React,  Spring,  jQuery,  SQL,  Linux,  C++,  MFC,  STL,  Win32,  Asm 68K,  Github, Continuous Integration,  Rational Unified Process,  Design Patterns  ==",
-                                    "contentlist": [ { "listtext": [ {   "data": "" } ] } ]
+                                    "entrydesc": "React,  Spring,  jQuery,  SQL,  Linux,  C++,  MFC,  STL,  Win32,  Asm 68K,  Github, Continuous Integration,  Rational Unified Process,  Design Patterns  =="
                                 }
                             ],
                         "histextra": "75%",
@@ -1766,8 +1754,7 @@
                         "contentitems":
                             [
                                 {
-                                    "entrydesc": "C# / .NET,  J2EE,  Python,  Php,  Angular,  OSGi,  CORBA,  Asm x86/ARM,  Jenkins,  DOORS  ==",
-                                    "contentlist": [ { "listtext": [ {   "data": "" } ] } ]
+                                    "entrydesc": "C# / .NET,  J2EE,  Python,  Php,  Angular,  OSGi,  CORBA,  Asm x86/ARM,  Jenkins,  DOORS  =="
                                 }
                             ],
                         "histextra": "50%",
@@ -1777,8 +1764,7 @@
                         "contentitems":
                             [
                                 {
-                                    "entrydesc": "WebLogic,  Android,  Django,  Asm PowerPC ==",
-                                    "contentlist": [ { "listtext": [ {   "data": "" } ] } ]
+                                    "entrydesc": "WebLogic,  Android,  Django,  Asm PowerPC =="
                                 }
                             ],
                         "histextra": "25%",
@@ -1794,20 +1780,17 @@
                     {
                         "histtitle":    "Französisch",
                         "histextra":    "100%",
-                        "histdesc":     "MUTTERSPRACHE",
-                        "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ]
+                        "histdesc":     "MUTTERSPRACHE"
                     },
                     {
                         "histtitle":    "Englisch",
                         "histextra":    "85%",
-                        "histdesc":     "C1",
-                        "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ]
+                        "histdesc":     "C1"
                     },
                     {
                         "histtitle":    "Deutsch",
                         "histextra":    "70%",
-                        "histdesc":     "B2~C1",
-                        "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ]
+                        "histdesc":     "B2~C1"
                     }
                 ]
         },
@@ -1821,24 +1804,21 @@
                         "histkind":     "Ausbildung: Luftfahrtsysteme SW Entwicklung",
                         "histtitle":    "DO-278 Software Standards",
                         "histdesc":     "Wikipedia...",
-                        "histextra":    "https://en.wikipedia.org/wiki/DO-178C",
-                        "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ]
+                        "histextra":    "https://en.wikipedia.org/wiki/DO-178C"
                     },
                     {
                         "histduration": "2004",
                         "histkind":     "Ausbildung: application server",
                         "histtitle":    "BEA WebLogic Integration Zyklus",
                         "histdesc":     "BEA WebLogic",
-                        "histextra":    "https://docs.oracle.com/cd/E13222_01/wls/docs90/index.php",
-                        "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ]
+                        "histextra":    "https://docs.oracle.com/cd/E13222_01/wls/docs90/index.php"
                     },
                     {
                         "histduration": "1985",
                         "histkind":     "Diplom-Abschluss",
                         "histtitle":    "Luftfahrttechnisches Schulungszertifikat",
                         "histdesc":     "Aerocampus",
-                        "histextra":    "https://www.aerocampus-aquitaine.com/en/home/",
-                        "contentitems": [ { "contentlist": [ { "listtext": [ {   "data": "" } ] } ] } ]
+                        "histextra":    "https://www.aerocampus-aquitaine.com/en/home/"
                     }
                 ]
         },

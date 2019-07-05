@@ -2,30 +2,10 @@
 <html xmlns:th="http://thymeleaf.org">
 <html lang="en">
 
-<div th:fragment="header"
-     class="navbar navbar-inverse navbar-fixed-top">
+<div th:fragment="header">
+</div>
 
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link rel="stylesheet" href="/style/main.css" />
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-          crossorigin="anonymous"
-    />
-
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">MAIN ENTRY PAGE</a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar">ICON 1</span>
-                <span class="icon-bar">ICON 2</span>
-                <span class="icon-bar">ICON 3</span>
-            </button>
-        </div>
-    </div>
-
+<div th:fragment="footer">
 </div>
 
 <div th:fragment="contentdivs">
@@ -89,82 +69,66 @@
 </div>
 
 <div th:fragment="contentcvtable">
-    <table>
-        <tbody>
-        <tr th:each="record : ${database}">
-            <td><span th:text="${record.getContenerphoto()}"></span></td>
-            <td><span th:text="${record.getContenername()}"></span></td>
-            <td><span th:text="${record.getContenersubname()}"></span></td>
-            <td><span th:text="${record.getContenerdate()}"></span></td>
-            <td><span th:if="${record.getConteneritems() != null}">
-                <table>
-                    <tbody>
-                        <tr th:each="item : ${record.getConteneritems()}">
-                            <td><span th:text="${item.getHistkind()}"></span></td>
-                            <td><span th:text="${item.getHisttitle()}"></span></td>
-                            <td><span th:text="${item.getHistdesc()}"></span></td>
-                            <td><span th:text="${item.getHistduration()}"></span></td>
-                            <td><span th:text="${item.getHistextra()}"></span></td>
-                            <td><span th:if="${item.getContentitems() != null}">
-                                <table>
-                                    <tbody>
-                                        <tr th:each="content : ${item.getContentitems()}">
-                                            <td><span th:text="${content.getEntrydesc()}"></span></td>
-                                            <td><span th:if="${content.getContentlist() != null}">
-                                                <table>
-                                                    <tbody>
-                                                    <tr th:each="sub : ${content.getContentlist()}">
-                                                        <td><span th:if="${sub.getListtext() != null}">
-                                                            <table>
-                                                                <tbody>
-                                                                <tr th:each="text : ${sub.getListtext()}">
-                                                                    <td><span th:if="${text.getData() != null}">
-                                                                        <table>
-                                                                            <tbody>
-                                                                            <tr th:each="value : ${text.getData()}">
-                                                                                <td><span th:text="${text.getData()}"></span></td>
-                                                                            </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </span></td>
-                                                                </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </span></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </span></td>
-        </tr>
-        </tbody>
-    </table>
+
+    <ul>
+        <li th:each="record : ${database}">
+        <ul>
+            <img th:src="${record.getContenerphoto()}"></img>
+            <li th:text="${record.getContenerdate()}"></li>
+            <li th:text="${record.getContenername()}"></li>
+            <li th:text="${record.getContenersubname()}"></li>
+            <li th:if="${record.getConteneritems() != null}">
+            <ul>
+                <li th:each="item : ${record.getConteneritems()}">
+                <ul>
+                    <li th:text="${item.getHisttitle()}"></li>
+                    <li th:text="${item.getHistkind()}"></li>
+                    <li th:text="${item.getHistdesc()}"></li>
+                    <li th:text="${item.getHistduration()}"></li>
+                    <li th:text="${item.getHistextra()}"></li>
+                    <li th:if="${item.getContentitems() != null}">
+                    <ul>
+                        <li th:each="content : ${item.getContentitems()}">
+                        <ul>
+                            <li th:text="${content.getEntrydesc()}"></li>
+                            <li th:if="${content.getContentlist() != null}">
+                            <ul>
+                                <li th:each="sub : ${content.getContentlist()}">
+                                <ul>
+                                    <li th:if="${sub.getListtext() != null}">
+                                    <ul>
+                                        <li th:each="text : ${sub.getListtext()}">
+                                        <ul>
+                                            <li th:if="${text.getData() != null}">
+                                            <ul>
+                                                <li th:each="value : ${text.getData()}">
+                                                <ul>
+                                                    <li th:text="${text.getData()}"></li>
+                                                </ul>
+                                                </li>
+                                            </ul>
+                                            </li>
+                                        </ul>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                </ul>
+                                </li>
+                            </ul>
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+                    </li>
+                </ul>
+                </li>
+            </ul>
+            </li>
+        </ul>
+        </li>
+    </ul>
 
     <script type="text/javascript" th:src="@{built/jquery-3.4.1.min.js}"></script>
     <script th:inline="javascript">
-        // Change the selector if needed
-        var $table = $('table.scroll'),
-            $bodyCells = $table.find('tbody tr:first').children(),
-            colWidth;
-
-        // Adjust the width of thead cells when window resizes
-        $(window).resize(function() {
-            // Get the tbody columns width array
-            colWidth = $bodyCells.map(function() {
-                return $(this).width();
-            }).get();
-
-            // Set the width of thead columns
-            $table.find('thead tr').children().each(function(i, v) {
-                $(v).width(colWidth[i]);
-            });
-        }).resize(); // Trigger resize handler
     </script>
 </div>

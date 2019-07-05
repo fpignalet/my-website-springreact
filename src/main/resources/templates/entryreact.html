@@ -1,11 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="/style/main.css" />
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous"
+    />
+
     <div th:include="fragments/fragments.html :: header" ></div>
 
 </head>
 <body>
-    <div th:include="fragments/fragments.html :: contentreact" ></div>
+    <div class="fixed-parallax">
+        <div class="image five"></div>
+        <div class="content">
+            <div th:include="fragments/fragments.html :: contentreact" ></div>
+
+        </div>
+        <div class="image six"></div>
+    </div>
+
+    <div th:include="fragments/fragments.html :: footer" ></div>
 
 </body>
 </html>
