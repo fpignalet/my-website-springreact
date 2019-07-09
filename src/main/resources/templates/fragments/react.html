@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+
+<!-- -------------------------------------------------------------------------->
+<div th:fragment="contentreact">
+    <script type="text/javascript" th:src="@{built/bundlewebsite.js}">
+    </script>
+    <script th:inline="javascript">
+        try {
+            window.guirequestfromreact();
+        }
+        catch (e) {
+            console.log(e.toString())
+        }
+    </script>
+
+    <!-- -------------------------------------------------------------------------->
+    <div id="contenerREACT1"></div>
+    <p hidden id="modelname" th:text="${name}" />
+    <script type="text/javascript" th:src="@{built/bundlereact.js}">
+    </script>
+
+</div>

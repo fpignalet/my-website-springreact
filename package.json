@@ -20,6 +20,7 @@
     "data",
     "react"
   ],
+  "commentscripts": "execute npm run-script {one-of-the-following}",
   "scripts": {
     "build": "webpack"
   },
@@ -37,6 +38,7 @@
     "redux": "^3.5.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.1.0",
+    "@angular/cli": "^8.1.0",
     "styled-components": "^4.2.0",
     "json-loader": "^0.5.7",
     "raw-loader": "^1.0.0",

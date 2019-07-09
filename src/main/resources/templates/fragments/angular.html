@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+
+<!-- -------------------------------------------------------------------------->
+<div th:fragment="contentangular">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js">
+    </script>
+    <!-- IMPLEM -->
+    <div id="angutest1"
+         ng-app="testapp"
+         ng-controller="testctrl"
+         ng-init="person={ firstName: 'John', lastName: 'Doe' };
+                  points=[ 1, 15, 19, 2, 40 ]">
+
+        <!-- small test 1 ---------------------------------->
+        <div>
+            <strong>
+                TEST with ng-init data
+            </strong>
+            <br>
+
+            The person firstName/lastName in data (using ng-bind) is
+            <strong><span ng-bind="person.firstName"></span></strong>
+            <strong><span ng-bind="person.lastName"></span></strong>
+            <br>
+            The third item in array "points" in data (using direct ref) is
+            <strong>
+                <!-- points[2] comes directly from ng-init ---------------->
+                points[2]: {{ points[2] }}
+            </strong>
+        </div>
+        <br>
+        <!-- small test 2 ---------------------------------->
+        <div>
+            <strong>
+                TEST with form --> ng-model
+            </strong>
+            <form>
+                <ul>
+                    <li>First Name: <input type="text" ng-model="ifirstName"></li>
+                    <li>Last Name: <input type="text" ng-model="ilastName"></li>
+                </ul>
+            </form>
+
+            Hello (using ifirstName / ilastName filled in ng-model)
+            <strong>{{ifirstName + " " + ilastName}}</strong>
+        </div>
+        <br>
+        <!-- small test 3 ---------------------------------->
+        <div>
+            <strong>
+                TEST with dynamic list (see main/js/angmodule.js)
+            </strong>
+            <ul>
+                <li ng-repeat="x in products">{{x}}
+                    <span ng-click="dynlistremoveitem($index)"> [X] </span>
+                </li>
+            </ul>
+            <input type="text" ng-model="field2Add">
+            <button ng-click="dynlistadditem()">Add</button>
+            <br>The button above calls angmodule.js: $scope.dynlistadditem() in testapp/controller
+        </div>
+        <br>
+        <div>
+            {{errortext}}
+        </div>
+        <br>
+        <!-- small test 4 ---------------------------------->
+        <div>
+            <p><strong>
+                TEST with mouse
+            </strong>
+            <h1 ng-mousemove="onmouseover($event)">Mouse Over here !</h1>
+            <br>
+
+            Coordinates (using ng-mousemove): <strong>{{x + ', ' + y}}</strong>
+            </p>
+        </div>
+
+    </div>
+    <div ng-app="otherapp"
+         ng-controller="otherctrl"
+         id="angutest2">
+
+        <!-- small test 5 ---------------------------------->
+        <div>
+            <strong>
+                TEST WITH ngRoute
+            </strong>
+            <p>Click on the links to change the content.</p>
+            <a class="angmenu" href="#!default">None</a>
+            <a class="angmenu" href="#!Menu1">Menu 1</a>
+            <a class="angmenu" href="#!Menu2">Menu 2</a>
+            <div ng-view></div>
+        </div>
+
+    </div>
+    <script type="text/javascript" th:src="@{built/bundleangular.js}">
+    </script>
+    <script type="text/javascript">
+        try {
+            window.angularexe();
+        }
+        catch (e) {
+            alert("angular app failed")
+            console.log(e.toString())
+        }
+    </script>
+
+</div>

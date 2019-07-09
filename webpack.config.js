@@ -1,13 +1,17 @@
 const path = require("path");
 
+//called by npm run-script build
+const inputdir = './src/main/js/';
+const outputdir = 'src/main/resources/static/built';
+
 module.exports = [
 
     //-------------------------------------------------
-    //bundling module_direct.js
+    //minifying module_direct.js
     {
-        entry: './src/main/js/core/appmodule.js',
+        entry: inputdir + 'core/appmodule.js',
         output: {
-            path: path.resolve(__dirname, 'src/main/resources/static/built'),
+            path: path.resolve(__dirname, outputdir),
             filename: 'bundlewebsite.js'
         },
         module: {
@@ -21,11 +25,29 @@ module.exports = [
     },
 
     //-------------------------------------------------
-    //transpiling and bundling module_game.js
+    //minifying module_direct.js
     {
-        entry: './src/main/js/react/reactmodule.jsx',
+        entry: inputdir + 'angular/angmodule.js',
         output: {
-            path: path.resolve(__dirname, 'src/main/resources/static/built'),
+            path: path.resolve(__dirname, outputdir),
+            filename: 'bundleangular.js'
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(js)$/,
+                    exclude: /node_modules/
+                }
+            ]
+        }
+    },
+
+    //-------------------------------------------------
+    //minifying and bundling module_game.js
+    {
+        entry: inputdir + 'react/reactmodule.jsx',
+        output: {
+            path: path.resolve(__dirname, outputdir),
             filename: 'bundlereact.js'
         },
         module: {

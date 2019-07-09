@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/style/main.css" />
+
+    <div th:include="fragments/tests.html :: header" ></div>
+
+</head>
+<body>
+    <div class="fixed-parallax">
+        <div class="image seven"></div>
+        <div class="content">
+            <div th:include="fragments/angular.html :: contentangular" ></div>
+
+        </div>
+        <div class="image eight"></div>
+    </div>
+
+    <div th:include="fragments/tests.html :: footer" ></div>
+
+</body>
+</html>

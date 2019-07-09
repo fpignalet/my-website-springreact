@@ -1,6 +1,12 @@
 "use strict";
 
+import {JSUtils} from "../lib/utils.js"
+
 class JSApp {
+
+    constructor () {
+        this.jsutils = new JSUtils();
+    }
 
     /**
      *
@@ -45,7 +51,7 @@ class JSApp {
                 let text = "";
                 if(null == select){
                     for (var key in jsonRes) {
-                        const value = local.parse(text, jsonRes[key]);
+                        const value = local.jsutils.parse(text, jsonRes[key]);
                         if(null != cbk){
                             cbk(value);
                         }
@@ -56,7 +62,7 @@ class JSApp {
                     }
                 }
                 else{
-                    const value = local.parse(text, jsonRes[select]);
+                    const value = local.jsutils.parse(text, jsonRes[select]);
                     if(null != cbk){
                         cbk(value);
                     }
@@ -72,65 +78,36 @@ class JSApp {
         xmlhttp.send();
     }
 
-    /**
-     *
-     * @param text
-     * @param select
-     */
-    parse(text, data) {
-        const local = this;
-
-        let value = text;
-
-        if(Object.prototype.toString.call(data) === '[object Array]') {
-            data.forEach((itm, idx) => {
-                value = local.parse(value, itm);
-            });
-        }
-        else if(Object.prototype.toString.call(data) === '[object Map]') {
-            Object.keys(data).forEach((itm, idx) => {
-                value = local.parse(value, itm + ": " + data[itm]);
-            });
-        }
-        else if(Object.prototype.toString.call(data) === '[object Object]') {
-            Object.keys(data).forEach((itm, idx) => {
-                value = local.parse(value, itm + ": " + data[itm]);
-            });
-        }
-        else {
-            value = text + data + "\r\n";
-        }
-
-        return value;
-    }
-
 }
+
+const restRequests = [
+    "guirequestfrommain",
+    "guirequestfromreact",
+    "testhttpgetfromparam",
+    "exthttpgetjson1",
+    "testpopulatedb"
+];
 
 window.guirequestfrommain = () => {
     const jsapp = new JSApp();
-    jsapp.httpGetRAW("guirequestfrommain", "here is CONTENT MAIN", (text) => {
+    jsapp.httpGetRAW(restRequests[0], "here is CONTENT MAIN", (text) => {
         console.log(text)
     });
 }
 
 window.guirequestfromreact = () => {
     const jsapp = new JSApp();
-    jsapp.httpGetRAW("guirequestfromreact", "here is REACT PAGE");
+    jsapp.httpGetRAW(restRequests[1], "here is REACT PAGE");
 }
 
-window.testhttpgetfromparam = () => {
+window.testhttpgetfromparam = () => {'testpopulatedb'
     const jsapp = new JSApp();
-    jsapp.httpGetJSON('testhttpgetfromparam', 'MAIN ENTRY', 'item1');
-}
-
-window.testpopulatedb = () => {
-    const jsapp = new JSApp();
-    jsapp.httpGetJSON('testpopulatedb', null, 'DBConteners')
+    jsapp.httpGetJSON(restRequests[2], 'MAIN ENTRY', 'item1');
 }
 
 window.exthttpgetjson1 = () => {
     const jsapp = new JSApp();
-    jsapp.httpGetJSON('exthttpgetjson1', null, "DBConteners", (text) => {
+    jsapp.httpGetJSON(restRequests[3], null, "DBConteners", (text) => {
         console.log(text);
 
         const item = document.createElement("li");
@@ -139,4 +116,9 @@ window.exthttpgetjson1 = () => {
         const dynlist = document.getElementById("dyntest");
         dynlist.appendChild(item);
     });
+}
+
+window.testpopulatedb = () => {
+    const jsapp = new JSApp();
+    jsapp.httpGetJSON(restRequests[4], null, 'DBConteners')
 }

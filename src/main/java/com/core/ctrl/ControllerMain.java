@@ -26,9 +26,10 @@ public class ControllerMain extends AControllerBase {
      * in templates:
      */
     private final static String[] pageNames = {
-        "entrymain",
-        "entryreact",
-        "error"
+        "frontend_default",
+        "frontend_react",
+        "frontend_angular",
+        "frontend_error"
     };
 
     /**
@@ -55,7 +56,7 @@ public class ControllerMain extends AControllerBase {
             return pageNames[0];
         } catch (IOException e) {
             e.printStackTrace();
-            return pageNames[2];
+            return pageNames[3];
         }
     }
 
@@ -65,8 +66,8 @@ public class ControllerMain extends AControllerBase {
      * @param model
      * @return
      */
-    @GetMapping("/entrymain")
-    public String entrymain(
+    @GetMapping("/entrydefault")
+    public String entrydefault(
         @RequestParam(name="name", required=false, defaultValue="MAIN CONTROLER") String name,
         Model model)
     {
@@ -77,7 +78,7 @@ public class ControllerMain extends AControllerBase {
             return pageNames[0];
         } catch (IOException e) {
             e.printStackTrace();
-            return pageNames[2];
+            return pageNames[3];
         }
     }
 
@@ -98,7 +99,28 @@ public class ControllerMain extends AControllerBase {
             return pageNames[1];
         } catch (Exception e) {
             e.printStackTrace();
+            return pageNames[3];
+        }
+    }
+
+    /**
+     * to be tested in browser
+     * will display angular html page with "FROM MODEL:[name parameter content]"
+     * @param name
+     * @param model
+     * @return
+     */
+    @GetMapping("/entryangular")
+    public String entryangular(
+        @RequestParam(name="name", required=false, defaultValue="RETEST") String name,
+        Model model)
+    {
+        try {
+            model.addAttribute("name", name + ", WITH BEAN TEST: " + getEngineJSON().doReactTest());
             return pageNames[2];
+        } catch (Exception e) {
+            e.printStackTrace();
+            return pageNames[3];
         }
     }
 
@@ -107,7 +129,7 @@ public class ControllerMain extends AControllerBase {
      * not yet working...
      * @throws InterruptedException
      */
-    @GetMapping("/testasync")
+    @GetMapping("/entryasync")
     @Async
     public Future<String> methodAsync1() {
         try {
@@ -118,7 +140,7 @@ public class ControllerMain extends AControllerBase {
         }
         catch (InterruptedException e) {
             log.error(e.toString());
-            return new AsyncResult<>(pageNames[2]);
+            return new AsyncResult<>(pageNames[3]);
         }
     }
 

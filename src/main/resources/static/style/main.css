@@ -1,34 +1,11 @@
-ul {
-    alignment: left;
-    text-align: left;
-}
-li {
-    alignment: left;
-    text-align: left;
+/* MULTIP- */
+.content {
+    color: #fff;
+    background-color: rgba(48, 87, 240, 0.75);
 }
 
 img {
     max-width: 25%;
-}
-
-button {
-    float: left;
-    text-align: left;
-}
-
-table {
-    float: left;
-    text-align: left;
-}
-
-label {
-    float: left;
-    text-align: left;
-}
-
-input {
-    float: left;
-    text-align: left;
 }
 
 /* PARALLAX */
@@ -57,10 +34,9 @@ input {
 .fixed-parallax .image.six {
     background-image: url("../images/WP_20180822_10_50_54_Pro.jpg");
 }
-.content {
-    text-align: center;
-    padding: 50px 30px;
-    font-size: 1.25rem;
-    color: #fff;
-    background-color: rgba(48, 87, 240, 0.75);
+.fixed-parallax .image.seven {
+    background-image: url("../images/WP_20180822_12_44_47_Pro.jpg");
+}
+.fixed-parallax .image.eight {
+    background-image: url("../images/WP_20180822_14_20_35_Pro.jpg");
 }

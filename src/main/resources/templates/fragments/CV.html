@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+
+<!-- -------------------------------------------------------------------------->
+<div th:fragment="contentcvtable">
+
+    <div th:if="${database != null}">
+        <ul>
+            <div th:include="fragments/CV.html :: contentcvtable_record"></div>
+        </ul>
+
+        <script type="text/javascript" th:src="@{built/jquery-3.4.1.min.js}"></script>
+        <script th:inline="javascript">
+            //something...
+        </script>
+    </div>
+</div>
+
+<div th:fragment="contentcvtable_record">
+    <li th:each="record : ${database}">
+        <ul>
+            <img th:if="${record.getContenerphoto() != null}"
+                 th:src="${record.getContenerphoto()}"></img>
+
+            <li th:if="${record.getContenerdate() != null}"
+                th:text="${record.getContenerdate()}"></li>
+            <li th:if="${record.getContenername() != null}"
+                th:text="${record.getContenername()}"></li>
+            <li th:if="${record.getContenersubname() != null}"
+                th:text="${record.getContenersubname()}"></li>
+
+            <div th:if="${record.getConteneritems() != null}">
+                <div th:include="fragments/CV.html :: contentcvtable_item" ></div>
+            </div>
+        </ul>
+    </li>
+</div>
+
+<div th:fragment="contentcvtable_item">
+    <li th:each="item : ${record.getConteneritems()}">
+        <ul>
+            <li th:if="${item.getHisttitle() != null}"
+                th:text="${item.getHisttitle()}"></li>
+            <li th:if="${item.getHistkind() != null}"
+                th:text="${item.getHistkind()}"></li>
+            <li th:if="${item.getHistdesc() != null}"
+                th:text="${item.getHistdesc()}"></li>
+            <li th:if="${item.getHistduration() != null}"
+                th:text="${item.getHistduration()}"></li>
+            <li th:if="${item.getHistextra() != null}"
+                th:text="${item.getHistextra()}"></li>
+
+            <div th:if="${item.getContentitems() != null}">
+                <div th:include="fragments/CV.html :: contentcvtable_content" ></div>
+            </div>
+        </ul>
+    </li>
+</div>
+
+<div th:fragment="contentcvtable_content">
+    <li th:each="content : ${item.getContentitems()}">
+        <ul>
+            <li th:if="${content.getEntrydesc() != null}"
+                th:text="${content.getEntrydesc()}"></li>
+
+            <div th:if="${content.getContentlist() != null}">
+                <div th:include="fragments/CV.html :: contentcvtable_sub" ></div>
+            </div>
+        </ul>
+    </li>
+</div>
+
+<div th:fragment="contentcvtable_sub">
+    <li th:each="sub : ${content.getContentlist()}">
+        <div th:if="${sub.getListtext() != null}">
+            <ul>
+                <div th:include="fragments/CV.html :: contentcvtable_text" ></div>
+            </ul>
+        </div>
+    </li>
+</div>
+
+<div th:fragment="contentcvtable_text">
+    <li th:each="text : ${sub.getListtext()}">
+        <div th:if="${text.getData() != null}">
+            <ul>
+                <div th:include="fragments/CV.html :: contentcvtable_value" ></div>
+            </ul>
+        </div>
+    </li>
+</div>
+
+<div th:fragment="contentcvtable_value">
+    <li th:each="value : ${text.getData()}">
+        <div th:text="${text.getData()}"></div>
+    </li>
+</div>

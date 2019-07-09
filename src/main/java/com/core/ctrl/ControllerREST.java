@@ -38,7 +38,6 @@ public class ControllerREST extends AControllerBase {
         @RequestParam(name="param", required=false, defaultValue="guirequestfrommain ANSWER")
         String param
     ) throws InterruptedException {
-        Thread.sleep(10000);
         return "RESPONSE FOR MAIN: " + param;
     }
 
@@ -52,7 +51,6 @@ public class ControllerREST extends AControllerBase {
         @RequestParam(name="param", required=false, defaultValue="guirequestfromreact ANSWER")
         String param
     ) throws InterruptedException {
-        Thread.sleep(10000);
         return "RESPONSE FOR REACT: " + param;
     }
 

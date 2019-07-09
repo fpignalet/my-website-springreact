@@ -11,10 +11,19 @@ const TestApp = require('./reactitems.jsx');
  * IMPLEMENTATION
  *************************************************************************************/
 window.reactgetmodelname = function() {
-    return document.getElementById("modelname").innerText;
+    const it = document.getElementById("modelname");
+    if(null != it) {
+        return it.innerText;
+    }
+    else {
+        return "DEFAULT";
+    }
 }
 
+const tabName = "reacttablejsx";
+const elemId = "contenerREACT1";
+
 ReactDOM.render(
-    <TestApp idtab={"reacttablejsx"} />,
-    document.getElementById("contenerREACT1")
+    <TestApp idtab={tabName} />,
+    document.getElementById(elemId)
 );

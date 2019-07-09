@@ -139,9 +139,7 @@ public class EngServiceJSON implements IEngModelUpdater {
         final Path path = Paths.get(fileName);
         final Charset charset = StandardCharsets.UTF_8;
 
-        return
-            new String(Files.readAllBytes(path))
-                .replace(";", "");
+        return new String(Files.readAllBytes(path));
     }
 
     /**
