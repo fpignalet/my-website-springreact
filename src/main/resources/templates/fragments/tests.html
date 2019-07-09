@@ -13,37 +13,11 @@
 <div th:fragment="contentdivs">
     <p th:text="'MAIN ENTRY PAGE USING MODEL: ' + ${name} + '!'" />
 
-    <script type="text/javascript" th:src="@{built/bundlewebsite.js}">
-    </script>
-    <a href="javascript:;" onclick="window.testhttpgetfromparam()">RECEIVE MAIN ENTRY from Backend</a>
-    <br>
-    <a href="javascript:;" onclick="window.testpopulatedb()">PopulateDB</a>
-    <br>
-
     <a href="/entryreact">goto React tests page</a>
     <br>
 
     <a href="/entryangular">goto Angular tests page</a>
     <br>
-
-</div>
-
-<!-- -------------------------------------------------------------------------->
-<div th:fragment="contentdyn">
-    <ul id="dyntest">
-    </ul>
-
-    <script type="text/javascript" th:src="@{built/bundlewebsite.js}">
-    </script>
-    <script type="text/javascript">
-        try {
-            window.guirequestfrommain();
-            window.exthttpgetjson1();
-        }
-        catch (e) {
-            console.log(e.toString())
-        }
-    </script>
 
 </div>
 
