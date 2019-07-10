@@ -3,7 +3,7 @@ module.exports = [
     //-------------------------------------------------
     //minifying module_tests.js
     {
-        entry: './public/javascripts/module_tests.jsx',
+        entry: './public/javascripts/module_react.jsx',
         output: {
             path: __dirname + "/public/dist",
             filename: 'bundletests.js'

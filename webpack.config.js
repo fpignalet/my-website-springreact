@@ -9,7 +9,7 @@ module.exports = [
     //-------------------------------------------------
     //minifying module_direct.js
     {
-        entry: inputdir + 'angular/angmodule.js',
+        entry: inputdir + 'angular/module_angular.js',
         output: {
             path: path.resolve(__dirname, outputdir),
             filename: 'bundleangular.js'
@@ -27,7 +27,7 @@ module.exports = [
     //-------------------------------------------------
     //minifying and bundling module_game.js
     {
-        entry: inputdir + 'react/reactmodule.jsx',
+        entry: inputdir + 'react/module_react.jsx',
         output: {
             path: path.resolve(__dirname, outputdir),
             filename: 'bundlereact.js'

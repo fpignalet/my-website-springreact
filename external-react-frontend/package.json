@@ -1,10 +1,25 @@
 {
-  "name": "react-canvas-game",
-  "version": "1.0.0",
-  "description": "",
-  "author": "francois pignalet",
-  "keywords": [ "javascript", "node", "react" ],
-
+  "name": "my-website-springreact",
+  "version": "0.1.0",
+  "private": true,
+  "description": "npm config",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fpignalet/my-website-springreact"
+  },
+  "author": "fpignalet",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/fpignalet/my-website-springreact/issues"
+  },
+  "homepage": "https://github.com/fpignalet/my-website-springreact",
+  "keywords": [
+    "java",
+    "javascript",
+    "spring",
+    "react",
+    "REST"
+  ],
   "commentscripts": "execute npm run-script {one-of-the-following}",
   "scripts": {
     "init": "express --view pug",
@@ -12,7 +27,6 @@
     "start": "PORT=3002 node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

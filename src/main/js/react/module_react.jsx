@@ -5,7 +5,7 @@
 
 const React = require('react');
 const ReactDOM = require('react-dom');
-const TestApp = require('./reactitems.jsx');
+const TestApp = require('./reacttests.jsx');
 
 /*************************************************************************************
  * IMPLEMENTATION

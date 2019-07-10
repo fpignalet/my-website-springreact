@@ -31,3 +31,5 @@ bundle.js
 bundle.js.map
 .gitignore
 package-lock.json
+external-react-frontend/bin/
+src/main/resources/static/built/
