@@ -31,71 +31,85 @@ public class ControllerREST extends AControllerBase {
     /**
      * @param param
      * @return
-     * @throws InterruptedException
      */
     @GetMapping("/guirequestfrommain")
     @CrossOrigin
     public String requestfrommain(
         @RequestParam(name="param", required=false, defaultValue="guirequestfrommain ANSWER")
         String param
-    ) throws InterruptedException {
+    ) {
         return "RESPONSE FOR MAIN: " + param;
     }
 
     /**
      * @param param
      * @return
-     * @throws InterruptedException
      */
     @GetMapping("/guirequestfromreact")
     @CrossOrigin
     public String requestfromreact(
         @RequestParam(name="param", required=false, defaultValue="guirequestfromreact ANSWER")
         String param
-    ) throws InterruptedException {
+    ) {
         return "RESPONSE FOR REACT: " + param;
     }
 
     /**
      * @return
-     * @throws IOException
      */
     @RequestMapping(value = "/exthttpgetjson0", method = RequestMethod.GET)
     @CrossOrigin
-    public String exthttpgetjson0() throws IOException {
-        return getEngineJSON().load(0);
+    public String exthttpgetjson0() {
+        try {
+            return getEngineJSON().load(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
      * @return
-     * @throws IOException
      */
     @RequestMapping(value = "/exthttpgetjson1", method = RequestMethod.GET)
     @CrossOrigin
-    public String exthttpgetjson1() throws IOException {
-        return getEngineJSON().load(1);
+    public String exthttpgetjson1() {
+        try {
+            return getEngineJSON().load(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
      * to be tested in browser
      * @return the content of src/main/resources/static/datatest.json data file
-     * @throws IOException
      */
     @GetMapping("/testhttpgetjson0")
     @CrossOrigin
-    public String testhttpgetjson0() throws IOException {
-        return getEngineJSON().load(0);
+    public String testhttpgetjson0() {
+        try {
+            return getEngineJSON().load(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
      * to be tested in browser
      * @return the content of src/main/resources/static/datafpi.js data file
-     * @throws IOException
      */
     @GetMapping("/testhttpgetjson1")
     @CrossOrigin
-    public String testhttpgetjson1() throws IOException {
-        return getEngineJSON().load(1);
+    public String testhttpgetjson1() {
+        try {
+            return getEngineJSON().load(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -104,15 +118,19 @@ public class ControllerREST extends AControllerBase {
      * display will be "{"item1":"TOTO"}"
      * @param param contains the value of the request parameter
      * @return
-     * @throws JsonProcessingException
      */
     @GetMapping("/testhttpgetfromparam")
     @CrossOrigin
     public String testhttpgetfromparam(
         @RequestParam(name="param", defaultValue="DEFAULT")
         String param
-    ) throws JsonProcessingException {
-        return getEngineJSON().createAnswerJSON(param);
+    ) {
+        try {
+            return getEngineJSON().createAnswerJSON(param);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -120,15 +138,18 @@ public class ControllerREST extends AControllerBase {
      */
     @GetMapping("/testpopulatedb")
     @CrossOrigin
-    public void testpopulatedb() {
+    public String testpopulatedb() {
         try {
             final EngServiceJSON instanceJs = getEngineJSON();
             final DBConteners conteners = instanceJs.load();
 
             final EngServiceDB instanceDb = getEngineDB();
             instanceDb.update(conteners);
+
+            return "DB FILLED";
         } catch (IOException e) {
             e.printStackTrace();
+            return "DB NOT FILLED";
         }
     }
 
@@ -137,7 +158,7 @@ public class ControllerREST extends AControllerBase {
      */
     @GetMapping("/testpopulatefile")
     @CrossOrigin
-    public void testpopulatefile() {
+    public String testpopulatefile() {
         try {
             final EngServiceDB instanceDb = getEngineDB();
             final List<DBHistContener> itemsDB = instanceDb.findAllItemsHist();
@@ -145,8 +166,10 @@ public class ControllerREST extends AControllerBase {
             final EngServiceJSON instanceJS = getEngineJSON();
             instanceJS.update(itemsDB);
 
+            return "FILE FILLED";
         } catch (IOException e) {
             e.printStackTrace();
+            return "FILE NOT FILLED";
         }
     }
 
