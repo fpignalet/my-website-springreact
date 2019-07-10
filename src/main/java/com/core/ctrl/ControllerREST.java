@@ -34,6 +34,7 @@ public class ControllerREST extends AControllerBase {
      * @throws InterruptedException
      */
     @GetMapping("/guirequestfrommain")
+    @CrossOrigin
     public String requestfrommain(
         @RequestParam(name="param", required=false, defaultValue="guirequestfrommain ANSWER")
         String param
@@ -47,6 +48,7 @@ public class ControllerREST extends AControllerBase {
      * @throws InterruptedException
      */
     @GetMapping("/guirequestfromreact")
+    @CrossOrigin
     public String requestfromreact(
         @RequestParam(name="param", required=false, defaultValue="guirequestfromreact ANSWER")
         String param
@@ -80,6 +82,7 @@ public class ControllerREST extends AControllerBase {
      * @throws IOException
      */
     @GetMapping("/testhttpgetjson0")
+    @CrossOrigin
     public String testhttpgetjson0() throws IOException {
         return getEngineJSON().load(0);
     }
@@ -90,6 +93,7 @@ public class ControllerREST extends AControllerBase {
      * @throws IOException
      */
     @GetMapping("/testhttpgetjson1")
+    @CrossOrigin
     public String testhttpgetjson1() throws IOException {
         return getEngineJSON().load(1);
     }
@@ -103,6 +107,7 @@ public class ControllerREST extends AControllerBase {
      * @throws JsonProcessingException
      */
     @GetMapping("/testhttpgetfromparam")
+    @CrossOrigin
     public String testhttpgetfromparam(
         @RequestParam(name="param", defaultValue="DEFAULT")
         String param
@@ -114,6 +119,7 @@ public class ControllerREST extends AControllerBase {
      * to be tested in browser
      */
     @GetMapping("/testpopulatedb")
+    @CrossOrigin
     public void testpopulatedb() {
         try {
             final EngServiceJSON instanceJs = getEngineJSON();
@@ -130,6 +136,7 @@ public class ControllerREST extends AControllerBase {
      * to be tested in browser
      */
     @GetMapping("/testpopulatefile")
+    @CrossOrigin
     public void testpopulatefile() {
         try {
             final EngServiceDB instanceDb = getEngineDB();

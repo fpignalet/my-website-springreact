@@ -33,11 +33,19 @@ export class ReactConnect extends ReactBaseJSX {
             content0: 'content1',
             test1: 'Not answered',
             getjson1: 'exthttpgetjson1',
-            content1: 'DBConteners'
+            content1: 'DBConteners',
+            test2: 'Not answered',
+            populatedb: 'testpopulatedb',
+            content2: '',
+            test3: 'Not answered',
+            populatefile: 'testpopulatefile',
+            content3: ''
         };
 
         this.exthttpgetjson0 = this.exthttpgetjson0.bind(this);
         this.exthttpgetjson1 = this.exthttpgetjson1.bind(this);
+        this.populatedb = this.populatedb.bind(this);
+        this.populatefile = this.populatefile.bind(this);
     }
 
     exthttpgetjson0() {
@@ -58,6 +66,28 @@ export class ReactConnect extends ReactBaseJSX {
             (value) => {
                 // alert("Received Successful response from server: " + value);
                 this.setState({test1: value})
+            }
+        );
+    }
+
+    populatedb() {
+        this.getdatafrombackend(
+            this.state.populatedb,
+            this.state.content2,
+            (value) => {
+                // alert("Received Successful response from server: " + value);
+                this.setState({test2: value})
+            }
+        );
+    }
+
+    populatefile() {
+        this.getdatafrombackend(
+            this.state.populatefile,
+            this.state.content3,
+            (value) => {
+                // alert("Received Successful response from server: " + value);
+                this.setState({test3: value})
             }
         );
     }
@@ -147,6 +177,14 @@ export class ReactConnect extends ReactBaseJSX {
                     <div>
                         <button onClick={this.exthttpgetjson1}>exthttpgetjson1</button>
                         <div>exthttpgetjson1: {this.state.test1}</div>
+                    </div>
+                    <div>
+                        <button onClick={this.populatedb}>populatedb</button>
+                        <div>populatedb: {this.state.test2}</div>
+                    </div>
+                    <div>
+                        <button onClick={this.populatefile}>populatefile</button>
+                        <div>populatefile: {this.state.test3}</div>
                     </div>
                 </div>
             </div>

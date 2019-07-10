@@ -1,45 +1,46 @@
 {
+  "id": 1,
+  "content1": "CONTENT 1",
+  "content2": "CONTENT 2",
+  "content3": {
     "id": 1,
-
-    "content1": "CONTENT 1",
-    "content2": "CONTENT 2",
-    "content3": {
-      "id":1,
-      "content1": [ "CONTENT 311", "CONTENT 312"  ],
-      "content2": [ "CONTENT 321", "CONTENT 322"  ]
-    },
-
-    "testtext": [
-        "CLICK ME!",
-        "Do something",
-        "Now displaying the following list\n"
+    "content1": [
+      "CONTENT 311",
+      "CONTENT 312"
     ],
-    "testdata": [
-        "JSX Test table Item1 ",
-        "JSX Test table Item2 "
-    ],
-
-    "collapsable-text": [{
-        "title": "TITLE",
-        "text": "COLLAPSABLE TEXT",
-        "subcontent":
-            {
-                "title": "SUBTITLE",
-                "text": "COLLAPSABLE SUBTEXT",
-                "subcontent":
-                    {
-                        "title": "SUBSUBTITLE",
-                        "text": "COLLAPSABLE SUBSUBTEXT",
-                        "subcontent":
-                            {
-                                "title": "SUBSUBSUBTITLE",
-                                "text": "COLLAPSABLE SUBSUBSUBTEXT",
-                                "subcontent": null
-                            }
-                    }
-            }
-    }],
-
-    "link-text1": "LINK-1-= THIS IS TEXT 1",
-    "link-text2": "LINK-2-= THIS IS TEXT 2"
+    "content2": [
+      "CONTENT 321",
+      "CONTENT 322"
+    ]
+  },
+  "testtext": [
+    "CLICK ME!",
+    "Do something",
+    "Now displaying the following list\n"
+  ],
+  "testdata": [
+    "JSX Test table Item1 ",
+    "JSX Test table Item2 "
+  ],
+  "collapsable-text": [
+    {
+      "title": "TITLE",
+      "text": "COLLAPSABLE TEXT",
+      "subcontent": {
+        "title": "SUBTITLE",
+        "text": "COLLAPSABLE SUBTEXT",
+        "subcontent": {
+          "title": "SUBSUBTITLE",
+          "text": "COLLAPSABLE SUBSUBTEXT",
+          "subcontent": {
+            "title": "SUBSUBSUBTITLE",
+            "text": "COLLAPSABLE SUBSUBSUBTEXT",
+            "subcontent": null
+          }
+        }
+      }
+    }
+  ],
+  "link-text1": "LINK-1-= THIS IS TEXT 1",
+  "link-text2": "LINK-2-= THIS IS TEXT 2"
 }
