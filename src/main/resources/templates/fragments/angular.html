@@ -9,7 +9,20 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js">
     </script>
+
     <!-- IMPLEM -->
+    <div th:include="fragments/angular.html :: contentangular_app1" ></div>
+    <div th:include="fragments/angular.html :: contentangular_app2" ></div>
+
+    <script type="text/javascript" th:src="@{built/bundleangular.js}">
+    </script>
+    <script type="text/javascript">
+        window.angularexe();
+    </script>
+
+</div>
+
+<div th:fragment="contentangular_app1">
     <div id="angutest1"
          ng-app="testapp"
          ng-controller="testctrl"
@@ -19,7 +32,7 @@
         <!-- small test 1 ---------------------------------->
         <div>
             <strong>
-                TEST with ng-init data
+                TEST APP 1, with ng-init data
             </strong>
             <br>
 
@@ -82,6 +95,9 @@
         </div>
 
     </div>
+</div>
+
+<div th:fragment="contentangular_app2">
     <div ng-app="otherapp"
          ng-controller="otherctrl"
          id="angutest2">
@@ -89,7 +105,7 @@
         <!-- small test 5 ---------------------------------->
         <div>
             <strong>
-                TEST WITH ngRoute
+                TEST APP 2, WITH ngRoute
             </strong>
             <p>Click on the links to change the content.</p>
             <a class="angmenu" href="#!default">None</a>
@@ -99,16 +115,5 @@
         </div>
 
     </div>
-    <script type="text/javascript" th:src="@{built/bundleangular.js}">
-    </script>
-    <script type="text/javascript">
-        try {
-            window.angularexe();
-        }
-        catch (e) {
-            alert("angular app failed")
-            console.log(e.toString())
-        }
-    </script>
-
 </div>
+
