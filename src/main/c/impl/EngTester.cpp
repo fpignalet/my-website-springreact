@@ -2,7 +2,6 @@
 // Created by fpi on 11.07.19.
 //
 
-#include <vector>
 #include <algorithm>
 
 #include "../headers/com_core_eng_EngExternal.h"
@@ -20,55 +19,63 @@ static const char* sTypeArrayInt = "[I";
 
 static const char *sResult = (char*)"RESULT FROM CPP";
 
-const char* EngTester::wrapper(JNIEnv *pEnv, jobject p1, jobject p2) {
+static const char *sReplies[] = {
+    "test string 1 from library",
+    "test string 2 from library",
+    "test string 3 from library",
+    "test string 4 from library",
+    "test string 5 from library"
+};
+
+const char* EngTester::wrapper_in(JNIEnv *pEnv, jobject p1, jobject p2) {
     EngTester tester;
-    return tester.execute(pEnv, p1, p2);
+    return(tester.execute_in(pEnv, p1, p2));
 }
 
-/*
-static class Data {
-    public int field1 = 0;
-    public long field2 = 1;
-    public float field3 = (float) 2.0;
-    public double field4 = 2.0;
-    public String field5 = "TEST";
-    public int[] field6 = { 0, 1, 2 };
-};
-*/
-const char* EngTester::execute(JNIEnv *pEnv, jobject p1, jobject p2){
+const jobjectArray EngTester::wrapper_out(JNIEnv *pEnv, jobject p1) {
+    EngTester tester;
+    return(tester.execute_out(pEnv, p1));
+}
+
+const char* EngTester::execute_in(JNIEnv *pEnv, jobject p1, jobject p2){
     const jclass cls = pEnv->GetObjectClass(p2);
 
-    readField1(pEnv, cls, p2);
-    //readField2(pEnv, cls, p2);
-    readField3(pEnv, cls, p2);
-    readField4(pEnv, cls, p2);
-    readField5(pEnv, cls, p2);
-    readField6(pEnv, cls, p2);
+    read_field1(pEnv, cls, p2);
+    //read_field2(pEnv, cls, p2);
+    read_field3(pEnv, cls, p2);
+    read_field4(pEnv, cls, p2);
+    read_field5(pEnv, cls, p2);
+    read_field6(pEnv, cls, p2);
 
-    return sResult;
+    return(sResult);
 }
 
-void EngTester::readField1(JNIEnv *pEnv, jclass cls, jobject data) {
+const jobjectArray EngTester::execute_out(JNIEnv *pEnv, jobject p1){
+    const vector<string> v(sReplies, end(sReplies));
+    return(fillStringArray(pEnv, v));
+}
+
+void EngTester::read_field1(JNIEnv *pEnv, jclass cls, jobject data) {
     cout << "field1VAL: " << readInt(pEnv, cls, "field1", data) << endl;
 }
 
-void EngTester::readField2(JNIEnv *pEnv, jclass cls, jobject data) {
+void EngTester::read_field2(JNIEnv *pEnv, jclass cls, jobject data) {
     cout << "field2VAL: " << readLong(pEnv, cls, "field2", data) << endl;
 }
 
-void EngTester::readField3(JNIEnv *pEnv, jclass cls, jobject data) {
+void EngTester::read_field3(JNIEnv *pEnv, jclass cls, jobject data) {
     cout << "field3VAL: " << readFloat(pEnv, cls, "field3", data) << endl;
 }
 
-void EngTester::readField4(JNIEnv *pEnv, jclass cls, jobject data) {
+void EngTester::read_field4(JNIEnv *pEnv, jclass cls, jobject data) {
     cout << "field4VAL: " << readDouble(pEnv, cls, "field4", data) << endl;
 }
 
-void EngTester::readField5(JNIEnv *pEnv, jclass cls, jobject data) {
+void EngTester::read_field5(JNIEnv *pEnv, jclass cls, jobject data) {
     cout << "field5VAL: " << readString(pEnv, cls, "field5", data) << endl;
 }
 
-void EngTester::readField6(JNIEnv *pEnv, jclass cls, jobject data) {
+void EngTester::read_field6(JNIEnv *pEnv, jclass cls, jobject data) {
     cout << "field6VAL: "<< endl;
     parseIntArray(pEnv, cls, "field6", data);
 }
@@ -106,4 +113,16 @@ void EngJNIEntry::parseIntArray(JNIEnv *pEnv, jclass cls, string name, jobject d
     const jint *fieldItems = pEnv->GetIntArrayElements(fieldValue, 0);
     const vector<jint> v(fieldItems, fieldItems + length);
     for_each(v.begin(), v.end(), [](const jint& val) { cout << val << endl; });
+}
+
+const jobjectArray EngJNIEntry::fillStringArray(JNIEnv *pEnv, const vector<string>& v) {
+    const jobjectArray ret = (jobjectArray)pEnv->NewObjectArray
+            (v.size(), pEnv->FindClass(sTypeString), pEnv->NewStringUTF(""));
+    int i = 0;
+    for_each(v.begin(), v.end(), [pEnv, ret, &i](const string& val) {
+        pEnv->SetObjectArrayElement(ret, i, pEnv->NewStringUTF(val.c_str()));
+        i++;
+    });
+
+    return(ret);
 }
