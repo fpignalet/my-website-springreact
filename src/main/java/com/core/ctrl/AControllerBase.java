@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -57,8 +56,12 @@ public abstract class AControllerBase {
         this.engineMail = engineMail;
 
 //        accessEnv();
-        final String result = EngExternal.test();
-        log.info(result);
+        final String result_execute = EngExternal.test_execute();
+        log.info(result_execute);
+        final String[] result_getData = EngExternal.test_getData();
+        for(final String data: result_getData){
+            log.info(data);
+        }
     }
 
     /**

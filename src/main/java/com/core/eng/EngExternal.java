@@ -16,10 +16,16 @@ public class EngExternal {
     };
 
     private native String execute(final Data data);
+    private native String[] getData();
 
-    public static String test() {
+    public static String test_execute() {
         final Data data =  new Data();
         return new EngExternal().execute(data);
+    }
+
+    public static String[] test_getData() {
+        final Data data =  new Data();
+        return new EngExternal().getData();
     }
 
 }
