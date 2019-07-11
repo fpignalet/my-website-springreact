@@ -33,7 +33,7 @@ import java.util.List;
 public class EngServiceJSON implements IEngModelUpdater {
 
     /************************************************************************
-     MULTI-PURPOSE
+     MULTI-PURPOSE, TESTS
      */
     /**
      * @return
@@ -42,45 +42,11 @@ public class EngServiceJSON implements IEngModelUpdater {
         return "TEST ENGINE1";
     }
 
-    /************************************************************************
-     INTERFACE ENFORCING
-     */
-    /**
-     * in resources/templates/fragments:
-     */
-    private final static String[] modelItems = {
-        "database" //for contentXXX.html
-    };
-
-    /**
-     * @param model
-     */
-    @Override
-    public void updateModel(final Model model) throws IOException {
-        final String data = load(getDataRepo() + getFileNames()[1]);
-
-        final DBConteners conteners = (DBConteners) parse(data,
-            DBConteners.class,
-            new Class[]{
-                DBHistContener.class,
-                DBHistItem.class,
-                DBHistContent.class,
-                DBHistSub.class,
-                DBHistText.class
-            }
-        );
-
-        model.addAttribute(modelItems[0], conteners.toArray(new DBHistContener[0]));
-    }
-
-    /*************************************************************************
-     DATA ACCESS
-     *************************************************************************/
     /**
      * @param param
      * @return
      */
-    public String createAnswerJSON(final String param) throws JsonProcessingException {
+    public String doJSONTest(final String param) throws JsonProcessingException {
         final HashMap<String, String> result = new HashMap<>();
         result.put("item1", param);
 
@@ -88,6 +54,29 @@ public class EngServiceJSON implements IEngModelUpdater {
         return om.writeValueAsString(result);
     }
 
+    /************************************************************************
+     INTERFACE ENFORCING
+     */
+    /**
+     * @param model
+     */
+    @Override
+    public void updateModel(final Model model) throws IOException {
+        final DBConteners conteners = load();
+        final DBHistContener[] list = conteners.toArray(new DBHistContener[0]);
+        model.addAttribute(modelItems[0], list);
+    }
+
+    /**
+     * in resources/templates/fragments:
+     */
+    private final static String[] modelItems = {
+        "database" //for contentXXX.html
+    };
+
+    /*************************************************************************
+     DATA ACCESS
+     *************************************************************************/
     /**
      * @return
      */
@@ -95,13 +84,15 @@ public class EngServiceJSON implements IEngModelUpdater {
         final String data = load(getDataRepo() + getFileNames()[1]);
         return (DBConteners) parse(data,
             DBConteners.class,
-            new Class[]{
-                DBHistContener.class,
-                DBHistItem.class,
-                DBHistContent.class,
-                DBHistSub.class
-            }
+            DBConteners.getSubItems()
         );
+    }
+
+    /**
+     * @return
+     */
+    public String load(final int index) throws IOException {
+        return load(getDataRepo() + getFileNames()[index]);
     }
 
     /**
@@ -122,13 +113,6 @@ public class EngServiceJSON implements IEngModelUpdater {
     public <T> String fill(final List<T> itemsDB) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(itemsDB);
-    }
-
-    /**
-     * @return
-     */
-    public String load(final int index) throws IOException {
-        return load(getDataRepo() + getFileNames()[index]);
     }
 
     /**
@@ -165,8 +149,8 @@ public class EngServiceJSON implements IEngModelUpdater {
     }
 
     /**
-     * @param fileName
-     * @param jsonString
+     * @param fileName the name of the file
+     * @param jsonString the data to be written
      * @return
      */
     protected void save(final String fileName, final String jsonString) throws FileNotFoundException, UnsupportedEncodingException {
@@ -194,9 +178,9 @@ public class EngServiceJSON implements IEngModelUpdater {
      */
     @Getter(AccessLevel.PUBLIC)
     private static final String[] fileNames = {
-            "datatest.json",
-            "datafpicv.json",
-            "datafpitest.json"
+        "datatest.json",
+        "datafpicv.json",
+        "datafpitest.json"
     };
 
 }

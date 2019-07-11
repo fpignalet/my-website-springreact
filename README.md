@@ -4,7 +4,8 @@ Porting my-website-raw to Spring / React
 mvn clean compile
 mvn package
 mvn install
-mvn spring-boot:run
+mvn spring-boot:run -Drun.jvmArguments="-D$LD_LIBRARY_PATH:./target/libs"
+
 cd external-react-frontend
 npm install
 npm run-script build

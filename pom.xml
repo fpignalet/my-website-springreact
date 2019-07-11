@@ -160,6 +160,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <environmentVariables>
+                        <LD_LIBRARY_PATH>$LD_LIBRARY_PATH:./target/libs</LD_LIBRARY_PATH>
+                    </environmentVariables>
+                </configuration>
 			</plugin>
 
 			<!-- npm & webpack -->
@@ -199,7 +204,23 @@
 				</executions>
 			</plugin>
 
-		</plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>JNI compilation</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>src/main/sh/native.sh</executable>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
 	</build>
 
 </project>

@@ -4,7 +4,6 @@ import com.core.data.impl.DBConteners;
 import com.core.data.impl.DBHistContener;
 import com.core.eng.EngServiceDB;
 import com.core.eng.EngServiceJSON;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
@@ -126,7 +125,7 @@ public class ControllerREST extends AControllerBase {
         String param
     ) {
         try {
-            return getEngineJSON().createAnswerJSON(param);
+            return getEngineJSON().doJSONTest(param);
         } catch (IOException e) {
             e.printStackTrace();
             return null;

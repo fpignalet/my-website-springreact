@@ -51,6 +51,10 @@ class ReactBaseJSX extends React.Component {
         console.log("componentDidUnmount")
     }
 
+    componentDidCatch() {
+        console.log("componentDidCatch")
+    }
+
 }
 
 export default ReactBaseJSX;
