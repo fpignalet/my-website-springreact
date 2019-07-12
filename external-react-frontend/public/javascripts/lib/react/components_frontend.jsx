@@ -35,17 +35,21 @@ export class ReactConnect extends ReactBaseJSX {
             getjson1: 'exthttpgetjson1',
             content1: 'DBConteners',
             test2: 'Not answered',
-            populatedb: 'testpopulatedb',
+            populatedb: 'extpopulatedb',
             content2: '',
             test3: 'Not answered',
-            populatefile: 'testpopulatefile',
-            content3: ''
+            populatefile: 'extpopulatefile',
+            content3: '',
+            test4: 'Not answered',
+            callnativelib: 'extnativelib',
+            content4: ''
         };
 
         this.exthttpgetjson0 = this.exthttpgetjson0.bind(this);
         this.exthttpgetjson1 = this.exthttpgetjson1.bind(this);
         this.populatedb = this.populatedb.bind(this);
         this.populatefile = this.populatefile.bind(this);
+        this.callnativelib = this.callnativelib.bind(this);
     }
 
     exthttpgetjson0() {
@@ -88,6 +92,17 @@ export class ReactConnect extends ReactBaseJSX {
             (value) => {
                 // alert("Received Successful response from server: " + value);
                 this.setState({test3: value})
+            }
+        );
+    }
+
+    callnativelib() {
+        this.getdatafrombackend(
+            this.state.callnativelib,
+            this.state.content4,
+            (value) => {
+                // alert("Received Successful response from server: " + value);
+                this.setState({test4: value})
             }
         );
     }
@@ -185,6 +200,10 @@ export class ReactConnect extends ReactBaseJSX {
                     <div>
                         <button onClick={this.populatefile}>populatefile</button>
                         <div>populatefile: {this.state.test3}</div>
+                    </div>
+                    <div>
+                        <button onClick={this.callnativelib}>callnativelib</button>
+                        <div>nativelib: {this.state.test4}</div>
                     </div>
                 </div>
             </div>

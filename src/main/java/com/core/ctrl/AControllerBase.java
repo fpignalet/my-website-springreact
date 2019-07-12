@@ -1,6 +1,5 @@
 package com.core.ctrl;
 
-import com.core.eng.EngExternal;
 import com.core.eng.EngServiceDB;
 import com.core.eng.EngServiceJSON;
 import com.core.eng.EngServiceMail;
@@ -56,12 +55,6 @@ public abstract class AControllerBase {
         this.engineMail = engineMail;
 
 //        accessEnv();
-        final String result_execute = EngExternal.test_execute();
-        log.info(result_execute);
-        final String[] result_getData = EngExternal.test_getData();
-        for(final String data: result_getData){
-            log.info(data);
-        }
     }
 
     /**

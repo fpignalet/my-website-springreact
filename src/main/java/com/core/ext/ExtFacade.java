@@ -1,6 +1,6 @@
-package com.core.eng;
+package com.core.ext;
 
-public class EngExternal {
+public class ExtFacade {
 
     static {
         System.loadLibrary("engexternal");
@@ -18,14 +18,13 @@ public class EngExternal {
     private native String execute(final Data data);
     private native String[] getData();
 
-    public static String test_execute() {
+    public String test_execute() {
         final Data data =  new Data();
-        return new EngExternal().execute(data);
+        return execute(data);
     }
 
-    public static String[] test_getData() {
-        final Data data =  new Data();
-        return new EngExternal().getData();
+    public String[] test_getData() {
+        return getData();
     }
 
 }

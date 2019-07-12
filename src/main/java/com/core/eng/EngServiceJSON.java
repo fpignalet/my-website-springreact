@@ -27,8 +27,8 @@ import java.util.List;
 /**
  * JSON Operations
  */
-@Service
 @Slf4j
+@Service
 @ComponentScan({"com.core.data"})
 public class EngServiceJSON implements IEngModelUpdater {
 
