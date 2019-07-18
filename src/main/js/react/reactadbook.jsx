@@ -152,8 +152,7 @@ class ContactList extends React.Component {
         this.prompt = "Enter name or lastname";
 
         this.state = {
-            search: '',
-            filteredContacts: this.props.contacts
+            search: ''
         }
     }
 
