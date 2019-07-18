@@ -1,6 +1,6 @@
-package com.core.eng;
+package com.core.eng.impl;
 
-import com.core.data.DBItemTestDAO;
+import com.core.eng.IEngModelUpdater;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,6 +24,10 @@ public class EngServiceMail implements IEngModelUpdater {
     /************************************************************************
      INTERFACE ENFORCING
      */
+
+    /**
+     * @brief
+     */
     @Override
     public void updateModel(Model model) throws IOException {
         log.debug("Not yet implemented");
@@ -33,15 +37,10 @@ public class EngServiceMail implements IEngModelUpdater {
      MAIL HANDLING
      *************************************************************************/
     /**
-     *
-     */
-    @Autowired
-    private final JavaMailSender emailSender;
-
-    /**
-     * @param to
-     * @param subject
-     * @param text
+     * @brief Send a mail
+     * @param to contains the destination address
+     * @param subject contains the title of the mail
+     * @param text contains the text to be sent
      */
     public void sendSimpleMessage(String to, String subject, String text) {
         final SimpleMailMessage message = new SimpleMailMessage();
@@ -54,7 +53,8 @@ public class EngServiceMail implements IEngModelUpdater {
     }
 
     /**
-     * @return
+     * @brief
+     * @return a JavaMailSenderImpl
      */
     public JavaMailSender getJavaMailSender() {
         final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -78,12 +78,18 @@ public class EngServiceMail implements IEngModelUpdater {
      INIT PART
      */
     /**
-     * @param emailSender
-     * @param data1Repo
+     * @brief constructor
+     * @param emailSender receives autowired JavaMailSender
      */
-    public EngServiceMail(final JavaMailSender emailSender, final DBItemTestDAO data1Repo) {
+    public EngServiceMail(final JavaMailSender emailSender) {
         this.emailSender = emailSender;
         log.debug("OK");
     }
+
+    /**
+     *
+     */
+    @Autowired
+    private final JavaMailSender emailSender;
 
 }

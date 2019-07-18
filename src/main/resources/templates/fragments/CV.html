@@ -3,14 +3,21 @@
 <html lang="en">
 
 <!-- -------------------------------------------------------------------------->
+<div th:fragment="header">
+</div>
+
+<div th:fragment="footer">
+</div>
+
+<!-- -------------------------------------------------------------------------->
 <div th:fragment="contentcvtable">
 
-    <div th:if="${database != null}">
+    <div th:if="${model_JSONCV != null}">
         <ul>
             <div th:include="fragments/CV.html :: contentcvtable_record"></div>
         </ul>
 
-        <script type="text/javascript" th:src="@{built/jquery-3.4.1.min.js}"></script>
+<!--        <script type="text/javascript" th:src="@{built/jquery-3.4.1.min.js}"></script>-->
         <script th:inline="javascript">
             //something...
         </script>
@@ -18,7 +25,7 @@
 </div>
 
 <div th:fragment="contentcvtable_record">
-    <li th:each="record : ${database}">
+    <li th:each="record : ${model_JSONCV}">
         <ul>
             <img th:if="${record.getContenerphoto() != null}"
                  th:src="${record.getContenerphoto()}"></img>

@@ -6,7 +6,7 @@ module.exports = [
         entry: './public/javascripts/module_react.jsx',
         output: {
             path: __dirname + "/public/dist",
-            filename: 'bundletests.js'
+            filename: 'bundlereact.js'
         },
         module: {
             rules: [

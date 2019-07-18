@@ -18,19 +18,11 @@ const jsondata2 = require('../../../../../src/main/resources/static/data/datafpi
  *************************************************************************************/
 import ReactBaseJSX from '../../lib/reactbase.jsx';
 
-import {
-    ReactButtonJSX,
-    ReactDynListJSX
-} from '../../lib/react/components_local.jsx';
+import {ReactButtonJSX, ReactDynListJSX} from '../../lib/react/components_local.jsx';
 
-import {
-    ReactDisclosable,
-    ReactTabcontainer
-} from '../../lib/react/components_bstrap.jsx';
+import {ReactDisclosable, ReactTabcontainer} from '../../lib/react/components_bstrap.jsx';
 
-import {
-    ReactConnect
-} from '../../lib/react/components_frontend.jsx';
+import {ReactConnect} from '../../lib/react/components_frontend.jsx';
 
 /*************************************************************************************
  * IMPLEMENTATION
@@ -133,7 +125,7 @@ class TestApp extends ReactBaseJSX {
     }
 
     loadFromFileData2() {
-        return jsondata2["DBConteners"].map(
+        return jsondata2["DBCVConteners"].map(
             (item, index) => {
                 return this.renderOneDiscosable(item, index, [
                     "contenertype",

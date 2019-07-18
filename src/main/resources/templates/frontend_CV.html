@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style/main.css" />
+
+    <div th:include="fragments/CV.html :: header" ></div>
+
+    <title>FRONTEND_DEFAULT</title>
+
+</head>
+<body>
+    <div class="fixed-parallax">
+        <div class="image two"></div>
+        <div class="content">
+            <div th:include="fragments/CV.html :: contentcvtable" ></div>
+
+        </div>
+        <div class="image three"></div>
+    </div>
+
+    <div th:include="fragments/CV.html :: footer" ></div>
+
+</body>
+</html>

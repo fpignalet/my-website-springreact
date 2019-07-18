@@ -1,0 +1,81 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+#app {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+#app::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.people-list, .contact-add {
+    float: left;
+    display: block;
+    margin-right: 2.3576520234%;
+    width: 48.8211739883%;
+}
+.people-list:last-child, .contact-add:last-child {
+    margin-right: 0;
+}
+
+.people-list .search {
+    width: 100%;
+    padding: 30px 0;
+}
+.people-list .search .search_input {
+    width: 100%;
+}
+.people-list .list {
+    list-style-type: none;
+    margin: 0 0 10px;
+    padding: 0;
+}
+.people-list .list li {
+    margin: 0 0 30px;
+    text-align: left;
+}
+
+.contact-add .add-form .form-field {
+    margin: 10px 0;
+    display: inline-block;
+    width: 100%;
+}
+.contact-add .add-form .form-field label {
+    text-align: left;
+    float: left;
+    display: block;
+    margin-right: 2.3576520234%;
+    width: 31.7615653177%;
+}
+.contact-add .add-form .form-field label:last-child {
+    margin-right: 0;
+}
+.contact-add .add-form .form-field input {
+    float: left;
+    display: block;
+    margin-right: 2.3576520234%;
+    width: 65.8807826589%;
+}
+.contact-add .add-form .form-field input:last-child {
+    margin-right: 0;
+}
+.contact-add .add-form button {
+    float: left;
+    display: block;
+    margin-right: 2.3576520234%;
+    width: 65.8807826589%;
+    margin-left: 34.1192173411%;
+}
+.contact-add .add-form button:last-child {
+    margin-right: 0;
+}

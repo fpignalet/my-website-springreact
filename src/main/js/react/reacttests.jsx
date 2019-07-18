@@ -592,7 +592,7 @@ class TestApp extends React.Component {
             }
         );
 
-        const namesList2 = jsondata2["DBConteners"].map(
+        const namesList2 = jsondata2["DBCVConteners"].map(
             (item, index) => {
                 return this.renderdiscosable(item, index, [
                     "contenertype",

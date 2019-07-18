@@ -1,4 +1,4 @@
-package com.core.eng;
+package com.core.utils;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,14 +12,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  *
  */
 @ControllerAdvice
-public class EngExceptionHandler extends ResponseEntityExceptionHandler {
+public class UtExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
      * @param ex
      * @param request
      * @return
      */
-    @ExceptionHandler({ EngGeneralException.class })
+    @ExceptionHandler({ UtGeneralException.class })
     protected ResponseEntity<Object> handleNotFound(Exception ex, WebRequest request) {
         return handleExceptionInternal(ex, "General Error", new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }

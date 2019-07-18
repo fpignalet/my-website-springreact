@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/style/main.css" />
+
+    <link rel="stylesheet" href="/style/adbook.css" />
+
+    <title>FRONTEND_ADDRESSBOOK</title>
+
+    <div th:include="fragments/adbook.html :: header" ></div>
+
+</head>
+<body>
+    <div class="fixed-parallax">
+        <div class="image five"></div>
+        <div class="content">
+            <div th:include="fragments/adbook.html :: contentbook" ></div>
+
+        </div>
+        <div class="image six"></div>
+    </div>
+
+    <div th:include="fragments/adbook.html :: footer" ></div>
+
+</body>
+</html>

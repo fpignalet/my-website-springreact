@@ -17,26 +17,32 @@ img {
     background-size: cover;
 }
 .fixed-parallax .image.one {
-    background-image: url("../images/WP_20180822_12_09_51_Pro.jpg");
-}
-.fixed-parallax .image.two {
-    background-image: url("../images/WP_20180822_12_11_33_Pro.jpg");
-}
-.fixed-parallax .image.three {
-    background-image: url("../images/WP_20180822_12_41_47_Pro.jpg");
-}
-.fixed-parallax .image.four {
     background-image: url("../images/WP_20180821_17_57_49_Pro.jpg");
 }
-.fixed-parallax .image.five {
-    background-image: url("../images/WP_20180822_11_09_02_Pro.jpg");
+.fixed-parallax .image.two {
+    background-image: url("../images/WP_20180821_18_09_00_Pro.jpg");
 }
-.fixed-parallax .image.six {
+.fixed-parallax .image.three {
     background-image: url("../images/WP_20180822_10_50_54_Pro.jpg");
 }
+.fixed-parallax .image.four {
+    background-image: url("../images/WP_20180822_11_09_02_Pro.jpg");
+}
+.fixed-parallax .image.five {
+    background-image: url("../images/WP_20180822_12_09_51_Pro.jpg");
+}
+.fixed-parallax .image.six {
+    background-image: url("../images/WP_20180822_12_11_33_Pro.jpg");
+}
 .fixed-parallax .image.seven {
-    background-image: url("../images/WP_20180822_12_44_47_Pro.jpg");
+    background-image: url("../images/WP_20180822_12_41_47_Pro.jpg");
 }
 .fixed-parallax .image.eight {
+    background-image: url("../images/WP_20180822_12_44_47_Pro.jpg");
+}
+.fixed-parallax .image.nine {
     background-image: url("../images/WP_20180822_14_20_35_Pro.jpg");
+}
+.fixed-parallax .image.ten {
+    background-image: url("../images/P_20180805_1000342.jpg");
 }

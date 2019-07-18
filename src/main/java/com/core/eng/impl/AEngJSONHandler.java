@@ -1,0 +1,124 @@
+package com.core.eng.impl;
+
+import com.core.eng.EEngJSONFiles;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @brief Everything to handle / manipulate JSON data files
+ */
+@Slf4j
+public abstract class AEngJSONHandler {
+
+    /*************************************************************************
+     ABSTRACT LEVEL
+     ************************************************************************
+     * @return
+     * @param <T>
+     * @throws IOException*/
+    public abstract <T> ArrayList<?> loadFile() throws IOException;
+
+    /**
+     * @param itemsDB
+     * @throws IOException
+     */
+    public abstract void updateFile(final ArrayList<?> itemsDB) throws IOException;
+
+    /*************************************************************************
+     DATA ACCESS
+     ************************************************************************
+    /**
+     * @param file contains the file to be loaded
+     * @return a String containing the JSON data contained in file
+     * @throws IOException
+     */
+    public String load(final EEngJSONFiles file) throws IOException {
+        return load(file.getName());
+    }
+
+    /**
+     * @brief creates a JSON string
+     * @param itemsDB contains a collection of DB items
+     * @param <T> is type of DB items
+     * @return a JSON string
+     * @throws IOException
+     */
+    public <T> String fill(final List<T> itemsDB) throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(itemsDB);
+    }
+
+    /*************************************************************************
+     INTERNAL
+     *************************************************************************/
+    /**
+     * @brief load a JSON file content
+     * @param fileName contains the name of the file to be loaded
+     * @return a string containing JSON data
+     */
+    protected String load(final String fileName) throws IOException {
+        final Path path = Paths.get(fileName);
+        final Charset charset = StandardCharsets.UTF_8;
+
+        return new String(Files.readAllBytes(path));
+    }
+
+    /**
+     * @brief Transform JSON data into Java classes
+     * @param data contains JSON data to be transformed as Java classes
+     * @param root contains the JSON data root key
+     * @param subclasses is a list of needed Java sub classes
+     * @param <T> is the type of the Java root class
+     * @return an ArrayList of Java classes
+     * @throws IOException when it fails
+     */
+    protected <T> ArrayList<?> parse(final String data, final Class<T> root, final Class[] subclasses) throws IOException {
+        final ObjectMapper om = new ObjectMapper();
+        om.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
+        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        if(null != subclasses){
+            for(final Class subclasse: subclasses){
+                om.registerSubtypes(subclasse);
+            }
+
+        }
+
+        return (ArrayList<?>) om.readValue(data, root);
+    }
+
+    /**
+     * @param fileName the name of the file
+     * @param jsonString the data to be written
+     * @return
+     */
+    protected void save(final String fileName, final String jsonString) throws FileNotFoundException, UnsupportedEncodingException {
+        final PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+        writer.println(jsonString);
+        writer.close();
+    }
+
+    /************************************************************************
+     INIT PART
+     */
+    /**
+     * @brief constructor
+     */
+    public AEngJSONHandler() {
+        log.info("OK");
+    }
+
+}

@@ -16,8 +16,8 @@ import java.util.List;
 @Entity
 @XmlRootElement
 @Table(name = "histcontener")
-@JsonIgnoreProperties({"id"})
 @JsonRootName("DBHistContener")
+@JsonIgnoreProperties({"id"})
 @NamedQueries(value = {
         @NamedQuery(
             name = "DBHistContener.findAll",
@@ -28,16 +28,8 @@ import java.util.List;
             query = "SELECT c FROM DBHistContener c ORDER BY c.id ASC"
         ),
         @NamedQuery(
-            name = "DBHistContener.findAllOrderedByIdDescending",
-            query = "SELECT c FROM DBHistContener c ORDER BY c.id DESC"
-        ),
-        @NamedQuery(
             name = "DBHistContener.findAllOrderedByNameAscending",
             query = "SELECT c FROM DBHistContener c ORDER BY c.contenername ASC"
-        ),
-        @NamedQuery(
-            name = "DBHistContener.findAllOrderedByNameDescending",
-            query = "SELECT c FROM DBHistContener c ORDER BY c.contenername DESC"
         ),
 
         @NamedQuery(

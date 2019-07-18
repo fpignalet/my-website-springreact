@@ -1,0 +1,29 @@
+{
+  "DBAddressBook": [
+    {
+      "vorname": "John",
+      "nachname": "Doe",
+      "email": "john.doe@email.com"
+    },
+    {
+      "vorname": "Alice",
+      "nachname": "Smith",
+      "email": "alice.smith@email.com"
+    },
+    {
+      "vorname": "Mark",
+      "nachname": "Joseph",
+      "email": "mark.joseph@email.com"
+    },
+    {
+      "vorname": "Marion",
+      "nachname": "Justin",
+      "email": "marion.justin@email.com"
+    },
+    {
+      "vorname": "Francois",
+      "nachname": "Pignalet",
+      "email": "francois.pignalet@email.com"
+    }
+  ]
+}

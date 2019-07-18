@@ -6,20 +6,18 @@
 
     <div th:include="fragments/tests.html :: header" ></div>
 
+    <title>FRONTEND_DEFAULT</title>
+
 </head>
 <body>
     <div class="fixed-parallax">
         <div class="image one"></div>
         <div class="content">
             <div th:include="fragments/tests.html :: contentdivs" ></div>
+            <div th:include="fragments/tests.html :: contenttasks" ></div>
 
         </div>
         <div class="image two"></div>
-        <div class="content">
-            <div th:include="fragments/CV.html :: contentcvtable" ></div>
-
-        </div>
-        <div class="image three"></div>
     </div>
 
     <div th:include="fragments/tests.html :: footer" ></div>

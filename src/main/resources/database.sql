@@ -2,6 +2,7 @@ CREATE DATABASE if not exists fpitest;
 
 DROP TABLE if exists dbhist_sub_data;
 DROP TABLE if exists springtest;
+DROP TABLE if exists contact;
 DROP TABLE if exists histcontener;
 DROP TABLE if exists histitem;
 DROP TABLE if exists histcontent;
@@ -14,6 +15,17 @@ CREATE TABLE if not exists  springtest
     id int(11) NOT NULL auto_increment PRIMARY KEY,
 
     name text
+
+) ENGINE = MyISAM
+  DEFAULT CHARSET = latin1;
+
+CREATE TABLE if not exists  contact
+(
+    id int(11) NOT NULL auto_increment PRIMARY KEY,
+
+    vorname VARCHAR(256),
+    nachname VARCHAR(256),
+    emailadresse VARCHAR(256)
 
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;

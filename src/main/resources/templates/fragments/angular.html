@@ -3,6 +3,13 @@
 <html lang="en">
 
 <!-- -------------------------------------------------------------------------->
+<div th:fragment="header">
+</div>
+
+<div th:fragment="footer">
+</div>
+
+<!-- -------------------------------------------------------------------------->
 <div th:fragment="contentangular">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
@@ -66,7 +73,7 @@
         <!-- small test_execute 3 ---------------------------------->
         <div>
             <strong>
-                TEST with dynamic list (see main/js/module_angular.js)
+                TEST with dynamic list (see main/js/module_tests.js)
             </strong>
             <ul>
                 <li ng-repeat="x in products">{{x}}
@@ -75,7 +82,7 @@
             </ul>
             <input type="text" ng-model="field2Add">
             <button ng-click="dynlistadditem()">Add</button>
-            <br>The button above calls module_angular.js: $scope.dynlistadditem() in testapp/controller
+            <br>The button above calls module_tests.js: $scope.dynlistadditem() in testapp/controller
         </div>
         <br>
         <div>

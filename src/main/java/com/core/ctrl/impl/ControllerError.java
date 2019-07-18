@@ -1,4 +1,4 @@
-package com.core.ctrl;
+package com.core.ctrl.impl;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Display error page
  */
 @RestController
 public class ControllerError implements ErrorController {

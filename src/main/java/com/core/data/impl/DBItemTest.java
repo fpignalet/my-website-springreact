@@ -15,19 +15,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Slf4j
 @Entity
 @XmlRootElement
-@Table(name = "histtest")
+@Table(name = "itemtest")
 @NamedQueries(value = {
         @NamedQuery(
             name = "DBItemTest.findAll",
             query = "SELECT a FROM DBItemTest a"
         ),
         @NamedQuery(
-            name = "DBItemTest.findAllOrderedByIdDescending",
-            query = "SELECT c FROM DBItemTest c ORDER BY c.id DESC"
+            name = "DBItemTest.findAllOrderedByIdAscending",
+            query = "SELECT c FROM DBItemTest c ORDER BY c.id ASC"
         ),
         @NamedQuery(
-            name = "DBItemTest.findAllOrderedByNameDescending",
-            query = "SELECT c FROM DBItemTest c ORDER BY c.name DESC"
+            name = "DBItemTest.findAllOrderedByNameAscending",
+            query = "SELECT c FROM DBItemTest c ORDER BY c.name ASC"
         ),
 
         @NamedQuery(
