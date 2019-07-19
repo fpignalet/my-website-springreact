@@ -6,9 +6,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.concurrent.Future;
+
 @Slf4j
 @RunWith(SpringRunner.class)
-public class JSONTests {
+public class AsyncTests {
 
     /*
     UNDER CONSTRUCTION
@@ -19,7 +21,8 @@ public class JSONTests {
     }
 
     @Test
-    public void defaultTest() {
+    public void testThread() {
+        Future<?> future;
     }
 
 }

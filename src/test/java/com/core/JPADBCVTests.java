@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 @RunWith(SpringRunner.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class DBCVTests {
+public class JPADBCVTests {
 
     /*
     UNDER CONSTRUCTION
@@ -34,38 +34,40 @@ public class DBCVTests {
     @Before
     public void setup(){
         contenerOK = new DBHistContener();
-        contenerOK.setContenername("TESTCVENTRY");
+        contenerOK.setContenername(TESTCVENTRY);
     }
 
     @Test
-    public void saveDBHistContenerComplete() {
+    public void saveTest() {
         this.entityManager.persist(contenerOK);
-        Assert.assertNotNull(repoCV.findByName("TESTCVENTRY"));
+        Assert.assertNotNull(repoCV.findByName(TESTCVENTRY));
     }
 
     @Test
-    public void editDBHistContenerComplete() {
+    public void editTest() {
         this.entityManager.persist(contenerOK);
 
         DBHistContener contener = this.entityManager.find(DBHistContener.class, 1);
-        Assert.assertEquals(contener.getContenername(), "TESTCVENTRY");
-        contener.setContenername("NEWCVENTRY");
+        Assert.assertEquals(contener.getContenername(), TESTCVENTRY);
+        contener.setContenername(NEWCVENTRY);
         this.entityManager.persist(contener);
 
         contener = this.entityManager.find(DBHistContener.class, 1);
-        Assert.assertEquals(contener.getContenername(), "NEWCVENTRY");
+        Assert.assertEquals(contener.getContenername(), NEWCVENTRY);
     }
 
     @Test
-    public void deleteDBHistContenerComplete() {
+    public void deleteTest() {
         this.entityManager.persist(contenerOK);
 
         DBHistContener contener = this.entityManager.find(DBHistContener.class, 1);
-        Assert.assertEquals(contener.getContenername(), "TESTCVENTRY");
+        Assert.assertEquals(contener.getContenername(), TESTCVENTRY);
         this.entityManager.remove(contener);
 
         contener = this.entityManager.find(DBHistContener.class, 1);
         Assert.assertNull(contener);
     }
 
+    private static final String TESTCVENTRY = "TESTCVENTRY";
+    private static final String NEWCVENTRY = "NEWCVENTRY";
 }

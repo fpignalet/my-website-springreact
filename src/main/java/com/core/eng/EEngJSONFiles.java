@@ -9,9 +9,12 @@ import lombok.Getter;
 public enum EEngJSONFiles {
 
     TEST("datatest"),
+    TESTOUT("datatestout"),
+    TESTJSON("jsontest"),
+    TESTJSONOUT("jsontestout"),
     CVIN("datafpicv"),
-    ADBOOKIN("dataadbook"),
     CVOUT("datafpicvout"),
+    ADBOOKIN("dataadbook"),
     ADBOOKOUT("dataadbookout");
 
     @Getter(AccessLevel.PUBLIC)

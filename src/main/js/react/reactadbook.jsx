@@ -13,6 +13,7 @@ const axios = require('axios');
  *************************************************************************************/
 
 class AdBookApp extends React.Component {
+
     constructor() {
         super();
 
@@ -143,9 +144,11 @@ class AdBookApp extends React.Component {
             </div>
         )
     }
+
 }
 
 class ContactList extends React.Component {
+
     constructor() {
         super();
 
@@ -198,6 +201,7 @@ class ContactList extends React.Component {
 
         )
     }
+
 }
 
 class ContactEdit extends React.Component {

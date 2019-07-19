@@ -25,10 +25,14 @@ public abstract class AEngJSONHandler {
 
     /*************************************************************************
      ABSTRACT LEVEL
-     ************************************************************************
-     * @return
-     * @param <T>
-     * @throws IOException*/
+     ************************************************************************/
+
+    /**
+     * @brief to load JSON data from a file
+     * @return the content of a JSON file as a collection of items
+     * @param <T> is the type of items to be loaded from file
+     * @throws IOException
+     */
     public abstract <T> ArrayList<?> loadFile() throws IOException;
 
     /**
@@ -40,7 +44,9 @@ public abstract class AEngJSONHandler {
     /*************************************************************************
      DATA ACCESS
      ************************************************************************
+
     /**
+     * @brief creates a JSON string from JSON file content
      * @param file contains the file to be loaded
      * @return a String containing the JSON data contained in file
      * @throws IOException
@@ -50,7 +56,7 @@ public abstract class AEngJSONHandler {
     }
 
     /**
-     * @brief creates a JSON string
+     * @brief creates a JSON string from itemsDB
      * @param itemsDB contains a collection of DB items
      * @param <T> is type of DB items
      * @return a JSON string
