@@ -24,6 +24,7 @@ public class ControllerMain extends AControllerBase {
     /************************************************************************
      PUBLIC IMPLEM PART
      */
+
     /**
      * @param model
      * @return

@@ -53,7 +53,7 @@ class AdBookApp extends React.Component {
 
     addContact(index, contact) {
         this.senddatatobackend(
-            this.addcontact + "?vorname=" + contact.vorname + "&nachname=" + contact.nachname + "&email=" + contact.email,
+            this.addcontact + "?vorname=" + contact.vorname + "&nachname=" + contact.nachname + "&email=" + contact.emailadresse,
             this.select,
             (value) => {
                 this.setState({contacts: value})
@@ -64,8 +64,9 @@ class AdBookApp extends React.Component {
     editContact(index, contact) {
         this.senddatatobackend(
             this.editcontact +
-                "?cur_vorname=" + this.state.contacts[index].vorname + "&cur_nachname=" + this.state.contacts[index].nachname +
-                "&new_vorname=" + contact.vorname + "&new_nachname=" + contact.nachname + "&email=" + contact.email,
+                "?id=" + this.state.contacts[index].id +
+                "&cur_vorname=" + this.state.contacts[index].vorname + "&cur_nachname=" + this.state.contacts[index].nachname +
+                "&new_vorname=" + contact.vorname + "&new_nachname=" + contact.nachname + "&email=" + contact.emailadresse,
             this.select,
             (value) => {
                 this.setState({contacts: value})
@@ -75,7 +76,9 @@ class AdBookApp extends React.Component {
 
     removeContact(index, contact) {
         this.senddatatobackend(
-            this.removecontact + "?vorname=" + contact.vorname + "&nachname=" + contact.nachname,
+            this.removecontact +
+            "?id=" + this.state.contacts[index].id +
+            "&vorname=" + contact.vorname + "&nachname=" + contact.nachname,
             this.select,
             (value) => {
                 this.setState({contacts: value})
@@ -207,14 +210,19 @@ class ContactList extends React.Component {
 class ContactEdit extends React.Component {
 
     componentWillMount() {
+        this.id = "id";
         this.vorname = "vorname";
         this.nachname = "nachname";
-        this.email = "email";
+        this.emailadresse = "emailadresse";
+        this.ADD = "add";
+        this.EDIT = "edit";
+        this.REMOVE = "remove";
 
         this.setState({
+            id: "",
             vorname: "",
             nachname: "",
-            email: ""
+            emailadresse: ""
         });
     }
 
@@ -224,9 +232,10 @@ class ContactEdit extends React.Component {
         }
         else {
             this.setState({
+                id: "",
                 vorname: "",
                 nachname: "",
-                email: ""
+                emailadresse: ""
             });
         }
     }
@@ -240,9 +249,10 @@ class ContactEdit extends React.Component {
 
     reloadProps() {
         this.setState({
+            id: this.props.contacts[this.props.index].id,
             vorname: this.props.contacts[this.props.index].vorname,
             nachname: this.props.contacts[this.props.index].nachname,
-            email: this.props.contacts[this.props.index].email
+            emailadresse: this.props.contacts[this.props.index].emailadresse
         });
     }
 
@@ -258,13 +268,13 @@ class ContactEdit extends React.Component {
         }
 
         switch(submitButton.value){
-            case "add":
+            case this.ADD:
                 this.props.addContact(this.props.index, this.state)
                 break;
-            case "edit":
+            case this.EDIT:
                 this.props.editContact(this.props.index, this.state)
                 break;
-            case "remove":
+            case this.REMOVE:
                 this.props.removeContact(this.props.index, this.state)
                 break;
         }
@@ -282,6 +292,13 @@ class ContactEdit extends React.Component {
         return (
             <div className="contact-add">
                 <form className="add-form" onSubmit={this.handleSubmit.bind(this)} method="post">
+                    <div className="form-field">
+                        <label>DB Id: </label>
+                        <input type="text"
+                               name={this.id}
+                               value={this.state.id}
+                        />
+                    </div>
                     <div className="form-field">
                         <label>Vorname: </label>
                         <input type="text"
@@ -301,8 +318,8 @@ class ContactEdit extends React.Component {
                     <div className="form-field">
                         <label>Email: </label>
                         <input type="text"
-                               name={this.email}
-                               value={this.state.email}
+                               name={this.emailadresse}
+                               value={this.state.emailadresse}
                                onChange={this.handleChange.bind(this)}
                         />
                     </div>
@@ -316,14 +333,14 @@ class ContactEdit extends React.Component {
         switch(this.props.status){
             case "none":
                 return (
-                    <button name="subject" type="submit" value="add">Add</button>
+                    <button name="subject" type="submit" value={this.ADD}>Add</button>
                 )
             case "edit":
                 return (
                     <div>
-                        <button name="subject" type="submit" value="add">Add</button>
-                        <button name="subject" type="submit" value="edit">Save</button>
-                        <button name="subject" type="submit" value="remove">Delete</button>
+                        <button name="subject" type="submit" value={this.ADD}>Add</button>
+                        <button name="subject" type="submit" value={this.EDIT}>Save</button>
+                        <button name="subject" type="submit" value={this.REMOVE}>Delete</button>
                     </div>
                 )
         }
@@ -340,6 +357,7 @@ class Contact extends React.Component {
         return (
             <li onClick={event => this.handleListItemClick(event, this.props.index)}>
                 <p>
+                    {this.props.contact.id} <br />
                     {this.props.contact.vorname} <br />
                     {this.props.contact.nachname} <br />
                     {this.props.contact.emailadresse}

@@ -25,6 +25,7 @@ public class ControllerREST extends AControllerBase {
     /************************************************************************
      PUBLIC IMPLEM PART:
      */
+
     /**
      * @return the content of src/main/resources/static/datatest.json data file
      */

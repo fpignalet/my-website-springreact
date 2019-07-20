@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -70,8 +71,8 @@ public abstract class AAsyncTask {
 
     }
 
-    public abstract boolean begin ();
-    public abstract boolean execute ();
+    public abstract boolean begin () throws IOException;
+    public abstract boolean execute () throws IOException;
     public abstract boolean terminate ();
     protected AAsyncTask(EAsyncItems taskId) {
         this.taskId = taskId;

@@ -21,6 +21,7 @@ public class ControllerAdBook extends AControllerBase {
     /************************************************************************
      PUBLIC IMPLEM PART:
      */
+
     @RequestMapping(value="/addressbook_list", method = RequestMethod.GET)
     @CrossOrigin
     public String addressbook_list() {
@@ -52,6 +53,7 @@ public class ControllerAdBook extends AControllerBase {
     @RequestMapping(value="/addressbook_edit", method = RequestMethod.POST)
     @CrossOrigin
     public String addressbook_edit(
+        @RequestParam("id") final int id,
         @RequestParam("cur_vorname") final String cur_vorname,
         @RequestParam("cur_nachname") final String cur_nachname,
         @RequestParam("new_vorname") final String new_vorname,
@@ -71,6 +73,7 @@ public class ControllerAdBook extends AControllerBase {
     @RequestMapping(value="/addressbook_remove", method = RequestMethod.POST)
     @CrossOrigin
     public String addressbook_remove(
+        @RequestParam("id") final int id,
         @RequestParam("vorname") final String vorname,
         @RequestParam("nachname") final String nachname,
         final Model model) {
@@ -86,6 +89,9 @@ public class ControllerAdBook extends AControllerBase {
 
     /************************************************************************
      INNER IMPLEM PART:
+     */
+
+    /**
      * @return
      * @throws IOException
      */
@@ -104,8 +110,8 @@ public class ControllerAdBook extends AControllerBase {
      * @throws IOException
      */
     protected String getError(final Exception e) {
-        e.printStackTrace();
-        return "{ \"error\": \"addressbook_XXXX FAILED\" }";
+        log.debug(e.getStackTrace().toString());
+        return "{ \"error\": \"" + e.getMessage() + "\" }";
     }
 
     /**

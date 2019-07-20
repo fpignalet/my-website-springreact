@@ -7,6 +7,7 @@ import com.core.eng.EEngJSONFiles;
 import com.core.eng.EEngModelItems;
 import com.core.eng.IEngDBUpdater;
 import com.core.eng.IEngModelUpdater;
+import com.core.utils.UtGeneralException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -126,12 +127,11 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
     public DBContact addOneContact(
         final String vorname,
         final String nachname,
-        final String emailadresse) {
+        final String emailadresse) throws UtGeneralException {
 
         final DBAddressBook contacts = findByVorNNachname(vorname, nachname);
         if(0 < contacts.size()) {
-            log.debug("DB contact NOT created. Contact already exists");
-            return null;
+            throw new UtGeneralException("DB contact NOT created. Contact already exists", new Throwable());
         }
 
         final DBContact contact = new DBContact();
@@ -142,6 +142,36 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         dataContactRepo.save(contact);
 
         log.debug("DB contact %s created", contact.toString());
+        return contact;
+    }
+
+    /**
+     * @param id
+     * @param vorname contains new vorname value to be applied
+     * @param nachname contains new nachname value to be applied
+     * @param emailadresse  contains new emailadresse value to be applied
+     * @return the udpated DBContact instance
+     */
+    @Transactional
+    public DBContact updateOneContact(
+        final int id,
+        final String vorname, final String nachname, final String emailadresse) {
+
+        final DBAddressBook contacts = findContactById(id);
+
+        final DBContact contact = contacts.get(0);
+        if(0 == contacts.size()) {
+            log.debug("Add instead of edit", contact.toString());
+            return addOneContact(vorname, nachname, emailadresse);
+        }
+
+        contact.setVorname(vorname);
+        contact.setNachname(nachname);
+        contact.setEmailadresse(emailadresse);
+
+        dataContactRepo.save(contact);
+
+        log.debug("DB contact %s updated", contact.toString());
         return contact;
     }
 
@@ -178,6 +208,21 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
     }
 
     /**
+     * @param id
+     * @return
+     */
+    @Transactional
+    public DBContact removeOneContact(final int id) {
+        final DBAddressBook contacts = findContactById(id);
+
+        final DBContact contact = contacts.get(0);
+        dataContactRepo.delete(contact);
+
+        log.debug("DB contact %s removed", contact.toString());
+        return contact;
+    }
+
+    /**
      * @brief delete an existing contact
      * @param vorname contains current vorname value to allow search in database
      * @param nachname contains current nachname value to allow search in database
@@ -188,7 +233,6 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         final DBAddressBook contacts = findByVorNNachname(vorname, nachname);
 
         final DBContact contact = contacts.get(0);
-
         dataContactRepo.delete(contact);
 
         log.debug("DB contact %s removed", contact.toString());
