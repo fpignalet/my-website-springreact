@@ -1,13 +1,17 @@
 package com.core.eng.impl;
 
 import com.core.data.IDBContactDAO;
+import com.core.data.IDBTokenDAO;
 import com.core.data.impl.DBAddressBook;
 import com.core.data.impl.DBContact;
+import com.core.data.impl.DBToken;
 import com.core.eng.EEngJSONFiles;
 import com.core.eng.EEngModelItems;
 import com.core.eng.IEngDBUpdater;
 import com.core.eng.IEngModelUpdater;
 import com.core.utils.UtGeneralException;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +23,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * AddressBook operations
@@ -118,16 +124,19 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
      */
     /**
      * @brief add a new contact
-     * @param vorname
-     * @param nachname
-     * @param emailadresse
+     * @param vorname contains vorname value to be saved
+     * @param nachname contains nachname value to be saved
+     * @param emailadresse contains emailadresse value to be saved
      * @return the created DBContact instance
+     * @throws UtGeneralException when it fails
      */
     @Transactional
     public DBContact addOneContact(
         final String vorname,
         final String nachname,
-        final String emailadresse) throws UtGeneralException {
+        final String emailadresse,
+        final boolean enabled
+    ) throws UtGeneralException {
 
         final DBAddressBook contacts = findByVorNNachname(vorname, nachname);
         if(0 < contacts.size()) {
@@ -138,6 +147,7 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         contact.setVorname(vorname);
         contact.setNachname(nachname);
         contact.setEmailadresse(emailadresse);
+        contact.setEnabled(enabled);
 
         dataContactRepo.save(contact);
 
@@ -146,32 +156,61 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
     }
 
     /**
-     * @param id
+     * @brief confirm a newly added contact
      * @param vorname contains new vorname value to be applied
      * @param nachname contains new nachname value to be applied
-     * @param emailadresse  contains new emailadresse value to be applied
-     * @return the udpated DBContact instance
+     * @return the related security token
+     * @throws UtGeneralException
      */
     @Transactional
-    public DBContact updateOneContact(
-        final int id,
-        final String vorname, final String nachname, final String emailadresse) {
+    public DBToken verifyOneContact(
+        final String vorname,
+        final String nachname) throws UtGeneralException {
 
-        final DBAddressBook contacts = findContactById(id);
-
+        final DBAddressBook contacts = findByVorNNachname(vorname, nachname);
         final DBContact contact = contacts.get(0);
         if(0 == contacts.size()) {
-            log.debug("Add instead of edit", contact.toString());
-            return addOneContact(vorname, nachname, emailadresse);
+            throw new UtGeneralException("DB contact CANNOT be verified. Contact doesn't exists", new Throwable());
         }
 
-        contact.setVorname(vorname);
-        contact.setNachname(nachname);
-        contact.setEmailadresse(emailadresse);
+        final DBToken token = new DBToken();
+        token.setUser(contact);
+        token.setCreatedDate(new Date());
+        token.setConfirmationToken(UUID.randomUUID().toString());
+        dataTokenDAO.save(token);
 
+        log.debug("DB contact %s registered", contact.toString());
+        return token;
+    }
+
+    /**
+     * @param tokenName
+     * @return
+     * @throws UtGeneralException
+     */
+    @Transactional
+    public DBContact registerOneContact(
+        final String tokenName) throws UtGeneralException {
+
+        final List<DBToken> tokens = dataTokenDAO.findByConfirmationToken(tokenName);
+        if(0 == tokens.size()) {
+            throw new UtGeneralException("DB contact CANNOT be registered. Token doesn't exists", new Throwable());
+        }
+        final DBToken token = tokens.get(0);
+        if(null == token) {
+            throw new UtGeneralException("DB contact CANNOT be registered. Token doesn't exists", new Throwable());
+        }
+
+        final List<DBContact> contacts = dataContactRepo.findByEmailaddresse(token.getUser().getEmailadresse());
+        final DBContact contact = contacts.get(0);
+        if(null == contact) {
+            throw new UtGeneralException("DB contact CANNOT be registered. Contact not found", new Throwable());
+        }
+
+        contact.setEnabled(true);
         dataContactRepo.save(contact);
 
-        log.debug("DB contact %s updated", contact.toString());
+        log.debug("DB contact %s registered", contact.toString());
         return contact;
     }
 
@@ -190,11 +229,10 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         final String new_vorname, final String new_nachname, final String emailadresse) {
 
         final DBAddressBook contacts = findByVorNNachname(cur_vorname, cur_nachname);
-
         final DBContact contact = contacts.get(0);
         if(0 == contacts.size()) {
             log.debug("Add instead of edit", contact.toString());
-            return addOneContact(new_vorname, new_nachname, emailadresse);
+            return addOneContact(new_vorname, new_nachname, emailadresse, contact.isEnabled());
         }
 
         contact.setVorname(new_vorname);
@@ -204,21 +242,6 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         dataContactRepo.save(contact);
 
         log.debug("DB contact %s updated", contact.toString());
-        return contact;
-    }
-
-    /**
-     * @param id
-     * @return
-     */
-    @Transactional
-    public DBContact removeOneContact(final int id) {
-        final DBAddressBook contacts = findContactById(id);
-
-        final DBContact contact = contacts.get(0);
-        dataContactRepo.delete(contact);
-
-        log.debug("DB contact %s removed", contact.toString());
         return contact;
     }
 
@@ -336,6 +359,11 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
     }
 
     @Autowired
+    @Getter(AccessLevel.PUBLIC)
     private IDBContactDAO dataContactRepo;
+
+    @Autowired
+    @Getter(AccessLevel.PUBLIC)
+    private IDBTokenDAO dataTokenDAO;
 
 }

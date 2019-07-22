@@ -3,27 +3,32 @@
     {
       "vorname": "John",
       "nachname": "Doe",
-      "emailadresse": "john.doe@email.com"
+      "emailadresse": "john.doe@email.com",
+      "enabled": "true"
     },
     {
       "vorname": "Alice",
       "nachname": "Smith",
-      "emailadresse": "alice.smith@email.com"
+      "emailadresse": "alice.smith@email.com",
+      "enabled": "true"
     },
     {
       "vorname": "Mark",
       "nachname": "Joseph",
-      "emailadresse": "mark.joseph@email.com"
+      "emailadresse": "mark.joseph@email.com",
+      "enabled": "true"
     },
     {
       "vorname": "Marion",
       "nachname": "Justin",
-      "emailadresse": "marion.justin@email.com"
+      "emailadresse": "marion.justin@email.com",
+      "enabled": "true"
     },
     {
       "vorname": "Francois",
       "nachname": "Pignalet",
-      "emailadresse": "francois.pignalet@email.com"
+      "emailadresse": "francois.pignalet@email.com",
+      "enabled": "true"
     }
   ]
 }

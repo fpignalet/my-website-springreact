@@ -3,6 +3,7 @@ package com.core.ctrl.impl;
 import com.core.ctrl.AControllerBase;
 import com.core.data.impl.DBAddressBook;
 import com.core.data.impl.DBContact;
+import com.core.data.impl.DBToken;
 import com.core.eng.impl.EngServiceDBABook;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ public class ControllerAdBook extends AControllerBase {
     public String addressbook_list() {
         try {
             log.info("ACTION ADBOOK GET LIST");
-            return getResult();
+            return getResult(null);
         } catch (Exception e) {
             return getError(e);
         }
@@ -41,10 +42,10 @@ public class ControllerAdBook extends AControllerBase {
         @RequestParam("email") final String email,
         final Model model) {
         try {
-            final DBContact contact = getEngineContact().addOneContact(vorname, nachname, email);
+            final DBContact contact = getEngineContact().addOneContact(vorname, nachname, email, true);
             log.info("ACTION ADD: " + contact.toString());
 
-            return getResult();
+            return getResult(null);
         } catch (Exception e) {
             return getError(e);
         }
@@ -64,7 +65,7 @@ public class ControllerAdBook extends AControllerBase {
             final DBContact contact = getEngineContact().updateOneContact(cur_vorname, cur_nachname, new_vorname, new_nachname, email);
             log.info("ACTION EDIT: " + contact.toString());
 
-            return getResult();
+            return getResult(null);
         } catch (Exception e) {
             return getError(e);
         }
@@ -81,7 +82,58 @@ public class ControllerAdBook extends AControllerBase {
             final DBContact contact = getEngineContact().removeOneContact(vorname, nachname);
             log.info("ACTION REMOVE: " + contact.toString());
 
-            return getResult();
+            return getResult(null);
+        } catch (Exception e) {
+            return getError(e);
+        }
+    }
+
+    /**
+     * @param vorname
+     * @param nachname
+     * @param email
+     * @param modelAndView
+     * @return
+     */
+    @RequestMapping(value="/addressbook_reg", method = RequestMethod.POST)
+    @CrossOrigin
+    public String registerUser(
+        @RequestParam("vorname") final String vorname,
+        @RequestParam("nachname") final String nachname,
+        @RequestParam("email") final String email,
+        final Model modelAndView
+    ){
+        try {
+            final DBContact contact = getEngineContact().addOneContact(vorname, nachname, email, false);
+            final DBToken token = getEngineContact().verifyOneContact(contact.getVorname(), contact.getNachname());
+
+            getEngineMail().sendSimpleMessage(
+                contact.getEmailadresse(),
+                "Complete Registration!",
+                "To confirm this account, please click here : " +
+                    "http://localhost:8080/addressbook_confirm?token=" + token.getConfirmationToken());
+
+            return getResult("A verification email has been sent to: " + contact.getEmailadresse());
+        } catch (Exception e) {
+            return getError(e);
+        }
+    }
+
+    /**
+     * @param token
+     * @param modelAndView
+     * @return
+     */
+    @RequestMapping(value="/addressbook_confirm", method= {RequestMethod.GET, RequestMethod.POST})
+    @CrossOrigin
+    public String confirmUserAccount(
+        final @RequestParam("token")String token,
+        final Model modelAndView
+    ) {
+        try {
+            getEngineContact().registerOneContact(token);
+
+            return getResult("Congratulations! Email is verified, this account has been activated!");
         } catch (Exception e) {
             return getError(e);
         }
@@ -95,14 +147,20 @@ public class ControllerAdBook extends AControllerBase {
      * @return
      * @throws IOException
      */
-    protected String getResult() throws IOException {
+    protected String getResult(final String message) throws IOException {
         DBAddressBook contacts = getEngineContact().findAllContactOrderedByIdAscending();
         if(0 == contacts.size()){
             contacts = (DBAddressBook) getEngineContact().fromItems2DB();
         }
 
-        final String jsonString = getEngineContact().fill(contacts);
-        return "{ \"result\": " + jsonString + " }";
+        if(null != message) {
+            final String jsonString = getEngineContact().fill(contacts);
+            return "{ \"message\": \"" + message + "\", \"result\": " + jsonString + " }";
+        }
+        else {
+            final String jsonString = getEngineContact().fill(contacts);
+            return "{ \"result\": " + jsonString + " }";
+        }
     }
 
     /**
@@ -114,7 +172,6 @@ public class ControllerAdBook extends AControllerBase {
         return "{ \"error\": \"" + e.getMessage() + "\" }";
     }
 
-    /**
     /************************************************************************
      INIT PART
      */

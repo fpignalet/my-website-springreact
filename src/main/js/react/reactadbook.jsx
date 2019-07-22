@@ -22,13 +22,17 @@ class AdBookApp extends React.Component {
         this.address = 'http://localhost:8080/';
         this.requestlist = 'addressbook_list';
         this.addcontact = 'addressbook_add';
+        this.regcontact = 'addressbook_reg';
         this.editcontact = 'addressbook_edit';
         this.removecontact = 'addressbook_remove';
         this.select = 'result',
+        this.message = 'message',
+        this.error = 'error',
 
         this.state = {
             contacts: [],
             index: 0,
+            selected: 0,
             status: "none"
         };
     }
@@ -37,8 +41,8 @@ class AdBookApp extends React.Component {
         this.listContact()
     }
 
-    handleClickInList(index) {
-        this.setState({index:index, status:"edit"})
+    handleClickInList(index, contact) {
+        this.setState({index:index, selected:contact.id, status:"edit"})
     }
 
     listContact(contact) {
@@ -59,6 +63,20 @@ class AdBookApp extends React.Component {
                 this.setState({contacts: value})
             }
         );
+
+        this.setState({status:"none"})
+    }
+
+    regContact(index, contact) {
+        this.senddatatobackend(
+            this.regcontact + "?vorname=" + contact.vorname + "&nachname=" + contact.nachname + "&email=" + contact.emailadresse,
+            this.select,
+            (value) => {
+                this.setState({contacts: value})
+            }
+        );
+
+        this.setState({status:"none"})
     }
 
     editContact(index, contact) {
@@ -72,6 +90,8 @@ class AdBookApp extends React.Component {
                 this.setState({contacts: value})
             }
         );
+
+        this.setState({status:"none"})
     }
 
     removeContact(index, contact) {
@@ -84,6 +104,8 @@ class AdBookApp extends React.Component {
                 this.setState({contacts: value})
             }
         );
+
+        this.setState({status:"none"})
     }
 
     getdatafrombackend(request, select, cbk) {
@@ -95,9 +117,13 @@ class AdBookApp extends React.Component {
                 res => {
                     const jsonStr = JSON.stringify(res.data);
                     const jsonRes = JSON.parse(jsonStr);
-                    if(null != jsonRes["error"]){
-                        alert("Server returned error: " + jsonRes["error"]);
+                    if(null != jsonRes[this.error]){
+                        alert("Server returned error: " + jsonRes[this.error]);
                         return;
+                    }
+
+                    if(null != jsonRes[this.message]){
+                        alert("Server returned message: " + jsonRes[this.message]);
                     }
 
                     cbk(jsonRes[select]);
@@ -117,9 +143,13 @@ class AdBookApp extends React.Component {
                 res => {
                     const jsonStr = JSON.stringify(res.data);
                     const jsonRes = JSON.parse(jsonStr);
-                    if(null != jsonRes["error"]){
-                        alert("Server returned error: " + jsonRes["error"]);
+                    if(null != jsonRes[this.error]){
+                        alert("Server returned error: " + jsonRes[this.error]);
                         return;
+                    }
+
+                    if(null != jsonRes[this.message]){
+                        alert("Server returned message: " + jsonRes[this.message]);
                     }
 
                     cbk(jsonRes[select]);
@@ -139,8 +169,10 @@ class AdBookApp extends React.Component {
                 />
                 <ContactEdit contacts={this.state.contacts}
                              index={this.state.index}
+                             selected={this.state.selected}
                              status={this.state.status}
                              addContact={this.addContact.bind(this)}
+                             regContact={this.regContact.bind(this)}
                              editContact={this.editContact.bind(this)}
                              removeContact={this.removeContact.bind(this)}
                 />
@@ -168,15 +200,15 @@ class ContactList extends React.Component {
         })
     }
 
-    contactSelect(index) {
-        this.props.handleToUpdate(index);
+    contactSelect(index, contact) {
+        this.props.handleToUpdate(index, contact);
     }
 
     render() {
         const filteredContacts = this.props.contacts.filter(
             (contact) => {
                 const fullName = contact.vorname.toLowerCase() + contact.nachname.toLowerCase()
-                return fullName.indexOf(this.state.search.toLowerCase()) !== -1;
+                return contact.enabled && (fullName.indexOf(this.state.search.toLowerCase()) !== -1);
             }
         );
 
@@ -207,53 +239,88 @@ class ContactList extends React.Component {
 
 }
 
+class Contact extends React.Component {
+
+    handleListItemClick(event, index) {
+        this.props.select(index, this.props.contact)
+    }
+
+    render() {
+        return (
+            <li onClick={event => this.handleListItemClick(event, this.props.index)}>
+                <p>
+                    {this.props.index} <br />
+                    {this.props.contact.id} <br />
+                    {this.props.contact.vorname} <br />
+                    {this.props.contact.nachname} <br />
+                    {this.props.contact.emailadresse} <br />
+                    {this.props.contact.enabled}
+                </p>
+            </li>
+        )
+    }
+}
+
 class ContactEdit extends React.Component {
 
     componentWillMount() {
-        this.id = "id";
+        this.none = "none";
+        this.edit = "edit";
+        this.index = "[DBG] index";
+        this.id = "[DBG] id";
         this.vorname = "vorname";
         this.nachname = "nachname";
         this.emailadresse = "emailadresse";
+        this.verified = "verified";
         this.ADD = "add";
+        this.REG = "reg";
         this.EDIT = "edit";
         this.REMOVE = "remove";
 
-        this.setState({
-            id: "",
-            vorname: "",
-            nachname: "",
-            emailadresse: ""
-        });
+        this.setDefaultContact()
     }
 
     componentDidMount() {
-        if("edit" == this.props.status){
-            this.reloadProps()
+        if(this.edit == this.props.status){
+            this.setActiveContact()
         }
         else {
-            this.setState({
-                id: "",
-                vorname: "",
-                nachname: "",
-                emailadresse: ""
-            });
+            this.setDefaultContact()
         }
     }
 
     componentDidUpdate(prevProps) {
         if ((this.props.status !== prevProps.status) ||
             (this.props.index !== prevProps.index)) {
-            this.reloadProps()
+            this.setActiveContact()
         }
     }
 
-    reloadProps() {
+    setDefaultContact() {
+        this.setState({
+            id: "",
+            vorname: "",
+            nachname: "",
+            emailadresse: "",
+            enabled: ""
+        });
+    }
+
+    setActiveContact() {
         this.setState({
             id: this.props.contacts[this.props.index].id,
             vorname: this.props.contacts[this.props.index].vorname,
             nachname: this.props.contacts[this.props.index].nachname,
-            emailadresse: this.props.contacts[this.props.index].emailadresse
+            emailadresse: this.props.contacts[this.props.index].emailadresse,
+            enabled: this.props.contacts[this.props.index].enabled
         });
+    }
+
+    handleChange(data) {
+        const state = this.state;
+        const name = data.target.name;
+        state[name] = data.target.value;
+        this.setState(state);
     }
 
     handleSubmit(e) {
@@ -267,24 +334,21 @@ class ContactEdit extends React.Component {
             submitButton = document.activeElement;
         }
 
+        const contact = this.state;
         switch(submitButton.value){
             case this.ADD:
-                this.props.addContact(this.props.index, this.state)
+                this.props.addContact(this.props.index, contact)
+                break;
+            case this.REG:
+                this.props.regContact(this.props.index, contact)
                 break;
             case this.EDIT:
-                this.props.editContact(this.props.index, this.state)
+                this.props.editContact(this.props.index, contact)
                 break;
             case this.REMOVE:
-                this.props.removeContact(this.props.index, this.state)
+                this.props.removeContact(this.props.index, contact)
                 break;
         }
-    }
-
-    handleChange(data) {
-        const state = this.state;
-        const name = data.target.name;
-        state[name] = data.target.value;
-        this.setState(state);
     }
 
     render() {
@@ -292,6 +356,13 @@ class ContactEdit extends React.Component {
         return (
             <div className="contact-add">
                 <form className="add-form" onSubmit={this.handleSubmit.bind(this)} method="post">
+                    <div className="form-field">
+                        <label>List index: </label>
+                        <input type="text"
+                               name={this.index}
+                               value={this.props.index}
+                        />
+                    </div>
                     <div className="form-field">
                         <label>DB Id: </label>
                         <input type="text"
@@ -323,6 +394,14 @@ class ContactEdit extends React.Component {
                                onChange={this.handleChange.bind(this)}
                         />
                     </div>
+                    <div className="form-field">
+                        <label>Verified: </label>
+                        <input type="text"
+                               name={this.verified}
+                               value={this.state.enabled}
+                               onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
                     { this.renderButtons() }
                 </form>
             </div>
@@ -331,39 +410,23 @@ class ContactEdit extends React.Component {
 
     renderButtons() {
         switch(this.props.status){
-            case "none":
-                return (
-                    <button name="subject" type="submit" value={this.ADD}>Add</button>
-                )
-            case "edit":
+            case this.none:
                 return (
                     <div>
                         <button name="subject" type="submit" value={this.ADD}>Add</button>
+                        <button name="subject" type="submit" value={this.REG}>Register</button>
+                    </div>
+                )
+            case this.edit:
+                return (
+                    <div>
+                        <button name="subject" type="submit" value={this.ADD}>Add</button>
+                        <button name="subject" type="submit" value={this.REG}>Register</button>
                         <button name="subject" type="submit" value={this.EDIT}>Save</button>
                         <button name="subject" type="submit" value={this.REMOVE}>Delete</button>
                     </div>
                 )
         }
-    }
-}
-
-class Contact extends React.Component {
-
-    handleListItemClick(event, index) {
-        this.props.select(index)
-    }
-
-    render() {
-        return (
-            <li onClick={event => this.handleListItemClick(event, this.props.index)}>
-                <p>
-                    {this.props.contact.id} <br />
-                    {this.props.contact.vorname} <br />
-                    {this.props.contact.nachname} <br />
-                    {this.props.contact.emailadresse}
-                </p>
-            </li>
-        )
     }
 }
 

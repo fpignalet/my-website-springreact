@@ -3,6 +3,7 @@ CREATE DATABASE if not exists fpitest;
 DROP TABLE if exists dbhist_sub_data;
 DROP TABLE if exists springtest;
 DROP TABLE if exists contact;
+DROP TABLE if exists token;
 DROP TABLE if exists histcontener;
 DROP TABLE if exists histitem;
 DROP TABLE if exists histcontent;
@@ -25,7 +26,20 @@ CREATE TABLE if not exists  contact
 
     vorname VARCHAR(256),
     nachname VARCHAR(256),
-    emailadresse VARCHAR(256)
+    emailadresse VARCHAR(256),
+    enabled BOOLEAN
+
+) ENGINE = MyISAM
+  DEFAULT CHARSET = latin1;
+
+CREATE TABLE if not exists  token
+(
+    token_id int(11) NOT NULL auto_increment PRIMARY KEY,
+
+    confirmation_token VARCHAR(256),
+
+    user int(11),
+    FOREIGN KEY(user) references contact(id)
 
 ) ENGINE = MyISAM
   DEFAULT CHARSET = latin1;

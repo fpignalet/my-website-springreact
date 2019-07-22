@@ -52,6 +52,11 @@ import javax.xml.bind.annotation.XmlRootElement;
         @NamedQuery(
             name = "DBContact.findByVorNNachname",
             query = "SELECT a FROM DBContact a WHERE a.vorname = :vorname AND a.nachname = :nachname "
+        ),
+
+        @NamedQuery(
+            name = "DBContact.findByEmailaddresse",
+            query = "SELECT a FROM DBContact a WHERE a.emailadresse = :emailadresse AND a.nachname = :emailadresse "
         )
 })
 public class DBContact extends ADBBaseItem {
@@ -100,5 +105,14 @@ public class DBContact extends ADBBaseItem {
     @Basic
     @Column(columnDefinition = "VARCHAR(256)", nullable=false)
     private String emailadresse;
+
+    /**
+     *
+     */
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    @Basic
+    @Column(columnDefinition = "BOOLEAN", nullable=false)
+    private boolean enabled;
 
 }

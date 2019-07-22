@@ -69,14 +69,24 @@ Spring Boot automatically configures required classes depending on the libraries
 * SOLID
     • Single Change Responsibility
         ◦ a class should have a single reason to change.
+            Responsabilité unique (single responsibility principle)
+            une classe, une fonction ou une méthode doit avoir une et une seule responsabilité
     • Open/Closed for modifs
         ◦ software entities should be open for extension but closed for modification.
+            Ouvert/fermé (open/closed principle)
+            une entité applicative (class, fonction, module ...) doit être ouverte à l'extension, mais fermée à la modification
     • Liskov Substitution (characs)
         ◦ the program’s characteristics should not change
+            Substitution de Liskov (Liskov substitution principle)
+            une instance de type T doit pouvoir être remplacée par une instance de type G, tel que G sous-type de T, sans que cela ne modifie la cohérence du programme
     • Interface Segregation (intf)
         ◦ An object should only depend on interfaces it requires
+            Ségrégation des interfaces (interface segregation principle)
+            préférer plusieurs interfaces spécifiques pour chaque client plutôt qu'une seule interface générale
     • Dependency Inversion
         ◦ Use interfaces
+            Inversion des dépendances (dependency inversion principle)
+            il faut dépendre des abstractions, pas des implémentations
 
 * [https://www.quickprogrammingtips.com/spring-boot/history-of-spring-framework-and-spring-boot.html]
 

@@ -42,7 +42,7 @@ public class EngServiceMail implements IEngModelUpdater {
      * @param subject contains the title of the mail
      * @param text contains the text to be sent
      */
-    public void sendSimpleMessage(String to, String subject, String text) {
+    public void sendSimpleMessage(final String to, final String subject, final String text) {
         final SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);

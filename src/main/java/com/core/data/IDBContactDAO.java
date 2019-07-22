@@ -23,5 +23,6 @@ public interface IDBContactDAO extends JpaRepository<DBContact, Integer> {
     List<DBContact> findByVorname(@Param("vorname") String vorname);
     List<DBContact> findByNachname(@Param("nachname") String nachname);
     List<DBContact> findByVorNNachname(@Param("vorname") String vorname, @Param("nachname") String nachname);
+    List<DBContact> findByEmailaddresse(@Param("emailadresse") String emailadresse);
 
 }
