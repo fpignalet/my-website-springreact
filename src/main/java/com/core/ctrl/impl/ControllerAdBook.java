@@ -106,12 +106,7 @@ public class ControllerAdBook extends AControllerBase {
         try {
             final DBContact contact = getEngineContact().addOneContact(vorname, nachname, email, false);
             final DBToken token = getEngineContact().verifyOneContact(contact.getVorname(), contact.getNachname());
-
-            getEngineMail().sendSimpleMessage(
-                contact.getEmailadresse(),
-                "Complete Registration!",
-                "To confirm this account, please click here : " +
-                    "http://localhost:8080/addressbook_confirm?token=" + token.getConfirmationToken());
+            getEngineMail().sendRegistrationMessage(contact.getEmailadresse(), token.getConfirmationToken());
 
             return getResult("A verification email has been sent to: " + contact.getEmailadresse());
         } catch (Exception e) {

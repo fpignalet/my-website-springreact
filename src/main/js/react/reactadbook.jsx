@@ -214,6 +214,7 @@ class ContactList extends React.Component {
 
         return (
             <div className="people-list">
+
                 <div className="search">
                     <input type="text"
                            className="search_input"
@@ -222,6 +223,7 @@ class ContactList extends React.Component {
                            placeholder={this.prompt}
                     />
                 </div>
+
                 <ul className="list">
                     {
                         filteredContacts.map((contact, index)=> {
@@ -249,8 +251,10 @@ class Contact extends React.Component {
         return (
             <li onClick={event => this.handleListItemClick(event, this.props.index)}>
                 <p>
+
                     {this.props.index} <br />
                     {this.props.contact.id} <br />
+
                     {this.props.contact.vorname} <br />
                     {this.props.contact.nachname} <br />
                     {this.props.contact.emailadresse} <br />
@@ -266,12 +270,12 @@ class ContactEdit extends React.Component {
     componentWillMount() {
         this.none = "none";
         this.edit = "edit";
-        this.index = "[DBG] index";
-        this.id = "[DBG] id";
+        this.index = "index";
+        this.id = "id";
         this.vorname = "vorname";
         this.nachname = "nachname";
         this.emailadresse = "emailadresse";
-        this.verified = "verified";
+        this.enabled = "enabled";
         this.ADD = "add";
         this.REG = "reg";
         this.EDIT = "edit";
@@ -356,20 +360,22 @@ class ContactEdit extends React.Component {
         return (
             <div className="contact-add">
                 <form className="add-form" onSubmit={this.handleSubmit.bind(this)} method="post">
+
                     <div className="form-field">
-                        <label>List index: </label>
+                        <label>[DEBUG] List index: </label>
                         <input type="text"
                                name={this.index}
                                value={this.props.index}
                         />
                     </div>
                     <div className="form-field">
-                        <label>DB Id: </label>
+                        <label>[DEBUG] DB Id: </label>
                         <input type="text"
                                name={this.id}
                                value={this.state.id}
                         />
                     </div>
+
                     <div className="form-field">
                         <label>Vorname: </label>
                         <input type="text"
@@ -394,14 +400,16 @@ class ContactEdit extends React.Component {
                                onChange={this.handleChange.bind(this)}
                         />
                     </div>
+
                     <div className="form-field">
                         <label>Verified: </label>
                         <input type="text"
-                               name={this.verified}
+                               name={this.enabled}
                                value={this.state.enabled}
                                onChange={this.handleChange.bind(this)}
                         />
                     </div>
+
                     { this.renderButtons() }
                 </form>
             </div>

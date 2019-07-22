@@ -53,6 +53,19 @@ public class EngServiceMail implements IEngModelUpdater {
     }
 
     /**
+     * @param to contains the destination address
+     */
+    public void sendRegistrationMessage(final String to, final String strtoken) {
+        final SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("Complete Registration!");
+        message.setText("To confirm this account, please click here: http://localhost:8080/addressbook_confirm?token=" + strtoken);
+        emailSender.send(message);
+
+        log.debug("OK");
+    }
+
+    /**
      * @brief
      * @return a JavaMailSenderImpl
      */
