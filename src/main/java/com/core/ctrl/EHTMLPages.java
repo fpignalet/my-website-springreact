@@ -11,6 +11,7 @@ public enum EHTMLPages {
     DEFAULT("default"),
     ADBOOK("adbook"),
     CV("CV"),
+    BLOG("BLOG"),
     REACT("react"),
     ANGULAR("angular"),
     ERROR("error");

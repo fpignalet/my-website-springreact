@@ -3,23 +3,29 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/spectre.min.css">
+    <link rel="stylesheet" href="/style/spectre-exp.min.css">
+    <link rel="stylesheet" href="/style/spectre-icons.min.css">
 
-    <div th:include="fragments/CV.html :: header" ></div>
+    <div th:include="fragments/cv.html :: header" ></div>
 
-    <title>FRONTEND_DEFAULT</title>
+    <title>FRONTEND_CV</title>
 
 </head>
 <body>
+<!--
     <div class="fixed-parallax">
         <div class="image two"></div>
         <div class="content">
-            <div th:include="fragments/CV.html :: contentcvtable" ></div>
+            <div th:include="fragments/cv.html :: contentcvtable" ></div>
 
         </div>
         <div class="image three"></div>
     </div>
+-->
+    <div th:include="fragments/cv.html :: contentcvtable" ></div>
 
-    <div th:include="fragments/CV.html :: footer" ></div>
+    <div th:include="fragments/cv.html :: footer" ></div>
 
 </body>
 </html>

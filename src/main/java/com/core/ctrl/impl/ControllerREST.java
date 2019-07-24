@@ -3,7 +3,7 @@ package com.core.ctrl.impl;
 import com.core.async.AAsyncTasks;
 import com.core.ctrl.AControllerBase;
 import com.core.eng.EEngJSONFiles;
-import com.core.eng.impl.EngServiceDBCV;
+import com.core.eng.impl.EngServiceDBHistory;
 import com.core.eng.impl.EngServiceDBTest;
 import com.core.ext.impl.BExtFacade;
 import lombok.extern.slf4j.Slf4j;
@@ -47,38 +47,10 @@ public class ControllerREST extends AControllerBase {
     @CrossOrigin
     public String exthttpgetjson1() {
         try {
-            return getEngineCV().load(EEngJSONFiles.CVIN);
+            return getEngineHistory().load(EEngJSONFiles.HISTIN);
         } catch (IOException e) {
             e.printStackTrace();
             return getError("JSON NOT OOK!", e);
-        }
-    }
-
-    /**
-     * to be tested in browser
-     */
-    @RequestMapping(value = "/extpopulatecvdb", method = RequestMethod.GET)
-    @CrossOrigin
-    public String extpopulatedb() {
-        try {
-            getEngineCV().fromItems2DB();
-            return getResult("DB OOK");
-        } catch (IOException e) {
-            return getError("DB NOT OOK!", e);
-        }
-    }
-
-    /**
-     * to be tested in browser
-     */
-    @RequestMapping(value = "/extpopulatecvfile", method = RequestMethod.GET)
-    @CrossOrigin
-    public String extpopulatefile() {
-        try {
-            getEngineCV().fromDB2Items();
-            return getResult("FILE OOK");
-        } catch (IOException e) {
-            return getError("FILE NOT OOK!", e);
         }
     }
 
@@ -128,7 +100,7 @@ public class ControllerREST extends AControllerBase {
      */
     public ControllerREST(
         final EngServiceDBTest engineDB,
-        final EngServiceDBCV engineCV,
+        final EngServiceDBHistory engineCV,
         final AAsyncTasks taskManager,
         final BExtFacade extFacade) {
         super(engineDB, engineCV, null, null);

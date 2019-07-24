@@ -1,7 +1,7 @@
 package com.core.ctrl;
 
 import com.core.eng.impl.EngServiceDBABook;
-import com.core.eng.impl.EngServiceDBCV;
+import com.core.eng.impl.EngServiceDBHistory;
 import com.core.eng.impl.EngServiceDBTest;
 import com.core.eng.impl.EngServiceMail;
 import lombok.AccessLevel;
@@ -34,7 +34,7 @@ public abstract class AControllerBase {
     @Autowired
     @Getter(AccessLevel.PROTECTED)
     @Setter(AccessLevel.PROTECTED)
-    private EngServiceDBCV engineCV;
+    private EngServiceDBHistory engineHistory;
 
     /**
      *
@@ -58,12 +58,12 @@ public abstract class AControllerBase {
      */
     public AControllerBase(
         final EngServiceDBTest engineDB,
-        final EngServiceDBCV engineCV,
+        final EngServiceDBHistory engineHist,
         final EngServiceDBABook engineContact,
         final EngServiceMail engineMail
     ) {
         this.engineDB = engineDB;
-        this.engineCV = engineCV;
+        this.engineHistory = engineHist;
         this.engineContact = engineContact;
 
         this.engineMail = engineMail;

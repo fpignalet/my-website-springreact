@@ -2,6 +2,9 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/spectre.min.css">
+    <link rel="stylesheet" href="/style/spectre-exp.min.css">
+    <link rel="stylesheet" href="/style/spectre-icons.min.css">
 
     <title>FRONTEND_ANGULAR</title>
 
@@ -9,6 +12,7 @@
 
 </head>
 <body>
+<!--
     <div class="fixed-parallax">
         <div class="image seven"></div>
         <div class="content">
@@ -17,6 +21,8 @@
         </div>
         <div class="image eight"></div>
     </div>
+-->
+    <div th:include="fragments/angular.html :: contentangular" ></div>
 
     <div th:include="fragments/angular.html :: footer" ></div>
 

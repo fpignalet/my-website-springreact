@@ -10,10 +10,11 @@ import lombok.experimental.FieldNameConstants;
 @FieldNameConstants
 public enum EEngModelItems {
 
-    JSONCV("JSONCV"),
+    JSONHIST("JSONHIST"),
     JSONABOOK("JSONAB"),
     DBTEST("DB"),
-    DBCV("CV"),
+    DBHIST("HIST"),
+    DBBLOG("BLOG"),
     DBABOOK("ADBOOK");
 
     EEngModelItems(final String name){

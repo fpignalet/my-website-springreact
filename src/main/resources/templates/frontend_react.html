@@ -2,6 +2,9 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/spectre.min.css">
+    <link rel="stylesheet" href="/style/spectre-exp.min.css">
+    <link rel="stylesheet" href="/style/spectre-icons.min.css">
 
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -15,6 +18,7 @@
 
 </head>
 <body>
+<!--
     <div class="fixed-parallax">
         <div class="image five"></div>
         <div class="content">
@@ -23,6 +27,8 @@
         </div>
         <div class="image six"></div>
     </div>
+-->
+    <div th:include="fragments/react.html :: contentreact" ></div>
 
     <div th:include="fragments/react.html :: footer" ></div>
 

@@ -10,7 +10,6 @@ import java.io.IOException;
 public interface IEngModelUpdater {
 
     /**
-     * @brief to be called when GUI needs to display data
      * @param model
      * @throws IOException
      */

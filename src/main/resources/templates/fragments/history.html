@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+
+<!-- -------------------------------------------------------------------------->
+<div th:fragment="header">
+</div>
+
+<div th:fragment="footer">
+</div>
+
+<!-- -------------------------------------------------------------------------->
+<div th:fragment="contenthisttable_item">
+    <dd th:each="item : ${record.getConteneritems()}">
+        <dl>
+            <dd th:if="${item.getHisttitle() != null}"
+                th:text="${item.getHisttitle()}"></dd>
+            <dd th:if="${item.getHistkind() != null}"
+                th:text="${item.getHistkind()}"></dd>
+            <dd th:if="${item.getHistdesc() != null}"
+                th:text="${item.getHistdesc()}"></dd>
+            <dd th:if="${item.getHistduration() != null}"
+                th:text="${item.getHistduration()}"></dd>
+            <dd th:if="${item.getHistextra() != null}"
+                th:text="${item.getHistextra()}"></dd>
+
+            <div th:if="${item.getContentitems() != null}">
+                <div th:include="fragments/history.html :: contenthisttable_content" ></div>
+            </div>
+        </dl>
+    </dd>
+</div>
+
+<div th:fragment="contenthisttable_content">
+    <dd th:each="content : ${item.getContentitems()}">
+        <dl>
+            <dd th:if="${content.getEntrydesc() != null}"
+                th:text="${content.getEntrydesc()}"></dd>
+
+            <div th:if="${content.getContentlist() != null}">
+                <div th:include="fragments/history.html :: contenthisttable_sub" ></div>
+            </div>
+        </dl>
+    </dd>
+</div>
+
+<div th:fragment="contenthisttable_sub">
+    <dd th:each="sub : ${content.getContentlist()}">
+        <div th:if="${sub.getListtext() != null}">
+            <dl>
+                <div th:include="fragments/history.html :: contenthisttable_text" ></div>
+            </dl>
+        </div>
+    </dd>
+</div>
+
+<div th:fragment="contenthisttable_text">
+    <dd th:each="text : ${sub.getListtext()}">
+        <div th:if="${text.getData() != null}">
+            <dl>
+                <div th:include="fragments/history.html :: contenthisttable_value" ></div>
+            </dl>
+        </div>
+    </dd>
+</div>
+
+<div th:fragment="contenthisttable_value">
+    <dd th:each="value : ${text.getData()}">
+        <div th:text="${text.getData()}"></div>
+    </dd>
+</div>

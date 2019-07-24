@@ -53,10 +53,12 @@ public class EngServiceDBTest extends AEngJSONHandler implements IEngModelUpdate
     }
 
     @Override
-    public void updateDB(final ArrayList<?> items) {
+    public <T> ArrayList<?> updateDB(final ArrayList<?> items) {
         final ArrayList<DBItemTest> items_ = (ArrayList<DBItemTest>) items;
+        final ArrayList<DBItemTest> itemsOut = new ArrayList<>();
         items_.forEach((conteneritem) -> {
             try {
+                itemsOut.add(conteneritem);
                 dataTestRepo.save(conteneritem);
             }
             catch(final Exception ex){
@@ -64,6 +66,8 @@ public class EngServiceDBTest extends AEngJSONHandler implements IEngModelUpdate
                 log.debug(conteneritem.toString());
             }
         });
+
+        return itemsOut;
     }
 
     @Override
@@ -71,10 +75,10 @@ public class EngServiceDBTest extends AEngJSONHandler implements IEngModelUpdate
         ///1. FROM FILE:
         final ArrayList<DBItemTest> items = (ArrayList<DBItemTest>) loadFile();
         ///2. TO DB:
-        updateDB(items);
+        final ArrayList<DBItemTest> itemsOut = (ArrayList<DBItemTest>) updateDB(items);
 
         dataTestRepo.flush();
-        return null;
+        return itemsOut;
     }
 
     @Override

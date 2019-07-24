@@ -4,7 +4,7 @@ import com.core.async.AAsyncTasks;
 import com.core.ctrl.AControllerBase;
 import com.core.ctrl.EHTMLPages;
 import com.core.eng.impl.EngServiceDBABook;
-import com.core.eng.impl.EngServiceDBCV;
+import com.core.eng.impl.EngServiceDBHistory;
 import com.core.eng.impl.EngServiceDBTest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,8 +93,25 @@ public class ControllerMain extends AControllerBase {
     @GetMapping("/entrycv")
     public String entryCV(final Model model){
         try {
-            getEngineCV().updateModel(model);
+            getEngineHistory().updateModel(model);
             return EHTMLPages.CV.getName();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return EHTMLPages.ERROR.getName();
+        }
+    }
+
+    /**
+     * to be tested in browser
+     * will display angular html page with "FROM MODEL:[name parameter content]"
+     * @param model
+     * @return
+     */
+    @GetMapping("/entryblog")
+    public String entryBLOG(final Model model){
+        try {
+            getEngineHistory().updateModel(model);
+            return EHTMLPages.BLOG.getName();
         } catch (Exception e) {
             e.printStackTrace();
             return EHTMLPages.ERROR.getName();
@@ -139,16 +156,16 @@ public class ControllerMain extends AControllerBase {
     /**
      * @brief constructor
      * @param engineDB
-     * @param engineCV
+     * @param engineHist
      * @param engineContact
      * @param taskManager
      */
     public ControllerMain(
         final EngServiceDBTest engineDB,
-        final EngServiceDBCV engineCV,
+        final EngServiceDBHistory engineHist,
         final EngServiceDBABook engineContact,
         final AAsyncTasks taskManager) {
-        super(engineDB, engineCV, engineContact, null);
+        super(engineDB, engineHist, engineContact, null);
         this.taskManager = taskManager;
     }
 

@@ -27,7 +27,7 @@ import java.util.List;
 @Service
 @ComponentScan({"com.core.data"})
 @SessionAttributes("itemCV")
-public class EngServiceDBCV extends AEngJSONHandler implements IEngModelUpdater, IEngDBUpdater {
+public class EngServiceDBHistory extends AEngJSONHandler implements IEngModelUpdater, IEngDBUpdater {
 
     /************************************************************************
      INTERFACE ENFORCING
@@ -49,15 +49,18 @@ public class EngServiceDBCV extends AEngJSONHandler implements IEngModelUpdater,
             conteners = (DBCVConteners) fromItems2DB();
         }
 
-        model.addAttribute(EEngModelItems.DBCV.getName(), conteners);
-        model.addAttribute(EEngModelItems.JSONCV.getName(), conteners);
+        model.addAttribute(EEngModelItems.DBHIST.getName(), conteners);
+        model.addAttribute(EEngModelItems.JSONHIST.getName(), conteners);
     }
 
     @Override
-    public void updateDB(final ArrayList<?> items) {
-        final DBCVConteners items_ = (DBCVConteners) items;
-        items_.forEach((conteneritem) -> {
+    public <T> ArrayList<?> updateDB(final ArrayList<?> items) {
+        final DBCVConteners itemsIn = (DBCVConteners) items;
+        final DBCVConteners itemsOut = new DBCVConteners();
+        itemsIn.forEach((conteneritem) -> {
             try {
+                itemsOut.add(conteneritem);
+
                 //DBHistContener -> DBHistItem
                 conteneritem.getConteneritems().forEach((histitem) -> {
                     histitem.setParent(conteneritem);
@@ -85,6 +88,8 @@ public class EngServiceDBCV extends AEngJSONHandler implements IEngModelUpdater,
                 log.debug(conteneritem.toString());
             }
         });
+
+        return itemsOut;
     }
 
     @Override
@@ -92,10 +97,10 @@ public class EngServiceDBCV extends AEngJSONHandler implements IEngModelUpdater,
         ///1. FROM FILE:
         final DBCVConteners conteners = (DBCVConteners) loadFile();
         ///2. TO DB:
-        updateDB(conteners);
+        final DBCVConteners itemsOut = (DBCVConteners) updateDB(conteners);
 
         dataHistContenerRepo.flush();
-        return conteners;
+        return itemsOut;
     }
 
     @Override
@@ -114,14 +119,14 @@ public class EngServiceDBCV extends AEngJSONHandler implements IEngModelUpdater,
 
     @Override
     public <T> ArrayList<?> loadFile() throws IOException {
-        final String data = load(EEngJSONFiles.CVIN.getName());
+        final String data = load(EEngJSONFiles.HISTIN.getName());
         return (DBCVConteners) parse(data, DBCVConteners.class, DBCVConteners.getSubItems());
     }
 
     @Override
     public void updateFile(final ArrayList<?> itemsDB) throws IOException {
         final String jsonString = fill(itemsDB);
-        save(EEngJSONFiles.CVOUT.getName(), jsonString);
+        save(EEngJSONFiles.HISTOUT.getName(), jsonString);
     }
 
     /************************************************************************
@@ -172,6 +177,7 @@ public class EngServiceDBCV extends AEngJSONHandler implements IEngModelUpdater,
     /************************************************************************
      LOOK UP PART
      */
+
     /**
      * @return
      */
@@ -225,7 +231,7 @@ public class EngServiceDBCV extends AEngJSONHandler implements IEngModelUpdater,
      * @brief constructor
      * @param dataHistContenerDAO autowired IDBHistContenerDAO
      */
-    public EngServiceDBCV(final IDBHistContenerDAO dataHistContenerDAO) {
+    public EngServiceDBHistory(final IDBHistContenerDAO dataHistContenerDAO) {
         this.dataHistContenerRepo = dataHistContenerDAO;
     }
 

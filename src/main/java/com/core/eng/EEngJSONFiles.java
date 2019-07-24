@@ -12,8 +12,8 @@ public enum EEngJSONFiles {
     TESTOUT("datatestout"),
     TESTJSON("jsontest"),
     TESTJSONOUT("jsontestout"),
-    CVIN("datafpicv"),
-    CVOUT("datafpicvout"),
+    HISTIN("datafpihist"),
+    HISTOUT("datafpihistout"),
     ADBOOKIN("dataadbook"),
     ADBOOKOUT("dataadbookout");
 
@@ -22,6 +22,6 @@ public enum EEngJSONFiles {
     private EEngJSONFiles(final String name){
         this.name = dataRepo + name + postfix;
     }
-    private static final String dataRepo = "src/main/resources/static/data/";
+    private static final String dataRepo = "target/classes/static/data/";
     private static final String postfix = ".json";
 }

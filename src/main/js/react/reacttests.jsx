@@ -11,7 +11,7 @@ const Redux = require('redux');
 const ProgressBar = require('react-bootstrap/ProgressBar');
 
 const jsondata1 = require('../../resources/static/data/datatest.json');
-const jsondata2 = require('../../resources/static/data/datafpicv.json');
+const jsondata2 = require('../../resources/static/data/datafpihist.json');
 
 /*************************************************************************************
  * IMPLEMENTATION

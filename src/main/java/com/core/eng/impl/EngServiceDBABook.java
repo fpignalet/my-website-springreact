@@ -69,10 +69,12 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
     }
 
     @Override
-    public void updateDB(final ArrayList<?> items) {
-        final DBAddressBook items_ = (DBAddressBook) items;
-        items_.forEach((conteneritem) -> {
+    public <T> ArrayList<?> updateDB(final ArrayList<?> items) {
+        final DBAddressBook itemsIn = (DBAddressBook) items;
+        final DBAddressBook itemsOut = new DBAddressBook();
+        itemsIn.forEach((conteneritem) -> {
             try {
+                itemsOut.add(conteneritem);
                 dataContactRepo.save(conteneritem);
             }
             catch(final Exception ex){
@@ -80,6 +82,8 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
                 log.debug(conteneritem.toString());
             }
         });
+
+        return itemsOut;
     }
 
     @Override
@@ -87,10 +91,10 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         ///1. FROM FILE:
         final DBAddressBook conteners = (DBAddressBook) loadFile();
         ///2. TO DB:
-        updateDB(conteners);
+        final DBAddressBook itemsOut = (DBAddressBook) updateDB(conteners);
 
         dataContactRepo.flush();
-        return conteners;
+        return itemsOut;
     }
 
     @Override

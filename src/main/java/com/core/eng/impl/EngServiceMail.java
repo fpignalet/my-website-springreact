@@ -16,8 +16,8 @@ import java.util.Properties;
 /**
  * Mail operations
  */
-@Service
 @Slf4j
+@Service
 @ComponentScan({"com.core.data"})
 public class EngServiceMail implements IEngModelUpdater {
 

@@ -3,6 +3,9 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/spectre.min.css">
+    <link rel="stylesheet" href="/style/spectre-exp.min.css">
+    <link rel="stylesheet" href="/style/spectre-icons.min.css">
 
     <div th:include="fragments/tests.html :: header" ></div>
 
@@ -10,6 +13,7 @@
 
 </head>
 <body>
+<!--
     <div class="fixed-parallax">
         <div class="image one"></div>
         <div class="content">
@@ -19,6 +23,9 @@
         </div>
         <div class="image two"></div>
     </div>
+-->
+    <div th:include="fragments/tests.html :: contentdivs" ></div>
+    <div th:include="fragments/tests.html :: contenttasks" ></div>
 
     <div th:include="fragments/tests.html :: footer" ></div>
 
