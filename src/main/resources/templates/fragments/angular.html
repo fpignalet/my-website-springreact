@@ -36,76 +36,85 @@
          ng-init="person={ firstName: 'John', lastName: 'Doe' };
                   points=[ 1, 15, 19, 2, 40 ]">
 
-        <table class="table">
-            <tbody>
-            <tr class="active">
-                <td>
-                    <!-- small test_execute 1 ---------------------------------->
-                    <strong>
-                        TEST APP 1, with ng-init data
-                    </strong>
-                    <br>
-
-                    The person firstName/lastName in data (using ng-bind) is
-                    <strong><span ng-bind="person.firstName"></span></strong>
-                    <strong><span ng-bind="person.lastName"></span></strong>
-                    <br>
-                    The third item in array "points" in data (using direct ref) is
-                    <strong>
-                        <!-- points[2] comes directly from ng-init ---------------->
-                        points[2]: {{ points[2] }}
-                    </strong>
-                </td>
-                <td>
-                    <!-- small test_execute 2 ---------------------------------->
-                    <strong>
-                        TEST with form --> ng-model
-                    </strong>
-                    <form>
-                        <ul>
-                            <li>First Name: <input type="text" ng-model="ifirstName"></li>
-                            <li>Last Name: <input type="text" ng-model="ilastName"></li>
-                        </ul>
-                    </form>
-
-                    Hello (using ifirstName / ilastName filled in ng-model)
-                    <strong>{{ifirstName + " " + ilastName}}</strong>
-                </td>
-                <td>
-                    <!-- small test_execute 3 ---------------------------------->
-                    <div>
+        <head>
+        </head>
+        <body>
+            <table class="table">
+                <tbody>
+                <tr class="active">
+                    <div class="container grid-lg">
+                        <!-- small test_execute 1 ---------------------------------->
                         <strong>
-                            TEST with dynamic list (see main/js/module_tests.js)
+                            TEST APP 1, with ng-init data
                         </strong>
-                        <ul>
-                            <li ng-repeat="x in products">{{x}}
-                                <span ng-click="dynlistremoveitem($index)"> [X] </span>
-                            </li>
-                        </ul>
-                        <input type="text" ng-model="field2Add">
-                        <button ng-click="dynlistadditem()">Add</button>
-                        <br>The button above calls module_tests.js: $scope.dynlistadditem() in testapp/controller
-                    </div>
-                    <br>
-                    <div>
-                        {{errortext}}
-                    </div>
-                    <br>
-                </td>
-                <td>
-                    <!-- small test_execute 4 ---------------------------------->
-                    <p><strong>
-                        TEST with mouse
-                    </strong>
-                    <h1 ng-mousemove="onmouseover($event)">Mouse Over here !</h1>
-                    <br>
+                        <br>
 
-                    Coordinates (using ng-mousemove): <strong>{{x + ', ' + y}}</strong>
-                    </p>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        The person firstName/lastName in data (using ng-bind) is
+                        <strong><span ng-bind="person.firstName"></span></strong>
+                        <strong><span ng-bind="person.lastName"></span></strong>
+                        <br>
+                        The third item in array "points" in data (using direct ref) is
+                        <strong>
+                            <!-- points[2] comes directly from ng-init ---------------->
+                            points[2]: {{ points[2] }}
+                        </strong>
+                    </div>
+                </tr>
+                <tr class="active">
+                    <div class="container grid-lg">
+                        <!-- small test_execute 2 ---------------------------------->
+                        <strong>
+                            TEST with form --> ng-model
+                        </strong>
+                        <form>
+                            <ul>
+                                <li>First Name: <input type="text" ng-model="ifirstName"></li>
+                                <li>Last Name: <input type="text" ng-model="ilastName"></li>
+                            </ul>
+                        </form>
+
+                        Hello (using ifirstName / ilastName filled in ng-model)
+                        <strong>{{ifirstName + " " + ilastName}}</strong>
+                    </div>
+                </tr>
+                <tr class="active">
+                    <div class="container grid-lg">
+                        <!-- small test_execute 3 ---------------------------------->
+                        <div>
+                            <strong>
+                                TEST with dynamic list (see main/js/module_tests.js)
+                            </strong>
+                            <ul>
+                                <li ng-repeat="x in products">{{x}}
+                                    <span ng-click="dynlistremoveitem($index)"> [X] </span>
+                                </li>
+                            </ul>
+                            <input type="text" ng-model="field2Add">
+                            <button ng-click="dynlistadditem()">Add</button>
+                            <br>The button above calls module_tests.js: $scope.dynlistadditem() in testapp/controller
+                        </div>
+                        <br>
+                        <div>
+                            {{errortext}}
+                        </div>
+                    </div>
+                </tr>
+                <tr class="active">
+                    <div class="container grid-lg">
+                        <!-- small test_execute 4 ---------------------------------->
+                        <p><strong>
+                            TEST with mouse
+                        </strong>
+                        <h1 ng-mousemove="onmouseover($event)">Mouse Over here !</h1>
+                        <br>
+
+                        Coordinates (using ng-mousemove): <strong>{{x + ', ' + y}}</strong>
+                        </p>
+                    </div>
+                </tr>
+                </tbody>
+            </table>
+        </body>
     </div>
 </div>
 
@@ -114,18 +123,21 @@
          ng-controller="otherctrl"
          id="angutest2">
 
-        <!-- small test_execute 5 ---------------------------------->
-        <div>
-            <strong>
-                TEST APP 2, WITH ngRoute
-            </strong>
-            <p>Click on the links to change the content.</p>
-            <a class="angmenu" href="#!default">None</a>
-            <a class="angmenu" href="#!Menu1">Menu 1</a>
-            <a class="angmenu" href="#!Menu2">Menu 2</a>
-            <div ng-view></div>
-        </div>
+        <head>
+        </head>
+        <body>
+            <!-- small test_execute 5 ---------------------------------->
+            <div class="container grid-lg">
+                <strong>
+                    TEST APP 2, WITH ngRoute
+                </strong>
+                <p>Click on the links to change the content.</p>
+                <a class="angmenu" href="#!default">None</a>
+                <a class="angmenu" href="#!Menu1">Menu 1</a>
+                <a class="angmenu" href="#!Menu2">Menu 2</a>
+                <div ng-view></div>
+            </div>
+        </body>
 
     </div>
 </div>
-

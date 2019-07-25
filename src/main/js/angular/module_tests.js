@@ -3,90 +3,12 @@
  *************************************************************************************/
 'use strict';
 
+import {TestApp1} from "./angapp1.js";
+import {TestApp2} from "./angapp2.js";
+
 /*************************************************************************************
  * IMPLEMENTATION
  *************************************************************************************/
-class TestApp1 {
-
-    create(appname, ctrlname, ifirstName, ilastName, products) {
-        const testapp = angular.module(appname, []);
-
-        testapp.controller(ctrlname, ["$scope", function($scope) {
-
-            // -------------------------------------
-            $scope.ifirstName = ifirstName;
-            $scope.ilastName = ilastName;
-
-            // -------------------------------------
-            $scope.products = products;
-
-            $scope.dynlistadditem = function () {
-                $scope.errortext = "";
-
-                const value = $scope.field2Add;
-                if (null === value) {
-                    $scope.errortext = "Please enter something";
-                    return;
-                }
-
-                if ($scope.products.indexOf(value) !== -1) {
-                    $scope.errortext = "The item is already in the list";
-                    return;
-                }
-
-                $scope.products.push(value);
-            };
-
-            $scope.dynlistremoveitem = function (index) {
-                $scope.errortext = "";
-                $scope.products.splice(index, 1);
-            };
-
-            // -------------------------------------
-            $scope.onmouseover = function(event) {
-                $scope.x = event.clientX;
-                $scope.y = event.clientY;
-            };
-
-        }]);
-    }
-}
-
-class TestApp2 {
-
-    create(appname, ctrlname) {
-        const testapp = angular.module(appname, [ 'ngRoute' ]);
-
-        testapp.config(["$routeProvider", function($routeProvider) {
-
-            $routeProvider
-                .when("/Menu1", {
-                    template : () => {
-                        return "<h1>Choosed: Menu 1</h1><p>result = 75%.</p>"
-                    },
-                    controller: ctrlname
-                })
-                .when("/Menu2", {
-                    template : () => {
-                        return "<h1>Choosed: Menu 2</h1><p>result = 95%.</p>"
-                    },
-                    controller: ctrlname
-                })
-                .otherwise({
-                    template : () => {
-                        return "<h1>Choosed: Nothing</h1><p>Nothing has been selected</p>"
-                    },
-                    controller: ctrlname
-                });
-        }]);
-
-        testapp.controller(ctrlname, ["$scope", function($scope) {
-            console.log("$scope = " + $scope.toString());
-        }]);
-    }
-
-}
-
 class AngularTests {
 
     /// @brief add angularjs to tech tests
@@ -96,8 +18,8 @@ class AngularTests {
     /// @param ilastName desc...
     /// @param products desc...
     testANGULAR1(contener, id, ifirstName, ilastName, products) {
-        const appname = contener.getElementById("angutest1").getAttribute("ng-app");
-        const ctrlname = contener.getElementById("angutest1").getAttribute("ng-controller");
+        const appname = contener.getElementById(id).getAttribute("ng-app");
+        const ctrlname = contener.getElementById(id).getAttribute("ng-controller");
 
         const app1 = new TestApp1();
         app1.create(appname, ctrlname, ifirstName, ilastName, products);
@@ -118,8 +40,6 @@ class AngularTests {
         const app2 = new TestApp2();
         app2.create(appname, ctrlname);
 
-        angular.bootstrap(contener.getElementById(id), ['otherapp']);
-
 //        console.log(this.getFuncName() + "OK");
     }
 
@@ -133,6 +53,7 @@ window.angularexe = () => {
                                "Firstname", "Lastname", ["Item 1", "Item 2", "Item 3"]);
 
         local.testANGULAR2(document, "angutest2");
+        angular.bootstrap(document.getElementById("angutest2"), ['otherapp']);
     }
     catch (e) {
         console.log(e.toString())

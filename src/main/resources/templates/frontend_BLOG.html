@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/spectre.min.css">
+    <link rel="stylesheet" href="/style/spectre-exp.min.css">
+    <link rel="stylesheet" href="/style/spectre-icons.min.css">
+
+    <div th:include="fragments/blog.html :: header" ></div>
+
+    <title>FRONTEND_BLOG</title>
+
+</head>
+<body>
+<!--
+    <div class="fixed-parallax">
+        <div class="image two"></div>
+        <div class="content">
+            <div th:include="fragments/cv.html :: contentcvtable" ></div>
+
+        </div>
+        <div class="image three"></div>
+    </div>
+-->
+    <div th:include="fragments/blog.html :: contentblogtable" ></div>
+
+    <div th:include="fragments/blog.html :: footer" ></div>
+
+</body>
+</html>

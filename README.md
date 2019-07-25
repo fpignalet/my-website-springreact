@@ -11,7 +11,7 @@ My current professional website is
 Also...
 
 ------------------------------------------------------------------
-BACKEND:
+BACKEND / EMBEDDED THYMELEAF FRONTEND:
 
 Open the project / import the pom in IntelliJIdea, 
 - use Maven target to compile the application
@@ -33,7 +33,9 @@ sudo docker run --network="host" -t my-website-springreact
 ```
 
 ------------------------------------------------------------------
-FRONTEND:
+EXTERNAL FRONTEND:
+
+open a terminal and execute:
 ```ruby
 cd external-react-frontend
 npm install
@@ -42,6 +44,27 @@ then:
 DEBUG=canvas-game-bootstrap:* npm run-script start
 or:
 npm run-script start
+```
+
+------------------------------------------------------------------
+DEPLOY THE APPLICATION ON LOCALHOST DEFAULT PORT 80:
+
+open a terminal and execute:
+```
+a2enmod proxy
+a2enmod proxy_http   
+
+cd /etc/apache2/sites-enabled
+sudo nano 000-default.conf
+
+Edit file:
+<VIRTUALHOST *:80>
+
+    # ...
+
+    ProxyPreserveHost On
+    ProxyPass / http://localhost:8080/
+</VIRTUALHOST>
 ```
 
 ------------------------------------------------------------------
@@ -64,26 +87,27 @@ What is important here?
             - [C](src/main/c)
             - [java](src/main/java)
                 - [com](src/main/java/com)
-                    - ...
+                    - spring boot app implementation
             - [js](src/main/js)
                 - [angular](src/main/js/angular)
-                    - ...
+                    - frontend angular implementation
                 - [react](src/main/js/react)
-                    - ...
+                    - frontend react implementation
             - [resources](src/main/resources)
                 - [static](src/main/resources/static)
                     - [built](src/main/resources/static/built)
-                        - ...
+                        - frontend transpiled javascript modules
                     - [data](src/main/resources/static/data)
-                        - ...
+                        - static resources
                     - [images](src/main/resources/static/images)
-                        - ...
+                        - static resources
                     - [style](src/main/resources/static/style)
-                        - ...
+                        - css...
                 - [templates](src/main/resources/templates)
                     - [fragments](src/main/resources/templates/fragments)
-                        - ...
-            - [sh(src/main/sh)
+                        - thymeleaf fragments
+            - [sh](src/main/sh)
         - [test](test)
+            - spring boot app tests implementation
 
 This site was built using [GitHub Pages](https://pages.github.com/).

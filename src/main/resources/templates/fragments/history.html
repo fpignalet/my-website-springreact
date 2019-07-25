@@ -10,23 +10,39 @@
 </div>
 
 <!-- -------------------------------------------------------------------------->
-<div th:fragment="contenthisttable_item">
-    <dd th:each="item : ${record.getConteneritems()}">
+<div th:fragment="contenthisttable_accordion">
+    <dd th:each="item,iteritem : ${record.getConteneritems()}">
         <dl>
-            <dd th:if="${item.getHisttitle() != null}"
-                th:text="${item.getHisttitle()}"></dd>
-            <dd th:if="${item.getHistkind() != null}"
-                th:text="${item.getHistkind()}"></dd>
-            <dd th:if="${item.getHistdesc() != null}"
-                th:text="${item.getHistdesc()}"></dd>
-            <dd th:if="${item.getHistduration() != null}"
-                th:text="${item.getHistduration()}"></dd>
-            <dd th:if="${item.getHistextra() != null}"
-                th:text="${item.getHistextra()}"></dd>
+            <div th:include="fragments/history.html :: contenthisttable_titlekind" ></div>
+
+            <div class="accordion">
+                <input type="checkbox" th:id="${iterrecord.index + '!' + iteritem.index}" name="accordion-checkbox" hidden>
+
+                <label class="accordion-header" th:for="${iterrecord.index + '!' + iteritem.index}">
+                    <div th:include="fragments/history.html :: contenthisttable_descdurationextra" ></div>
+                </label>
+                <div class="accordion-body">
+                    <div th:if="${item.getContentitems() != null}">
+                        <div th:include="fragments/history.html :: contenthisttable_content" ></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </dl>
+    </dd>
+</div>
+
+<div th:fragment="contenthisttable_item">
+    <dd th:each="item,iteritem : ${record.getConteneritems()}">
+        <dl>
+            <div th:include="fragments/history.html :: contenthisttable_titlekind" ></div>
+            <div th:include="fragments/history.html :: contenthisttable_descdurationextra" ></div>
 
             <div th:if="${item.getContentitems() != null}">
                 <div th:include="fragments/history.html :: contenthisttable_content" ></div>
             </div>
+
         </dl>
     </dd>
 </div>
@@ -34,8 +50,11 @@
 <div th:fragment="contenthisttable_content">
     <dd th:each="content : ${item.getContentitems()}">
         <dl>
-            <dd th:if="${content.getEntrydesc() != null}"
-                th:text="${content.getEntrydesc()}"></dd>
+            <dd th:if="${content.getEntrydesc() != null}">
+                <em>
+                    <span class="label label-primary" th:text="${content.getEntrydesc()}"></span>:
+                </em>
+            </dd>
 
             <div th:if="${content.getContentlist() != null}">
                 <div th:include="fragments/history.html :: contenthisttable_sub" ></div>
@@ -44,11 +63,32 @@
     </dd>
 </div>
 
+<div th:fragment="contenthisttable_titlekind">
+    <dd>
+        <span th:if="${item.getHisttitle() != null}" th:text="${item.getHisttitle()}"></span>
+        <span th:if="${item.getHistkind() != null}" th:text="${'/ ' + item.getHistkind()}"></span>
+    </dd>
+</div>
+
+<div th:fragment="contenthisttable_descdurationextra">
+    <span th:if="${item.getHistdesc() == null}">
+        <i class="icon icon-bookmark"></i>
+    </span>
+    <span th:if="${item.getHistdesc() != null}">
+        <i class="icon icon-arrow-right mr-1"></i>
+    </span>
+    <strong>
+        <span th:if="${item.getHistdesc() != null}" th:text="${item.getHistdesc()}"></span>
+        <span th:if="${item.getHistduration() != null}" th:text="${item.getHistduration()}"></span>
+        <span th:if="${item.getHistextra() != null}" th:text="${item.getHistextra()}"></span>
+    </strong>
+</div>
+
 <div th:fragment="contenthisttable_sub">
     <dd th:each="sub : ${content.getContentlist()}">
         <div th:if="${sub.getListtext() != null}">
             <dl>
-                <div th:include="fragments/history.html :: contenthisttable_text" ></div>
+                <div th:include="fragments/history.html :: contenthisttable_text"></div>
             </dl>
         </div>
     </dd>
@@ -65,7 +105,29 @@
 </div>
 
 <div th:fragment="contenthisttable_value">
-    <dd th:each="value : ${text.getData()}">
-        <div th:text="${text.getData()}"></div>
+    <dd th:each="value, itervalue : ${text.getData()}">
+        <script th:inline="javascript">
+            if([[${value}]].includes("://")) {
+                const id = [[${iterrecord.index + '!' + iteritem.index + '!' + itervalue.index}]];
+                const span = document.getElementById(id)
+                if(null != span) {
+                    const start = [[${value}]].indexOf("://")
+                    const end = [[${value}]].indexOf(")")
+                    if(-1 != end) {
+                        span.innerText = [[${value}]].substring(start, end);
+                    }
+                    else {
+                        span.innerText = [[${value}]].substring(start);
+                    }
+                }
+            }
+        </script>
+        <div th:text="${value}"></div>
+<!--        <div th:if="${record.getContenertype() == 'BLOGTECHENTRY'}" >-->
+<!--            <div th:include="fragments/angular.html :: contentangular" ></div>-->
+<!--        </div>-->
+<!--        <span th:id="${iterrecord.index + '!' + iteritem.index + '!' + itervalue.index}">-->
+<!--        </span>-->
+
     </dd>
 </div>
