@@ -24,6 +24,7 @@
     <script type="text/javascript" th:src="@{built/bundleangular.js}">
     </script>
     <script type="text/javascript">
+        /* Will use "angutest1" & "angutest2" elements */
         window.angularexe();
     </script>
 
@@ -44,11 +45,8 @@
                 <tr class="active">
                     <div class="container grid-lg">
                         <!-- small test_execute 1 ---------------------------------->
-                        <strong>
-                            TEST APP 1, with ng-init data
-                        </strong>
+                        <strong>TEST APP 1, with ng-init data</strong>
                         <br>
-
                         The person firstName/lastName in data (using ng-bind) is
                         <strong><span ng-bind="person.firstName"></span></strong>
                         <strong><span ng-bind="person.lastName"></span></strong>
@@ -63,16 +61,13 @@
                 <tr class="active">
                     <div class="container grid-lg">
                         <!-- small test_execute 2 ---------------------------------->
-                        <strong>
-                            TEST with form --> ng-model
-                        </strong>
+                        <strong>TEST with form --> ng-model</strong>
                         <form>
                             <ul>
                                 <li>First Name: <input type="text" ng-model="ifirstName"></li>
                                 <li>Last Name: <input type="text" ng-model="ilastName"></li>
                             </ul>
                         </form>
-
                         Hello (using ifirstName / ilastName filled in ng-model)
                         <strong>{{ifirstName + " " + ilastName}}</strong>
                     </div>
@@ -81,9 +76,7 @@
                     <div class="container grid-lg">
                         <!-- small test_execute 3 ---------------------------------->
                         <div>
-                            <strong>
-                                TEST with dynamic list (see main/js/module_tests.js)
-                            </strong>
+                            <strong>TEST with dynamic list (see main/js/module_tests.js)</strong>
                             <ul>
                                 <li ng-repeat="x in products">{{x}}
                                     <span ng-click="dynlistremoveitem($index)"> [X] </span>
@@ -91,25 +84,20 @@
                             </ul>
                             <input type="text" ng-model="field2Add">
                             <button ng-click="dynlistadditem()">Add</button>
-                            <br>The button above calls module_tests.js: $scope.dynlistadditem() in testapp/controller
+                            <br>
+                            The button above calls module_tests.js: $scope.dynlistadditem() in testapp/controller
                         </div>
                         <br>
-                        <div>
-                            {{errortext}}
-                        </div>
+                        <div>{{errortext}}</div>
                     </div>
                 </tr>
                 <tr class="active">
                     <div class="container grid-lg">
                         <!-- small test_execute 4 ---------------------------------->
-                        <p><strong>
-                            TEST with mouse
-                        </strong>
+                        <strong>TEST with mouse</strong>
                         <h1 ng-mousemove="onmouseover($event)">Mouse Over here !</h1>
                         <br>
-
                         Coordinates (using ng-mousemove): <strong>{{x + ', ' + y}}</strong>
-                        </p>
                     </div>
                 </tr>
                 </tbody>
@@ -126,17 +114,45 @@
         <head>
         </head>
         <body>
-            <!-- small test_execute 5 ---------------------------------->
-            <div class="container grid-lg">
-                <strong>
-                    TEST APP 2, WITH ngRoute
-                </strong>
-                <p>Click on the links to change the content.</p>
-                <a class="angmenu" href="#!default">None</a>
-                <a class="angmenu" href="#!Menu1">Menu 1</a>
-                <a class="angmenu" href="#!Menu2">Menu 2</a>
-                <div ng-view></div>
-            </div>
+            <table class="table">
+                <tbody>
+                <tr class="active">
+                    <!-- small test_execute 5 ---------------------------------->
+                    <div class="container grid-lg">
+                        <strong>TEST APP 2, WITH ngRoute</strong>
+                        <p>Click on the links to change the content.</p>
+                        <a class="angmenu" href="#!default">None</a>
+                        <a class="angmenu" href="#!Menu1">Menu 1</a>
+                        <a class="angmenu" href="#!Menu2">Menu 2</a>
+                        <div ng-view></div>
+                    </div>
+                </tr>
+                <tr class="active">
+                    <div class="container grid-lg">
+                        <!-- small test_execute 5 ---------------------------------->
+                        <strong>MORE dynamic list</strong>
+                        <h2>Todo</h2>
+                        <div ng-controller="TodoListController as todoList">
+                            <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+                            [ <a href="" ng-click="todoList.archive()">archive</a> ]
+                            <ul class="unstyled">
+                                <li ng-repeat="todo in todoList.todos">
+                                    <label class="checkbox">
+                                        <input type="checkbox" ng-model="todo.done">
+                                        <span class="done-{{todo.done}}">{{todo.text}}</span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <form ng-submit="todoList.addTodo()">
+                                <input type="text" ng-model="todoList.todoText"  size="30"
+                                       placeholder="add new todo here">
+                                <input class="btn-primary" type="submit" value="add">
+                            </form>
+                        </div>
+                    </div>
+                </tr>
+                </tbody>
+            </table>
         </body>
 
     </div>

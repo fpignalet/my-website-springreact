@@ -13,7 +13,7 @@
 <div th:fragment="contentblogtable" class="container grid-lg">
 
     <div class="timeline" th:if="${model_JSONHIST != null}">
-        <div th:include="fragments/blog.html :: contentblogtable_record"></div>
+        <div th:include="fragments/blog.html :: contentblogtable_timeline"></div>
     </div>
 
     <!--        <script type="text/javascript" th:src="@{built/jquery-3.4.1.min.js}"></script>-->
@@ -23,7 +23,7 @@
 
 </div>
 
-<div th:fragment="contentblogtable_record">
+<div th:fragment="contentblogtable_timeline">
     <dd th:each="record, iterrecord : ${model_JSONHIST}">
         <dl th:if="${record.getContenertype() == 'BLOGNEWSENTRY' or record.getContenertype() == 'BLOGTECHENTRY'}" >
             <div class="timeline-item" id="timeline-example-2">
@@ -33,19 +33,32 @@
                     </a>
                 </div>
                 <div class="timeline-content">
-                    <dd class="label" th:if="${record.getContenerdate() != null}" th:text="${record.getContenerdate()}"></dd>
-                    <div>
-                        <img th:if="${record.getContenerphoto() != null}" th:src="${record.getContenerphoto()}"></img>
-                    </div>
-                    <dd>
-                        <span class="label" th:if="${record.getContenername() != null}" th:text="${record.getContenername() + ':'}"></span>
-                        <span class="label label-secondary" th:if="${record.getContenersubname() != null}" th:text="${record.getContenersubname()}"></span>
-                    </dd>
-                    <div th:if="${record.getConteneritems() != null}">
-                        <div th:include="fragments/history.html :: contenthisttable_item" ></div>
-                    </div>
+                    <div th:include="fragments/blog.html :: contentblogtable_record"></div>
                 </div>
             </div>
         </dl>
     </dd>
+</div>
+
+<div th:fragment="contentblogtable_record">
+    <dd class="label" th:if="${record.getContenerdate() != null}" th:text="${record.getContenerdate()}"></dd>
+    <div class="card">
+        <div class="card-image">
+            <img th:if="${record.getContenerphoto() != null}" th:src="${record.getContenerphoto()}"></img>
+        </div>
+        <div class="card-header">
+            <div class="card-title h5">
+                <span class="label" th:if="${record.getContenername() != null}" th:text="${record.getContenername() + ':'}"></span>
+            </div>
+            <div class="card-subtitle text-gray">
+                <span class="label label-secondary" th:if="${record.getContenersubname() != null}" th:text="${record.getContenersubname()}"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div th:include="fragments/history.html :: contenthisttable_item" ></div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary">...</button>
+        </div>
+    </div>
 </div>

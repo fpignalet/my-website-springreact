@@ -10,20 +10,16 @@ import java.util.function.Consumer;
 
 @Slf4j
 @Service
-public class EngServiceOSky {
+public class EngServiceOSky extends ExampleDecoder {
 
-    /**
-     * @throws Exception
-     */
-    public void test() throws Exception {
-        final HashMap<Integer, Consumer<EngCommandParam>> commands = new HashMap<>();
+    public EngServiceOSky() {
         commands.put(5, (final EngCommandParam param) -> {
             // time,serial,lat,lon,msg
             final long timeStamp = (long) Double.parseDouble(param.getValues()[0])*1000;
             final Position pos = (Position) param.getRec();
             pos.setLatitude(Double.parseDouble(param.getValues()[2]));
             pos.setLongitude(Double.parseDouble(param.getValues()[3]));
-            decoder.decodeMsg(timeStamp, param.getValues()[4], pos);
+            decodeMsg(timeStamp, param.getValues()[4], pos);
         });
         commands.put(4, (final EngCommandParam param) -> {
             // time,lat,lon,msg
@@ -31,15 +27,20 @@ public class EngServiceOSky {
             final Position pos = (Position) param.getRec();
             pos.setLatitude(Double.parseDouble(param.getValues()[1]));
             pos.setLongitude(Double.parseDouble(param.getValues()[2]));
-            decoder.decodeMsg(timeStamp, param.getValues()[3], pos);
+            decodeMsg(timeStamp, param.getValues()[3], pos);
         });
         commands.put(2, (final EngCommandParam param) -> {
             // time,msg
             final long timeStamp = (long) Double.parseDouble(param.getValues()[0])*1000;
             final Position pos = (Position) param.getRec();
-            decoder.decodeMsg(timeStamp, param.getValues()[1], pos);
+            decodeMsg(timeStamp, param.getValues()[1], pos);
         });
+    }
 
+    /**
+     * @throws Exception
+     */
+    public void execute() throws Exception {
         final EngCommandParam param = new EngCommandParam();
         param.setRec(new Position());
         for(final String entry: data) {
@@ -62,6 +63,6 @@ public class EngServiceOSky {
         "9,48.0775474,11.6425398,a0001839000000000000004401e3"
     };
 
-    private ExampleDecoder decoder = new ExampleDecoder();
+    private final HashMap<Integer, Consumer<EngCommandParam>> commands = new HashMap<>();
 
 }

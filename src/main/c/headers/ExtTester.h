@@ -122,6 +122,11 @@ namespace website {
         ///@param p1
         static const jobjectArray wrapper_ArrayStringOut(JNIEnv *pEnv, jobject p1);
 
+        ///@brief
+        ///@param pEnv
+        ///@param p1
+        static const void wrapper_SerialPortOps(JNIEnv *pEnv, jobject p1, jobject p2);
+
     protected:
         ///@brief constructor
         ///@param pEnv is the pointer on JNI environment
@@ -129,7 +134,7 @@ namespace website {
         ///@brief destructor
         virtual ~ExtTester();
 
-        ///@brief a static method which instantiates an EngTester
+        ///@brief a method which instantiates an EngTester
         ///@param p1 is the first parameter passed through JNI inteface. Normally the instance of the Java calling object.
         ///@param p2 is the second parameter passed through JNI inteface. Normally the instance of the data passed by Java calling object.
         ///@return a string containing a debug message
@@ -139,6 +144,12 @@ namespace website {
         ///@param p1 is the first parameter passed through JNI inteface. normally the instance of the Java calling object.
         ///@return an array of string
         const jobjectArray execute_ArrayStringOut(jobject p1);
+
+        ///@brief a method which ...
+        ///@param p1 is the first parameter passed through JNI inteface. Normally the instance of the Java calling object.
+        ///@param p2 is the second parameter passed through JNI inteface. Normally the instance of the data passed by Java calling object.
+        ///@return a string containing a debug message
+        const void execute_SerialPortOps(jobject p1, jobject p2);
 
         /*  Java test class is:
             static class Data {
@@ -197,6 +208,65 @@ namespace website {
 
     };
 
+    ///@class
+    class ExtSerial {
+    public:
+        ExtSerial(const char* strPortName);
+
+        ///@brief
+        void serial_write(unsigned char cmd[]);
+
+        ///@brief
+        void serial_read(unsigned char rsp[], int bytes2Read);
+
+    protected:
+        ///@brief
+        int serial_open(const char* strPortName);
+
+        ///@brief
+        void serial_configure();
+
+    private:
+        int serial;
+
+    };
+
+    ///@brief code ripped from https://forum.arduino.cc/index.php?topic=52584.0
+    class ExtSerial2 {
+    public:
+        ExtSerial2();
+        ~ExtSerial2();
+
+        int initPort();
+        void flushPort();
+        int getData(char* data);
+        int sendData(char* data);
+        char getChar();
+        int sendChar(char data);
+        void closePort();
+
+    protected:
+        enum PARITY {
+            PARITY_7E1,
+            PARITY_8N1,
+            DEFAULT
+        };
+
+    private:
+        char* dev;
+
+        int fd;
+
+        int baud;
+        int dataBits;
+        PARITY parity;
+        int bufferIndex;
+        int blocking;
+
+        int bufferSize;
+        int buffer[2000];
+        int temp[2000];
+    };
 }
 
 #endif //C_EXTTESTER_H

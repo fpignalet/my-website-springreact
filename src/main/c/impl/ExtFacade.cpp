@@ -17,6 +17,16 @@ JNIEXPORT jobjectArray JNICALL Java_com_core_ext_ExtFacade_getData
     return ExtTester::wrapper_ArrayStringOut(pEnv, p1);
 }
 
+JNIEXPORT void JNICALL Java_com_core_ext_ExtFacade_writeSerial
+    (JNIEnv *pEnv, jobject p1, jobject p2){
+    return ExtTester::wrapper_SerialPortOps(pEnv, p1, p2);
+}
+
+JNIEXPORT void JNICALL Java_com_core_ext_ExtFacade_readSerial
+    (JNIEnv *pEnv, jobject p1, jobject p2){
+    return ExtTester::wrapper_SerialPortOps(pEnv, p1, p2);
+}
+
 #ifdef __cplusplus
 }
 #endif

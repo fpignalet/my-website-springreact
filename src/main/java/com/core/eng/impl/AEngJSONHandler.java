@@ -71,7 +71,7 @@ public abstract class AEngJSONHandler {
      INTERNAL
      *************************************************************************/
     /**
-     * @brief load a JSON file content
+     * @brief load a file content
      * @param fileName contains the name of the file to be loaded
      * @return a string containing JSON data
      */

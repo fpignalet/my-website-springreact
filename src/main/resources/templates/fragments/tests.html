@@ -11,53 +11,80 @@
 
 <!-- -------------------------------------------------------------------------->
 <div th:fragment="contentdivs" class="container grid-lg">
-    <h3>Goto:</h3>
 
-    <a href="/entryaddressbook">Address demo page</a>
-    <br>
-
-    <a href="/entrycv">CV raw page</a>
-    <br>
-
-    <a href="/entryblog">BLOG raw page</a>
-    <br>
-
-    <a href="/entryreact">React tests page</a>
-    <br>
-
-    <a href="/entryangular">Angular tests page</a>
-    <br>
-
-    <h3>Or run:</h3>
-
-    <a href="/extnativelib">extnativelib tests</a>
-    <br>
-
-    <a href="/openskyadsb_list">ADS-B tests</a>
-    <br>
+    <ul class="menu">
+        <!-- menu header text -->
+        <li class="divider" data-content="GOTO">
+        </li>
+        <!-- menu item standard -->
+        <li class="menu-item">
+            <a href="/entrycv">
+                <i class="icon icon-link"></i> CV raw page
+            </a>
+        </li>
+        <!-- menu item standard -->
+        <li class="menu-item">
+            <a href="/entryblog">
+                <i class="icon icon-link"></i> BLOG raw page
+            </a>
+        </li>
+        <!-- menu item standard -->
+        <li class="menu-item">
+            <a href="/entryaddressbook">
+                <i class="icon icon-link"></i> Address demo page
+            </a>
+        </li>
+        <!-- menu item standard -->
+        <li class="menu-item">
+            <a href="/entryreact">
+                <i class="icon icon-link"></i> React tests page
+            </a>
+        </li>
+        <!-- menu item standard -->
+        <li class="menu-item">
+            <a href="/entryangular">
+                <i class="icon icon-link"></i> Angular tests page
+            </a>
+        </li>
+        <!-- menu header text -->
+        <li class="divider" data-content="OR RUN">
+        </li>
+        <!-- menu item standard -->
+        <li class="menu-item">
+            <a href="/extnativelib">
+                <i class="icon icon-link"></i> extnativelib tests
+            </a>
+        </li>
+        <!-- menu item standard -->
+        <li class="menu-item">
+            <a href="/openskyadsb_list">
+                <i class="icon icon-link"></i> ADS-B tests
+            </a>
+        </li>
+    </ul>
 
 </div>
 
 <!-- -------------------------------------------------------------------------->
 <div th:fragment="contenttasks" class="container grid-lg">
-    <form action="#" th:action="@{/activatetask(name, value)}" method="post">
+    <form class="form-group" action="#" th:action="@{/activatetask(name, value)}" method="post">
         <h3>Kreuzen Sie die gewünschten Tasks an:</h3>
         <fieldset>
             <ul>
                 <li>
-                    <label>
+                    <label class="form-label">
                         <input type="checkbox" name="task" value="speed" >
                         Speedy
                     </label>
                 </li>
                 <li>
-                    <label>
+                    <label class="form-label">
                         <input type="checkbox" name="task" value="standard" >
                         Standard
                     </label>
                 </li>
                 <li>
-                    <label>
+                    <label class="form-label">
                         <input type="checkbox" name="task" value="slow" >
                         Slow
                     </label>

@@ -54,6 +54,13 @@ export class TestApp2 {
                 });
         }]);
 
+        testapp.controller(ctrlname, ["$scope", function($scope) {
+            console.log("$scope = " + $scope.toString());
+            let data = new TemplateData()
+            data.message = 'Hello from Default Controller'
+            $scope.data = data;
+        }]);
+
         testapp.controller("ctrlMENU1", ["$scope", function($scope) {
             console.log("$scope = " + $scope.toString());
             let data = new TemplateData()
@@ -83,12 +90,34 @@ export class TestApp2 {
             $scope.data = data;
         }]);
 
-        testapp.controller(ctrlname, ["$scope", function($scope) {
-            console.log("$scope = " + $scope.toString());
-            let data = new TemplateData()
-            data.message = 'Hello from Default Controller'
-            $scope.data = data;
-        }]);
+        testapp.controller('TodoListController', function() {
+            var todoList = this;
+            todoList.todos = [
+                {text:'learn AngularJS', done:true},
+                {text:'build an AngularJS app', done:false}];
+
+            todoList.addTodo = function() {
+                todoList.todos.push({text:todoList.todoText, done:false});
+                todoList.todoText = '';
+            };
+
+            todoList.remaining = function() {
+                var count = 0;
+                angular.forEach(todoList.todos, function(todo) {
+                    count += todo.done ? 0 : 1;
+                });
+                return count;
+            };
+
+            todoList.archive = function() {
+                var oldTodos = todoList.todos;
+                todoList.todos = [];
+                angular.forEach(oldTodos, function(todo) {
+                    if (!todo.done) todoList.todos.push(todo);
+                });
+            };
+        });
+
     }
 
 }

@@ -49,5 +49,6 @@ export class TestApp1 {
             };
 
         }]);
+
     }
 }

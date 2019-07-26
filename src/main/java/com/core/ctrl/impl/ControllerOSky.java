@@ -27,7 +27,7 @@ public class ControllerOSky extends AControllerBase {
     @CrossOrigin
     public String addressbook_list() {
         try {
-            serviceOSky.test();
+            serviceOSky.execute();
             log.info("ACTION OPENSKY DECODER SOMETHING...");
             return getResult(null);
         } catch (Exception e) {

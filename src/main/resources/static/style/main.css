@@ -5,7 +5,13 @@
 }
 
 img {
-    max-width: 25%;
+    max-width: 50%;
+}
+
+/* ANGULAR */
+.done-true {
+    text-decoration: line-through;
+    color: grey;
 }
 
 /* PARALLAX */

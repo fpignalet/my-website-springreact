@@ -12,17 +12,18 @@
 <!-- -------------------------------------------------------------------------->
 <div th:fragment="contentcvtable" class="container grid-lg">
 
+    <div class="timeline" th:if="${model_JSONHIST != null}">
+        <div th:include="fragments/cv.html :: contentcvtable_timeline"></div>
+    </div>
+
     <!--        <script type="text/javascript" th:src="@{built/jquery-3.4.1.min.js}"></script>-->
     <script th:inline="javascript">
+        //something...
     </script>
-
-    <div class="timeline" th:if="${model_JSONHIST != null}">
-        <div th:include="fragments/cv.html :: contentcvtable_record"></div>
-    </div>
 
 </div>
 
-<div th:fragment="contentcvtable_record">
+<div th:fragment="contentcvtable_timeline">
     <dd th:each="record, iterrecord : ${model_JSONHIST}">
         <dl th:if="${record.getContenertype() == 'JOBENTRY'}" >
             <div class="timeline-item" id="timeline-example-2">
@@ -32,19 +33,23 @@
                     </a>
                 </div>
                 <div class="timeline-content">
-                    <dd class="label" th:if="${record.getContenerdate() != null}" th:text="${record.getContenerdate()}"></dd>
-                    <div>
-                        <img th:if="${record.getContenerphoto() != null}" th:src="${record.getContenerphoto()}"></img>
-                    </div>
-                    <dd>
-                        <span class="label" th:if="${record.getContenername() != null}" th:text="${record.getContenername() + ':'}"></span>
-                        <span class="label label-secondary" th:if="${record.getContenersubname() != null}" th:text="${record.getContenersubname()}"></span>
-                    </dd>
-                    <div th:if="${record.getConteneritems() != null}">
-                        <div th:include="fragments/history.html :: contenthisttable_accordion" ></div>
-                    </div>
+                    <div th:include="fragments/cv.html :: contentcvtable_record"></div>
                 </div>
             </div>
         </dl>
     </dd>
+</div>
+
+<div th:fragment="contentcvtable_record">
+    <dd class="label" th:if="${record.getContenerdate() != null}" th:text="${record.getContenerdate()}"></dd>
+    <div>
+        <img th:if="${record.getContenerphoto() != null}" th:src="${record.getContenerphoto()}"></img>
+    </div>
+    <dd>
+        <span class="label" th:if="${record.getContenername() != null}" th:text="${record.getContenername() + ':'}"></span>
+        <span class="label label-secondary" th:if="${record.getContenersubname() != null}" th:text="${record.getContenersubname()}"></span>
+    </dd>
+    <div th:if="${record.getConteneritems() != null}">
+        <div th:include="fragments/history.html :: contenthisttable_accordion" ></div>
+    </div>
 </div>

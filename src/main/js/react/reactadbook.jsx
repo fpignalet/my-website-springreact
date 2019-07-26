@@ -163,19 +163,21 @@ class AdBookApp extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.title}</h1>
-                <ContactList contacts={this.state.contacts}
-                             handleToUpdate={this.handleClickInList.bind(this)}
-                />
-                <ContactEdit contacts={this.state.contacts}
-                             index={this.state.index}
-                             selected={this.state.selected}
-                             status={this.state.status}
-                             addContact={this.addContact.bind(this)}
-                             regContact={this.regContact.bind(this)}
-                             editContact={this.editContact.bind(this)}
-                             removeContact={this.removeContact.bind(this)}
-                />
+                <React.StrictMode>
+                    <h1>{this.title}</h1>
+                    <ContactList contacts={this.state.contacts}
+                                 handleToUpdate={this.handleClickInList.bind(this)}
+                    />
+                    <ContactEdit contacts={this.state.contacts}
+                                 index={this.state.index}
+                                 selected={this.state.selected}
+                                 status={this.state.status}
+                                 addContact={this.addContact.bind(this)}
+                                 regContact={this.regContact.bind(this)}
+                                 editContact={this.editContact.bind(this)}
+                                 removeContact={this.removeContact.bind(this)}
+                    />
+                </React.StrictMode>
             </div>
         )
     }
@@ -359,16 +361,16 @@ class ContactEdit extends React.Component {
 
         return (
             <div className="contact-add">
-                <form className="add-form" onSubmit={this.handleSubmit.bind(this)} method="post">
+                <form class="form-group" className="add-form" onSubmit={this.handleSubmit.bind(this)} method="post">
 
-                    <div className="form-field">
+                    <div class="form-label" className="form-field">
                         <label>[DEBUG] List index: </label>
                         <input type="text"
                                name={this.index}
                                value={this.props.index}
                         />
                     </div>
-                    <div className="form-field">
+                    <div class="form-label" className="form-field">
                         <label>[DEBUG] DB Id: </label>
                         <input type="text"
                                name={this.id}
@@ -376,7 +378,7 @@ class ContactEdit extends React.Component {
                         />
                     </div>
 
-                    <div className="form-field">
+                    <div class="form-label" className="form-field">
                         <label>Vorname: </label>
                         <input type="text"
                                name={this.vorname}
@@ -384,7 +386,7 @@ class ContactEdit extends React.Component {
                                onChange={this.handleChange.bind(this)}
                         />
                     </div>
-                    <div className="form-field">
+                    <div class="form-label" className="form-field">
                         <label>Nachname: </label>
                         <input type="text"
                                name={this.nachname}
@@ -392,7 +394,7 @@ class ContactEdit extends React.Component {
                                onChange={this.handleChange.bind(this)}
                         />
                     </div>
-                    <div className="form-field">
+                    <div class="form-label" className="form-field">
                         <label>Email: </label>
                         <input type="text"
                                name={this.emailadresse}
@@ -401,7 +403,7 @@ class ContactEdit extends React.Component {
                         />
                     </div>
 
-                    <div className="form-field">
+                    <div class="form-label" className="form-field">
                         <label>Verified: </label>
                         <input type="text"
                                name={this.enabled}

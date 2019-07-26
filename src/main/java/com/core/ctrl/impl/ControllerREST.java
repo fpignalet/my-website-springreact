@@ -61,7 +61,7 @@ public class ControllerREST extends AControllerBase {
     @CrossOrigin
     public String extnativelib() {
         try {
-            extFacade.testAll();
+            extFacade.testSimple();
             return getResult("LIBRARY OOK");
         } catch (Exception e) {
             return getError("LIBRARY NOT OOK!", e);

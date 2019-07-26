@@ -10,7 +10,7 @@ public class ExtFacade {
     /**
      *
      */
-    static class Data {
+    public static class Data {
         public int field1 = 0;
         public long field2 = 1;
         public float field3 = (float) 2.0;
@@ -22,17 +22,23 @@ public class ExtFacade {
     /**
      *
      */
-    public void testAll() {
-        ///1. TEST with params:
-        final String result_execute = testExecute();
-        System.out.println(result_execute);
-
-        ///2. TEST with complex return value:
-        final String[] result_getData = testGetData();
-        for(final String data: result_getData){
-            System.out.println(data);
+    public static class Com {
+        public enum Way {
+            wayIN, wayOUT
         }
-    }
+
+        public Com(final String portName, final Way way, int sizeIn, int sizeOut) {
+            this.way = way;
+            this.portName = portName;
+            this.bufferIn = new byte[sizeIn];
+            this.bufferOut = new byte[sizeOut];
+        }
+
+        Way way;
+        String portName;
+        byte bufferIn[];
+        byte bufferOut[];
+    };
 
     /**
      * @param data
@@ -43,8 +49,7 @@ public class ExtFacade {
     /**
      * @return
      */
-    protected String testExecute() {
-        final Data data =  new Data();
+    protected String testExecute(final Data data) {
         return execute(data);
     }
 
@@ -58,6 +63,30 @@ public class ExtFacade {
      */
     protected String[] testGetData() {
         return getData();
+    }
+
+    /**
+     * @return
+     */
+    protected native void writeSerial(final Com com);
+
+    /**
+     * @return
+     */
+    protected void testWriteSerial(final Com com) {
+        writeSerial(com);
+    }
+
+    /**
+     * @return
+     */
+    protected native void readSerial(final Com com);
+
+    /**
+     * @return
+     */
+    protected void testReadSerial(final Com com) {
+        readSerial(com);
     }
 
 }

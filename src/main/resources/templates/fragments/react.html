@@ -11,9 +11,12 @@
 
 <!-- -------------------------------------------------------------------------->
 <div th:fragment="contentreact" class="container grid-lg">
+
     <div id="contenerREACT1"></div>
+
     <p hidden id="modelname" th:text="${name}" />
     <script type="text/javascript" th:src="@{built/bundlereact.js}">
+        /* Will use "contenerREACT1" element */
     </script>
 
 </div>

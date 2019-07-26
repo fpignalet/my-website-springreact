@@ -107,20 +107,22 @@
 <div th:fragment="contenthisttable_value">
     <dd th:each="value, itervalue : ${text.getData()}">
         <script th:inline="javascript">
-            if([[${value}]].includes("://")) {
-                const id = [[${iterrecord.index + '!' + iteritem.index + '!' + itervalue.index}]];
-                const span = document.getElementById(id)
-                if(null != span) {
-                    const start = [[${value}]].indexOf("://")
-                    const end = [[${value}]].indexOf(")")
-                    if(-1 != end) {
-                        span.innerText = [[${value}]].substring(start, end);
-                    }
-                    else {
-                        span.innerText = [[${value}]].substring(start);
+            ["http://", "https://"].forEach((item, index) => {
+                if([[${value}]].includes(item)) {
+                    const id = [[${iterrecord.index + '!' + iteritem.index + '!' + itervalue.index}]];
+                    const span = document.getElementById(id);
+                    if(null != span) {
+                        const start = [[${value}]].indexOf(item);
+                        const end = [[${value}]].indexOf(")");
+                        if(-1 != end) {
+                            span.innerText = [[${value}]].substring(start, end);
+                        }
+                        else {
+                            span.innerText = [[${value}]].substring(start);
+                        }
                     }
                 }
-            }
+            })
         </script>
         <div th:text="${value}"></div>
 <!--        <div th:if="${record.getContenertype() == 'BLOGTECHENTRY'}" >-->

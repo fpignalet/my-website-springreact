@@ -502,20 +502,24 @@ class TestApp extends React.Component {
     /// display 'application', contents
     render() {
         return (
-            <ReactBStrap.Container>
+            <div>
+                <React.StrictMode>
+                    <ReactBStrap.Container>
 
-                <ReactBStrap.Row>
-                    { this.rendercol([0,1]) }
-                    {/*{ this.rendercol([2,3]) }*/}
-                </ReactBStrap.Row>
+                        <ReactBStrap.Row>
+                            { this.rendercol([0,1]) }
+                            {/*{ this.rendercol([2,3]) }*/}
+                        </ReactBStrap.Row>
 
-                {/*<ReactBStrap.Row>*/}
-                {/*        { this.rendercol([4,5]) }*/}
-                {/*        { this.rendercol([6,7]) }*/}
-                {/*        { this.rendercol([8,9]) }*/}
-                {/*</ReactBStrap.Row>*/}
+                        {/*<ReactBStrap.Row>*/}
+                        {/*        { this.rendercol([4,5]) }*/}
+                        {/*        { this.rendercol([6,7]) }*/}
+                        {/*        { this.rendercol([8,9]) }*/}
+                        {/*</ReactBStrap.Row>*/}
 
-            </ReactBStrap.Container>
+                    </ReactBStrap.Container>
+                </React.StrictMode>
+            </div>
         );
     }
 
