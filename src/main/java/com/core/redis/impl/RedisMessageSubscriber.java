@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * code ripped from https://github.com/michaelcgood/spring-data-redis-example
+ */
 @Service
 public class RedisMessageSubscriber implements MessageListener {
 

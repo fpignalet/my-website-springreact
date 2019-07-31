@@ -11,6 +11,9 @@ import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 
+/**
+ * code ripped from https://github.com/michaelcgood/spring-data-redis-example
+ */
 @Configuration
 public class CoreRedisConfig {
 

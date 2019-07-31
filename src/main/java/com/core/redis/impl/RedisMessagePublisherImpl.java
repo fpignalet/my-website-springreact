@@ -6,6 +6,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.stereotype.Service;
 
+/**
+ * code ripped from https://github.com/michaelcgood/spring-data-redis-example
+ */
 @Service
 public class RedisMessagePublisherImpl implements IRedisMessagePublisher {
 

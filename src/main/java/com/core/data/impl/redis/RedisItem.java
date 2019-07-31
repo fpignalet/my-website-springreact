@@ -6,8 +6,11 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-public class RedisMovie implements Serializable {
-    public RedisMovie(String key, String value) {
+/**
+ * code ripped from https://github.com/michaelcgood/spring-data-redis-example
+ */
+public class RedisItem implements Serializable {
+    public RedisItem(String key, String value) {
         id = key;
         name = value;
     }

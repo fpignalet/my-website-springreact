@@ -1,16 +1,17 @@
 package com.core.ctrl.impl;
 
 import com.core.ctrl.AControllerBase;
-import com.core.data.impl.redis.RedisMovie;
+import com.core.data.impl.redis.RedisItem;
 import com.core.redis.IRedisRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,9 +19,10 @@ import java.util.Map;
 
 /**
  * Some answers to http requests
+ * code ripped from https://github.com/michaelcgood/spring-data-redis-example
  */
 @Slf4j
-@RestController
+@Controller
 public class ControllerRedis extends AControllerBase {
 
     /************************************************************************
@@ -31,13 +33,14 @@ public class ControllerRedis extends AControllerBase {
     public ResponseEntity<String> redisadd(
         @RequestParam String key,
         @RequestParam String value) {
-        RedisMovie redisMovie = new RedisMovie(key, value);
-        redisRepo.add(redisMovie);
+        RedisItem redisItem = new RedisItem(key, value);
+        redisRepo.add(redisItem);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping("/redisvalues")
-    public Map<String, String> findAll() {
+    public @ResponseBody
+    Map<String, String> findAll() {
         Map<Object, Object> aa = redisRepo.findAllMovies();
         Map<String, String> map = new HashMap<String, String>();
         for(Map.Entry<Object, Object> entry : aa.entrySet()){
