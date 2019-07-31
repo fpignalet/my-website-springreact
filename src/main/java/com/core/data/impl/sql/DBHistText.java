@@ -1,4 +1,4 @@
-package com.core.data.impl;
+package com.core.data.impl.sql;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -9,20 +9,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Slf4j
 @Entity
-@Table(name = "histcontent")
-@JsonRootName("contentitems")
+@Table(name = "histtext")
+@JsonRootName("listtext")
 @JsonIgnoreProperties({"id", "parent"})
-public class DBHistContent extends ADBBaseItem {
+public class DBHistText extends ADBBaseItem {
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .append("entrydesc", entrydesc).append("\n", "")
-            .append("contentlist", contentlist).append("\n", "")
+            .append("data", data).append("\n", "")
             .toString();
     }
 
@@ -38,16 +36,10 @@ public class DBHistContent extends ADBBaseItem {
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     @ManyToOne
-    private DBHistItem parent;
+    private DBHistSub parent;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
-    @Column(columnDefinition = "VARCHAR(256)")
-    private String entrydesc;
-
-    @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
-    @Column(nullable = false)
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<DBHistSub> contentlist;
+    @Column(columnDefinition = "TEXT")
+    private String data;
 }

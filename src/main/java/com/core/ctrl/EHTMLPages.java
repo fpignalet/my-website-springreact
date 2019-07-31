@@ -14,6 +14,8 @@ public enum EHTMLPages {
     BLOG("BLOG"),
     REACT("react"),
     ANGULAR("angular"),
+    REDIS("redis"),
+    TASKS("tasks"),
     ERROR("error");
 
     EHTMLPages(final String name){

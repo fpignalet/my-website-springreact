@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+
+<!-- -------------------------------------------------------------------------->
+<div th:fragment="header">
+</div>
+
+<div th:fragment="footer">
+</div>
+
+<!-- -------------------------------------------------------------------------->
+<div th:fragment="contenttasks" class="container grid-lg">
+    <form class="form-group" action="#" th:action="@{/activatetask(name, value)}" method="post">
+        <h3>Kreuzen Sie die gewünschten Tasks an:</h3>
+        <fieldset>
+            <ul>
+                <li>
+                    <label class="form-label">
+                        <input type="checkbox" name="task" value="speed" >
+                        Speedy
+                    </label>
+                </li>
+                <li>
+                    <label class="form-label">
+                        <input type="checkbox" name="task" value="standard" >
+                        Standard
+                    </label>
+                </li>
+                <li>
+                    <label class="form-label">
+                        <input type="checkbox" name="task" value="slow" >
+                        Slow
+                    </label>
+                </li>
+            </ul>
+        </fieldset>
+        <input type="submit" value="Submit">
+    </form>
+</div>

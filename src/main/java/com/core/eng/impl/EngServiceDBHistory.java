@@ -1,8 +1,8 @@
 package com.core.eng.impl;
 
 import com.core.data.IDBHistContenerDAO;
-import com.core.data.impl.DBCVConteners;
-import com.core.data.impl.DBHistContener;
+import com.core.data.impl.sql.DBCVConteners;
+import com.core.data.impl.sql.DBHistContener;
 import com.core.eng.EEngJSONFiles;
 import com.core.eng.EEngModelItems;
 import com.core.eng.IEngDBUpdater;

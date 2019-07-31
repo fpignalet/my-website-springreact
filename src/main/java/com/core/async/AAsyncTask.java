@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * A base task scheduler which calls
@@ -21,12 +22,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Slf4j
 public abstract class AAsyncTask {
 
+    public class AsyncContext {
+        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
+        private String data;
+    }
+
     /**
      * @brief task scheduling entrypoint
      */
     public void entry() {
         try {
             if (false == getActive().get()) {
+                ((AsyncContext)getContext().get()).setData("SCHLAFEN...");
                 return;
             }
 
@@ -39,17 +47,17 @@ public abstract class AAsyncTask {
                         break;
                     }
 
-                    log.info("begin not finished");
+                    log.info("begin NOT finished");
                     break;
 
                 case TASKSTATUS_EXECUTE:
                     if(true == execute()){
                         setStatus(EAsyncStatus.TASKSTATUS_DONE);
-                        log.info("begin finished");
+                        log.info("execute finished");
                         break;
                     }
 
-                    log.info("begin not finished");
+                    log.info("execute NOT finished");
                     break;
 
                 case TASKSTATUS_DONE:
@@ -61,7 +69,7 @@ public abstract class AAsyncTask {
                         log.info("terminate finished");
                     }
 
-                    log.info("terminate not finished");
+                    log.info("terminate NOT finished");
                     break;
             }
         }
@@ -107,5 +115,12 @@ public abstract class AAsyncTask {
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     private AtomicBoolean resetable = new AtomicBoolean(true);
+
+    /**
+     * data to be monitored
+     */
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    private AtomicReference context = new AtomicReference<AsyncContext>(new AsyncContext());
 
 }

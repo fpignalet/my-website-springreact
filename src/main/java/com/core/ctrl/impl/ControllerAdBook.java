@@ -1,9 +1,9 @@
 package com.core.ctrl.impl;
 
 import com.core.ctrl.AControllerBase;
-import com.core.data.impl.DBAddressBook;
-import com.core.data.impl.DBContact;
-import com.core.data.impl.DBToken;
+import com.core.data.impl.sql.DBAddressBook;
+import com.core.data.impl.sql.DBContact;
+import com.core.data.impl.sql.DBToken;
 import com.core.eng.impl.EngServiceDBABook;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
 package com.core.data;
 
-import com.core.data.impl.DBToken;
+import com.core.data.impl.sql.DBToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 

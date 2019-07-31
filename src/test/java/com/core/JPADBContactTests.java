@@ -1,7 +1,7 @@
 package com.core;
 
 import com.core.data.IDBContactDAO;
-import com.core.data.impl.DBContact;
+import com.core.data.impl.sql.DBContact;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;

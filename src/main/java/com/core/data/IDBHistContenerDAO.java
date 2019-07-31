@@ -1,6 +1,6 @@
 package com.core.data;
 
-import com.core.data.impl.DBHistContener;
+import com.core.data.impl.sql.DBHistContener;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
 package com.core.data;
 
-import com.core.data.impl.DBContact;
+import com.core.data.impl.sql.DBContact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

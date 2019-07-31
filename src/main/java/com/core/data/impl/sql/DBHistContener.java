@@ -1,4 +1,4 @@
-package com.core.data.impl;
+package com.core.data.impl.sql;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;

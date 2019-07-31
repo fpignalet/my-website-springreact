@@ -7,7 +7,25 @@ const outputdir = 'src/main/resources/static/built';
 module.exports = [
 
     //-------------------------------------------------
-    //minifying module_direct.js
+    //minifying module jquery
+    {
+        entry: inputdir + 'jquery/module_tests.js',
+        output: {
+            path: path.resolve(__dirname, outputdir),
+            filename: 'bundlejquery.js'
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(js)$/,
+                    exclude: /node_modules/
+                }
+            ]
+        }
+    },
+
+    //-------------------------------------------------
+    //minifying module angular
     {
         entry: inputdir + 'angular/module_tests.js',
         output: {
@@ -25,7 +43,7 @@ module.exports = [
     },
 
     //-------------------------------------------------
-    //minifying and bundling module_game.js
+    //minifying module react
     {
         entry: inputdir + 'react/module_tests.jsx',
         output: {
@@ -57,7 +75,7 @@ module.exports = [
     },
 
     //-------------------------------------------------
-    //minifying and bundling module_game.js
+    //minifying module addressbook
     {
         entry: inputdir + 'react/module_adbook.jsx',
         output: {

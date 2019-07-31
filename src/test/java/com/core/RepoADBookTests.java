@@ -1,8 +1,8 @@
 package com.core;
 
 import com.core.data.IDBContactDAO;
-import com.core.data.impl.DBAddressBook;
-import com.core.data.impl.DBContact;
+import com.core.data.impl.sql.DBAddressBook;
+import com.core.data.impl.sql.DBContact;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

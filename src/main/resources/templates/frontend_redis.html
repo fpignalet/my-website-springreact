@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style/main.css" />
+
+    <div th:include="fragments/redis.html :: header" ></div>
+
+    <title>FRONTEND_REDIS</title>
+
+</head>
+<body>
+    <div th:include="fragments/redis.html :: rediscontent" ></div>
+
+    <div th:include="fragments/tests.html :: footer" ></div>
+
+</body>
+</html>

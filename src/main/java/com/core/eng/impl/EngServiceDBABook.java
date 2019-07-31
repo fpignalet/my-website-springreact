@@ -2,9 +2,9 @@ package com.core.eng.impl;
 
 import com.core.data.IDBContactDAO;
 import com.core.data.IDBTokenDAO;
-import com.core.data.impl.DBAddressBook;
-import com.core.data.impl.DBContact;
-import com.core.data.impl.DBToken;
+import com.core.data.impl.sql.DBAddressBook;
+import com.core.data.impl.sql.DBContact;
+import com.core.data.impl.sql.DBToken;
 import com.core.eng.EEngJSONFiles;
 import com.core.eng.EEngModelItems;
 import com.core.eng.IEngDBUpdater;

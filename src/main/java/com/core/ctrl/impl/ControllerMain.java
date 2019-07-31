@@ -150,6 +150,38 @@ public class ControllerMain extends AControllerBase {
         }
     }
 
+    /**
+     * to be tested in browser
+     * will display angular html page with "FROM MODEL:[name parameter content]"
+     * @param model
+     * @return
+     */
+    @GetMapping("/entryredis")
+    public String entryredis(final Model model){
+        try {
+            return EHTMLPages.REDIS.getName();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return EHTMLPages.ERROR.getName();
+        }
+    }
+
+    /**
+     * to be tested in browser
+     * will display angular html page with "FROM MODEL:[name parameter content]"
+     * @param model
+     * @return
+     */
+    @GetMapping("/entrytasks")
+    public String entrytasks(final Model model){
+        try {
+            return EHTMLPages.TASKS.getName();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return EHTMLPages.ERROR.getName();
+        }
+    }
+
     /************************************************************************
      INIT PART
      */

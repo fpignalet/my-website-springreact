@@ -1,4 +1,4 @@
-package com.core.data.impl;
+package com.core.data.impl.sql;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -13,15 +13,16 @@ import java.util.List;
 
 @Slf4j
 @Entity
-@Table(name = "histsubs")
-@JsonRootName("contentlist")
+@Table(name = "histcontent")
+@JsonRootName("contentitems")
 @JsonIgnoreProperties({"id", "parent"})
-public class DBHistSub extends ADBBaseItem {
+public class DBHistContent extends ADBBaseItem {
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .append("listtext", listtext).append("\n", "")
+            .append("entrydesc", entrydesc).append("\n", "")
+            .append("contentlist", contentlist).append("\n", "")
             .toString();
     }
 
@@ -37,10 +38,16 @@ public class DBHistSub extends ADBBaseItem {
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     @ManyToOne
-    private DBHistContent parent;
+    private DBHistItem parent;
 
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
+    @Column(columnDefinition = "VARCHAR(256)")
+    private String entrydesc;
+
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    @Column(nullable = false)
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<DBHistText> listtext;
+    private List<DBHistSub> contentlist;
 }

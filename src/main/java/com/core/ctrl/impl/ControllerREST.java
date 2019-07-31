@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -68,6 +69,25 @@ public class ControllerREST extends AControllerBase {
         }
     }
 
+    @RequestMapping(path = "/testactuator")
+    public String home(HttpServletRequest request) {
+        String contextPath = request.getContextPath();
+        String host = request.getServerName();
+
+        // Spring Boot >= 2.0.0.M7
+        String endpointBasePath = "/actuator";
+        StringBuilder sb = new StringBuilder();
+        sb.append("<h2>Sprig Boot Actuator</h2>");
+        sb.append("<ul>");
+
+        // http://localhost:8090/actuator
+        String url = "http://" + host + ":8090" + contextPath + endpointBasePath;
+        sb.append("<li><a href='" + url + "'>" + url + "</a></li>");
+        sb.append("</ul>");
+
+        return sb.toString();
+    }
+
     /************************************************************************
      INNER IMPLEM PART:
      */
@@ -102,7 +122,8 @@ public class ControllerREST extends AControllerBase {
         final EngServiceDBTest engineDB,
         final EngServiceDBHistory engineCV,
         final AAsyncTasks taskManager,
-        final BExtFacade extFacade) {
+        final BExtFacade extFacade
+    ) {
         super(engineDB, engineCV, null, null);
         this.extFacade = extFacade;
     }

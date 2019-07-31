@@ -15,61 +15,61 @@ The following guides illustrates how to use certain features concretely:
     ----------------------------------------
     * [CORE PROPERTIES]
     ----------------------------------------
-    * LOGGING -> logging.
-    * AOP -> spring.aop.
-    * IDENTITY (ContextIdApplicationContextInitializer) -> spring.autoconfigure.
+    * LOGGING -> **logging.**
+    * AOP -> **spring.aop.**
+    * IDENTITY (ContextIdApplicationContextInitializer) -> **spring.autoconfigure.**
     * ADMIN (SpringApplicationAdminJmxAutoConfiguration)
     * AUTO-CONFIGURATION
-    * BANNER -> spring.banner.
+    * BANNER -> **spring.banner.**
     * SPRING CORE
-    * SPRING CACHE (CacheProperties) -> spring.cache.
-    * SPRING CONFIG -> spring.config.
+    * SPRING CACHE (CacheProperties) -> **spring.cache.**
+    * SPRING CONFIG -> **spring.config.**
         * using environment property only (ConfigFileApplicationListener), 
     * HAZELCAST (HazelcastProperties): 
         * https://hazelcast.org, 
         * memory layer, 
-        * spring.hazelcast.
+        * **spring.hazelcast.**
     * PROJECT INFORMATION (ProjectInfoProperties)
-    * JMX -> spring.jmx.
+    * JMX -> **spring.jmx.**
     * Email (MailProperties)
-    * APPLICATION SETTINGS (SpringApplication) -> spring.application.
+    * APPLICATION SETTINGS (SpringApplication) -> **spring.application.**
     * FILE ENCODING (FileEncodingApplicationListener)
     * INTERNATIONALIZATION (MessageSourceProperties)
-    * OUTPUT -> spring.output.
-    * PID FILE (ApplicationPidFileWriter) -> spring.pid.
+    * OUTPUT -> **spring.output.**
+    * PID FILE (ApplicationPidFileWriter) -> **spring.pid.**
     * PROFILES -> spring.profiles.
-    * QUARTZ SCHEDULER (QuartzProperties) -> spring.quartz.
+    * QUARTZ SCHEDULER (QuartzProperties) -> **spring.quartz.**
         * https://www.baeldung.com/spring-quartz-schedule, 
         * scheduler, 
-    * REACTOR (ReactorCoreProperties) -> spring.reactor.
+    * REACTOR (ReactorCoreProperties) -> **spring.reactor.**
         * https://projectreactor.io/, 
         * multithreading?, 
-    * SENDGRID (SendGridAutoConfiguration) -> spring.sendgrid.
-    * TASK EXECUTION  (TaskExecutionProperties) -> spring.task.execution.
-    * TASK SCHEDULING  (TaskSchedulingProperties) -> spring.task.scheduling.
+    * SENDGRID (SendGridAutoConfiguration) -> **spring.sendgrid.**
+    * TASK EXECUTION  (TaskExecutionProperties) -> **spring.task.execution.**
+    * TASK SCHEDULING  (TaskSchedulingProperties) -> **spring.task.scheduling.**
     ----------------------------------------
     * [WEB PROPERTIES]
     ----------------------------------------
-    * EMBEDDED SERVER CONFIGURATION (ServerProperties) -> spring.freemarker.
+    * EMBEDDED SERVER CONFIGURATION (ServerProperties) -> **spring.freemarker.**
     * FREEMARKER (FreeMarkerProperties): 
         * https://freemarker.apache.org/docs/index.html, 
         * GUI template engine, 
-    * GROOVY TEMPLATES (GroovyTemplateProperties) -> spring.groovy.
-    * SPRING HATEOAS (HateoasProperties) -> spring.hateoas. 
+    * GROOVY TEMPLATES (GroovyTemplateProperties) -> **spring.groovy.**
+    * SPRING HATEOAS (HateoasProperties) -> **spring.hateoas.** 
         * https://spring.io/projects/spring-hateoas, 
         * "Hypermedia As The Engine Of Application State", 
         * Designmodell für REST-Schnittstellen, 
     * HTTP (HttpProperties)
     * MULTIPART (MultipartProperties)
-    * JACKSON (JacksonProperties), spring.jackson.
-    * GSON (GsonProperties), spring.gson.
-    * JERSEY (JerseyProperties) -> spring.jersey. 
+    * JACKSON (JacksonProperties), **spring.jackson.**
+    * GSON (GsonProperties), **spring.gson.**
+    * JERSEY (JerseyProperties) -> **spring.jersey.** 
         * https://jersey.github.io/, 
         * REST framework, 
-    * SPRING LDAP (LdapProperties)-> spring.ldap.
+    * SPRING LDAP (LdapProperties)-> **spring.ldap.**
     * EMBEDDED LDAP (EmbeddedLdapProperties)
-    * MUSTACHE TEMPLATES (MustacheAutoConfiguration)-> spring.mustache.
-    * SPRING MVC (WebMvcProperties)-> spring.mvc.
+    * MUSTACHE TEMPLATES (MustacheAutoConfiguration)-> **spring.mustache.**
+    * SPRING MVC (WebMvcProperties)-> **spring.mvc.**
     * SPRING RESOURCES HANDLING (ResourceProperties)
     * SPRING SESSION (SessionProperties)
     * SPRING SESSION HAZELCAST (HazelcastSessionProperties)

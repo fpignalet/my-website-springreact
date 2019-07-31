@@ -24,6 +24,31 @@ public abstract class AAsyncTasks {
     /**
      * execution of the example EngTaskSpeed
      */
+    @Scheduled(initialDelay = 5000, fixedDelay=5000)
+    protected void monitor() {
+        try {
+            final String ctxData = ((AAsyncTask.AsyncContext)taskSpeed.getContext().get()).getData();
+            if("BEGIN OK".equals(ctxData)){
+                log.info(ctxData);
+            }
+            else if("EXECUTE OK".equals(ctxData)){
+                log.info(ctxData);
+            }
+            else if("TERMINATE OK".equals(ctxData)){
+                log.info(ctxData);
+            }
+            else {
+                log.info("SPEED TASK: SOMETHING WENT WRONG");
+            }
+        }
+        catch (Exception e) {
+            log.error("failed: " + e.getMessage());
+        }
+    }
+
+    /**
+     * execution of the example EngTaskSpeed
+     */
     @Scheduled(initialDelay = 300, fixedDelay=300)
     protected void executeSpeedyTask() {
         try {

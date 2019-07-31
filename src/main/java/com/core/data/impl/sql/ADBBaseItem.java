@@ -1,4 +1,4 @@
-package com.core.data.impl;
+package com.core.data.impl.sql;
 
 import java.io.Serializable;
 

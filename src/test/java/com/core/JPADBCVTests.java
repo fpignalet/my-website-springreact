@@ -1,7 +1,7 @@
 package com.core;
 
 import com.core.data.IDBHistContenerDAO;
-import com.core.data.impl.DBHistContener;
+import com.core.data.impl.sql.DBHistContener;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,7 +1,7 @@
 package com.core.eng.impl;
 
 import com.core.data.IDBItemTestDAO;
-import com.core.data.impl.DBItemTest;
+import com.core.data.impl.sql.DBItemTest;
 import com.core.eng.EEngModelItems;
 import com.core.eng.IEngDBUpdater;
 import com.core.eng.IEngModelUpdater;
