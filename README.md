@@ -8,6 +8,7 @@ My current professional website is
 - https://github.com/fpignalet/my-website-raw
 
 Porting my-website-raw to Spring / React. Please read:
-* [application README](application/README.md)
+* [main application README](client1/README.md)
+* [module README](client2/README.md)
 * [external-react-frontend README](external-react-frontend/README.md)
 * [server README](server/README.md)
