@@ -1,14 +1,12 @@
 package com.core.async.impl;
 
 import com.core.async.AAsyncTasks;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 /**
  * example tasks handler
  */
 @Service
-@ComponentScan({"com.core.eng", "com.core.data"})
 public class AsyncServiceTasks extends AAsyncTasks {
     /**
      * @brief constructor

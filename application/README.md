@@ -2,7 +2,7 @@
 Porting my-website-raw to Spring / React
 
 ## This software 
-is developped on Linux Ubuntu Bionic, with Jetbrains IntelliJIdea.
+is developped on Linux Ubuntu Bionic, with Jetbrains IntelliJIdea & CLion.
 it is still a draft. 
 My current professional website is 
 - http://www.pignalet.de
@@ -14,7 +14,7 @@ What is important here?
 - everything's begin with files
     - [pom.xml](pom.xml)
         - it prepares spring application material, getting maven plugins through dependencies to allow extensive use of spring packages
-        - files called by frontend-maven-plugin
+        - files called by [frontend-maven-plugin](https://github.com/eirslett/frontend-maven-plugin)
             ```
                 <execution>
                     <id>install node and npm</id>
@@ -52,12 +52,30 @@ What is important here?
     
     - Using the above material, here's what it's possible todo:
     
-        * INSTALL nodejs / npm:        
+        * (preparing environment) INSTALL mysql:        
+            ```
+            - sudo apt-get install mysql-server
+            - sudo ufw allow mysql
+            - systemctl start mysql
+            - systemctl enable mysql
+            - mysql -u root -p 
+            - {password choose during installation}
+            - ... {sql commands}
+            ```
+          
+        * (preparing environment) INSTALL nodejs / npm:        
             ```
             - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
             - sudo apt install nodejs
             ```
           
+        * (preparing environment) INSTALL redis:        
+            ```
+            - sudo apt-get install redis-server
+            - sudo systemctl enable redis-server.service
+            - ...
+            ```
+        
         * GENERATE AND RUN APPLICATION:        
             Open the project / import the pom in IntelliJIdea, 
             ```
@@ -114,14 +132,18 @@ What is important here?
         
 - the Spring app tree is
     - [external-react-frontend](external-react-frontend)
-        - a standard NodeJS / Javascript / React application which uses [axios](https://github.com/axios/axios) to connect to backend
+        - a standard NodeJS / Javascript / React application which uses 
+            - [axios](https://github.com/axios/axios) to connect to backend
+            - [React JS](https://reactjs.org/) to display GUI
+        - see [README.md](external-react-frontend/README.md)
     - [src](src)
         - [main](src/main)
             - [C](src/main/c)
+                - [Makefile](src/main/c/Makefile)
                 - [impl](src/main/c/impl)
                     - contains:
                         - the ExtFacade which implements the entry functions required by JNI. 
-                        - The JNI interface generation is done when generating application. The [pom.xml](pom.xml) file refers to a [exec-maven-plugin]() which is configured to use [native.sh](src/main/sh/native.sh). NOTE: in the future thsi stupid hard-coded shell script will be replaced by a real Makefile
+                        - The JNI interface generation is done when generating application. The [pom.xml](pom.xml) file refers to an [exec-maven-plugin](https://www.mojohaus.org/exec-maven-plugin/) which is configured to use [native.sh](src/main/sh/native.sh).
                         - Theses functions respects [ExtFacade](src/main/java/com/core/ext/ExtFacade.java) interface
             - [java](src/main/java)
                 - [com](src/main/java/com)
@@ -136,10 +158,11 @@ What is important here?
                             - [utils](src/main/java/com/core/utils)
             - [js](src/main/js)
                 - [angular](src/main/js/angular)
-                    - frontend angular implementation
-                    - 
+                    - frontend angular applications
+                - [jquery](src/main/js/jquery)
+                    - frontend scripts using jQuery
                 - [react](src/main/js/react)
-                    - frontend react implementation
+                    - frontend react components
             - [resources](src/main/resources)
                 - [static](src/main/resources/static)
                     - [built](src/main/resources/static/built)
@@ -153,15 +176,22 @@ What is important here?
                         - all the useful stylesheets
                         - this web app uses [Spectre css](https://picturepan2.github.io/spectre/index.html)
                 - [templates](src/main/resources/templates)
-                    - this web app uses thymeleaf
+                    - this web app uses thymeleaf as frontend template engine
+                    - all the "frontend_..." html pages and the fragments below:
+                        - can refer to data provided by model through this kind of notation [${name_of_entity}]
+                        - the model needs to update the same [name_of_entity] on his side. In this application all the @Service components can perform
+                            ```
+                            model.addAttribute({name_of_entity}, {value}});
+                            ```
+                        - the available [name_of_entity] are listed in [com.core.eng.EEngModelItems](src/main/java/com/core/eng/EEngModelItems.java)
                     - [fragments](src/main/resources/templates/fragments)
-                        - heare are the thymeleaf fragments referenced in html pages above
+                        - here are the thymeleaf fragments referenced in html pages above
                 - [application.properties](src/main/resources/application.properties)
                     - contains the settings for spring boot app
                     - [HELP.md](HELP.md) can be useful to improve this file
                 - [log4j.properties](src/main/resources/log4j.properties)
                     - standard log4j settings file 
-                - [database.sql](src/main/resources/database.sql)
+                - [schema.sql](src/main/resources/database.sql)
                     - will automaticaly be loaded during app startup
                         ```
                         ...
@@ -206,7 +236,7 @@ What is important here?
                         ```
             - [sh](src/main/sh)
                 - [native.sh](src/main/sh/native.sh)
-                    - called by exec-maven-plugin build plugin in [pom.xml](pom.xml)
+                    - called by build plugin [exec-maven-plugin](https://www.mojohaus.org/exec-maven-plugin/) in [pom.xml](pom.xml)
                         ```
                         <execution>
                             <id>JNI compilation</id>
@@ -219,6 +249,7 @@ What is important here?
                             </configuration>
                         </execution>
                         ```
+                    - this is a wrapper to prepare a target/libs directory, in case it doesn't exists, before running [Makefile](src/main/c/Makefile) 
         - [test](src/test)
             - spring boot app tests implementation
     - [target](target)

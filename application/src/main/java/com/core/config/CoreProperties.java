@@ -1,4 +1,4 @@
-package com.core;
+package com.core.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

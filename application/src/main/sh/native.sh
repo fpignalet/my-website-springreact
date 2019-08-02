@@ -1,9 +1,37 @@
 #!/usr/bin/env bash
 
-mkdir target/libs
-javac -h src/main/c/headers src/main/java/com/core/ext/ExtFacade.java
-g++ -c -o target/libs/extfacade.o -Wall -Werror -fpic -I/usr/lib/jvm/jdk-11.0.3/include -I/usr/lib/jvm/jdk-11.0.3/include/linux -I./ src/main/c/impl/ExtFacade.cpp
-g++ -c -o target/libs/exttester.o -Wall -Werror -fpic -I/usr/lib/jvm/jdk-11.0.3/include -I/usr/lib/jvm/jdk-11.0.3/include/linux -I./ src/main/c/impl/ExtTester.cpp
-g++ -shared -static-libstdc++ -o target/libs/libextfacade.so target/libs/extfacade.o target/libs/exttester.o
-rm src/main/java/com/core/ext/ExtFacade*.class
-#make
+native_setup() {
+  SAVE_DIR=${PWD}
+
+  if [[ $PWD == *"/src/main/sh"* ]]; then
+    echo FROM CONSOLE: ${SAVE_DIR}
+    PATH_CSRC=../c
+    PATH_TARGET=../../../target
+
+  else
+    echo FROM MAVEN: ${SAVE_DIR}
+    PATH_CSRC=src/main/c
+    PATH_TARGET=target
+
+  fi
+
+  PATH_LIBS=${PATH_TARGET}/libs
+  if [ ! -d ${PATH_TARGET} ]; then
+    mkdir ${PATH_TARGET}
+    mkdir ${PATH_LIBS}
+  fi
+
+  echo setup OK
+}
+
+native_make() {
+  cd ${PATH_CSRC}
+  make
+  make clean
+  cd ${SAVE_DIR}
+}
+
+native_setup
+native_make
+
+echo JNI / c compilation finished !

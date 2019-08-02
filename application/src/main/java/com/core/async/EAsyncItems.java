@@ -9,7 +9,9 @@ import lombok.Getter;
 public enum EAsyncItems {
     SPEEDY("speed"),
     STANDARD("standard"),
-    SLOW("slow");
+    SLOW("slow"),
+    FIXED("fixed"),
+    CRONED("croned");
 
     @Getter(AccessLevel.PUBLIC)
     private String name;

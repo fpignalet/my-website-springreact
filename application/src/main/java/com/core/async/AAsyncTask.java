@@ -106,21 +106,18 @@ public abstract class AAsyncTask {
      *
      */
     @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
     private AtomicBoolean active = new AtomicBoolean(false);
 
     /**
      * when status == TASKSTATUS_DONE, restart Task
      */
     @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
     private AtomicBoolean resetable = new AtomicBoolean(true);
 
     /**
      * data to be monitored
      */
     @Getter(AccessLevel.PUBLIC)
-    @Setter(AccessLevel.PUBLIC)
     private AtomicReference context = new AtomicReference<AsyncContext>(new AsyncContext());
 
 }

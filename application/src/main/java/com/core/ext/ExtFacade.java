@@ -20,27 +20,6 @@ public class ExtFacade {
     };
 
     /**
-     *
-     */
-    public static class Com {
-        public enum Way {
-            wayIN, wayOUT
-        }
-
-        public Com(final String portName, final Way way, int sizeIn, int sizeOut) {
-            this.way = way;
-            this.portName = portName;
-            this.bufferIn = new byte[sizeIn];
-            this.bufferOut = new byte[sizeOut];
-        }
-
-        Way way;
-        String portName;
-        byte bufferIn[];
-        byte bufferOut[];
-    };
-
-    /**
      * @param data
      * @return
      */
@@ -64,6 +43,25 @@ public class ExtFacade {
     protected String[] testGetData() {
         return getData();
     }
+
+    /**
+     *
+     */
+    public static class Com {
+        public enum Way {
+            wayIN, wayOUT
+        }
+
+        public Com(final String portName, final Way way) {
+            this.way = way;
+            this.portName = portName;
+        }
+
+        final Way way;
+        final String portName;
+        public String bufferIn;
+        public String bufferOut;
+    };
 
     /**
      * @return

@@ -63,6 +63,15 @@ public class ControllerREST extends AControllerBase {
     public String extnativelib() {
         try {
             extFacade.testSimple();
+            Runtime.getRuntime().exec("socat pty,raw,echo=0,link=~/dev/fakesrd0 pty,raw,echo=0,link=~/dev/fakesrd1\n");
+            new Thread(() -> {
+                extFacade.testSerialOut();
+            }).start();
+/*
+            new Thread(() -> {
+                extFacade.testSerialIn();
+            }).start();
+*/
             return getResult("LIBRARY OOK");
         } catch (Exception e) {
             return getError("LIBRARY NOT OOK!", e);

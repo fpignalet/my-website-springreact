@@ -10,8 +10,8 @@ const Redux = require('redux');
 const ReactBStrap = require('react-bootstrap');
 const ProgressBar = require('react-bootstrap/ProgressBar');
 
-const jsondata1 = require('../../../../../src/main/resources/static/data/datatest.json');
-const jsondata2 = require('../../../../../src/main/resources/static/data/datafpihist.json');
+const jsondata1 = require('../../../../../application/src/main/resources/static/data/datatest.json');
+const jsondata2 = require('../../../../../application/src/main/resources/static/data/datafpihist.json');
 
 /*************************************************************************************
  * IMPORTS

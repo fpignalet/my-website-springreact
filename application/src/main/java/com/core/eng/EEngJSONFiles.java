@@ -22,6 +22,6 @@ public enum EEngJSONFiles {
     private EEngJSONFiles(final String name){
         this.name = dataRepo + name + postfix;
     }
-    private static final String dataRepo = "target/classes/static/data/";
+    private static final String dataRepo = "application/target/classes/static/data/";
     private static final String postfix = ".json";
 }

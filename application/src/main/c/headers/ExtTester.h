@@ -65,6 +65,13 @@ namespace website {
         ///@return a string value
         const jstring parseString(jclass cls, string name, jobject data);
 
+        ///@brief retrieve an object value from incoming data
+        ///@param cls contains the name of the data passed by the calling Java object
+        ///@param name contains the name of the field to be found in data
+        ///@param data contains the data passed by the calling Java object
+        ///@return a string value
+        const jobject parseObject(jclass cls, string name, jobject data);
+
         ///@brief retrieve an array of int from incoming data
         ///@param cls contains the name of the data passed by the calling Java object
         ///@param name contains the name of the field to be found in data
@@ -191,6 +198,19 @@ namespace website {
         ///@param data is the instance of the data passed by Java calling object
         void read_field6(jclass cls, jobject data);
 
+        ///@brief retrieves the content of Com.portName
+        ///@param cls contains the name of the data passed by the calling Java object
+        ///@param data is the instance of the data passed by Java calling object
+        jstring read_portName(jclass cls, jobject data);
+        ///@brief retrieves the content of Com.way
+        ///@param cls contains the name of the data passed by the calling Java object
+        ///@param data is the instance of the data passed by Java calling object
+        jobject read_comWay(jclass cls, jobject data);
+        ///@brief retrieves the content of Com.bufferIn
+        ///@param cls contains the name of the data passed by the calling Java object
+        ///@param data is the instance of the data passed by Java calling object
+        jstring read_bufferIn(jclass cls, jobject data);
+
         ///@brief overriding callback
         void parseIntArray_cbk(const JINT& val);
         ///@brief overriding callback
@@ -208,41 +228,32 @@ namespace website {
 
     };
 
-    ///@class
+    ///@brief code ripped from https://forum.arduino.cc/index.php?topic=52584.0
     class ExtSerial {
     public:
+        //(unsigned char *) "/dev/ttyS0"
         ExtSerial(const char* strPortName);
+        ~ExtSerial();
 
         ///@brief
-        void serial_write(unsigned char cmd[]);
-
-        ///@brief
-        void serial_read(unsigned char rsp[], int bytes2Read);
-
-    protected:
-        ///@brief
-        int serial_open(const char* strPortName);
-
-        ///@brief
-        void serial_configure();
-
-    private:
-        int serial;
-
-    };
-
-    ///@brief code ripped from https://forum.arduino.cc/index.php?topic=52584.0
-    class ExtSerial2 {
-    public:
-        ExtSerial2();
-        ~ExtSerial2();
-
         int initPort();
+
+        ///@brief
         void flushPort();
+
+        ///@brief
         int getData(char* data);
+
+        ///@brief
         int sendData(char* data);
+
+        ///@brief
         char getChar();
+
+        ///@brief
         int sendChar(char data);
+
+        ///@brief
         void closePort();
 
     protected:

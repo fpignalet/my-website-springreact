@@ -27,8 +27,9 @@ public class BExtFacade extends ExtFacade {
      *
      */
     public void testSerialOut() {
-        final Com dataIn =  new Com("/dev/ttyUSB0", Com.Way.wayOUT, 1024, 1024);
-        testWriteSerial(dataIn);
+        final Com dataOut =  new Com("~/dev/fakesrd0", Com.Way.wayOUT);
+        dataOut.bufferOut = "TOTOTO TESTTESTTESTTEST";
+        testWriteSerial(dataOut);
 //        System.out.println(dataIn.);
     }
 
@@ -36,7 +37,7 @@ public class BExtFacade extends ExtFacade {
      *
      */
     public void testSerialIn() {
-        final Com dataIn =  new Com("/dev/ttyUSB0", Com.Way.wayIN, 1024, 1024);
+        final Com dataIn =  new Com("~/dev/fakesrd1", Com.Way.wayIN);
         testReadSerial(dataIn);
 //        System.out.println(dataIn.);
     }

@@ -1,4 +1,4 @@
-package com.core;
+package com.core.config;
 
 import com.core.redis.IRedisMessagePublisher;
 import com.core.redis.impl.RedisMessagePublisherImpl;
