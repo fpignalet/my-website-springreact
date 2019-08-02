@@ -1,14 +1,5 @@
-# my-website-springreact
-Porting my-website-raw to Spring / React
+# client1 (main)
 
-## This software 
-is developped on Linux Ubuntu Bionic, with Jetbrains IntelliJIdea & CLion.
-it is still a draft. 
-My current professional website is 
-- http://www.pignalet.de
-- https://github.com/fpignalet/my-website-raw
-
-------------------------------------------------------------------
 Also...
 What is important here?
 - everything's begin with files
@@ -95,8 +86,8 @@ What is important here?
             then:
             mvn spring-boot:run -Drun.jvmArguments="-D$LD_LIBRARY_PATH:./target/libs"
             or:
-            sudo docker build -t my-website-springreact .
-            sudo docker run --network="host" -t my-website-springreact
+            sudo docker build -t client1 .
+            sudo docker run --network="host" -t client1
             ```
             
         * GENERATE AND RUN EXTERNAL FRONTEND:
@@ -131,11 +122,6 @@ What is important here?
             ```
         
 - the Spring app tree is
-    - [external-react-frontend](external-react-frontend)
-        - a standard NodeJS / Javascript / React application which uses 
-            - [axios](https://github.com/axios/axios) to connect to backend
-            - [React JS](https://reactjs.org/) to display GUI
-        - see [README.md](external-react-frontend/README.md)
     - [src](src)
         - [main](src/main)
             - [C](src/main/c)

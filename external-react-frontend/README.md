@@ -1,3 +1,10 @@
+# external-react-frontend
+
+- the app tree is
+    - a standard NodeJS / Javascript / React application which uses 
+        - [axios](https://github.com/axios/axios) to connect to backend
+        - [React JS](https://reactjs.org/) to display GUI
+
 20190702: it's now a node + React application
 - execute in console 
     npm install
