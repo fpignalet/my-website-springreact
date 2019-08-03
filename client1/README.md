@@ -241,4 +241,16 @@ What is important here?
     - [target](target)
         - contains the result of mvn compile, package or install
 
+# Before:
+- We did monolitic "Java Rich-Client" development using 
+    - JDK for engine / business logic / backend
+    - And especially awt / Swing / swt for GUI
+    - it was possible to generate an application with an Ant script
+    - it was possible to run application through an Applet
+    - it was possible to...
+     
+- Then we used Servlet technology: our application was only backend and answered request returning http pages
+- Then we put everything altogether and runned our Java source code using an application server 
+- Now there is Maven...
+
 This site was built using [GitHub Pages](https://pages.github.com/).

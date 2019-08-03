@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.ResponseEntity;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -108,13 +107,13 @@ public abstract class AEngJSONHandler {
     }
 
     /**
-     * @param response
+     * @param data
      * @return
      * @throws IOException
      */
-    protected String parse(final ResponseEntity<String> response) throws IOException {
+    protected String parse(final String data) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
-        final JsonNode root = mapper.readTree(response.getBody());
+        final JsonNode root = mapper.readTree(data);
         return root.toString();
     }
 

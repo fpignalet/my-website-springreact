@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-
 /**
  * used from React module module_adbook.jsx
  */
@@ -29,44 +27,16 @@ public class ControllerOSky extends AControllerBase {
         try {
             serviceOSky.execute();
             log.info("ACTION OPENSKY DECODER SOMETHING...");
-            return getResult(null);
+            return getResult(null, "");
         } catch (Exception e) {
             return getError(e);
         }
     }
 
     /************************************************************************
-     INNER IMPLEM PART:
-     */
-
-    /**
-     * @return
-     * @throws IOException
-     */
-    protected String getResult(final String message) throws IOException {
-        return "{ \"result\": \"" + message + "\" }";
-    }
-
-    /**
-     * @return
-     * @throws IOException
-     */
-    protected String getError(final Exception e) {
-        log.debug(e.getStackTrace().toString());
-        return "{ \"error\": \"" + e.getMessage() + "\" }";
-    }
-
-    /************************************************************************
      INIT PART
      */
-    /**
-     * @param engine
-     */
-    public ControllerOSky(final EngServiceOSky engine) {
-        super(null, null, null, null, null);
-        this.serviceOSky = engine;
-    }
 
     @Autowired
-    private final EngServiceOSky serviceOSky;
+    private EngServiceOSky serviceOSky;
 }

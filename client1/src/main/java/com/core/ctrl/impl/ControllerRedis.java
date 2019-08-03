@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,40 +56,10 @@ public class ControllerRedis extends AControllerBase {
     }
 
     /************************************************************************
-     INNER IMPLEM PART:
-     */
-    /**
-     * @return
-     * @throws IOException
-     */
-    protected String getResult(final String message) throws IOException {
-        return "{ \"result\": \"" + message + "\" }";
-    }
-
-    /**
-     * @return
-     * @throws IOException
-     */
-    protected String getError(final String message, final Exception e) {
-        e.printStackTrace();
-        return "{ \"result\": \"" + message + "\" }";
-    }
-
-    /************************************************************************
      INIT PART
      */
-    /**
-     * @brief constructor
-     * @param redisRepo
-     */
-    public ControllerRedis(
-        final IRedisRepository redisRepo
-    ) {
-        super(null, null, null, null, null);
-        this.redisRepo = redisRepo;
-    }
 
     @Autowired
-    final IRedisRepository redisRepo;
+    private IRedisRepository redisRepo;
 
 }

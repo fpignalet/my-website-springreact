@@ -1,13 +1,10 @@
 package com.core.ctrl;
 
-import com.core.eng.impl.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
+
+import java.io.IOException;
 
 /**
  * This base controller is mostly a wrapper above Eng... services.
@@ -17,64 +14,30 @@ import org.springframework.stereotype.Controller;
 @ComponentScan({"com.core.eng", "com.core.data"})
 public abstract class AControllerBase {
 
-    /**
-     *
+    /************************************************************************
+     INNER IMPLEM PART:
      */
-    @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
-    private EngServiceDBTest engineDB;
 
     /**
-     *
+     * @return
+     * @throws IOException
      */
-    @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
-    private EngServiceDBHistory engineHistory;
+    protected String getResult(final String message, final String data) throws IOException {
+        if(null != message) {
+            return "{ \"message\": \"" + message + "\", \"result\": " + data + " }";
+        }
+        else {
+            return "{ \"result\": " + data + " }";
+        }
+    }
 
     /**
-     *
+     * @return
+     * @throws IOException
      */
-    @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
-    private EngServiceDBABook engineContact;
-
-    /**
-     *
-     */
-    @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
-    private EngServiceTests engineTests;
-
-    /**
-     *
-     */
-    @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
-    private EngServiceMail engineMail;
-
-    /**
-     * @param engineDB
-     * @param engineMail
-     */
-    public AControllerBase(
-        final EngServiceDBTest engineDB,
-        final EngServiceDBHistory engineHist,
-        final EngServiceDBABook engineContact,
-        final EngServiceMail engineMail,
-        final EngServiceTests engineTests
-    ) {
-        this.engineDB = engineDB;
-        this.engineHistory = engineHist;
-        this.engineContact = engineContact;
-
-        this.engineMail = engineMail;
-        this.engineTests = engineTests;
-
+    protected String getError(final Exception e) {
+        log.debug(e.getStackTrace().toString());
+        return "{ \"error\": \"" + e.getMessage() + "\" }";
     }
 
 }

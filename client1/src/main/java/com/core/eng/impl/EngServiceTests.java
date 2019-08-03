@@ -1,11 +1,13 @@
 package com.core.eng.impl;
 
 import com.core.eng.IEngModelUpdater;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
@@ -40,18 +42,19 @@ public class EngServiceTests extends AEngJSONHandler implements IEngModelUpdater
      * @return
      */
     public String testActuator(final HttpServletRequest request) {
-        final String contextPath = request.getContextPath();
-        final String host = request.getServerName();
+        final StringBuilder sb = new StringBuilder();
 
         // Spring Boot >= 2.0.0.M7
         final String endpointBasePath = "/actuator";
-        final StringBuilder sb = new StringBuilder();
         sb.append("<h2>Sprig Boot Actuator</h2>");
         sb.append("<ul>");
 
         // http://localhost:8090/actuator
+        final String contextPath = request.getContextPath();
+        final String host = request.getServerName();
         final String url = "http://" + host + ":8090" + contextPath + endpointBasePath;
         sb.append("<li><a href='" + url + "'>" + url + "</a></li>");
+
         sb.append("</ul>");
 
         return sb.toString();
@@ -63,9 +66,13 @@ public class EngServiceTests extends AEngJSONHandler implements IEngModelUpdater
      * @throws IOException
      */
     public String testMicroserviceComREST(final HttpServletRequest request) throws IOException {
-        final RestTemplate restTemplate = new RestTemplate();
-        final ResponseEntity<String> response = restTemplate.getForEntity(RESOURCE_URL, String.class);
-        return parse(response);
+        final Application application = eurekaClient.getApplication("CLIENT2");
+        final InstanceInfo instanceInfo = application.getInstances().get(0);
+        final String hostname = instanceInfo.getHostName();
+        int port = instanceInfo.getPort();
+        final String url = "http://" + hostname + ":" + port + RESOURCE_URL;
+        final ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        return parse(response.getBody());
     }
 
     /**
@@ -94,20 +101,21 @@ public class EngServiceTests extends AEngJSONHandler implements IEngModelUpdater
      INIT PART
      */
     /**
-     * @brief constructor
-     * @param emailSender receives autowired JavaMailSender
+     * @param restTemplate
+     * @param eurekaClient
      */
-    public EngServiceTests(final JavaMailSender emailSender) {
-        this.emailSender = emailSender;
+    public EngServiceTests(RestTemplate restTemplate, EurekaClient eurekaClient) {
+        this.restTemplate = restTemplate;
+        this.eurekaClient = eurekaClient;
         log.debug("OK");
     }
 
-    /**
-     *
-     */
     @Autowired
-    private final JavaMailSender emailSender;
+    private final RestTemplate restTemplate;
 
-    private static final String RESOURCE_URL = "http://localhost:8081/client2test/sub/12";
+    @Autowired
+    private final EurekaClient eurekaClient;
+
+    private static final String RESOURCE_URL = "/client2test/sub/12";
 
 }

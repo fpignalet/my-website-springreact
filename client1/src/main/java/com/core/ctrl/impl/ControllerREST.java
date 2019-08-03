@@ -6,6 +6,9 @@ import com.core.eng.impl.EngServiceDBHistory;
 import com.core.eng.impl.EngServiceDBTest;
 import com.core.eng.impl.EngServiceTests;
 import com.core.ext.impl.BExtFacade;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,7 +40,7 @@ public class ControllerREST extends AControllerBase {
             return getEngineDB().load(EEngJSONFiles.TEST);
         } catch (IOException e) {
             e.printStackTrace();
-            return getError("JSON NOT OOK!", e);
+            return getError(e);
         }
     }
 
@@ -51,7 +54,7 @@ public class ControllerREST extends AControllerBase {
             return getEngineHistory().load(EEngJSONFiles.HISTIN);
         } catch (IOException e) {
             e.printStackTrace();
-            return getError("JSON NOT OOK!", e);
+            return getError(e);
         }
     }
 
@@ -64,9 +67,9 @@ public class ControllerREST extends AControllerBase {
         try {
             extFacade.testSimple();
             extFacade.testSerial();
-            return getResult("LIBRARY OOK");
+            return getResult("LIBRARY OOK", "");
         } catch (Exception e) {
-            return getError("LIBRARY NOT OOK!", e);
+            return getError(e);
         }
     }
 
@@ -86,45 +89,34 @@ public class ControllerREST extends AControllerBase {
     }
 
     /************************************************************************
-     INNER IMPLEM PART:
-     */
-    /**
-     * @return
-     * @throws IOException
-     */
-    protected String getResult(final String message) {
-        return "{ \"result\": \"" + message + "\" }";
-    }
-
-    /**
-     * @return
-     * @throws IOException
-     */
-    protected String getError(final String message, final Exception e) {
-        e.printStackTrace();
-        return "{ \"error\": \"" + message + "\" }";
-    }
-
-    /************************************************************************
      INIT PART
      */
+
     /**
-     * @param engineDB
-     * @param engineCV
-     * @param engineTests
-     * @param extFacade
+     *
      */
-    public ControllerREST(
-        final EngServiceDBTest engineDB,
-        final EngServiceDBHistory engineCV,
-        final EngServiceTests engineTests,
-        final BExtFacade extFacade
-    ) {
-        super(engineDB, engineCV, null, null, engineTests);
-        this.extFacade = extFacade;
-    }
+    @Autowired
+    @Getter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PROTECTED)
+    private EngServiceDBTest engineDB;
+
+    /**
+     *
+     */
+    @Autowired
+    @Getter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PROTECTED)
+    private EngServiceDBHistory engineHistory;
+
+    /**
+     *
+     */
+    @Autowired
+    @Getter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PROTECTED)
+    private EngServiceTests engineTests;
 
     @Autowired
-    final BExtFacade extFacade;
+    private BExtFacade extFacade;
 
 }

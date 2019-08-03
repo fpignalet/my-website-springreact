@@ -5,7 +5,9 @@ import com.core.ctrl.AControllerBase;
 import com.core.ctrl.EHTMLPages;
 import com.core.eng.impl.EngServiceDBABook;
 import com.core.eng.impl.EngServiceDBHistory;
-import com.core.eng.impl.EngServiceDBTest;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -185,23 +187,24 @@ public class ControllerMain extends AControllerBase {
     /************************************************************************
      INIT PART
      */
+
     /**
-     * @brief constructor
-     * @param engineDB
-     * @param engineHist
-     * @param engineContact
-     * @param taskManager
+     *
      */
-    public ControllerMain(
-        final EngServiceDBTest engineDB,
-        final EngServiceDBHistory engineHist,
-        final EngServiceDBABook engineContact,
-        final AAsyncTasks taskManager) {
-        super(engineDB, engineHist, engineContact, null, null);
-        this.taskManager = taskManager;
-    }
+    @Autowired
+    @Getter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PROTECTED)
+    private EngServiceDBABook engineContact;
+
+    /**
+     *
+     */
+    @Autowired
+    @Getter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PROTECTED)
+    private EngServiceDBHistory engineHistory;
 
     @Autowired
-    final AAsyncTasks taskManager;
+    private AAsyncTasks taskManager;
 
 }
