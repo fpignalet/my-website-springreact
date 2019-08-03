@@ -2,8 +2,12 @@ package com.core.eng.impl;
 
 import com.core.eng.EEngJSONFiles;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,8 +16,6 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,10 +78,9 @@ public abstract class AEngJSONHandler {
      * @return a string containing JSON data
      */
     protected String load(final String fileName) throws IOException {
-        final Path path = Paths.get(fileName);
+        final Resource resource = new ClassPathResource(fileName);
         final Charset charset = StandardCharsets.UTF_8;
-
-        return new String(Files.readAllBytes(path));
+        return new String(Files.readAllBytes(resource.getFile().toPath()), charset);
     }
 
     /**
@@ -104,6 +105,17 @@ public abstract class AEngJSONHandler {
         }
 
         return (ArrayList<?>) om.readValue(data, root);
+    }
+
+    /**
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    protected String parse(final ResponseEntity<String> response) throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+        final JsonNode root = mapper.readTree(response.getBody());
+        return root.toString();
     }
 
     /**

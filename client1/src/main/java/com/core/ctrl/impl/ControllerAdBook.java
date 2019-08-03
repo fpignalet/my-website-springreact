@@ -175,7 +175,7 @@ public class ControllerAdBook extends AControllerBase {
      * @param engineContact autowired EngServiceDBABook
      */
     public ControllerAdBook(final EngServiceDBABook engineContact) {
-        super(null, null, engineContact, null);
+        super(null, null, engineContact, null, null);
     }
 
 }

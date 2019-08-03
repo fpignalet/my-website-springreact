@@ -63,7 +63,7 @@ public class ControllerOSky extends AControllerBase {
      * @param engine
      */
     public ControllerOSky(final EngServiceOSky engine) {
-        super(null, null, null, null);
+        super(null, null, null, null, null);
         this.serviceOSky = engine;
     }
 

@@ -197,7 +197,7 @@ public class ControllerMain extends AControllerBase {
         final EngServiceDBHistory engineHist,
         final EngServiceDBABook engineContact,
         final AAsyncTasks taskManager) {
-        super(engineDB, engineHist, engineContact, null);
+        super(engineDB, engineHist, engineContact, null, null);
         this.taskManager = taskManager;
     }
 

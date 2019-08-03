@@ -1,10 +1,10 @@
 package com.core.ctrl.impl;
 
-import com.core.async.AAsyncTasks;
 import com.core.ctrl.AControllerBase;
 import com.core.eng.EEngJSONFiles;
 import com.core.eng.impl.EngServiceDBHistory;
 import com.core.eng.impl.EngServiceDBTest;
+import com.core.eng.impl.EngServiceTests;
 import com.core.ext.impl.BExtFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,15 +63,7 @@ public class ControllerREST extends AControllerBase {
     public String extnativelib() {
         try {
             extFacade.testSimple();
-            Runtime.getRuntime().exec("socat pty,raw,echo=0,link=~/dev/fakesrd0 pty,raw,echo=0,link=~/dev/fakesrd1\n");
-            new Thread(() -> {
-                extFacade.testSerialOut();
-            }).start();
-/*
-            new Thread(() -> {
-                extFacade.testSerialIn();
-            }).start();
-*/
+            extFacade.testSerial();
             return getResult("LIBRARY OOK");
         } catch (Exception e) {
             return getError("LIBRARY NOT OOK!", e);
@@ -79,22 +71,18 @@ public class ControllerREST extends AControllerBase {
     }
 
     @RequestMapping(path = "/testactuator")
-    public String home(HttpServletRequest request) {
-        String contextPath = request.getContextPath();
-        String host = request.getServerName();
+    public String testactuator(final HttpServletRequest request) {
+        return getEngineTests().testActuator(request);
+    }
 
-        // Spring Boot >= 2.0.0.M7
-        String endpointBasePath = "/actuator";
-        StringBuilder sb = new StringBuilder();
-        sb.append("<h2>Sprig Boot Actuator</h2>");
-        sb.append("<ul>");
+    @RequestMapping(path = "/testmicroservicecomrest")
+    public String testmicroservicecom(HttpServletRequest request) throws IOException {
+        return getEngineTests().testMicroserviceComREST(request);
+    }
 
-        // http://localhost:8090/actuator
-        String url = "http://" + host + ":8090" + contextPath + endpointBasePath;
-        sb.append("<li><a href='" + url + "'>" + url + "</a></li>");
-        sb.append("</ul>");
-
-        return sb.toString();
+    @RequestMapping(path = "/testmicroservicecommq")
+    public String testmicroservicecommq(HttpServletRequest request) throws IOException {
+        return getEngineTests().testMicroserviceComMQ(request);
     }
 
     /************************************************************************
@@ -104,7 +92,7 @@ public class ControllerREST extends AControllerBase {
      * @return
      * @throws IOException
      */
-    protected String getResult(final String message) throws IOException {
+    protected String getResult(final String message) {
         return "{ \"result\": \"" + message + "\" }";
     }
 
@@ -114,26 +102,25 @@ public class ControllerREST extends AControllerBase {
      */
     protected String getError(final String message, final Exception e) {
         e.printStackTrace();
-        return "{ \"result\": \"" + message + "\" }";
+        return "{ \"error\": \"" + message + "\" }";
     }
 
     /************************************************************************
      INIT PART
      */
     /**
-     * @brief constructor
      * @param engineDB
      * @param engineCV
-     * @param taskManager
+     * @param engineTests
      * @param extFacade
      */
     public ControllerREST(
         final EngServiceDBTest engineDB,
         final EngServiceDBHistory engineCV,
-        final AAsyncTasks taskManager,
+        final EngServiceTests engineTests,
         final BExtFacade extFacade
     ) {
-        super(engineDB, engineCV, null, null);
+        super(engineDB, engineCV, null, null, engineTests);
         this.extFacade = extFacade;
     }
 

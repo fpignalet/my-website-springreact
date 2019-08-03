@@ -86,7 +86,7 @@ public class ControllerRedis extends AControllerBase {
     public ControllerRedis(
         final IRedisRepository redisRepo
     ) {
-        super(null, null, null, null);
+        super(null, null, null, null, null);
         this.redisRepo = redisRepo;
     }
 

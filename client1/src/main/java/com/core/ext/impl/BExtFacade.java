@@ -4,6 +4,8 @@ import com.core.ext.ExtFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 @Slf4j
 @Component
 public class BExtFacade extends ExtFacade {
@@ -21,6 +23,21 @@ public class BExtFacade extends ExtFacade {
         for(final String dataOut: result_getData){
             System.out.println(dataOut);
         }
+    }
+
+    /**
+     *
+     */
+    public void testSerial() throws IOException {
+        Runtime.getRuntime().exec("socat pty,raw,echo=0,link=~/dev/fakesrd0 pty,raw,echo=0,link=~/dev/fakesrd1\n");
+        new Thread(() -> {
+            testSerialOut();
+        }).start();
+/*
+        new Thread(() -> {
+            testSerialIn();
+        }).start();
+*/
     }
 
     /**

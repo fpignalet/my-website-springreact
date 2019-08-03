@@ -1,9 +1,6 @@
 package com.core.ctrl;
 
-import com.core.eng.impl.EngServiceDBABook;
-import com.core.eng.impl.EngServiceDBHistory;
-import com.core.eng.impl.EngServiceDBTest;
-import com.core.eng.impl.EngServiceMail;
+import com.core.eng.impl.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,6 +47,14 @@ public abstract class AControllerBase {
     @Autowired
     @Getter(AccessLevel.PROTECTED)
     @Setter(AccessLevel.PROTECTED)
+    private EngServiceTests engineTests;
+
+    /**
+     *
+     */
+    @Autowired
+    @Getter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PROTECTED)
     private EngServiceMail engineMail;
 
     /**
@@ -60,13 +65,15 @@ public abstract class AControllerBase {
         final EngServiceDBTest engineDB,
         final EngServiceDBHistory engineHist,
         final EngServiceDBABook engineContact,
-        final EngServiceMail engineMail
+        final EngServiceMail engineMail,
+        final EngServiceTests engineTests
     ) {
         this.engineDB = engineDB;
         this.engineHistory = engineHist;
         this.engineContact = engineContact;
 
         this.engineMail = engineMail;
+        this.engineTests = engineTests;
 
     }
 
