@@ -2,13 +2,11 @@ package com.core.ctrl.impl;
 
 import com.core.ctrl.AControllerBase;
 import com.core.eng.EEngJSONFiles;
+import com.core.eng.impl.EngServiceCom;
 import com.core.eng.impl.EngServiceDBHistory;
 import com.core.eng.impl.EngServiceDBTest;
 import com.core.eng.impl.EngServiceTests;
 import com.core.ext.impl.BExtFacade;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,13 +33,8 @@ public class ControllerREST extends AControllerBase {
      */
     @RequestMapping(value = "/exthttpgetjson0", method = RequestMethod.GET)
     @CrossOrigin
-    public String exthttpgetjson0() {
-        try {
-            return getEngineDB().load(EEngJSONFiles.TEST);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return getError(e);
-        }
+    public String exthttpgetjson0() throws IOException {
+        return engineDB.load(EEngJSONFiles.TEST);
     }
 
     /**
@@ -49,13 +42,8 @@ public class ControllerREST extends AControllerBase {
      */
     @RequestMapping(value = "/exthttpgetjson1", method = RequestMethod.GET)
     @CrossOrigin
-    public String exthttpgetjson1() {
-        try {
-            return getEngineHistory().load(EEngJSONFiles.HISTIN);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return getError(e);
-        }
+    public String exthttpgetjson1() throws IOException {
+        return engineHistory.load(EEngJSONFiles.HISTIN);
     }
 
     /**
@@ -63,58 +51,56 @@ public class ControllerREST extends AControllerBase {
      */
     @RequestMapping(value = "/extnativelib", method = RequestMethod.GET)
     @CrossOrigin
-    public String extnativelib() {
-        try {
-            extFacade.testSimple();
-            extFacade.testSerial();
-            return getResult("LIBRARY OOK", "");
-        } catch (Exception e) {
-            return getError(e);
-        }
+    public String extnativelib() throws IOException {
+        extFacade.testSimple();
+        extFacade.testSerial();
+        return getResult("LIBRARY OOK", "");
     }
 
+    /**
+     * @param request
+     * @return
+     */
     @RequestMapping(path = "/testactuator")
     public String testactuator(final HttpServletRequest request) {
-        return getEngineTests().testActuator(request);
+        return engineTests.testActuator(request);
     }
 
+    /**
+     * @param request
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(path = "/testmicroservicecomrest")
     public String testmicroservicecom(HttpServletRequest request) throws IOException {
-        return getEngineTests().testMicroserviceComREST(request);
+        return engineCom.testMicroserviceComREST(request);
     }
 
+    /**
+     * @param request
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(path = "/testmicroservicecommq")
     public String testmicroservicecommq(HttpServletRequest request) throws IOException {
-        return getEngineTests().testMicroserviceComMQ(request);
+        return engineCom.testMicroserviceComMQ(request);
     }
 
     /************************************************************************
      INIT PART
      */
 
-    /**
-     *
-     */
     @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
     private EngServiceDBTest engineDB;
 
-    /**
-     *
-     */
     @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
     private EngServiceDBHistory engineHistory;
 
-    /**
-     *
-     */
     @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
     private EngServiceTests engineTests;
+
+    @Autowired
+    private EngServiceCom engineCom;
 
     @Autowired
     private BExtFacade extFacade;

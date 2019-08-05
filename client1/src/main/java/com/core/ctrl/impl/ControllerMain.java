@@ -5,9 +5,6 @@ import com.core.ctrl.AControllerBase;
 import com.core.ctrl.EHTMLPages;
 import com.core.eng.impl.EngServiceDBABook;
 import com.core.eng.impl.EngServiceDBHistory;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
 
 /**
  * Display main html pages available (see EHtmlPages)
@@ -33,12 +32,7 @@ public class ControllerMain extends AControllerBase {
      */
     @GetMapping("/")
     public String index(final Model model){
-        try {
-            return EHTMLPages.DEFAULT.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+        return EHTMLPages.DEFAULT.getName();
     }
 
     /**
@@ -47,12 +41,7 @@ public class ControllerMain extends AControllerBase {
      */
     @GetMapping("/entrydefault")
     public String entrydefault(final Model model){
-        try {
-            return EHTMLPages.DEFAULT.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+        return EHTMLPages.DEFAULT.getName();
     }
 
     /**
@@ -60,148 +49,91 @@ public class ControllerMain extends AControllerBase {
      */
     @PostMapping(value = "/activatetask")
     public String activatetask(@RequestParam(value="task", required = false, defaultValue = "") final String names) {
-        try {
-            taskManager.activate(names);
-            return EHTMLPages.DEFAULT.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+        taskManager.activate(names);
+        return EHTMLPages.DEFAULT.getName();
     }
 
     /**
-     * to be tested in browser
-     * will display angular html page with "FROM MODEL:[name parameter content]"
+     * will display address bool html page with "FROM MODEL:[name parameter content]"
      * @param model
      * @return
      */
     @GetMapping("/entryaddressbook")
-    public String entryaddressbook(final Model model){
-        try {
-            getEngineContact().updateModel(model);
-            return EHTMLPages.ADBOOK.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+    public String entryaddressbook(final Model model) throws IOException {
+        engineHistory.updateModel(model);
+        return EHTMLPages.ADBOOK.getName();
     }
 
     /**
-     * to be tested in browser
-     * will display angular html page with "FROM MODEL:[name parameter content]"
+     * will display CV html page with "FROM MODEL:[name parameter content]"
      * @param model
      * @return
      */
     @GetMapping("/entrycv")
-    public String entryCV(final Model model){
-        try {
-            getEngineHistory().updateModel(model);
-            return EHTMLPages.CV.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+    public String entryCV(final Model model) throws IOException {
+        engineHistory.updateModel(model);
+        return EHTMLPages.CV.getName();
     }
 
     /**
-     * to be tested in browser
-     * will display angular html page with "FROM MODEL:[name parameter content]"
+     * will display blog html page with "FROM MODEL:[name parameter content]"
      * @param model
      * @return
      */
     @GetMapping("/entryblog")
-    public String entryBLOG(final Model model){
-        try {
-            getEngineHistory().updateModel(model);
-            return EHTMLPages.BLOG.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+    public String entryBLOG(final Model model) throws IOException {
+        engineHistory.updateModel(model);
+        return EHTMLPages.BLOG.getName();
     }
 
     /**
-     * to be tested in browser
      * will display react html page with "FROM MODEL:[name parameter content]"
      * @param model
      * @return
      */
     @GetMapping("/entryreact")
     public String entryreact(final Model model){
-        try {
-            return EHTMLPages.REACT.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+        return EHTMLPages.REACT.getName();
     }
 
     /**
-     * to be tested in browser
      * will display angular html page with "FROM MODEL:[name parameter content]"
      * @param model
      * @return
      */
     @GetMapping("/entryangular")
     public String entryangular(final Model model){
-        try {
-            return EHTMLPages.ANGULAR.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+        return EHTMLPages.ANGULAR.getName();
     }
 
     /**
-     * to be tested in browser
      * will display angular html page with "FROM MODEL:[name parameter content]"
      * @param model
      * @return
      */
     @GetMapping("/entryredis")
     public String entryredis(final Model model){
-        try {
-            return EHTMLPages.REDIS.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+        return EHTMLPages.REDIS.getName();
     }
 
     /**
-     * to be tested in browser
-     * will display angular html page with "FROM MODEL:[name parameter content]"
+     * will display tasks html page with "FROM MODEL:[name parameter content]"
      * @param model
      * @return
      */
     @GetMapping("/entrytasks")
     public String entrytasks(final Model model){
-        try {
-            return EHTMLPages.TASKS.getName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return EHTMLPages.ERROR.getName();
-        }
+        return EHTMLPages.TASKS.getName();
     }
 
     /************************************************************************
      INIT PART
      */
 
-    /**
-     *
-     */
     @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
     private EngServiceDBABook engineContact;
 
-    /**
-     *
-     */
     @Autowired
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PROTECTED)
     private EngServiceDBHistory engineHistory;
 
     @Autowired

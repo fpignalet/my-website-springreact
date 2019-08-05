@@ -32,6 +32,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>2.1.6.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -146,37 +147,6 @@
             <version>2.9.2</version>
         </dependency>
 
-        <!-- ejb -->
-<!--
-        <dependency>
-            <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-ejb-client-bom</artifactId>
-            <version>16.0.0.Final</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>com.core.ejb</groupId>
-            <artifactId>Core</artifactId>
-            <version>LATEST</version>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.0-b170201.1204</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.0-b170127.1453</version>
-        </dependency>
-        -->
-
 		<!-- debug and tests -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -248,7 +218,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Finchley.SR1</version>
+                <version>Greenwich.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -342,33 +312,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- ejbs -->
-<!--
-            <plugin>
-                <groupId>org.codehaus.cargo</groupId>
-                <artifactId>cargo-maven2-plugin</artifactId>
-                <version>1.7.4</version>
-                <configuration>
-                    <container>
-                        <containerId>wildfly</containerId>
-                        <zipUrlInstaller>
-                            <url>
-                                http://download.jboss.org/wildfly/16.0.0.Final/wildfly-16.0.0.Final.zip
-                            </url>
-                        </zipUrlInstaller>
-                    </container>
-                    <configuration>
-                        <properties>
-                            <cargo.hostname>127.0.0.1</cargo.hostname>
-                            <cargo.jboss.configuration>standalone-full</cargo.jboss.configuration>
-                            <cargo.jboss.management-http.port>9990</cargo.jboss.management-http.port>
-                            <cargo.servlet.users>testUser:admin1234!</cargo.servlet.users>
-                        </properties>
-                    </configuration>
-                </configuration>
-            </plugin>
--->
 
         </plugins>
 	</build>

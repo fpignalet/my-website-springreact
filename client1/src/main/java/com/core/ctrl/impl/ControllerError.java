@@ -31,9 +31,6 @@ public class ControllerError implements ErrorController {
         return "error: " + request.getQueryString() + " / " + response.getContentType();
     }
 
-    /**
-     *
-     */
     private static final String PATH = "/error";
 
 }

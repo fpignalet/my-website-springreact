@@ -70,39 +70,30 @@ public class EngServiceMail implements IEngModelUpdater {
      * @return a JavaMailSenderImpl
      */
     public JavaMailSender getJavaMailSender() {
-        final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
+        emailSender.setHost("smtp.gmail.com");
+        emailSender.setPort(587);
 
-        mailSender.setUsername("francois.pignalet@gmail.com");
-        mailSender.setPassword("password");
+        emailSender.setUsername("francois.pignalet@gmail.com");
+        emailSender.setPassword("password");
 
-        final Properties props = mailSender.getJavaMailProperties();
+        final Properties props = emailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
 
         log.debug("OK");
-        return mailSender;
+        return emailSender;
     }
 
     /************************************************************************
      INIT PART
      */
-    /**
-     * @brief constructor
-     * @param emailSender receives autowired JavaMailSender
-     */
-    public EngServiceMail(final JavaMailSender emailSender) {
-        this.emailSender = emailSender;
-        log.debug("OK");
-    }
 
     /**
      *
      */
     @Autowired
-    private final JavaMailSender emailSender;
+    private JavaMailSenderImpl emailSender;
 
 }

@@ -1,38 +1,60 @@
 package com.core.eng.impl;
 
+import com.core.eng.IEngModelUpdater;
 import lombok.extern.slf4j.Slf4j;
 import org.opensky.example.ExampleDecoder;
 import org.opensky.libadsb.Position;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
 @Slf4j
 @Service
-public class EngServiceOSky extends ExampleDecoder {
+public class EngServiceOSky extends ExampleDecoder implements IEngModelUpdater {
 
-    public EngServiceOSky() {
-        commands.put(5, (final EngCommandParam param) -> {
+    /************************************************************************
+     INTERFACE ENFORCING
+     */
+
+    /**
+     * @brief
+     */
+    @Override
+    public void updateModel(Model model) throws IOException {
+        log.debug("Not yet implemented");
+    }
+
+    /************************************************************************
+     IMPLEM PART
+     */
+
+    /**
+     * @brief
+     */
+     public EngServiceOSky() {
+        commands.put(5, (final AEngCommandParam param) -> {
             // time,serial,lat,lon,msg
             final long timeStamp = (long) Double.parseDouble(param.getValues()[0])*1000;
-            final Position pos = (Position) param.getRec();
+            final Position pos = (Position) param.getData();
             pos.setLatitude(Double.parseDouble(param.getValues()[2]));
             pos.setLongitude(Double.parseDouble(param.getValues()[3]));
             decodeMsg(timeStamp, param.getValues()[4], pos);
         });
-        commands.put(4, (final EngCommandParam param) -> {
+        commands.put(4, (final AEngCommandParam param) -> {
             // time,lat,lon,msg
             final long timeStamp = (long) Double.parseDouble(param.getValues()[0])*1000;
-            final Position pos = (Position) param.getRec();
+            final Position pos = (Position) param.getData();
             pos.setLatitude(Double.parseDouble(param.getValues()[1]));
             pos.setLongitude(Double.parseDouble(param.getValues()[2]));
             decodeMsg(timeStamp, param.getValues()[3], pos);
         });
-        commands.put(2, (final EngCommandParam param) -> {
+        commands.put(2, (final AEngCommandParam param) -> {
             // time,msg
             final long timeStamp = (long) Double.parseDouble(param.getValues()[0])*1000;
-            final Position pos = (Position) param.getRec();
+            final Position pos = (Position) param.getData();
             decodeMsg(timeStamp, param.getValues()[1], pos);
         });
     }
@@ -41,17 +63,22 @@ public class EngServiceOSky extends ExampleDecoder {
      * @throws Exception
      */
     public void execute() throws Exception {
-        final EngCommandParam param = new EngCommandParam();
-        param.setRec(new Position());
-        for(final String entry: data) {
+        final AEngCommandParam param = new AEngCommandParam() {
+            @Override
+            public Object getRef() {
+                return new Integer(getValues().length);
+            }
+        };
+        param.setData(new Position());
+        for(final String entry: positions) {
             param.setValues(entry.split(","));
-            commands.get(param.getValues().length).accept(param);
-            log.info(param.getRec().toString());
+            commands.get(((Integer)param.getRef()).intValue()).accept(param);
+            log.info(param.getData().toString());
         }
 
     }
 
-    private static final String[] data = {
+    private static final String[] positions = {
         "1,48.0775474,11.6425398,8d4b19f39911088090641010b9b0",
         "2,48.0775474,11.6425398,8d4ca513587153a8184a2fb5adeb",
         "3,48.0775474,11.6425398,8d3413c399014e23c80f947ce87c",
@@ -63,6 +90,6 @@ public class EngServiceOSky extends ExampleDecoder {
         "9,48.0775474,11.6425398,a0001839000000000000004401e3"
     };
 
-    private final HashMap<Integer, Consumer<EngCommandParam>> commands = new HashMap<>();
+    private final HashMap<Integer, Consumer<AEngCommandParam>> commands = new HashMap<>();
 
 }

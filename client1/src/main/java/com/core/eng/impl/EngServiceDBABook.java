@@ -44,14 +44,6 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
     /**
      * @return
      */
-    @ModelAttribute(name = "model_addressbookcontact")
-    public DBContact contact() {
-        return new DBContact();
-    }
-
-    /**
-     * @return
-     */
     @ModelAttribute(name = "model_addressbookall")
     public List<DBContact> allContacts() {
         return findAllContactOrderedByIdAscending();

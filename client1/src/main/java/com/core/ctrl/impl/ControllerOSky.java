@@ -23,14 +23,10 @@ public class ControllerOSky extends AControllerBase {
 
     @RequestMapping(value="/openskyadsb_list", method = RequestMethod.GET)
     @CrossOrigin
-    public String addressbook_list() {
-        try {
-            serviceOSky.execute();
-            log.info("ACTION OPENSKY DECODER SOMETHING...");
-            return getResult(null, "");
-        } catch (Exception e) {
-            return getError(e);
-        }
+    public String addressbook_list() throws Exception {
+        serviceOSky.execute();
+        log.info("ACTION OPENSKY DECODER SOMETHING...");
+        return getResult(null, "");
     }
 
     /************************************************************************

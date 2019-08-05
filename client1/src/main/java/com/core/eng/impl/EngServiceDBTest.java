@@ -34,12 +34,11 @@ public class EngServiceDBTest extends AEngJSONHandler implements IEngModelUpdate
      */
 
     /**
-     * @brief
      * @return
      */
-    @ModelAttribute(name = "item")
-    public DBItemTest itemtest() {
-        return new DBItemTest();
+    @ModelAttribute(name = "model_itemstest")
+    public List<DBItemTest> allItems() {
+        return findAllItemsTest();
     }
 
     @Override
@@ -83,7 +82,11 @@ public class EngServiceDBTest extends AEngJSONHandler implements IEngModelUpdate
 
     @Override
     public <T> ArrayList<?> fromDB2Items() throws IOException {
-        return null;
+        ///1. FROM DB:
+        final ArrayList<DBItemTest> itemsDB = (ArrayList<DBItemTest>) findAllItemsTest();
+        ///2. TO FILE:
+        updateFile(itemsDB);
+        return itemsDB;
     }
 
     /************************************************************************

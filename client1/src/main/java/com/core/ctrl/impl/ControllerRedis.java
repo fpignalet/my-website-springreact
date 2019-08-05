@@ -26,6 +26,9 @@ public class ControllerRedis extends AControllerBase {
 
     /************************************************************************
      PUBLIC IMPLEM PART:
+     * @param key
+     * @param value
+     * @return
      */
 
     @RequestMapping(value = "/redisadd", method = RequestMethod.POST)
@@ -37,6 +40,9 @@ public class ControllerRedis extends AControllerBase {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * @return
+     */
     @RequestMapping("/redisvalues")
     public @ResponseBody
     Map<String, String> findAll() {
@@ -49,6 +55,10 @@ public class ControllerRedis extends AControllerBase {
         return map;
     }
 
+    /**
+     * @param key
+     * @return
+     */
     @RequestMapping(value = "/redisdelete", method = RequestMethod.POST)
     public ResponseEntity<String> delete(@RequestParam String key) {
         redisRepo.delete(key);

@@ -13,10 +13,12 @@
 
     <!-- sub modules -->
     <modules>
+        <module>server</module>
         <module>client1</module>
         <module>client2</module>
-        <module>server</module>
         <module>external-react-frontend</module>
+<!--        <module>example1</module>-->
+<!--        <module>example2</module>-->
     </modules>
 
 </project>

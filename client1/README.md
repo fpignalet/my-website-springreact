@@ -136,6 +136,9 @@ What is important here?
                     - spring boot app implementation
                         - [core](src/main/java/com/core)
                             - [async](src/main/java/com/core/async)
+                            - [config](src/main/java/com/core/config)
+                                - [CoreBeansConfig](src/main/java/com/core/CoreBeansConfig)
+                                    - When 
                             - [ctrl](src/main/java/com/core/ctrl)
                             - [data](src/main/java/com/core/data)
                             - [ejb](src/main/java/com/core/ejb)
@@ -240,17 +243,3 @@ What is important here?
             - spring boot app tests implementation
     - [target](target)
         - contains the result of mvn compile, package or install
-
-# Before:
-- We did monolitic "Java Rich-Client" development using 
-    - JDK for engine / business logic / backend
-    - And especially awt / Swing / swt for GUI
-    - it was possible to generate an application with an Ant script
-    - it was possible to run application through an Applet
-    - it was possible to...
-     
-- Then we used Servlet technology: our application was only backend and answered request returning http pages
-- Then we put everything altogether and runned our Java source code using an application server 
-- Now there is Maven...
-
-This site was built using [GitHub Pages](https://pages.github.com/).

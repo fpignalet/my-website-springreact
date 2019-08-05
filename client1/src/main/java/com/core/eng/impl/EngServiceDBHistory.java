@@ -37,9 +37,9 @@ public class EngServiceDBHistory extends AEngJSONHandler implements IEngModelUpd
     /**
      * @return
      */
-    @ModelAttribute(name = "model_CVHist")
-    public DBHistContener itemhist() {
-        return new DBHistContener();
+    @ModelAttribute(name = "model_historyall")
+    public DBCVConteners fullHistory() {
+        return findAllItemsHistOrderedByIdAscending();
     }
 
     @Override
