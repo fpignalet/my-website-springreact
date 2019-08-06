@@ -1,9 +1,9 @@
 package com.core.config;
 
+import com.google.common.base.Predicates;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -19,10 +19,11 @@ public class CoreSwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
             .select()
-            .apis(RequestHandlerSelectors.any())
-            .paths(PathSelectors.regex("/user.*|/register.*|/oauth/token.*"))
-            //PathSelectors.any() for all
-            .build().apiInfo(apiInfo());
+            // .apis(RequestHandlerSelectors.any())
+            .apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
+            // .paths(PathSelectors.any())
+            // .paths(PathSelectors.ant("/swagger2-demo"))
+            .build();
     }
 
     private ApiInfo apiInfo() {

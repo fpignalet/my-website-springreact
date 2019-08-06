@@ -1,7 +1,6 @@
-package com.core.redis.impl;
+package com.core.data.impl.redis;
 
-import com.core.data.impl.redis.RedisItem;
-import com.core.redis.IRedisRepository;
+import com.core.data.IRDRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,24 +13,24 @@ import java.util.Map;
  * code ripped from https://github.com/michaelcgood/spring-data-redis-example
  */
 @Repository
-public class RedisRepositoryImpl implements IRedisRepository {
+public class RDRepository implements IRDRepository {
 
     public Map<Object, Object> findAllMovies(){
         return hashOperations.entries(KEY);
     }
-    public RedisItem findMovie(final String id){
-        return (RedisItem) hashOperations.get(KEY, id);
+    public RDItem findMovie(final String id){
+        return (RDItem) hashOperations.get(KEY, id);
     }
 
-    public void add(final RedisItem redisItem) {
-        hashOperations.put(KEY, redisItem.getId(), redisItem.getName());
+    public void add(final RDItem rdItem) {
+        hashOperations.put(KEY, rdItem.getId(), rdItem.getName());
     }
     public void delete(final String id) {
         hashOperations.delete(KEY, id);
     }
 
     @Autowired
-    public RedisRepositoryImpl(RedisTemplate<String, Object> redisTemplate){
+    public RDRepository(RedisTemplate<String, Object> redisTemplate){
         this.redisTemplate = redisTemplate;
     }
 

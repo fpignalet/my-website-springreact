@@ -2,7 +2,7 @@ Porting my-website-raw to Spring / React
 
 ## This software 
 is developped on Linux Ubuntu Bionic, with Jetbrains IntelliJIdea & CLion.
-it is still a draft. 
+it is still a draft project in constant evolution
 My current professional website is 
 - http://www.pignalet.de
 - https://github.com/fpignalet/my-website-raw
@@ -18,8 +18,8 @@ Porting my-website-raw to Spring / React. Please read:
     - JDK for engine / business logic / backend
     - And especially awt / Swing / swt for GUI
     - some specific additional packages / drivers, for example to access database     
-    - Then we used Servlet technology: our application was only backend and answered request returning http pages
-    - Then we ran our Java source code using an application server 
+- Then we used Servlet technology: our application was only backend and answered request returning http pages
+- Then we ran our Java source code using an application server 
 
 - it was possible to generate an application with an Ant script
 - it was possible to run application through an Applet

@@ -1,8 +1,8 @@
 package com.core.ctrl.impl;
 
 import com.core.ctrl.AControllerBase;
-import com.core.data.impl.redis.RedisItem;
-import com.core.redis.IRedisRepository;
+import com.core.data.IRDRepository;
+import com.core.data.impl.redis.RDItem;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,8 +35,8 @@ public class ControllerRedis extends AControllerBase {
     public ResponseEntity<String> redisadd(
         @RequestParam String key,
         @RequestParam String value) {
-        RedisItem redisItem = new RedisItem(key, value);
-        redisRepo.add(redisItem);
+        final RDItem rdItem = new RDItem(key, value);
+        redisRepo.add(rdItem);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -46,12 +46,13 @@ public class ControllerRedis extends AControllerBase {
     @RequestMapping("/redisvalues")
     public @ResponseBody
     Map<String, String> findAll() {
-        Map<Object, Object> aa = redisRepo.findAllMovies();
-        Map<String, String> map = new HashMap<String, String>();
+        final Map<Object, Object> aa = redisRepo.findAllMovies();
+        final Map<String, String> map = new HashMap<String, String>();
         for(Map.Entry<Object, Object> entry : aa.entrySet()){
             String key = (String) entry.getKey();
             map.put(key, aa.get(key).toString());
         }
+
         return map;
     }
 
@@ -70,6 +71,6 @@ public class ControllerRedis extends AControllerBase {
      */
 
     @Autowired
-    private IRedisRepository redisRepo;
+    private IRDRepository redisRepo;
 
 }

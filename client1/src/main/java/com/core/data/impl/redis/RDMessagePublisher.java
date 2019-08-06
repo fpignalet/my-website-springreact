@@ -1,6 +1,6 @@
-package com.core.redis.impl;
+package com.core.data.impl.redis;
 
-import com.core.redis.IRedisMessagePublisher;
+import com.core.data.IRDMessagePublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
@@ -10,18 +10,18 @@ import org.springframework.stereotype.Service;
  * code ripped from https://github.com/michaelcgood/spring-data-redis-example
  */
 @Service
-public class RedisMessagePublisherImpl implements IRedisMessagePublisher {
+public class RDMessagePublisher implements IRDMessagePublisher {
 
     public void publish(final String message) {
         redisTemplate.convertAndSend(topic.getTopic(), message);
     }
 
-    public RedisMessagePublisherImpl(final RedisTemplate<String, Object> redisTemplate, final ChannelTopic topic) {
+    public RDMessagePublisher(final RedisTemplate<String, Object> redisTemplate, final ChannelTopic topic) {
         this.redisTemplate = redisTemplate;
         this.topic = topic;
     }
 
-    public RedisMessagePublisherImpl() {
+    public RDMessagePublisher() {
     }
 
     @Autowired

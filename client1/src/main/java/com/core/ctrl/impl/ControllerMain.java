@@ -45,15 +45,6 @@ public class ControllerMain extends AControllerBase {
     }
 
     /**
-     * to be tested in browser
-     */
-    @PostMapping(value = "/activatetask")
-    public String activatetask(@RequestParam(value="task", required = false, defaultValue = "") final String names) {
-        taskManager.activate(names);
-        return EHTMLPages.DEFAULT.getName();
-    }
-
-    /**
      * will display address bool html page with "FROM MODEL:[name parameter content]"
      * @param model
      * @return
@@ -124,6 +115,18 @@ public class ControllerMain extends AControllerBase {
     @GetMapping("/entrytasks")
     public String entrytasks(final Model model){
         return EHTMLPages.TASKS.getName();
+    }
+
+    /**
+     * @param names
+     * @return
+     */
+    @PostMapping(value = "/activatetask")
+    public String activatetask(
+        @RequestParam(value="task", required = false, defaultValue = "") final String names
+    ) {
+        taskManager.activate(names);
+        return EHTMLPages.DEFAULT.getName();
     }
 
     /************************************************************************

@@ -20,19 +20,19 @@ import java.io.IOException;
 @RestController
 @RequestMapping(method={RequestMethod.POST,RequestMethod.GET})
 public class ControllerAdBook extends AControllerBase {
-
     /************************************************************************
      PUBLIC IMPLEM PART:
      * @return
      * @throws IOException
      */
 
-    @RequestMapping(value="/addressbook_list", method = RequestMethod.GET)
     @CrossOrigin
+    @RequestMapping(value="/addressbook_list", method = RequestMethod.GET)
     public String addressbook_list() throws IOException {
         log.info("ACTION ADBOOK GET LIST");
         return getResult(null, "");
     }
+
 
     /**
      * @param vorname
@@ -42,8 +42,8 @@ public class ControllerAdBook extends AControllerBase {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value="/addressbook_add", method = RequestMethod.POST)
     @CrossOrigin
+    @RequestMapping(value="/addressbook_add", method = RequestMethod.POST)
     public String addressbook_add(
         @RequestParam("vorname") final String vorname,
         @RequestParam("nachname") final String nachname,
@@ -65,8 +65,8 @@ public class ControllerAdBook extends AControllerBase {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value="/addressbook_edit", method = RequestMethod.POST)
     @CrossOrigin
+    @RequestMapping(value="/addressbook_edit", method = RequestMethod.POST)
     public String addressbook_edit(
         @RequestParam("id") final int id,
         @RequestParam("cur_vorname") final String cur_vorname,
@@ -88,8 +88,8 @@ public class ControllerAdBook extends AControllerBase {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value="/addressbook_remove", method = RequestMethod.POST)
     @CrossOrigin
+    @RequestMapping(value="/addressbook_remove", method = RequestMethod.POST)
     public String addressbook_remove(
         @RequestParam("id") final int id,
         @RequestParam("vorname") final String vorname,
@@ -107,8 +107,8 @@ public class ControllerAdBook extends AControllerBase {
      * @param modelAndView
      * @return
      */
-    @RequestMapping(value="/addressbook_reg", method = RequestMethod.POST)
     @CrossOrigin
+    @RequestMapping(value="/addressbook_reg", method = RequestMethod.POST)
     public String registerUser(
         @RequestParam("vorname") final String vorname,
         @RequestParam("nachname") final String nachname,
@@ -126,8 +126,8 @@ public class ControllerAdBook extends AControllerBase {
      * @param modelAndView
      * @return
      */
-    @RequestMapping(value="/addressbook_confirm", method= {RequestMethod.GET, RequestMethod.POST})
     @CrossOrigin
+    @RequestMapping(value="/addressbook_confirm", method= {RequestMethod.GET, RequestMethod.POST})
     public String confirmUserAccount(
         final @RequestParam("token")String token,
         final Model modelAndView

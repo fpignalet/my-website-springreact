@@ -31,8 +31,8 @@ public class ControllerREST extends AControllerBase {
     /**
      * @return the content of src/main/resources/static/datatest.json data file
      */
-    @RequestMapping(value = "/exthttpgetjson0", method = RequestMethod.GET)
     @CrossOrigin
+    @RequestMapping(value = "/exthttpgetjson0", method = RequestMethod.GET)
     public String exthttpgetjson0() throws IOException {
         return engineDB.load(EEngJSONFiles.TEST);
     }
@@ -40,8 +40,8 @@ public class ControllerREST extends AControllerBase {
     /**
      * @return the content of src/main/resources/static/datafpi.js data file
      */
-    @RequestMapping(value = "/exthttpgetjson1", method = RequestMethod.GET)
     @CrossOrigin
+    @RequestMapping(value = "/exthttpgetjson1", method = RequestMethod.GET)
     public String exthttpgetjson1() throws IOException {
         return engineHistory.load(EEngJSONFiles.HISTIN);
     }
@@ -49,8 +49,8 @@ public class ControllerREST extends AControllerBase {
     /**
      * to be tested in browser
      */
-    @RequestMapping(value = "/extnativelib", method = RequestMethod.GET)
     @CrossOrigin
+    @RequestMapping(value = "/extnativelib", method = RequestMethod.GET)
     public String extnativelib() throws IOException {
         extFacade.testSimple();
         extFacade.testSerial();
@@ -72,7 +72,7 @@ public class ControllerREST extends AControllerBase {
      * @throws IOException
      */
     @RequestMapping(path = "/testmicroservicecomrest")
-    public String testmicroservicecom(HttpServletRequest request) throws IOException {
+    public String testmicroservicecom(final HttpServletRequest request) throws IOException {
         return engineCom.testMicroserviceComREST(request);
     }
 
@@ -82,7 +82,7 @@ public class ControllerREST extends AControllerBase {
      * @throws IOException
      */
     @RequestMapping(path = "/testmicroservicecommq")
-    public String testmicroservicecommq(HttpServletRequest request) throws IOException {
+    public String testmicroservicecommq(final HttpServletRequest request) throws IOException {
         return engineCom.testMicroserviceComMQ(request);
     }
 

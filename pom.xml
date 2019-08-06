@@ -16,7 +16,8 @@
         <module>server</module>
         <module>client1</module>
         <module>client2</module>
-        <module>external-react-frontend</module>
+        <module>ext-react-frontend</module>
+<!--        <module>ext-vue-frontend</module>-->
 <!--        <module>example1</module>-->
 <!--        <module>example2</module>-->
     </modules>

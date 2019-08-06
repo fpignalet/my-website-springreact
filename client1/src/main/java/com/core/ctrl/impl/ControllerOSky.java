@@ -21,8 +21,8 @@ public class ControllerOSky extends AControllerBase {
      PUBLIC IMPLEM PART:
      */
 
-    @RequestMapping(value="/openskyadsb_list", method = RequestMethod.GET)
     @CrossOrigin
+    @RequestMapping(value="/openskyadsb_list", method = RequestMethod.GET)
     public String addressbook_list() throws Exception {
         serviceOSky.execute();
         log.info("ACTION OPENSKY DECODER SOMETHING...");

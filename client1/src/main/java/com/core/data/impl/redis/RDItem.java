@@ -9,8 +9,8 @@ import java.io.Serializable;
 /**
  * code ripped from https://github.com/michaelcgood/spring-data-redis-example
  */
-public class RedisItem implements Serializable {
-    public RedisItem(String key, String value) {
+public class RDItem implements Serializable {
+    public RDItem(String key, String value) {
         id = key;
         name = value;
     }

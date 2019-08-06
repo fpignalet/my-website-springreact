@@ -1,16 +1,16 @@
-package com.core.redis;
+package com.core.data;
 
-import com.core.data.impl.redis.RedisItem;
+import com.core.data.impl.redis.RDItem;
 
 import java.util.Map;
 
 /**
  * code ripped from https://github.com/michaelcgood/spring-data-redis-example
  */
-public interface IRedisRepository {
+public interface IRDRepository {
     Map<Object, Object> findAllMovies();
-    RedisItem findMovie(String id);
+    RDItem findMovie(String id);
 
-    void add(RedisItem redisItem);
+    void add(RDItem rdItem);
     void delete(String id);
 }

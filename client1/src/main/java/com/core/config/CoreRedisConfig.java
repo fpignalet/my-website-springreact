@@ -1,8 +1,8 @@
 package com.core.config;
 
-import com.core.redis.IRedisMessagePublisher;
-import com.core.redis.impl.RedisMessagePublisherImpl;
-import com.core.redis.impl.RedisMessageSubscriber;
+import com.core.data.IRDMessagePublisher;
+import com.core.data.impl.redis.RDMessagePublisher;
+import com.core.data.impl.redis.RDMessageSubscriber;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -31,13 +31,13 @@ public class CoreRedisConfig {
     }
 
     @Bean
-    IRedisMessagePublisher redisPublisher() {
-        return new RedisMessagePublisherImpl(redisTemplate(), topic());
+    IRDMessagePublisher redisPublisher() {
+        return new RDMessagePublisher(redisTemplate(), topic());
     }
 
     @Bean
     MessageListenerAdapter messageListener() {
-        return new MessageListenerAdapter(new RedisMessageSubscriber());
+        return new MessageListenerAdapter(new RDMessageSubscriber());
     }
 
     @Bean

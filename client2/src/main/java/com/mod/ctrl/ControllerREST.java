@@ -19,8 +19,8 @@ public class ControllerREST {
     /**
      * @return the content of src/main/resources/static/datatest.json data file
      */
-    @RequestMapping(value = "/client2test/sub/{id}", method = RequestMethod.GET)
     @CrossOrigin
+    @RequestMapping(value = "/client2test/sub/{id}", method = RequestMethod.GET)
     public String client2test(@PathVariable Long id) {
         try {
             log.info("received message from client1");

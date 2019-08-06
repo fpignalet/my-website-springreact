@@ -1,4 +1,4 @@
-package com.core.redis.impl;
+package com.core.data.impl.redis;
 
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
@@ -11,7 +11,7 @@ import java.util.List;
  * code ripped from https://github.com/michaelcgood/spring-data-redis-example
  */
 @Service
-public class RedisMessageSubscriber implements MessageListener {
+public class RDMessageSubscriber implements MessageListener {
 
     public void onMessage(final Message message, final byte[] pattern) {
         messageList.add(message.toString());
