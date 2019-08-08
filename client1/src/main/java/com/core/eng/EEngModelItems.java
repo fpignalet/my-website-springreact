@@ -21,6 +21,6 @@ public enum EEngModelItems {
         this.name = prefix + name;
     }
     @Getter(AccessLevel.PUBLIC)
-    private String name;
+    private final String name;
     private final static String prefix = "model_";
 }

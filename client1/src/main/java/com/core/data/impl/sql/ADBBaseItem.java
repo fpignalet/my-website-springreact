@@ -5,5 +5,5 @@ import java.io.Serializable;
 /**
  * Database serialisable root item
  */
-public abstract class ADBBaseItem implements Serializable {
+abstract class ADBBaseItem implements Serializable {
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class DBAddressBook extends ArrayList<DBContact> {
 
     @Getter(AccessLevel.PUBLIC)
-    private static Class[] subItems = {
+    private static final Class[] subItems = {
         DBContact.class
     };
 

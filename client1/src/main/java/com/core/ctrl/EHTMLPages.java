@@ -23,7 +23,7 @@ public enum EHTMLPages {
     }
 
     @Getter(AccessLevel.PUBLIC)
-    private String name;
+    private final String name;
 
     private final static String prefix = "frontend_";
     private final static String postfix = ".html";

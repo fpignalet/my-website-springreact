@@ -5,10 +5,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<name>client1</name>
-	<description>Spring boot microservice</description>
-
-	<groupId>com.core</groupId>
-	<artifactId>Core</artifactId>
+    <groupId>com.core</groupId>
+    <artifactId>Core</artifactId>
+    <description>Spring boot microservice</description>
 	<version>0.0.1-SNAPSHOT</version>
 	<modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>

@@ -68,7 +68,7 @@ public class FileJSONTests extends AEngJSONHandler {
         save(EEngJSONFiles.TESTJSONOUT.getName(), jsonString);
     }
 
-    private class DBTest { public String test = TEST; }
+    private static class DBTest { public String test = TEST; }
     private class DBTests extends ArrayList<DBTest> {}
 
     @Autowired

@@ -114,7 +114,7 @@ public class EngServiceDBTest extends AEngJSONHandler implements IEngModelUpdate
         final DBItemTest item = new DBItemTest();
         item.setName(name);
         dataTestRepo.save(item);
-        log.debug("DB item %s created", item.toString());
+        log.debug(String.format("DB item %s created", item.toString()));
         return item;
     }
 
@@ -128,7 +128,7 @@ public class EngServiceDBTest extends AEngJSONHandler implements IEngModelUpdate
         final DBItemTest item = items.get(0);
         item.setName(name);
         dataTestRepo.save(item);
-        log.debug("DB item %s updated", item.toString());
+        log.debug(String.format("DB item %s updated", item.toString()));
         return item;
     }
 

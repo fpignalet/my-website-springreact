@@ -12,7 +12,7 @@ import java.util.List;
 public class DBCVConteners extends ArrayList<DBHistContener> {
 
     @Getter(AccessLevel.PUBLIC)
-    private static Class[] subItems = {
+    private static final Class[] subItems = {
         DBHistContener.class,
         DBHistItem.class,
         DBHistContent.class,

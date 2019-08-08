@@ -17,8 +17,7 @@ canvas {
 
 .rawstart {
     width: 512px;
-    margin: 0 auto;
-    margin-top: 2em;
+    margin: 2em auto 0;
 }
 
 .instructions {

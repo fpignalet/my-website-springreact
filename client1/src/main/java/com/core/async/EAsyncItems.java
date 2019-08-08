@@ -14,8 +14,8 @@ public enum EAsyncItems {
     CRONED("croned");
 
     @Getter(AccessLevel.PUBLIC)
-    private String name;
-    private EAsyncItems(final String name){
+    private final String name;
+    EAsyncItems(final String name){
         this.name = name;
     }
 }

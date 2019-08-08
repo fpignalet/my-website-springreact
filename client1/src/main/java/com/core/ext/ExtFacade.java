@@ -17,7 +17,7 @@ public class ExtFacade {
         public double field4 = 2.0;
         public String field5 = "TEST";
         public int[] field6 = { 0, 1, 2 };
-    };
+    }
 
     /**
      * @param data
@@ -61,7 +61,7 @@ public class ExtFacade {
         final String portName;
         public String bufferIn;
         public String bufferOut;
-    };
+    }
 
     /**
      * @return

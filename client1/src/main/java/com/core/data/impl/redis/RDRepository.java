@@ -41,6 +41,6 @@ public class RDRepository implements IRDRepository {
 
     private static final String KEY = "Movie";
 
-    private RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, Object> redisTemplate;
     private HashOperations hashOperations;
 }

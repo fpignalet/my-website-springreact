@@ -18,8 +18,8 @@
         <module>client2</module>
         <module>ext-react-frontend</module>
 <!--        <module>ext-vue-frontend</module>-->
-<!--        <module>example1</module>-->
-<!--        <module>example2</module>-->
+        <module>example1</module>
+        <module>example2</module>
     </modules>
 
 </project>

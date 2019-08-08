@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicReference;
 @Slf4j
 public abstract class AAsyncTask {
 
-    public class AsyncContext {
+    public static class AsyncContext {
         @Getter(AccessLevel.PUBLIC)
         @Setter(AccessLevel.PUBLIC)
         private String data;
@@ -79,9 +79,9 @@ public abstract class AAsyncTask {
 
     }
 
-    public abstract boolean begin () throws IOException;
-    public abstract boolean execute () throws IOException;
-    public abstract boolean terminate ();
+    protected abstract boolean begin() throws IOException;
+    protected abstract boolean execute() throws IOException;
+    protected abstract boolean terminate();
     protected AAsyncTask(EAsyncItems taskId) {
         this.taskId = taskId;
     }
@@ -106,18 +106,18 @@ public abstract class AAsyncTask {
      *
      */
     @Getter(AccessLevel.PUBLIC)
-    private AtomicBoolean active = new AtomicBoolean(false);
+    private final AtomicBoolean active = new AtomicBoolean(false);
 
     /**
      * when status == TASKSTATUS_DONE, restart Task
      */
     @Getter(AccessLevel.PUBLIC)
-    private AtomicBoolean resetable = new AtomicBoolean(true);
+    private final AtomicBoolean resetable = new AtomicBoolean(true);
 
     /**
      * data to be monitored
      */
     @Getter(AccessLevel.PUBLIC)
-    private AtomicReference context = new AtomicReference<AsyncContext>(new AsyncContext());
+    private final AtomicReference context = new AtomicReference<AsyncContext>(new AsyncContext());
 
 }

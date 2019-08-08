@@ -1,6 +1,6 @@
-package com.srv.ejb.impl;
+package com.mod.ejb.impl;
 
-import com.srv.ejb.IEJBTestStateless;
+import com.mod.ejb.IEJBTestStateless;
 
 /**
  * @brief UNDER CONSTRUCTION

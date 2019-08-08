@@ -8,10 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -122,8 +120,8 @@ public abstract class AEngJSONHandler {
      * @param jsonString the data to be written
      * @return
      */
-    protected void save(final String fileName, final String jsonString) throws FileNotFoundException, UnsupportedEncodingException {
-        final PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+    protected void save(final String fileName, final String jsonString) throws IOException {
+        final PrintWriter writer = new PrintWriter(fileName, StandardCharsets.UTF_8);
         writer.println(jsonString);
         writer.close();
     }

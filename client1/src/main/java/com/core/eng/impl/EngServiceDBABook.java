@@ -147,7 +147,7 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
 
         dataContactRepo.save(contact);
 
-        log.debug("DB contact %s created", contact.toString());
+        log.debug(String.format("DB contact %s created", contact.toString()));
         return contact;
     }
 
@@ -175,7 +175,7 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         token.setConfirmationToken(UUID.randomUUID().toString());
         dataTokenDAO.save(token);
 
-        log.debug("DB contact %s registered", contact.toString());
+        log.debug(String.format("DB contact %s registered", contact.toString()));
         return token;
     }
 
@@ -206,7 +206,7 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         contact.setEnabled(true);
         dataContactRepo.save(contact);
 
-        log.debug("DB contact %s registered", contact.toString());
+        log.debug(String.format("DB contact %s registered", contact.toString()));
         return contact;
     }
 
@@ -227,7 +227,7 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         final DBAddressBook contacts = findByVorNNachname(cur_vorname, cur_nachname);
         final DBContact contact = contacts.get(0);
         if(0 == contacts.size()) {
-            log.debug("Add instead of edit", contact.toString());
+            log.debug(String.format("Add instead of edit", contact.toString()));
             return addOneContact(new_vorname, new_nachname, emailadresse, contact.isEnabled());
         }
 
@@ -237,7 +237,7 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
 
         dataContactRepo.save(contact);
 
-        log.debug("DB contact %s updated", contact.toString());
+        log.debug(String.format("DB contact %s updated", contact.toString()));
         return contact;
     }
 
@@ -254,7 +254,7 @@ public class EngServiceDBABook extends AEngJSONHandler implements IEngModelUpdat
         final DBContact contact = contacts.get(0);
         dataContactRepo.delete(contact);
 
-        log.debug("DB contact %s removed", contact.toString());
+        log.debug(String.format("DB contact %s removed", contact.toString()));
         return contact;
     }
 

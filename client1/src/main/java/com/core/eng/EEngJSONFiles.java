@@ -18,10 +18,10 @@ public enum EEngJSONFiles {
     ADBOOKOUT("dataadbookout");
 
     @Getter(AccessLevel.PUBLIC)
-    private String name;
-    private EEngJSONFiles(final String name){
+    private final String name;
+    EEngJSONFiles(final String name){
         this.name = dataRepo + name + postfix;
     }
-    public static final String dataRepo = "static/data/";
+    private static final String dataRepo = "static/data/";
     private static final String postfix = ".json";
 }

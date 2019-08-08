@@ -27,9 +27,9 @@ Porting my-website-raw to Spring / React. Please read:
 
 - Now there is Maven...
 
-- So now, let's call everything by it's f***ing name:
+- So now, let's call everything by it's ****ing name... :)
     - MICROSERVICES aren't SO MAGIC and COMPLICATED
-    - MICROSERVICES are just f***ing application 
+    - MICROSERVICES are just "normal" application 
         - sometimes using the same data source
         - sometimes binded together through different technologies
             - REST api

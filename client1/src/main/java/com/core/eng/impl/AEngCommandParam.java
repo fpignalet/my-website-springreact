@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-public abstract class AEngCommandParam {
+abstract class AEngCommandParam {
     public abstract Object getRef();
 
     @Getter(AccessLevel.PUBLIC)

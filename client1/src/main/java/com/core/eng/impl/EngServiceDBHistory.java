@@ -145,7 +145,7 @@ public class EngServiceDBHistory extends AEngJSONHandler implements IEngModelUpd
 
         dataHistContenerRepo.save(item);
 
-        log.debug("DB Hist item %s created", item.toString());
+        log.debug(String.format("DB Hist item %s created", item.toString()));
         return item;
     }
 
@@ -162,7 +162,7 @@ public class EngServiceDBHistory extends AEngJSONHandler implements IEngModelUpd
 
         dataHistContenerRepo.save(item);
 
-        log.debug("DB Hist item %s updated", item.toString());
+        log.debug(String.format("DB Hist item %s updated", item.toString()));
         return item;
     }
 

@@ -15,7 +15,7 @@ public class UtDefault {
      * UNDER CONSTRUCTION
      */
     public void accessEnv() {
-        final String paths[] = {
+        final String[] paths = {
             env.getProperty("spring.application.name"),
             env.getProperty("spring.jpa.hibernate.ddl-auto"),
             env.getProperty("spring.jpa.database-platform"),

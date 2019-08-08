@@ -18,6 +18,6 @@ public class RDMessageSubscriber implements MessageListener {
         System.out.println("Message received: " + new String(message.getBody()));
     }
 
-    private static List<String> messageList = new ArrayList<String>();
+    private static final List<String> messageList = new ArrayList<String>();
 
 }

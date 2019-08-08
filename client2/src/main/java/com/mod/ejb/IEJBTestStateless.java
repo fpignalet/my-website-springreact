@@ -1,4 +1,4 @@
-package com.srv.ejb;
+package com.mod.ejb;
 
 /**
  * @brief UNDER CONSTRUCTION
@@ -6,7 +6,6 @@ package com.srv.ejb;
 //import javax.ejb.Remote;
 //
 //@Remote
-public interface IEJBTestStateful {
-    int howManyTimes();
+public interface IEJBTestStateless {
     String getHelloWorld();
 }

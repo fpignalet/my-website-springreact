@@ -5,10 +5,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<name>ext-react-frontend</name>
-	<description>External frontend</description>
-
 	<groupId>com</groupId>
 	<artifactId>FrontReact</artifactId>
+	<description>External frontend</description>
 	<version>0.0.1-SNAPSHOT</version>
 	<modelVersion>4.0.0</modelVersion>
 
