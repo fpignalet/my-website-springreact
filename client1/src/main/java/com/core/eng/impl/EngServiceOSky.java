@@ -1,14 +1,19 @@
 package com.core.eng.impl;
 
+import com.core.eng.EEngTextFiles;
 import com.core.eng.IEngModelUpdater;
 import lombok.extern.slf4j.Slf4j;
 import org.opensky.example.ExampleDecoder;
 import org.opensky.libadsb.Position;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Consumer;
 
 @Slf4j
@@ -70,6 +75,9 @@ public class EngServiceOSky extends ExampleDecoder implements IEngModelUpdater {
             }
         };
         param.setData(new Position());
+
+        final Resource resource = new ClassPathResource(EEngTextFiles.TEST.getName());
+        final List<String> positions = Files.readAllLines(resource.getFile().toPath());
         for(final String entry: positions) {
             param.setValues(entry.split(","));
             commands.get(((Integer)param.getRef()).intValue()).accept(param);
@@ -77,18 +85,6 @@ public class EngServiceOSky extends ExampleDecoder implements IEngModelUpdater {
         }
 
     }
-
-    private static final String[] positions = {
-        "1,48.0775474,11.6425398,8d4b19f39911088090641010b9b0",
-        "2,48.0775474,11.6425398,8d4ca513587153a8184a2fb5adeb",
-        "3,48.0775474,11.6425398,8d3413c399014e23c80f947ce87c",
-        "4,48.0775474,11.6425398,5d4ca88c079afe",
-        "5,48.0775474,11.6425398,a0001838ca3e51f0a8000047a36a",
-        "6,48.0775474,11.6425398,8d47a36a58c38668ffb55f000000",
-        "7,48.0775474,11.6425398,5d506c28000000",
-        "8,48.0775474,11.6425398,a8000102fe81c1000000004401e3",
-        "9,48.0775474,11.6425398,a0001839000000000000004401e3"
-    };
 
     private final HashMap<Integer, Consumer<AEngCommandParam>> commands = new HashMap<>();
 

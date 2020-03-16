@@ -41,7 +41,7 @@ public class EngServiceTests implements IEngModelUpdater {
 
         // Spring Boot >= 2.0.0.M7
         final String endpointBasePath = "/actuator";
-        sb.append("<h2>Sprig Boot Actuator</h2>");
+        sb.append("<h2>Spring Boot Actuator</h2>");
         sb.append("<ul>");
 
         // http://localhost:8090/actuator

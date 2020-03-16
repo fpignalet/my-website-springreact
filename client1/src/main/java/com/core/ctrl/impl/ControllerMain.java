@@ -118,6 +118,16 @@ public class ControllerMain extends AControllerBase {
     }
 
     /**
+     * will display tasks html page with "FROM MODEL:[name parameter content]"
+     * @param model
+     * @return
+     */
+    @GetMapping("/entrygame")
+    public String entrygame(final Model model){
+        return EHTMLPages.GAME.getName();
+    }
+
+    /**
      * @param names
      * @return
      */

@@ -29,7 +29,7 @@ public class ModSOAPConfig extends WsConfigurerAdapter {
         final DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("ItemPort");
         wsdl11Definition.setLocationUri("/service/item-details");
-        wsdl11Definition.setTargetNamespace("http://localhost:1111/srv/xml/item");
+        wsdl11Definition.setTargetNamespace("http://localhost:8081/mod/xml/item");
         wsdl11Definition.setSchema(wsdlSchema);
         return wsdl11Definition;
     }
@@ -37,6 +37,6 @@ public class ModSOAPConfig extends WsConfigurerAdapter {
     @Bean
     public XsdSchema wsdlSchema()
     {
-        return new SimpleXsdSchema(new ClassPathResource("item.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("schema/item.xsd"));
     }
 }

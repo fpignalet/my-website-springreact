@@ -1,6 +1,6 @@
 package com.mod.soap;
 
-import com.srv.xml.item.Item;
+import com.mod.xml.item.Item;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 

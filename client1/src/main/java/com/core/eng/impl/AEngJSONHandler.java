@@ -10,7 +10,6 @@ import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -76,8 +75,7 @@ public abstract class AEngJSONHandler {
      */
     protected String load(final String fileName) throws IOException {
         final Resource resource = new ClassPathResource(fileName);
-        final Charset charset = StandardCharsets.UTF_8;
-        return new String(Files.readAllBytes(resource.getFile().toPath()), charset);
+        return new String(Files.readAllBytes(resource.getFile().toPath()), StandardCharsets.UTF_8);
     }
 
     /**
@@ -121,7 +119,8 @@ public abstract class AEngJSONHandler {
      * @return
      */
     protected void save(final String fileName, final String jsonString) throws IOException {
-        final PrintWriter writer = new PrintWriter(fileName, StandardCharsets.UTF_8);
+//        final PrintWriter writer = new PrintWriter(fileName, StandardCharsets.UTF_8);
+        final PrintWriter writer = new PrintWriter(fileName);
         writer.println(jsonString);
         writer.close();
     }

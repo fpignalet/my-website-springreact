@@ -28,17 +28,17 @@ public abstract class AAsyncTasks {
     protected void monitor() {
         try {
             final String ctxData = ((AAsyncTask.AsyncContext)taskSpeed.getContext().get()).getData();
-            if("BEGIN OK".equals(ctxData)){
+            if(AAsyncTask.BEGIN_OK.equals(ctxData)){
                 log.info(ctxData);
             }
-            else if("EXECUTE OK".equals(ctxData)){
+            else if(AAsyncTask.EXECUTE_OK.equals(ctxData)){
                 log.info(ctxData);
             }
-            else if("TERMINATE OK".equals(ctxData)){
+            else if(AAsyncTask.TERMINATE_OK.equals(ctxData)){
                 log.info(ctxData);
             }
             else {
-                log.info("SPEED TASK: SOMETHING WENT WRONG");
+                log.info(AAsyncTask.SOMETHING_WENT_WRONG);
             }
         }
         catch (Exception e) {
@@ -86,26 +86,14 @@ public abstract class AAsyncTasks {
 
     }
 
-    /**
-     * @brief constructor
-     * @param taskSpeed autowired EngTaskSpeed
-     * @param taskStandard autowired EngTaskStandard
-     * @param taskSlow autowired EngTaskSlow
-     */
-    public AAsyncTasks(final AsyncTaskSpeed taskSpeed, final AsyncTaskStandard taskStandard, final AsyncTaskSlow taskSlow) {
-        this.taskSpeed = taskSpeed;
-        this.taskStandard = taskStandard;
-        this.taskSlow = taskSlow;
-    }
-
     @Autowired
     @Getter(AccessLevel.PUBLIC)
-    private final AsyncTaskSpeed taskSpeed;
+    private AsyncTaskSpeed taskSpeed;
     @Autowired
     @Getter(AccessLevel.PUBLIC)
-    private final AsyncTaskStandard taskStandard;
+    private AsyncTaskStandard taskStandard;
     @Autowired
     @Getter(AccessLevel.PUBLIC)
-    private final AsyncTaskSlow taskSlow;
+    private AsyncTaskSlow taskSlow;
 
 }

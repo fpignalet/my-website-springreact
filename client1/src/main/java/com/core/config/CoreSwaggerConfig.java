@@ -28,13 +28,13 @@ public class CoreSwaggerConfig {
 
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
-            "aTitle",
-            "aDescription",
-            "aVersion",
+            "my-website-springreact / Core",
+            "REST api",
+            "0.0.1-SNAPSHOT",
             "a url to terms and services",
-            "aContact",
-            "a License of API",
-            "a license URL");
+            "francois.pignalet@gmail.com",
+            "Simplified BSD-2",
+            "https://github.com/fpignalet/my-website-springreact/blob/master/LICENSE");
 
         return apiInfo;
     }

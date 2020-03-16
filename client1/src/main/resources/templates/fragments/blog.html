@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <html lang="en">
 
 <!-- -------------------------------------------------------------------------->
@@ -41,6 +43,19 @@
 </div>
 
 <div th:fragment="contentblogtable_record">
+
+<!--
+    <div th:if="${record.getContenertype() == 'BLOGTECHENTRY'}" >
+        <span>[debugging]BLOGTECHENTRY:</span>
+    </div>
+    <div th:if="${record.getContenertype() == 'BLOGNEWSENTRY'}" >
+        <span>[debugging]BLOGNEWSENTRY:</span>
+    </div>
+    <div th:if="${record.getContenertype() == 'JOBENTRY'}" >
+        <span>[debugging]JOBENTRY:</span>
+    </div>
+-->
+
     <dd class="label" th:if="${record.getContenerdate() != null}" th:text="${record.getContenerdate()}"></dd>
     <div class="card">
         <div class="card-image">

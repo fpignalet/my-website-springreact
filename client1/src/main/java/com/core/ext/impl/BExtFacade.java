@@ -45,7 +45,7 @@ public class BExtFacade extends ExtFacade {
      */
     public void testSerialOut() {
         final Com dataOut =  new Com("~/dev/fakesrd0", Com.Way.wayOUT);
-        dataOut.bufferOut = "TOTOTO TESTTESTTESTTEST";
+        dataOut.bufferOut = "TEST FROM CORE";
         testWriteSerial(dataOut);
 //        System.out.println(dataIn.);
     }

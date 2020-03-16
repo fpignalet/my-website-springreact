@@ -24,7 +24,7 @@ public class AsyncTaskSpeed extends AAsyncTask {
 
     @Override
     public boolean begin() {
-        ((AsyncContext)getContext().get()).setData("BEGIN OK");
+        ((AsyncContext)getContext().get()).setData(BEGIN_OK);
 
         if(null != getEngineDB().findItemTestById(getCount().intValue() - 1)){
             return true;
@@ -35,7 +35,7 @@ public class AsyncTaskSpeed extends AAsyncTask {
 
     @Override
     public boolean execute() {
-        ((AsyncContext)getContext().get()).setData("EXECUTE OK");
+        ((AsyncContext)getContext().get()).setData(EXECUTE_OK);
 
         if(null != getEngineDB().findItemTestByName("NAME" + getCount())){
             return true;
@@ -46,7 +46,7 @@ public class AsyncTaskSpeed extends AAsyncTask {
 
     @Override
     public boolean terminate() {
-        ((AsyncContext)getContext().get()).setData("TERMINATE OK");
+        ((AsyncContext)getContext().get()).setData(TERMINATE_OK);
         return true;
     }
 

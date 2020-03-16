@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/spectre.min.css">
+    <link rel="stylesheet" href="/style/spectre-exp.min.css">
+    <link rel="stylesheet" href="/style/spectre-icons.min.css">
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous"
+    />
+
+    <title>FRONTEND_REACT</title>
+
+    <div th:include="fragments/react.html :: header" ></div>
+
+</head>
+<body>
+<!--
+    <div class="fixed-parallax">
+        <div class="image five"></div>
+        <div class="content">
+            <div th:include="fragments/react.html :: contentreact" ></div>
+
+        </div>
+        <div class="image six"></div>
+    </div>
+-->
+    <div th:include="fragments/game.html :: contentgame" ></div>
+
+    <div th:include="fragments/game.html :: footer" ></div>
+
+</body>
+</html>

@@ -54,7 +54,9 @@ public class ControllerREST extends AControllerBase {
     public String extnativelib() throws IOException {
         extFacade.testSimple();
         extFacade.testSerial();
-        return getResult("LIBRARY OOK", "");
+        //create JSON result from above
+        final String result = "{ WILL BE THERE SOON }";
+        return getResult("LIBRARY OOK", result);
     }
 
     /**
@@ -84,6 +86,26 @@ public class ControllerREST extends AControllerBase {
     @RequestMapping(path = "/testmicroservicecommq")
     public String testmicroservicecommq(final HttpServletRequest request) throws IOException {
         return engineCom.testMicroserviceComMQ(request);
+    }
+
+    /**
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(path = "/testhttprequest")
+    public String testhttprequest(final HttpServletRequest request) throws Exception {
+        return engineCom.testSimpleHttpRequest();
+    }
+
+    /**
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(path = "/testjms")
+    public String testjms(final HttpServletRequest request) throws Exception {
+        return engineCom.testJMSMail(request);
     }
 
     /************************************************************************

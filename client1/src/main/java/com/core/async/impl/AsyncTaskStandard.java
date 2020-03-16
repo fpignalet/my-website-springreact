@@ -24,6 +24,8 @@ public class AsyncTaskStandard extends AAsyncTask {
 
     @Override
     public boolean begin() {
+        ((AsyncContext)getContext().get()).setData(BEGIN_OK);
+
         if(null != getEngineDB().addOneItemTest("NAME" + getCount().addAndGet(1))){
             return true;
         }
@@ -33,6 +35,8 @@ public class AsyncTaskStandard extends AAsyncTask {
 
     @Override
     public boolean execute() {
+        ((AsyncContext)getContext().get()).setData(EXECUTE_OK);
+
         getEngineDB().findAllItemTestOrderedByNameAscending().forEach(
             (it)-> log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName()))
         );
@@ -42,6 +46,8 @@ public class AsyncTaskStandard extends AAsyncTask {
 
     @Override
     public boolean terminate() {
+        ((AsyncContext)getContext().get()).setData(TERMINATE_OK);
+
         return true;
     }
 

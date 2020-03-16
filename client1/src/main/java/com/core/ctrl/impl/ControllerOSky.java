@@ -35,4 +35,5 @@ public class ControllerOSky extends AControllerBase {
 
     @Autowired
     private EngServiceOSky serviceOSky;
+
 }

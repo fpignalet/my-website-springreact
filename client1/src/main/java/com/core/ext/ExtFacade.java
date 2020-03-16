@@ -1,5 +1,8 @@
 package com.core.ext;
 
+/**
+ *
+ */
 public class ExtFacade {
 
     static {
@@ -8,7 +11,7 @@ public class ExtFacade {
     }
 
     /**
-     *
+     * @brief
      */
     public static class Data {
         public int field1 = 0;
@@ -45,7 +48,7 @@ public class ExtFacade {
     }
 
     /**
-     *
+     * @brief
      */
     public static class Com {
         public enum Way {

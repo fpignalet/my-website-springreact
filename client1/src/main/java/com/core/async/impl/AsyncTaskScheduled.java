@@ -24,16 +24,22 @@ public class AsyncTaskScheduled extends AAsyncTask {
 
     @Override
     public boolean begin() {
+        ((AsyncContext)getContext().get()).setData(BEGIN_OK);
+
         return true;
     }
 
     @Override
     public boolean execute() {
+        ((AsyncContext)getContext().get()).setData(EXECUTE_OK);
+
         return true;
     }
 
     @Override
     public boolean terminate() {
+        ((AsyncContext)getContext().get()).setData(TERMINATE_OK);
+
         return true;
     }
 

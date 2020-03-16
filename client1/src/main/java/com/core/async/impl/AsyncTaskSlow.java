@@ -24,6 +24,8 @@ public class AsyncTaskSlow extends AAsyncTask {
 
     @Override
     public boolean begin() {
+        ((AsyncContext)getContext().get()).setData(BEGIN_OK);
+
         if(null != getEngineDB().updateOneItemTest("NAME" + getCount().intValue() + 1)){
             log.debug("ITEM TEST UPDATED");
             return true;
@@ -34,6 +36,8 @@ public class AsyncTaskSlow extends AAsyncTask {
 
     @Override
     public boolean execute() {
+        ((AsyncContext)getContext().get()).setData(EXECUTE_OK);
+
         getEngineDB().findAllItemTestOrderedByNameAscending().forEach(
             (it)-> log.info(String.format("DBItemTest ID: %s, NAME: %s<br>", it.getId(), it.getName()))
         );
@@ -43,6 +47,8 @@ public class AsyncTaskSlow extends AAsyncTask {
 
     @Override
     public boolean terminate() {
+        ((AsyncContext)getContext().get()).setData(TERMINATE_OK);
+
         return true;
     }
 

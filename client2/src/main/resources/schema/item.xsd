@@ -1,6 +1,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://localhost:1111/srv/xml/item"
-           targetNamespace="http://localhost:1111/srv/xml/item"
+           xmlns:tns="http://localhost:8081/mod/xml/item"
+           targetNamespace="http://localhost:8081/mod/xml/item"
            elementFormDefault="qualified">
 
     <xs:element name="ItemRequest">

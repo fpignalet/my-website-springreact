@@ -16,6 +16,7 @@ public enum EHTMLPages {
     ANGULAR("angular"),
     REDIS("redis"),
     TASKS("tasks"),
+    GAME("game"),
     ERROR("error");
 
     EHTMLPages(final String name){

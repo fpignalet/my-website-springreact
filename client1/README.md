@@ -162,7 +162,7 @@ What is important here?
                     - [images](src/main/resources/static/images)
                         - static resources. For example images referenced in CV and BLOG pages
                     - [style](src/main/resources/static/style)
-                        - all the useful stylesheets
+                        - all the useful styapplicationlesheets
                         - this web app uses [Spectre css](https://picturepan2.github.io/spectre/index.html)
                 - [templates](src/main/resources/templates)
                     - this web app uses thymeleaf as frontend template engine
@@ -243,3 +243,5 @@ What is important here?
             - spring boot app tests implementation
     - [target](target)
         - contains the result of mvn compile, package or install
+
+[REST:](http://localhost:8082/swagger-ui.html)

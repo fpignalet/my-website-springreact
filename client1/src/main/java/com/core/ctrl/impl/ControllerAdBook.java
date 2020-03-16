@@ -33,7 +33,6 @@ public class ControllerAdBook extends AControllerBase {
         return getResult(null, "");
     }
 
-
     /**
      * @param vorname
      * @param nachname

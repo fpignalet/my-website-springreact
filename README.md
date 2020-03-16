@@ -10,7 +10,7 @@ My current professional website is
 Porting my-website-raw to Spring / React. Please read:
 * [main application README](client1/README.md)
 * [module README](client2/README.md)
-* [external-react-frontend README](external-react-frontend/README.md)
+* [external-react-frontend README](ext-react-frontend/README.md)
 * [server README](server/README.md)
 
 # Once upon a time...

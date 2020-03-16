@@ -7,19 +7,18 @@
 
     <!-- parent pom -->
     <groupId>com</groupId>
-    <artifactId>java-multi-modules</artifactId>
+    <artifactId>my-website-springreact</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
 
     <!-- sub modules -->
     <modules>
+        <module>library</module>
         <module>server</module>
         <module>client1</module>
         <module>client2</module>
         <module>ext-react-frontend</module>
 <!--        <module>ext-vue-frontend</module>-->
-        <module>example1</module>
-        <module>example2</module>
     </modules>
 
 </project>

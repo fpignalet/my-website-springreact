@@ -22,6 +22,12 @@ import java.util.concurrent.atomic.AtomicReference;
 @Slf4j
 public abstract class AAsyncTask {
 
+    public static final String BEGIN_OK = "BEGIN OK";
+    public static final String EXECUTE_OK = "EXECUTE OK";
+    public static final String TERMINATE_OK = "TERMINATE OK";
+    public static final String SCHLAFEN = "SCHLAFEN...";
+    public static final String SOMETHING_WENT_WRONG = "NO STATE in Speedy Task";
+
     public static class AsyncContext {
         @Getter(AccessLevel.PUBLIC)
         @Setter(AccessLevel.PUBLIC)
@@ -34,7 +40,7 @@ public abstract class AAsyncTask {
     public void entry() {
         try {
             if (false == getActive().get()) {
-                ((AsyncContext)getContext().get()).setData("SCHLAFEN...");
+                ((AsyncContext)getContext().get()).setData(SCHLAFEN);
                 return;
             }
 
@@ -43,7 +49,7 @@ public abstract class AAsyncTask {
                 case TASKSTATUS_INIT:
                     if(true == begin()){
                         setStatus(EAsyncStatus.TASKSTATUS_EXECUTE);
-                        log.info("begin finished");
+                        log.info("begin finished OK");
                         break;
                     }
 
@@ -53,7 +59,7 @@ public abstract class AAsyncTask {
                 case TASKSTATUS_EXECUTE:
                     if(true == execute()){
                         setStatus(EAsyncStatus.TASKSTATUS_DONE);
-                        log.info("execute finished");
+                        log.info("execute finished OK");
                         break;
                     }
 
@@ -66,7 +72,7 @@ public abstract class AAsyncTask {
                             setStatus(EAsyncStatus.TASKSTATUS_INIT);
                         }
 
-                        log.info("terminate finished");
+                        log.info("terminate finished OK");
                     }
 
                     log.info("terminate NOT finished");
@@ -82,10 +88,12 @@ public abstract class AAsyncTask {
     protected abstract boolean begin() throws IOException;
     protected abstract boolean execute() throws IOException;
     protected abstract boolean terminate();
-    protected AAsyncTask(EAsyncItems taskId) {
+    protected AAsyncTask(final EAsyncItems taskId) {
         this.taskId = taskId;
     }
+
     @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
     private final EAsyncItems taskId;
 
     /**

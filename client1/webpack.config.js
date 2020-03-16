@@ -104,6 +104,40 @@ module.exports = [
                 }
             ]
         }
+    },
+
+    //-------------------------------------------------
+    //minifying module game
+/*
+    {
+        entry: inputdir + 'game/public/javascripts/module_react.jsx',
+        output: {
+            path: path.resolve(__dirname, outputdir),
+            filename: 'bundlegame.js'
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(js|jsx)$/,
+                    exclude: /node_modules/,
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            options: {
+                                presets: [
+                                    '@babel/preset-env',
+                                    '@babel/react',
+                                    {
+                                        'plugins': ['@babel/plugin-proposal-class-properties']
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
     }
+*/
 
 ];

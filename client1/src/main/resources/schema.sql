@@ -1,4 +1,4 @@
-CREATE DATABASE if not exists fpitest;
+CREATE DATABASE if nHot exists fpitest;
 
 DROP TABLE if exists dbhist_sub_data;
 DROP TABLE if exists springtest;

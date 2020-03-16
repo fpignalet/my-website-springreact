@@ -1,15 +1,15 @@
 package com.mod.soap;
 
-import com.srv.xml.item.ItemRequest;
-import com.srv.xml.item.ItemResponse;
+import com.mod.xml.item.ItemRequest;
+import com.mod.xml.item.ItemResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 /**
- <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://localhost:1111/srv/xml/item">
+ <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://localhost:8081/mod/xml/item">
  <soapenv:Header/>
  <soapenv:Body>
  <sch:ItemRequest>
@@ -20,7 +20,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
  */
 @Endpoint
 public class ItemEndpoint {
-    private static final String NAMESPACE_URI = "http://localhost:1111/srv/xml/item";
+    private static final String NAMESPACE_URI = "http://localhost:8081/mod/xml/item";
 
     @Autowired
     private ItemRepository itemRepo;

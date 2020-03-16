@@ -1,0 +1,77 @@
+Compiled from "ExtFacade.java"
+public final class com.core.ext.ExtFacade$Com$Way extends java.lang.Enum<com.core.ext.ExtFacade$Com$Way> {
+  public static final com.core.ext.ExtFacade$Com$Way wayIN;
+    descriptor: Lcom/core/ext/ExtFacade$Com$Way;
+  public static final com.core.ext.ExtFacade$Com$Way wayOUT;
+    descriptor: Lcom/core/ext/ExtFacade$Com$Way;
+  public static com.core.ext.ExtFacade$Com$Way[] values();
+    descriptor: ()[Lcom/core/ext/ExtFacade$Com$Way;
+
+  public static com.core.ext.ExtFacade$Com$Way valueOf(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/core/ext/ExtFacade$Com$Way;
+
+  static {};
+    descriptor: ()V
+}
+Compiled from "ExtFacade.java"
+public class com.core.ext.ExtFacade$Com {
+  final com.core.ext.ExtFacade$Com$Way way;
+    descriptor: Lcom/core/ext/ExtFacade$Com$Way;
+  final java.lang.String portName;
+    descriptor: Ljava/lang/String;
+  public java.lang.String bufferIn;
+    descriptor: Ljava/lang/String;
+  public java.lang.String bufferOut;
+    descriptor: Ljava/lang/String;
+  public com.core.ext.ExtFacade$Com(java.lang.String, com.core.ext.ExtFacade$Com$Way);
+    descriptor: (Ljava/lang/String;Lcom/core/ext/ExtFacade$Com$Way;)V
+}
+Compiled from "ExtFacade.java"
+public class com.core.ext.ExtFacade$Data {
+  public int field1;
+    descriptor: I
+  public long field2;
+    descriptor: J
+  public float field3;
+    descriptor: F
+  public double field4;
+    descriptor: D
+  public java.lang.String field5;
+    descriptor: Ljava/lang/String;
+  public int[] field6;
+    descriptor: [I
+  public com.core.ext.ExtFacade$Data();
+    descriptor: ()V
+}
+Compiled from "ExtFacade.java"
+public class com.core.ext.ExtFacade {
+  public com.core.ext.ExtFacade();
+    descriptor: ()V
+
+  protected native java.lang.String execute(com.core.ext.ExtFacade$Data);
+    descriptor: (Lcom/core/ext/ExtFacade$Data;)Ljava/lang/String;
+
+  protected java.lang.String testExecute(com.core.ext.ExtFacade$Data);
+    descriptor: (Lcom/core/ext/ExtFacade$Data;)Ljava/lang/String;
+
+  protected native java.lang.String[] getData();
+    descriptor: ()[Ljava/lang/String;
+
+  protected java.lang.String[] testGetData();
+    descriptor: ()[Ljava/lang/String;
+
+  protected native void writeSerial(com.core.ext.ExtFacade$Com);
+    descriptor: (Lcom/core/ext/ExtFacade$Com;)V
+
+  protected void testWriteSerial(com.core.ext.ExtFacade$Com);
+    descriptor: (Lcom/core/ext/ExtFacade$Com;)V
+
+  protected native void readSerial(com.core.ext.ExtFacade$Com);
+    descriptor: (Lcom/core/ext/ExtFacade$Com;)V
+
+  protected void testReadSerial(com.core.ext.ExtFacade$Com);
+    descriptor: (Lcom/core/ext/ExtFacade$Com;)V
+
+  static {};
+    descriptor: ()V
+}
