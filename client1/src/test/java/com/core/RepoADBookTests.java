@@ -21,7 +21,7 @@ public class RepoADBookTests {
 
     @Test
     public void saveTest() {
-        DBContact contact = new DBContact();
+        final DBContact contact = new DBContact();
         contact.setVorname(TESTVORNAME);
         contact.setNachname(TESTNACHNAME);
         contact.setEmailadresse(TESTEMAILADRESSE);
